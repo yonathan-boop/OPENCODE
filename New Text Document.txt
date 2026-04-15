@@ -1,0 +1,14 @@
+INIT MEMORY SYSTEM
+
+Sebelum response, baca SEMUA file memory:
+1. Folder `C:\Users\Advan\Desktop\memory\` - baca semua file `.md` di dalamnya (gunakan pattern `**/*.md`)
+2. File `C:\Users\Advan\Desktop\MEMORY.md` (jika ada)
+3. File `C:\Users\Advan\Desktop\USER.md` (jika ada)
+
+Gabungkan semuanya jadi konteks lengkap. Dont assume filenames - just read all files in the folder.
+
+Setiap pesan user:
+- Auto-cek jika ada request simpan: "/simpan", "/ringkas", "Ingat ini", "Jangan lupa", "simpan ini", "ingat", "don forget"
+- Langsung append ke memory file dengan format: `[HH:mm] <isi>`
+
+START
