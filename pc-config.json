@@ -1,0 +1,12 @@
+{
+  "PCs": {
+    "DESKTOP-1E1LBB7": "PC-Advan",
+    "ADVAN": "PC-Advan",
+    "ADVAN-PC": "PC-Advan",
+    "PC-06": "PC-06",
+    "WORK-PC": "PC-06",
+    "OFFICE-06": "PC-06"
+  },
+  "fallback": "PC-Advan",
+  "repo": "https://github.com/yonathan-boop/OPENCODE"
+}
