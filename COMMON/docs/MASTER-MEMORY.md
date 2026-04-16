@@ -6,7 +6,7 @@ Di-update: 16 April 2026
 
 ## 📋 IDENTITAS SAYA (AI)
 
-- **Name:** OpenCode Agent / OpenClaw Agent
+- **Name:** AI Assistant
 - **Creature:** AI Assistant
 - **Vibe:** Helpful, concise, can be witty
 - **Signature:** 🤖
@@ -16,7 +16,7 @@ Di-update: 16 April 2026
 ## 📋 TENTANG KAMU (USER)
 
 - **Name:** Admin (di pc-06) / Advan (di pc-rumah)
-- **Workspace pc-06:** C:\Users\Admin\.openclaw\workspace
+- **Workspace pc-06:** C:\Users\Admin\.work\workspace
 - **Workspace Advan:** C:\Users\Advan\Desktop\workspace
 - **GitHub:** https://github.com/yonathan-boop/OPENCODE
 
@@ -27,9 +27,8 @@ Di-update: 16 April 2026
 ### PC-06 (Sekarang - Kantor)
 - Nama: pc-06, WORK-PC, OFFICE-06
 - OS: Windows 10
-- Folder openclaw: C:\Users\Admin\.openclaw
-- Folder opencode: C:\Users\Admin\.opencode
-- Model: minimax-m2.5-free (opencode: big-pickle)
+- Folder kerja: C:\Users\Admin\.work
+- Model: minimax-m2.5-free
 - Screen: 1920 x 1080
 
 ### PC-Advan (Rumah)
@@ -193,17 +192,17 @@ playwright install chromium
 
 ## 📋 RECENT ACTIVITY
 
-### 16 April 2026 - pc-06 (Session 1 - OpenCode):
+### 16 April 2026 - pc-06 (Session 1):
 - Install Tesseract OCR v5.5.0 (via winget)
 - Install image_tools_mcp v1.2.1
-- Setup opencode.json MCP config
+- Setup MCP config
 - Discuss vision model options (kimi-k2.5-free, Gemini)
 - Rule added: SAVE EVERYTHING to memory
 
-### 16 April 2026 - pc-06 (Session 2 - OpenCode):
-- Setup memory system untuk opencode
+### 16 April 2026 - pc-06 (Session 2):
+- Setup memory system
 - Connect Gemini API key
-- Test image vision - model big-pickle tidak support
+- Test image vision - model tidak support
 - Install Tesseract OCR + image_tools_mcp untuk OCR local
 - Discuss OCR local solution (Tesseract + image_tools_mcp)
 - **ATURAN BARU: SEMUA HAL WAJIB DISIMPAN KE MEMORY**

@@ -9,9 +9,9 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 - PC rumah: Advan (ADVAN, ADVAN-PC)
 
 ## Technical
-- Menggunakan openclaw AI assistant
-- Folder openclaw: C:\Users\Admin\.openclaw
-- Workspace: C:\Users\Admin\.openclaw\workspace
+- Menggunakan AI assistant
+- Folder kerja: C:\Users\Admin\.work
+- Workspace: C:\Users\Admin\.work\workspace
 - Memory system dibuat: 2026-04-11
 
 ## GitHub
@@ -24,7 +24,7 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 - User mau sistem memory yang bisa ingat semuanya dengan jelas
 
 ## Projects
-- Memory system: Sistem memory baru untuk openclaw (dibuat 11 April 2026)
+- Memory system: Sistem memory baru (dibuat 11 April 2026)
 - Sinkronisasi: Semua memory di-sync via GitHub
 
 ## OCR & Image Tools
