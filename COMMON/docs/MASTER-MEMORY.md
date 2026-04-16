@@ -35,6 +35,11 @@ Di-update: 16 April 2026
 - Nama: ADVAN, ADVAN-PC, DESKTOP-1E1LBB7
 - Model: minimax-m2.5-free
 - Trigger commands untuk ChatGPT
+- **Tesseract OCR:** C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.0)
+- **Python:** C:\Users\Advan\AppData\Local\Programs\Python\Python311\python.exe (3.11)
+- **PyAutoGUI:** ✅ installed
+- **Image Tools MCP:** C:\Users\Advan\Documents\image-tools-mcp\image-tools-mcp-v1.2.1-windows-amd64.exe
+- **MCP Config:** C:\Users\Advan\.config\opencode\opencode.json (tanpa Ollama)
 
 ---
 
@@ -97,6 +102,64 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ---
 
+## 📋 PLAYWRIGHT (PC-Advan)
+- Install: `pip install playwright` + `python -m playwright install chromium`
+- **Masalah:** launch_persistent_context error dengan user_data_dir
+- **Masalah:** encryption error (os_crypt) - tidak bisa akses Chrome profile existing
+- **Solusi:** Gunakan PyAutoGUI untuk kontrol Chrome yang sudah terbuka
+
+## 📋 PyAutoGUI YouTube Automation
+- Python: C:\Users\Advan\AppData\Local\Programs\Python\Python311\python.exe
+- Tesseract: C:\Program Files\Tesseract-OCR\tesseract.exe
+- Script: C:\Users\Advan\Desktop\memory\PC-Advan\scripts\
+- OCR: pytesseract dengan lang='eng+ind'
+
+### Cara Kerja:
+1. Buka Chrome → pilih profile → minimize
+2. Buka tab baru dengan URL langsung: `start chrome "https://www.youtube.com/@Gadgetin/videos"`
+3. Scroll untuk lihat video
+4. Screenshot → OCR baca teks
+5. Klik video → scroll ke komentar → screenshot → OCR
+
+### Tips:
+- Klik profile di posisi (200, 300) untuk profile admin
+- Scroll pakai pyautogui.scroll(-500) untuk scroll down
+- OCR perlu adjustment posisi crop untuk dapat komentar
+
+---
+
+## 📋 SCREENSHOT & OCR (PC-Advan)
+
+### Install:
+```
+pip install pytesseract
+```
+
+### Cara Ambil Screenshot:
+```python
+from PIL import ImageGrab
+img = ImageGrab.grab()
+img.save(r'C:\Users\Advan\Desktop\screenshot.png')
+```
+
+### Cara OCR (Baca Teks dari Gambar):
+```python
+from PIL import Image
+import pytesseract
+
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+img = Image.open(r'C:\Users\Advan\Desktop\screenshot.png')
+text = pytesseract.image_to_string(img, lang='eng+ind')
+print(text)
+```
+
+### Catatan:
+- Python path: C:\Users\Advan\AppData\Local\Programs\Python\Python311\python.exe
+- Tesseract path: C:\Program Files\Tesseract-OCR\tesseract.exe
+- Simpan screenshot ke Desktop dulu, lalu baca
+
+---
+
 ## 📋 BROWSER AUTOMATION
 
 ### 1. PYAUTOGUI (RECOMMENDED untuk Chrome)
@@ -118,8 +181,6 @@ pip install pyautogui pymsgbox
 
 **Status:** ✅ Tested & Working
 
----
-
 ### 2. PLAYWRIGHT
 
 **Install:**
@@ -139,6 +200,11 @@ playwright install chromium
 - Testing
 
 **Status:** ⚠️ Ada masalah dengan existing profile
+
+---
+
+### Chrome Shortcuts (PC-06)
+- **Chrome Desktop Jarak Jauh.lnk** - di Desktop (butuh dicek lagi fungsinya)
 
 ---
 
