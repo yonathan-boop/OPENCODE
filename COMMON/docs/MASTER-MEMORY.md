@@ -102,6 +102,13 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ---
 
+## 📋 GIT (PC-Advan)
+- **Git Portable:** C:\Users\Advan\Documents\PortableGit\bin\git.exe (v2.45.1)
+- Note: Git regular di-uninstall karena makan RAM
+- Sinkronisasi memory via Portable Git
+
+---
+
 ## 📋 PLAYWRIGHT (PC-Advan)
 - Install: `pip install playwright` + `python -m playwright install chromium`
 - **Masalah:** launch_persistent_context error dengan user_data_dir
