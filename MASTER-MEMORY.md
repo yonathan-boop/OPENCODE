@@ -86,6 +86,19 @@ py absensi.py Edbert PG 13 alpha
 
 ---
 
+## 📋 TRIGGER COMMANDS
+
+### Awal Sesi: /loadmemory
+- Otomatis git pull + baca semua .md files
+
+### Akhir Sesi: /savememory atau "simpan"
+- Otomatis git add -A + commit + push ke GitHub
+
+### Langsung Catat: /ingat "<isi>"
+- Langsung catat ke MASTER-MEMORY.md
+
+---
+
 ## 📋 RECENT ACTIVITY
 
 ### 16 April 2026 - pc-06:
