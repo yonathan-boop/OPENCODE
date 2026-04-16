@@ -29,6 +29,7 @@ Di-update: 16 April 2026
 - OS: Windows
 - Folder openclaw: C:\Users\Admin\.openclaw
 - Model: minimax-m2.5-free
+- Screen: 1920 x 1080
 
 ### PC-Advan (Rumah)
 - Nama: ADVAN, ADVAN-PC, DESKTOP-1E1LBB7
@@ -40,12 +41,10 @@ Di-update: 16 April 2026
 ## 📋 ATURAN UTAMA
 
 1. **Session Startup:** 
-   - Baca memory/summary.md, memory/facts/database.md
+   - Baca MASTER-MEMORY.md
    - Sync dari GitHub jika perlu
 
 2. **Memory System:**
-   - Daily notes: memory/YYYY-MM-DD.md
-   - Long-term: MEMORY.md
    - Sinkronisasi via GitHub
 
 3. **Red Lines:**
@@ -58,50 +57,51 @@ Di-update: 16 April 2026
 
 ### Script
 - File: absensi.py
-- Lokasi: C:/Users/Admin/Desktop/absensi.py
-- File Excel: ABSENSI April.xlsx (C:/Users/Admin/Desktop/Absensi/)
+- Lokasi: C:/Users/Admin/Desktop/memory/absensi.py
 
 ### Cara Pakai
 ```
 py absensi.py <nama> <kelas> <tanggal> <alasan>
 ```
 
-### Kelas
-- TKa (TK A)
-- TKB1 (TK B1)
-- TKB2 (TK B2)
-- PG (Play Group)
+### Kelas: TKa, TKB1, TKB2, PG
 
-### Alasan
-- sakit → S
-- izin → I
-- alpha → A
-
-### Contoh
-```
-py absensi.py Aldrich TKa 16 sakit
-py absensi.py Kyla TKB1 14 izin
-py absensi.py Edbert PG 13 alpha
-```
+### Alasan: sakit (S), izin (I), alpha (A)
 
 ---
 
 ## 📋 TRIGGER COMMANDS
 
-### Awal Sesi: /loadmemory
-- Otomatis git pull + baca semua .md files
-
-### Akhir Sesi: /savememory atau "simpan"
-- Otomatis git add -A + commit + push ke GitHub
-
-### Langsung Catat: /ingat "<isi>"
-- Langsung catat ke MASTER-MEMORY.md
+- `/loadmemory` → git pull + baca memory
+- `/savememory` atau "simpan" → commit + push
+- `/ingat "<isi>"` → catat ke memory
 
 ---
 
-## 📋 PLAYWRIGHT (Browser Automation)
+## 📋 BROWSER AUTOMATION
 
-**Status:** ✅ Terinstall
+### 1. PYAUTOGUI (RECOMMENDED untuk Chrome)
+
+**Install:**
+```
+pip install pyautogui pymsgbox
+```
+
+**KELEBIHAN:**
+- Buka Chrome existing (login tetap tersimpan!)
+- Tidak ada masalah encryption
+- Simple dan reliable
+
+**Script:** chrome_automation.py
+- Buka Chrome + URL
+- Focus ke Chrome yang sudah terbuka
+- Refresh, tab baru, dll
+
+**Status:** ✅ Tested & Working
+
+---
+
+### 2. PLAYWRIGHT
 
 **Install:**
 ```
@@ -109,30 +109,17 @@ pip install playwright
 playwright install chromium
 ```
 
-**Gunanya:**
-- Buka browser otomatis (Chrome/Firefox)
-- Isi form web
-- Klik elemen website
-- Scraping data dari internet
-- Screenshot website
+**MASALAH:**
+- launch_persistent_context error dengan user_data_dir
+- encryption error (os_crypt)
+- Tidak bisa akses existing Chrome profile dengan baik
 
----
+**Gunakan hanya untuk:**
+- Fresh browser automation
+- Web scraping tanpa perlu login
+- Testing
 
-## 📋 PYAUTOGUI (PC Automation)
-
-**Status:** ✅ Terinstall
-
-**Install:**
-```
-pip install pyautogui pymsgbox
-```
-
-**Gunanya:**
-- Klik mouse otomatis
-- Ketik keyboard otomatis
-- Screenshot layar PC
-- Kontrol window aplikasi
-- Kontrol desktop PC lokal
+**Status:** ⚠️ Ada masalah dengan existing profile
 
 ---
 
@@ -140,15 +127,11 @@ pip install pyautogui pymsgbox
 
 ### 16 April 2026 - pc-06:
 - Setup Python + openpyxl
-- Buat script absensi.py
-- Input absensi untuk 4 kelas (TKa, TKB1, TKB2, PG)
-- Format kolom tanggal (hide 1-13, width=5)
-- Push ke GitHub
-
-### 15 April 2026 - PC-Advan:
-- Konfigurasi Ollama gemma4:e2b
-- Buat memory system
-- Setup trigger commands
+- Absensi script untuk 4 kelas (TKa, TKB1, TKB2, PG)
+- Install PyAutoGUI - ✅ Tested (screen 1920x1080, mouse control OK)
+- Install Playwright - ⚠️ Problem dengan existing profile
+- **Solusi: Pakai PyAutoGUI untuk Chrome automation (login tetap ada)**
+- Buat chrome_automation.py - cara yang berhasil
 
 ---
 
