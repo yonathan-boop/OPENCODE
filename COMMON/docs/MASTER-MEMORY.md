@@ -60,6 +60,16 @@ Di-update: 16 April 2026
    - Buat sub-memory file jika perlu (per-PC, per-project, per-topic)
    - Jangan ada yang terlewat, SELALU SIMPAN
 
+5. **ORGANISASI FILE (PENTING!):**
+   - **SEMUA file WAJIK dalam folder memory**, tidak boleh di luar
+   - Folder disusun sesuai PC & kategori
+   - Contoh folder:
+     - `PC-06/screenshots/` → screenshot PC-06
+     - `PC-06/scripts/` → script untuk PC-06
+     - `PC-Advan/output/` → output dari PC-Advan
+     - `COMMON/docs/` → dokumentasi umum
+   - **JANGAN simpan di luar folder memory!**
+
 ---
 
 ## 📋 ABSENSI MURID (PC-06)

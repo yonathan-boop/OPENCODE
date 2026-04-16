@@ -31,3 +31,15 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 - Tesseract OCR: C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.0)
 - Image Tools MCP: C:\Users\Admin\Documents\image-tools-mcp-v1.2.1-windows-amd64.exe
 - MCP Config: C:\Users\Admin\.config\opencode\opencode.json
+
+## Organisasi File (PENTING!)
+- SEMUA file disimpan dalam folder memory, sesuai PC & kategori
+- JANGAN simpan di luar folder memory
+- Folder per PC: PC-06/, PC-Advan/
+- Folder per kategori:
+  - screenshots/ → hasil screenshot
+  - scripts/ → script python
+  - docs/ → dokumentasi
+  - output/ → hasil proses
+- Contoh: screenshot dari PC-06 → PC-06/screenshots/xxx.png
+- Ini agar semua PC bisa akses tanpa berantakan
