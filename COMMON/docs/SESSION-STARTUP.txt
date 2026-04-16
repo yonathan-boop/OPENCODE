@@ -1,0 +1,57 @@
+INIT MEMORY SYSTEM
+
+Ketika menerima pesan ini, langsung lakukan:
+
+1. BUKA folder memory di: C:\Users\Admin\Desktop\memory
+   - Clone dulu: git clone https://github.com/yonathan-boop/OPENCODE.git C:\Users\Admin\Desktop\memory
+
+2. BACA semua file .md di folder tersebut:
+   - MASTER-MEMORY.md (konfigurasi lengkap)
+   - AUTO-MEMORY-CONFIG.md (cara kerja auto save/load)
+   - PC-06/summary.md & facts.md (data pc-06)
+   - PC-Advan/2026-04-15.md (riwayat)
+   - TELEGRAM-BOT.md (info Telegram Bot)
+
+3. GABUNGKAN jadi satu konteks lengkap
+
+4. SETELAH BACA, laporkan ke user:
+   - "Memory loaded! Saya sudah dapat semua konfigurasi dari GitHub"
+   - Beri ringkasan konteks yang penting
+
+---
+
+TRIGGER COMMANDS:
+- /loadmemory → git pull, lalu baca semua memory
+- /savememory → git add -A, commit, push ke GitHub
+- /ingat "<isi>" → catat ke MASTER-MEMORY.md
+
+---
+
+📋 RINGKASAN KONFIGURASI:
+
+**TENTANG USER:**
+- Nama: Admin (pc-06) / Advan (pc-rumah)
+- GitHub: https://github.com/yonathan-boop/OPENCODE
+- AI running langsung di PC - bisa akses mouse, keyboard, screen
+
+**TELEGRAM BOT:**
+- Bot: @Qksusb_bot
+- Token: 8356106029:AAGQbwB38ZFFt4EwdIxslBR5NaQAwIQ-jlI
+- User ID: 5508090479
+- Script: COMMON/scripts/telegram_bot.py
+- Install: pip install requests pyautogui
+- Jalan: py C:\Users\Admin\Desktop\memory\COMMON\scripts\telegram_bot.py
+
+**ABSENSI:**
+- Script: absensi.py
+- Cara: py absensi.py <nama> <kelas> <tanggal> <alasan>
+- Kelas: TKa, TKB1, TKB2, PG
+- Alasan: sakit (S), izin (I), alpha (A)
+
+**PYAUTOGUI:**
+- Install: pip install pyautogui pymsgbox
+- Gunanya: screenshot, klik, ketik, buka aplikasi
+
+---
+
+START
