@@ -26,3 +26,8 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 ## Projects
 - Memory system: Sistem memory baru untuk openclaw (dibuat 11 April 2026)
 - Sinkronisasi: Semua memory di-sync via GitHub
+
+## OCR & Image Tools
+- Tesseract OCR: C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.0)
+- Image Tools MCP: C:\Users\Admin\Documents\image-tools-mcp-v1.2.1-windows-amd64.exe
+- MCP Config: C:\Users\Admin\.config\opencode\opencode.json
