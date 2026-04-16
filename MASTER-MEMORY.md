@@ -101,23 +101,38 @@ py absensi.py Edbert PG 13 alpha
 
 ## 📋 PLAYWRIGHT (Browser Automation)
 
-**Status:** akan diinstall
-
-**Tujuan:** Automate browser - bisa klik, isi form, screenshot, dll
+**Status:** ✅ Terinstall
 
 **Install:**
 ```
 pip install playwright
-playwright install
+playwright install chromium
 ```
 
 **Gunanya:**
-- Buka browser otomatis
-- Login ke website
-- Isi form otomatis
-- Klik tombol
-- Ambil screenshot
-- Dan aksi browser lainnya
+- Buka browser otomatis (Chrome/Firefox)
+- Isi form web
+- Klik elemen website
+- Scraping data dari internet
+- Screenshot website
+
+---
+
+## 📋 PYAUTOGUI (PC Automation)
+
+**Status:** ✅ Terinstall
+
+**Install:**
+```
+pip install pyautogui pymsgbox
+```
+
+**Gunanya:**
+- Klik mouse otomatis
+- Ketik keyboard otomatis
+- Screenshot layar PC
+- Kontrol window aplikasi
+- Kontrol desktop PC lokal
 
 ---
 
