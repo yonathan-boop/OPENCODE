@@ -99,6 +99,28 @@ py absensi.py Edbert PG 13 alpha
 
 ---
 
+## 📋 PLAYWRIGHT (Browser Automation)
+
+**Status:** akan diinstall
+
+**Tujuan:** Automate browser - bisa klik, isi form, screenshot, dll
+
+**Install:**
+```
+pip install playwright
+playwright install
+```
+
+**Gunanya:**
+- Buka browser otomatis
+- Login ke website
+- Isi form otomatis
+- Klik tombol
+- Ambil screenshot
+- Dan aksi browser lainnya
+
+---
+
 ## 📋 RECENT ACTIVITY
 
 ### 16 April 2026 - pc-06:
