@@ -329,9 +329,9 @@ playwright install chromium
 - ✅ Format dari template, isi dari Pilihan Bergand1
 
 ### Aturan Berkas
-- Setelah selesai edit dokumen, **hapus file temporary/hasil yang tidak perlu**
-- Jangan biarkan banyak file berserakan di folder
-- Hanya simpan file yang sudah final/siap pakai
+- Setelah selesai edit dokumen, **hapus file temporary** yang dibuat saat proses editing (bukan file hasil)
+- File hasil yang sudah final tetap disimpan
+- Jangan biarkan banyak file berserakan di folder kerja
 
 ---
 
