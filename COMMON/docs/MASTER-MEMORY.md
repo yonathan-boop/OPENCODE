@@ -308,6 +308,7 @@ playwright install chromium
 - Install pandas 3.0.2 + numpy 2.4.4
 - win32com sudah tersedia (dari pywin32)
 - **Pesan penting user:** "kamu itu kan tidak bisa langsung megerjakan hal besar... jadi harus rajin mencatat dan membaca di memori, tolong di simpan ya"
+- Install docxtpl 0.20.2 + jinja2 3.1.6 (untuk edit Word pake template)
 
 ---
 
