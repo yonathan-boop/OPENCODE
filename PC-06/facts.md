@@ -23,6 +23,9 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 - Model AI yang dipakai: openrouter/minimax/minimax-m2.5:free
 - User mau sistem memory yang bisa ingat semuanya dengan jelas
 
+## Pesan Penting dari User
+- "kamu itu kan tidak bisa langsung megerjakan hal besar... jadi harus rajin rajin mencatat dan membaca di memori tolong di simpan ya"
+
 ## Projects
 - Memory system: Sistem memory baru (dibuat 11 April 2026)
 - Sinkronisasi: Semua memory di-sync via GitHub
@@ -31,6 +34,7 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 - Tesseract OCR: C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.0)
 - Image Tools MCP: C:\Users\Admin\Documents\image-tools-mcp-v1.2.1-windows-amd64.exe
 - MCP Config: C:\Users\Admin\.config\opencode\opencode.json
+- **xlwings: 0.35.1** (pip install)
 
 ## Organisasi File (PENTING!)
 - SEMUA file disimpan dalam folder memory, sesuai PC & kategori

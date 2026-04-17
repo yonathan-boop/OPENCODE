@@ -302,6 +302,13 @@ playwright install chromium
 - Discuss OCR local solution (Tesseract + image_tools_mcp)
 - **ATURAN BARU: SEMUA HAL WAJIB DISIMPAN KE MEMORY**
 
+### 17 April 2026 - pc-06 (Session 3):
+- Install xlwings 0.35.1 (pip install xlwings)
+- Install pywin32-311 (otomatis)
+- Install pandas 3.0.2 + numpy 2.4.4
+- win32com sudah tersedia (dari pywin32)
+- **Pesan penting user:** "kamu itu kan tidak bisa langsung megerjakan hal besar... jadi harus rajin mencatat dan membaca di memori, tolong di simpan ya"
+
 ---
 
 *Catatan: Semua konfigurasi di-sync via GitHub*
