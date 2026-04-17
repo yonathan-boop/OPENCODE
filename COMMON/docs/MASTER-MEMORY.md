@@ -92,6 +92,18 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ### Alasan: sakit (S), izin (I), alpha (A)
 
+### Absensi 17 April 2026
+
+| Kelas | Nama | Alasan |
+|-------|------|--------|
+| TKa | Richel Wijaya | S |
+| TKa | Aldrich S | S |
+| TKa | Clarita S | S |
+| TKB1 | Joverick S | S |
+| TKB2 | Shayna S | S |
+| TKB2 | Claudia S | S |
+| TKB2 | Brienne S | S |
+
 ---
 
 ## 📋 TRIGGER COMMANDS
