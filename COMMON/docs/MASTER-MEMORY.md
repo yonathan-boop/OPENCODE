@@ -328,6 +328,11 @@ playwright install chromium
 - ✅ Replace berdasarkan urutan, bukan index
 - ✅ Format dari template, isi dari Pilihan Bergand1
 
+### Aturan Berkas
+- Setelah selesai edit dokumen, **hapus file temporary/hasil yang tidak perlu**
+- Jangan biarkan banyak file berserakan di folder
+- Hanya simpan file yang sudah final/siap pakai
+
 ---
 
 ### 17 April 2026 - pc-06 (Session 3):
