@@ -302,6 +302,34 @@ playwright install chromium
 - Discuss OCR local solution (Tesseract + image_tools_mcp)
 - **ATURAN BARU: SEMUA HAL WAJIB DISIMPAN KE MEMORY**
 
+## 📋 CARA EDIT DOKUMEN UJIAN (WORD)
+
+### File yang Digunakan
+- **Template (Format):** `Agama 6 (checked) Edit.docx` → 100% benar
+- **Isi yang Benar:** `Pilihan Bergand1.docx` → dari IPA 6.docx, paste as plain text
+
+### Langkah yang Benar
+
+**1. FIX URUTAN TERLEBIH DAHULU**
+- Buka file asli (IPA 6.docx)
+- Copy semua → Paste as **Plain Text / Keep Text Only**
+- Hasil: `Pilihan Bergand1.docx` (urutan sudah benar, ada 1., 2., a., b., c., d.)
+
+**2. SAMAKAN FORMAT**
+- Duplicate file template (Agama Edit) → jadi file baru
+- Load template + load `Pilihan Bergand1`
+- Ambil **SEMUA** paragraf dari `Pilihan Bergand1` (urutan tetap!)
+- Replace paragraf di template mulai dari setelah "Pilihan Ganda (50%)"
+- Ganti "Agama" → "IPA" di tabel kop
+
+### Poin Penting
+- ❌ Jangan parsing otomatis (AI tidak stabil baca numbering Word)
+- ✅ Copy-Paste sebagai Plain Text - urutan pasti benar
+- ✅ Replace berdasarkan urutan, bukan index
+- ✅ Format dari template, isi dari Pilihan Bergand1
+
+---
+
 ### 17 April 2026 - pc-06 (Session 3):
 - Install xlwings 0.35.1 (pip install xlwings)
 - Install pywin32-311 (otomatis)
