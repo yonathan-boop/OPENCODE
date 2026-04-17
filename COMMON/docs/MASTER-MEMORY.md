@@ -335,6 +335,21 @@ playwright install chromium
 
 ---
 
+## 📋 FORMAT DOKUMEN UJIAN (BARU)
+
+### Spesifikasi
+- **Ukuran Kertas:** Folio (8.5 x 13 inch)
+- **Margin:** Top 0.5, Bottom 0.6, Left 1, Right 1
+- **Font:** Times New Roman, ukuran 11
+- **Line Spacing:** 1 (sebelum 0, sesudah 0)
+- **Indentasi soal:** First line hanging 0.65
+- **Indentasi opsi (a. b. c. d.):** Left indent 0.65 + first line hanging 0.65
+
+### Catatan
+- Kalau file sumber **tidak ada nomor** (seperti IPA 6.docx), perlu paste dari file yang sudah ada nomor (Pilihan Bergand1.docx)
+
+---
+
 ### 17 April 2026 - pc-06 (Session 3):
 - Install xlwings 0.35.1 (pip install xlwings)
 - Install pywin32-311 (otomatis)
