@@ -81,7 +81,13 @@ Di-update: 16 April 2026
 
 ### Script
 - File: absensi.py
-- Lokasi: C:/Users/Admin/Desktop/memory/absensi.py
+- Lokasi: C:/Users/Admin/Desktop/memory/COMMON/scripts/absensi.py
+
+### Struktur Excel Absensi (Format Baru)
+- Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
+- Row 7+ = data murid, Kolom 3 = nama
+- Row 6 = header tanggal (April 1 = col 4, April 2 = col 5, dst)
+- Tidak ada sheet 'Data'
 
 ### Cara Pakai
 ```
@@ -108,6 +114,17 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - **ATURAN:** Setiap update WAJIB duplicate dulu (buat file baru), baru edit
 - **Format Nama File Duplicate:** Absensi <bulan> <tgl> <hari> <jam>_<menit>_<detik>.xlsx
   - Contoh: Absensi April 22 2026 Senin 14_30_45.xlsx
+
+### Absensi 22 April 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|------|------|--------|
+| 18/4 | TKa | Aldrich, Darren Elvano, Clarita, Richelcia | S |
+| 20/4 | TKa | Aldrich, Darren Elvano, Richelcia | S |
+| 21/4 | TKa | Aldrich, Darren Elvano, Richelcia | S |
+| 22/4 | TKa | Aldrich, Darren Elvano, Richelcia | S |
+
+- File hasil: Absensi April 22 2026 Wednesday 10_27_21.xlsx
 
 ### Absensi 17 April 2026
 
