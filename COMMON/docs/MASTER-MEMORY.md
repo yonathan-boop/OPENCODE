@@ -111,9 +111,13 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 ### Absensi Excel File
 - **File:** C:\Users\Admin\Desktop\memory\PC-06\docs\ABSENSI April.xlsx
 - **Status:** Aktif digunakan
-- **ATURAN:** Setiap update WAJIB duplicate dulu (buat file baru), baru edit
-- **Format Nama File Duplicate:** Absensi <bulan> <tgl> <hari> <jam>_<menit>_<detik>.xlsx
-  - Contoh: Absensi April 22 2026 Senin 14_30_45.xlsx
+- **ATURAN:** 
+  - Setiap update WAJIB duplicate dulu (buat file baru), baru edit
+  - **1 file baru per hari** - tidak boleh lebih dari 1 file sehari
+  - File lama = arsip, tidak dihapus
+- **Format Nama File Duplicate:** Absensi <bulan> <tgl> <tahun> <hari> <jam>_<menit>_<detik>.xlsx
+  - Contoh: Absensi April 22 2026 Wednesday 10_27_21.xlsx
+- **Lokasi File:** C:\Users\Admin\Desktop\memory\PC-06\docs\
 
 ### Absensi 22 April 2026
 
