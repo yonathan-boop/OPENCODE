@@ -5,14 +5,22 @@
 ### /loadmemory
 - Pull data terbaru dari GitHub
 - Baca semua file memory (.md)
+- Baca log pembelajaran dan error terakhir
 - Biasa dijalankan di awal sesi
 
 ### /savememory  
 - Commit & push semua perubahan ke GitHub
+- Pastikan pembelajaran baru sudah dicatat dulu
 - Biasa dijalankan di akhir sesi
 
 ### / ingat "<isi>"
 - Langsung catat info penting ke MASTER-MEMORY.md
+
+### Auto Learn (internal behavior)
+- Jika user mengoreksi AI → catat ke `MEMORY-LEARNINGS.md`
+- Jika command / tool gagal → catat ke `MEMORY-ERRORS.md`
+- Jika user meminta kemampuan baru → catat ke `MEMORY-FEATURE-REQUESTS.md`
+- Jika pola yang sama sering berulang → promosikan ke `MASTER-MEMORY.md`
 
 ---
 
@@ -58,3 +66,4 @@ git push
 ## Catatan
 - Pastikan sudah `git pull` sebelum `git push` agar tidak konflik
 - Jika konflik, cek file yang bentrok lalu resolve manual
+- Saat instruksi user ambigu, gunakan konteks memory, hasil sebelumnya, dan referensi user untuk mengambil keputusan terbaik

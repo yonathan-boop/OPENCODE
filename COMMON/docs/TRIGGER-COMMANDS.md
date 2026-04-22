@@ -11,10 +11,15 @@ Ketik ini di awal sesi:
 ```
 
 otomatis akan:
-1. cd ke folder memory
+1. deteksi folder memory aktif (`C:\Users\Admin\Desktop\memory` atau `C:\Users\Advan\Desktop\memory`)
 2. git pull (ambil data terbaru)
-3. baca semua file .md
-4. gabungkan jadi konteks
+3. baca semua file `.md` di `COMMON/docs`, `PC-06`, `PC-Advan`
+4. baca juga file pembelajaran aktif:
+   - `COMMON/docs/MEMORY-LEARNINGS.md`
+   - `COMMON/docs/MEMORY-ERRORS.md`
+   - `COMMON/docs/MEMORY-FEATURE-REQUESTS.md`
+5. gabungkan jadi konteks
+6. laporkan `Memory loaded!` + ringkasan yang relevan
 
 ---
 
@@ -36,6 +41,7 @@ otomatis akan:
 1. git add -A
 2. git commit dengan timestamp
 3. git push ke GitHub
+4. pastikan update hari ini, koreksi user, dan keputusan penting sudah dicatat ke memory sebelum push
 
 ---
 
@@ -45,6 +51,11 @@ otomatis akan:
 /ingat "<isi>"    → catat info penting ke MASTER-MEMORY.md
 /status            → cek status memory & commit terbaru
 ```
+
+Tambahan perilaku yang WAJIB diingat:
+- Kalau user memberi contoh hasil, screenshot, atau referensi, anggap itu sebagai patokan utama
+- Kalau user memberi instruksi singkat seperti `lebih clean`, `lebih enak dilihat`, `kayak yang tadi`, jangan minta user mengulang panjang; tafsirkan dari konteks dan memory
+- Kalau ada error, koreksi user, atau pola berulang, catat juga ke file pembelajaran agar sistem berkembang
 
 ---
 

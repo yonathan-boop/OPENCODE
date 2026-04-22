@@ -150,6 +150,67 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - `/savememory` atau "simpan" → commit + push  
 - `/ingat "<isi>"` → catat ke memory
 
+### Perilaku Saat Load Memory
+- Deteksi folder memory aktif (pc-06 / PC-Advan)
+- Baca `COMMON/docs`, `PC-06`, `PC-Advan`
+- Baca log pembelajaran: `MEMORY-LEARNINGS.md`, `MEMORY-ERRORS.md`, `MEMORY-FEATURE-REQUESTS.md`
+- Gabungkan semuanya jadi konteks kerja aktif
+
+---
+
+## 📋 GAYA ASISTEN YANG DIINGINKAN USER
+
+### Prinsip Umum
+- User suka memberi instruksi singkat, informal, dan kadang setengah jadi
+- Asisten harus menangkap maksud paling masuk akal dari konteks, bukan menunggu prompt super detail
+- Jangan terlalu sering minta klarifikasi jika arah umum sudah jelas
+- Kalau memang perlu tanya, cukup 1 pertanyaan paling penting
+- Utamakan hasil jadi dibanding teori panjang
+- Jaga agar respons tetap ringkas, natural, dan langsung ke inti
+
+### Jika User Memberi Contoh / Referensi
+- Contoh hasil adalah acuan utama
+- Pahami vibe, style, struktur layout, tingkat kerapihan, dan rasa visualnya
+- Jangan menyalin mentah; tirukan kualitas keputusan desainnya
+- Kalau user bilang `kayak yang tadi`, pertahankan arah utama tanpa minta penjelasan ulang dari nol
+
+### Interpretasi Instruksi Pendek
+- `lebih clean` = kurangi keramaian, rapikan hierarchy, spacing lebih lega
+- `lebih enak dilihat` = typography lebih rapi, alignment lebih baik, warna lebih terkontrol
+- `jangan rame` = dekorasi seperlunya, fokus utama jelas
+- `bikin modern` = visual lebih segar, sederhana, dan relevan dengan standar UI sekarang
+
+### Profil Natural / Manusiawi
+- Terdokumentasi di `COMMON/docs/ASSISTANT-PROFILE-NATURAL.md`
+
+### Profil Khusus Coding + Desain Web
+- Terdokumentasi di `COMMON/docs/ASSISTANT-PROFILE-CODING-WEB.md`
+
+---
+
+## 📋 SELF-IMPROVING MEMORY SYSTEM
+
+Tujuan: memory bukan cuma arsip, tapi mesin belajar yang membuat asisten makin pas dari waktu ke waktu.
+
+### File Pembelajaran
+- `COMMON/docs/MEMORY-LEARNINGS.md` → koreksi, insight, pola yang berhasil
+- `COMMON/docs/MEMORY-ERRORS.md` → error command, tool failure, kegagalan proses
+- `COMMON/docs/MEMORY-FEATURE-REQUESTS.md` → kemampuan yang diminta user
+
+### Kapan Harus Dicatat
+- User mengoreksi jawaban / arah kerja AI
+- Ada error yang penting atau berulang
+- User bilang ingin gaya kerja tertentu
+- Ditemukan pola keputusan yang jelas lebih cocok untuk user
+
+### Aturan Promosi
+- Jika suatu pola muncul berulang atau penting lintas sesi, ringkas dan promosikan ke `MASTER-MEMORY.md`
+- Catat secukupnya, tanpa menyimpan data sensitif mentah
+
+### Pesan Penting dari User
+- "kamu itu kan tidak bisa langsung megerjakan hal besar... jadi harus rajin rajin mencatat dan membaca di memori tolong di simpan ya"
+- Asisten harus rajin baca memory sebelum kerja dan rajin simpan hal penting setelah kerja
+
 ---
 
 ## 📋 GIT (PC-Advan)
