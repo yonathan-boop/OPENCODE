@@ -92,6 +92,23 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ### Alasan: sakit (S), izin (I), alpha (A)
 
+### Absensi 13-15 April 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|------|------|--------|
+| Senin 13/4 | TKB1 | Gabe | I |
+| Senin 13/4 | TKB1 | Larasati | S |
+| Selasa 14/4 | TKB1 | Gabe | I |
+| Rabu 15/4 | TKB1 | Gabe | I |
+| Rabin 15/4 | TKB1 | Naraya | S |
+
+### Absensi Excel File
+- **File:** C:\Users\Admin\Desktop\memory\PC-06\docs\ABSENSI April.xlsx
+- **Status:** Aktif digunakan
+- **ATURAN:** Setiap update WAJIB duplicate dulu (buat file baru), baru edit
+- **Format Nama File Duplicate:** Absensi <bulan> <tgl> <hari> <jam>_<menit>_<detik>.xlsx
+  - Contoh: Absensi April 22 2026 Senin 14_30_45.xlsx
+
 ### Absensi 17 April 2026
 
 | Kelas | Nama | Alasan |
