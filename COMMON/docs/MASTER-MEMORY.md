@@ -119,6 +119,29 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
   - Contoh: Absensi April 22 2026 Wednesday 10_27_21.xlsx
 - **Lokasi File:** C:\Users\Admin\Desktop\memory\PC-06\docs\
 
+### Absensi 23 April 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|------|------|--------|
+| 23/4 | TKB(2) | Chelsea Valerie | S |
+| 23/4 | TKB(2) | Brienne | S |
+| 20/4 | TKB1 | Gestalt | I |
+| 20/4 | TKB1 | Jocelyn | S |
+| 20/4 | TKB1 | Larasaty | S |
+| 20/4 | TKB1 | Jayden | I |
+| 21/4 | TKB1 | Larasaty | S |
+| 22/4 | TKB1 | Raileen | S |
+| 22/4 | TKB1 | Larasaty | S |
+| 23/4 | TKB1 | Jayden | I |
+| 23/4 | TKB1 | Jocelyn | I |
+| 23/4 | TKB1 | Reiner | I |
+| 23/4 | TKB1 | Gabe | I |
+| 23/4 | TKa | Richel Wijaya | S |
+| 23/4 | TKa | Darren Elvano | S |
+| 23/4 | TKa | Shelo | I |
+
+- File hasil: Absensi April 23 2026 Thursday 12_21_13.xlsx
+
 ### Absensi 22 April 2026
 
 | Tanggal | Kelas | Nama | Alasan |
