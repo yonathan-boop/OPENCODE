@@ -124,7 +124,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | Tanggal | Kelas | Nama | Alasan |
 |---------|------|------|--------|
 | 23/4 | TKB(2) | Chelsea Valerie | S |
-| 23/4 | TKB(2) | Brienne | S |
+| 23/4 | TKB(2) | Brienne Nathania Carolyne Pakpahan | S |
 | 20/4 | TKB1 | Gestalt | I |
 | 20/4 | TKB1 | Jocelyn | S |
 | 20/4 | TKB1 | Larasaty | S |
