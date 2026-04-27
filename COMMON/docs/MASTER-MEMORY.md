@@ -142,6 +142,32 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 - File hasil: Absensi April 23 2026 Thursday 12_21_13.xlsx
 
+### Absensi 27 April 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|------|------|--------|
+| 25/4 | PG | Joverick | I |
+| 27/4 | PG | Joverick | I |
+| 25/4 | TKB(2) | Chelsea Valerie | S |
+| 25/4 | TKB(2) | Marquez Boas Aritonang | S |
+| 25/4 | TKB(2) | Brienne Nathania Carolyne Pakpahan | S |
+| 25/4 | TKB(2) | Jasmine Valerie Yap | S |
+| 25/4 | TKB(2) | Christine Laotan | S |
+| 27/4 | TKB(2) | Pangeran Hagro Haloho | S |
+| 27/4 | TKB(2) | Alvaro Gavriel Karo Karo | S |
+| 27/4 | TKB(2) | Brienne Nathania Carolyne Pakpahan | S |
+| 25/4 | TKB1 | Jocelyn Marcella Su | I |
+| 25/4 | TKB1 | Naraya Elsandri Br. Sembiring | I |
+| 25/4 | TKB1 | Gabe Cristiano Gultom | I |
+| 27/4 | TKB1 | Grace Felicia Simbolon | S |
+| 25/4 | TKa | Azka Andreas | I |
+| 25/4 | TKa | Lishaalini Krisna Naidu | S |
+| 27/4 | TKa | Richelcia Wijaya | A |
+| 27/4 | TKa | Celine Grace Zhang | S |
+| 27/4 | TKa | Lishaalini Krisna Naidu | S |
+
+- File hasil: Absensi April 27 2026 Monday 09_09_12.xlsx
+
 ### Absensi 22 April 2026
 
 | Tanggal | Kelas | Nama | Alasan |
