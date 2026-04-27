@@ -1,19 +1,50 @@
-INIT MEMORY SYSTEM
+=================================================================================
+INIT MEMORY SYSTEM - WAJIB JALANKAN DI AWAL SETIAP SESI
+=================================================================================
 
+CARAKERJA:
 1. Deteksi folder memory aktif:
-   - `C:\Users\Admin\Desktop\memory` (pc-06 / kerja)
-   - `C:\Users\Advan\Desktop\memory` (PC-Advan / rumah)
-2. `git pull`
-3. Baca semua `.md` di folder `COMMON/docs`, `PC-06`, `PC-Advan`
-4. Baca juga log pembelajaran di `COMMON/docs/MEMORY-LEARNINGS.md`, `COMMON/docs/MEMORY-ERRORS.md`, `COMMON/docs/MEMORY-FEATURE-REQUESTS.md`
-5. Gabungkan jadi konteks
-6. Laporkan ke user: "Memory loaded!" + ringkasan
+   - pc-06 (kerja): C:\Users\Admin\Desktop\memory
+   - PC-Advan (rumah): C:\Users\Advan\Desktop\memory
+2. cd ke folder memory aktif
+3. git pull (ambil data terbaru dari GitHub)
+4. Baca semua file .md di: COMMON/docs, PC-06, PC-Advan
+5. Baca juga log pembelajaran:
+   - MEMORY-LEARNINGS.md
+   - MEMORY-ERRORS.md
+   - MEMORY-FEATURE-REQUESTS.md
+6. Gabungkan jadi konteks kerja
+7. Laporkan ke user: "Memory loaded!" + ringkasan aktif
 
-TRIGGER:
-/loadmemory → git pull + baca memory
-/savememory → commit + push
-/ingat "isi" → catat ke MASTER-MEMORY.md
+=================================================================================
+TRIGGER COMMANDS
+=================================================================================
 
-CATATAN:
-- Jika ada contoh hasil / referensi user, jadikan itu acuan utama untuk vibe, style, dan kualitas output
-- Jika instruksi user singkat atau ambigu, pilih interpretasi paling masuk akal berdasarkan konteks memory dan percakapan
+/loadmemory      → git pull + baca semua memory (AWAL SESI)
+/savememory      → commit + push semua perubahan ke GitHub (AKHIR SESI)
+/ingat "isi"    → catat hal penting ke MASTER-MEMORY.md
+/status          → cek status git dan commit terbaru
+
+=================================================================================
+PERILAKU ASISTEN (WAJIB DIINGAT)
+=================================================================================
+
+SAAT AWAL SESI:
+- Baca memory dulu sebelum kerja besar
+- Langsung kerja jika instruksi sudah jelas
+
+SAAT INTERAKSI:
+- Pahami maksud dulu, jangan banyak Tanya
+- Jika ada referensi/contoh hasil, gunakan sebagai acuan utama
+- Jika instruksi pendek/ambigu, tafsirkan sendiri dan kerjakan
+- Utamakan hasil jadi, bukan teori panjang
+- Respons ringkas dan natural
+
+SAAT AKHIR SESI:
+- Simpan semua perubahan ke memory
+- Catat pembelajaran/error jika ada
+- Push ke GitHub
+
+=================================================================================
+KONTAK LANJUT:Jika ada pertanyaan tentang sistem ini, cek MASTER-MEMORY.md
+=================================================================================
