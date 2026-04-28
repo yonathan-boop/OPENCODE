@@ -9,10 +9,11 @@
     "linux-hp": "linux-hp",
     "linux-tablet": "linux-tablet"
   },
-  "fallback": "PC-Advan",
-  "repo": "https://github.com/yonathan-boop/OPENCODE",
-  "linux-folder": {
-    "linux-hp": "/root/memory-linux-hp",
-    "linux-tablet": "/data/data/com.termux/files/home/Desktop/New Folder/memory"
-  }
+  "folders": {
+    "PC-06": "PC-06/",
+    "PC-Advan": "PC-Advan/",
+    "linux-hp": "linux-hp/",
+    "linux-tablet": "linux-tablet/"
+  },
+  "repo": "https://github.com/yonathan-boop/OPENCODE"
 }
