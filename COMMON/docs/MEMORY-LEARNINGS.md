@@ -25,6 +25,25 @@ User ingin asisten yang bisa memahami instruksi singkat, contoh hasil, dan refer
 
 ---
 
+## [LRN-20260428-002] Launch GUI Apps di XFCE VNC
+
+**Tanggal**: 2026-04-28
+**Priority**: high
+**Status**: active
+
+### Summary
+Untuk launch GUI app di desktop XFCE yang berjalan di VNC display :1, perlu set variabel environment yang benar.
+
+### Details
+- Display: `:1` (port 5901)
+- XAuthority: `/data/data/com.termux/files/home/.Xauthority`
+- Command: `export DISPLAY=:1 && export XAUTHORITY=/data/data/com.termux/files/home/.Xauthority && remmina &`
+
+### Action
+- Selalu pakai export DISPLAY dan XAUTHORITY sebelum launch GUI apps di VNC
+
+---
+
 ## [LRN-20260422-002] save_and_read_memory_diligently
 
 **Tanggal**: 2026-04-22

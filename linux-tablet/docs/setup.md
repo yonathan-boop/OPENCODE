@@ -55,6 +55,7 @@ xvfb-run -a qemu-system-aarch64 -M virt -m 4 -cpu max -bios QEMU_EFI.fd -cdrom /
 - Xvfb (`xvfb`) ✅
 - UEFI Firmware (`QEMU_EFI.fd` 2MB) ✅
 - File ISO: `Win11_25H2_English_Arm64_v2.iso` (7.9GB)
+- **Remmina VNC Client** ✅ (install via apt 28 April 2026)
 
 ---
 
