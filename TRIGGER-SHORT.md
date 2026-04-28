@@ -6,9 +6,11 @@ CARAKERJA:
 1. Deteksi folder memory aktif:
    - pc-06 (kerja): C:\Users\Admin\Desktop\memory
    - PC-Advan (rumah): C:\Users\Advan\Desktop\memory
+   - linux-hp: /root/memory-linux-hp
+   - linux-tablet: /data/data/com.termux/files/home/Desktop/New Folder/memory
 2. cd ke folder memory aktif
 3. git pull (ambil data terbaru dari GitHub)
-4. Baca semua file .md di: COMMON/docs, PC-06, PC-Advan
+4. Baca semua file .md di: COMMON/docs, PC-06, PC-Advan, linux-tablet/docs
 5. Baca juga log pembelajaran:
    - MEMORY-LEARNINGS.md
    - MEMORY-ERRORS.md
