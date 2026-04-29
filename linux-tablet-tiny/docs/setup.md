@@ -8,7 +8,7 @@ Di-update: 29 April 2026
 
 - **Device:** Linux Tablet Tiny (Baru)
 - **OS:** Linux ( Langsung di Termux )
-- **Path:** /root/Desktop/memory
+- **Path:** /root/Desktop/memory (di Termux langsung, bukan proot)
 
 ---
 

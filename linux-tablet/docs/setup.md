@@ -30,7 +30,7 @@ Windows 11 ARM64 ←── Bisa booting!
 ## 📋 Cara Akses
 
 ### 1. Akses Linux (yang sekarang)
-- Connect ke VNC: localhost:5901 (atau port sesuai VNC server)
+- Connect ke VNC: localhost:5905 (Xtigervnc :5) - selain 5901 (Xvnc :1) dan 5902 (Xvnc :2)
 - Username & password sesuai setup VNC
 
 ### 2. Akses Windows 11 ARM

@@ -7,13 +7,15 @@
     "WORK-PC": "PC-06",
     "OFFICE-06": "PC-06",
     "linux-hp": "linux-hp",
-    "linux-tablet": "linux-tablet"
+    "linux-tablet": "linux-tablet",
+    "linux-tablet-5": "linux-tablet-5"
   },
   "folders": {
     "PC-06": "PC-06/",
     "PC-Advan": "PC-Advan/",
     "linux-hp": "linux-hp/",
-    "linux-tablet": "linux-tablet/"
+    "linux-tablet": "linux-tablet/",
+    "linux-tablet-5": "linux-tablet-5/"
   },
   "repo": "https://github.com/yonathan-boop/OPENCODE"
 }
