@@ -51,11 +51,32 @@ xvfb-run -a qemu-system-aarch64 -M virt -m 4 -cpu max -bios QEMU_EFI.fd -cdrom /
 
 ## 📋 Installasi yang Sudah Selesai
 
+### Cara Install WPS (29 April 2026)
+```bash
+wget https://github.com/tiny-computer/third-party-archives/releases/download/archives/wps-office_11.1.0.11720_arm64.deb -O /tmp/wps.deb
+apt install -y /tmp/wps.deb
+```
+- **Lokasi:** `/usr/bin/wps`
+- **Desktop shortcut:** `WPS.desktop` di Desktop
+
 - QEMU ARM (`qemu-system-arm`) ✅
 - Xvfb (`xvfb`) ✅
 - UEFI Firmware (`QEMU_EFI.fd` 2MB) ✅
 - File ISO: `Win11_25H2_English_Arm64_v2.iso` (7.9GB)
 - **Remmina VNC Client** ✅ (install via apt 28 April 2026)
+- **OpenCode Shortcut** ✅ (28 April 2026)
+- **WPS Office** ✅ (29 April 2026 - installed via .deb)
+- **Desktop Shortcut:** `/data/data/com.termux/files/home/Desktop/WPS.desktop`
+
+### Cara Buka OpenCode
+1. Klik icon **OpenCode** di desktop XFCE
+2. Akan terbuka terminal dengan proot Ubuntu
+3. Ketik `./opencode.sh` atau langsung jalankan opencode
+4. Cara langsung: `/usr/lib/ld-linux-aarch64.so.1 /data/data/com.termux/files/usr/lib/node_modules/opencode-linux-arm64/bin/opencode`
+
+### Files Baru
+- Script: `/data/data/com.termux/files/home/opencode.sh`
+- Desktop shortcut: `/data/data/com.termux/files/home/Desktop/OpenCode.desktop`
 
 ---
 
