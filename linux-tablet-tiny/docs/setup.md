@@ -54,8 +54,16 @@ git push
 
 ---
 
+## 📋 Software Terinstall
+
+- **WPS Office:** `/opt/kingsoft/wps-office/office6/wps`
+- **Backup di Shared Storage:** `/storage/emulated/0/wps-office-backup/`
+
+---
+
 ## 📋 Riwayat Update
 
 - 29 April 2026 - Dibuat setup linux-tablet-tiny
+- 29 April 2026 - Cek WPS, tersedia di /opt/kingsoft/wps-office/
 
 ---
