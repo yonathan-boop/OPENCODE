@@ -39,6 +39,13 @@ git push
 
 ---
 
+## 📋 Software Bawaan
+
+- Chromium Browser ✅ (/usr/bin/chromium)
+- Lainnya: lihat di setup linux-tablet
+
+---
+
 ## 📋 VNC Servers Berjalan
 
 - 5901 - Xvnc :1
