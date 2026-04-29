@@ -95,6 +95,45 @@ cd /root/vm && xvfb-run -a qemu-system-aarch64 -M virt -m 4 -cpu max -bios QEMU_
 
 ---
 
+## 📋 OpenCode Permission Fix (29 April 2026)
+
+### Masalah
+"Always allow" tidak bersifat permanen - hanya per session dan reset setiap sesi baru.
+
+### Solusi Permanen
+
+**Cara 1: Pakai Flag --dangerously-skip-permissions**
+```bash
+/usr/lib/ld-linux-aarch64.so.1 /data/data/com.termux/files/usr/lib/node_modules/opencode-linux-arm64/bin/opencode --dangerously-skip-permissions
+```
+
+**Cara 2: Environment Variable**
+```bash
+OPENCODE_PERMISSION='{"*":"allow"}' opencode
+```
+
+**Cara 3: Buat Config File (Permanen)**
+Buat file `opencode.json` di folder kerja:
+```bash
+cd ~/Desktop/New\ Folder/memory
+mkdir -p .config
+cat > .config/opencode.json << 'EOF'
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "*": "allow"
+  }
+}
+EOF
+```
+
+### Catatan
+- "Always allow" selalu reset per sesi
+- Semua command baru (baca, edit, bash) butuh izin berbeda
+- Termux/Android sandbox juga влияет
+
+---
+
 ## 📋 Catatan
 
 - Emulasi via TCG (tanpa KVM) = LAMBAT
