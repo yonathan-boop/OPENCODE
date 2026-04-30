@@ -95,3 +95,11 @@ smbclient "//192.168.1.200/Methodist-11 Document" -U wilianto%wilianto -c "put ~
 - Atau: ES File Explorer (Android) → SMB → open with WPS (Android)
 
 ---
+
+## 📋 Task Manager (30 April 2026)
+
+- **lxtask** - Install via `sudo apt install -y lxtask`
+- **gnome-system-monitor** - Install via `sudo apt install -y gnome-system-monitor`
+- **Shortcut:** /root/Desktop/Task Manager.desktop
+
+---
