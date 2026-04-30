@@ -1,0 +1,64 @@
+# TRIGGER ABSENSI - Paste di awal sesi
+
+---
+
+## KONTEKS
+
+Saya sedang bekerja dengan sistem absensi siswa TK.
+
+## FILE ABSENSI
+
+- **Folder:** C:\Users\Admin\Desktop\memory\PC-06\docs\
+- **File aktif:** ABSENSI Mei.xlsx
+- **Format:** Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
+
+## STRUKTUR EXCEL
+
+- Row 6 = header tanggal (April 1 = col 4, April 2 = col 5, dst)
+- Row 7+ = data murid, Kolom 3 = nama
+- Kolom tanggal disembunyikan untuk: Minggu, 14, 27 Mei
+
+## ATURAN ABSENSI
+
+1. **1 file baru per hari** - Nama: Absensi Mei 30 2026 Thursday 12_19_06.xlsx
+2. **Wajib duplicate** sebelum edit - copy dari ABSENSI Mei.xlsx
+3. Format nama: Absensi <bulan> <tgl> <tahun> <hari> <jam>_<menit>_<detik>.xlsx
+
+## CARA INPUT ABSENSI
+
+1. Duplicate file ABSENSI Mei.xlsx ke nama baru (timestamp)
+2. Buka file baru, edit langsung via openpyxl
+3. Contoh formula:
+
+```python
+from openpyxl import load_workbook
+wb = load_workbook('PC-06/docs/Absensi Mei 30 2026 Thursday 12_19_06.xlsx')
+
+# Update TKa - row 7 (Aldrich), col 21 (tgl 18)
+wb['TKa'].cell(7, 21).value = 'S'
+
+wb.save('PC-06/docs/Absensi Mei 30 2026 Thursday 12_19_06.xlsx')
+```
+
+## KELAS & KODE
+
+- Kelas: TKa, TKB1, TKB(2), Absen PG
+- Kode: S (sakit), I (izin), A (alpha)
+
+## TANGGAL MEI 2026
+
+| Kolom | Tanggal | Hari |
+|-------|---------|------|
+| 4 | 1 | Jumat |
+| 5 | 2 | Sabtu |
+| 7 | 4 | Senin |
+| ... | ... | ... |
+| 17 | 14 | (libur - HIDDEN) |
+| ... | ... | ... |
+| 27 | 27 | (libur - HIDDEN) |
+
+---
+
+**Cara pakai:**
+1. Mulai sesi → git pull
+2. Mau absen → paste trigger ini → edit file baru (duplicate dulu) → simpan
