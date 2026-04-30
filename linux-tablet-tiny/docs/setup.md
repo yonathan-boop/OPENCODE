@@ -98,6 +98,7 @@ smbclient "//192.168.1.200/Methodist-11 Document" -U wilianto%wilianto -c "put ~
 
 ## 📋 Task Manager (30 April 2026)
 
+- **qps** - Task manager buat LXQt (sudah terinstall)
 - **lxtask** - Install via `sudo apt install -y lxtask`
 - **gnome-system-monitor** - Install via `sudo apt install -y gnome-system-monitor`
 - **Shortcut:** /root/Desktop/Task Manager.desktop
