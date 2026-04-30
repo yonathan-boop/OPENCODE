@@ -1,64 +1,127 @@
-# TRIGGER ABSENSI - Paste di awal sesi
+# TRIGGER ABSENSI
 
 ---
 
-## KONTEKS
+## 🔥 CARA PENGGUNAAN
 
-Saya sedang bekerja dengan sistem absensi siswa TK.
+Begitu trigger ini di-paste, langsung LAKUKAN:
+1. cd ke folder memory & git pull
+2. Tanya user: "Mau input absensi apa hari ini?" ATAU langsung baca data dari chat user dan input
 
-## FILE ABSENSI
+## 📋 KONTEKS
 
-- **Folder:** C:\Users\Admin\Desktop\memory\PC-06\docs\
-- **File aktif:** ABSENSI Mei.xlsx
-- **Format:** Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
+Saya bekerja dengan absensi siswa TK.
 
-## STRUKTUR EXCEL
+**Folder:** C:\Users\Admin\Desktop\memory\PC-06\docs\
+**File:** ABSENSI Mei.xlsx (file utama, untuk di-copy)
 
+## 📝 ATURAN (WAJIB IKUTI)
+
+1. **1 file baru per hari** - Jangan lebih dari 1 file/hari
+2. **Wajib DUPLICATE dulu** - Jangan edit ABSENSI Mei.xlsx langsung!
+3. Nama file: `Absensi <bulan> <tgl> <tahun> <hari> <jam>_<menit>_<detik>.xlsx`
+   - Contoh: `Absensi Mei 30 2026 Thursday 12_19_06.xlsx`
+
+## ⚡ LANGKAH-LANGKAH (JALANKAN SESUAI URUTAN)
+
+### Saat user mau input absensi:
+
+**Langkah 1: Duplicate file**
+```
+cp "PC-06/docs/ABSENSI Mei.xlsx" "PC-06/docs/Absensi Mei 30 2026 Thursday 12_19_06.xlsx"
+```
+
+**Langkah 2: Edit file baru**
+- Load dengan openpyxl
+- Update sesuai data dari user
+- Save
+
+**Langkah 3: Tanya/konfirmasi ke user**
+- "Done! [tabel absensi]"
+- Tanya: "Lanjut lagi atau sudah selesai?"
+
+## 📊 STRUKTUR EXCEL
+
+| Sheet | Kelas |
+|-------|-------|
+| TKa | TK A |
+| TKB1 | TK B 1 |
+| TKB(2) | TK B 2 |
+| Absen PG | Playgroup |
+
+### Posisi Cell:
 - Row 6 = header tanggal (April 1 = col 4, April 2 = col 5, dst)
-- Row 7+ = data murid, Kolom 3 = nama
-- Kolom tanggal disembunyikan untuk: Minggu, 14, 27 Mei
+- Row 7+ = data murid
+- Kolom 3 = nama murid
 
-## ATURAN ABSENSI
+### Tanggal Mei → Kolom:
+| Tanggal | Kolom |
+|---------|-------|
+| 1 | 4 |
+| 2 | 5 |
+| 3 | 6 (Minggu - HIDDEN) |
+| 4 | 7 |
+| 5 | 8 |
+| ... | ... |
+| 14 | 17 (LIBUR - HIDDEN) |
+| ... | ... |
+| 27 | 30 (LIBUR - HIDDEN) |
+| 28 | 31 |
+| 29 | 32 |
+| 30 | 33 |
+| 31 | 34 |
 
-1. **1 file baru per hari** - Nama: Absensi Mei 30 2026 Thursday 12_19_06.xlsx
-2. **Wajib duplicate** sebelum edit - copy dari ABSENSI Mei.xlsx
-3. Format nama: Absensi <bulan> <tgl> <tahun> <hari> <jam>_<menit>_<detik>.xlsx
+### Kode:
+- S = Sakit
+- I = Izin
+- A = Alpha
 
-## CARA INPUT ABSENSI
+## 🔍 CARI NAMA MURID
 
-1. Duplicate file ABSENSI Mei.xlsx ke nama baru (timestamp)
-2. Buka file baru, edit langsung via openpyxl
-3. Contoh formula:
+Jika nama tidak ditemukan langsung, cek dulu:
 
 ```python
 from openpyxl import load_workbook
 wb = load_workbook('PC-06/docs/Absensi Mei 30 2026 Thursday 12_19_06.xlsx')
 
-# Update TKa - row 7 (Aldrich), col 21 (tgl 18)
-wb['TKa'].cell(7, 21).value = 'S'
-
-wb.save('PC-06/docs/Absensi Mei 30 2026 Thursday 12_19_06.xlsx')
+# Cek nama di sheet TKa
+ws = wb['TKa']
+for r in range(7, 50):
+    nama = ws.cell(r, 3).value
+    if nama and 'nama_user' in nama.lower():
+        print(f'Row {r}: {nama}')
 ```
 
-## KELAS & KODE
+## 📌 CONTOH UPDATE
 
-- Kelas: TKa, TKB1, TKB(2), Absen PG
-- Kode: S (sakit), I (izin), A (alpha)
+**Input: TKa 18 April - Aldrich sakit**
 
-## TANGGAL MEI 2026
+```python
+from openpyxl import load_workbook
+wb = load_workbook('PC-06/docs/Absensi April 30 2026 Thursday 12_19_06.xlsx')
 
-| Kolom | Tanggal | Hari |
-|-------|---------|------|
-| 4 | 1 | Jumat |
-| 5 | 2 | Sabtu |
-| 7 | 4 | Senin |
-| ... | ... | ... |
-| 17 | 14 | (libur - HIDDEN) |
-| ... | ... | ... |
-| 27 | 27 | (libur - HIDDEN) |
+# April 18 = col 21, row Aldrich = 7
+wb['TKa'].cell(7, 21).value = 'S'
+
+wb.save('PC-06/docs/Absensi April 30 2026 Thursday 12_19_06.xlsx')
+print('Done!')
+```
+
+## ❌ YANG TIDAK BOLEH
+
+1. Jangan edit ABSENSI Mei.xlsx langsung
+2. Jangan tanya "mau duplicate dulu?" - Langsung lakukan!
+3. Jangan kasih command ke user untuk dijalankan - LAKUKAN SENDIRI
+4. Jangan biarkan file tanpa status yang jelas
+
+## ✅ YANG WAJIB
+
+1. Setiap update → buat file baru (duplicate)
+2. Semua data → simpan ke memory & push
+3. Tanya user setelah selesai: "Lanjut atau sudah?"
 
 ---
 
-**Cara pakai:**
-1. Mulai sesi → git pull
-2. Mau absen → paste trigger ini → edit file baru (duplicate dulu) → simpan
+**JANGAN LUPA:**
+- Setelah absensi → commit & push
+- Update MASTER-MEMORY.md jika ada perubahan aturan
