@@ -65,5 +65,33 @@ git push
 
 - 29 April 2026 - Dibuat setup linux-tablet-tiny
 - 29 April 2026 - Cek WPS, tersedia di /opt/kingsoft/wps-office/
+- 30 April 2026 - Setup SMB connection
+
+---
+
+## 📋 SMB Connection (30 April 2026)
+
+### Server
+- IP: 192.168.1.200
+- Share: `Methodist-11 Document`
+- Username: wilianto
+- Password: wilianto
+
+### Cara Akses via CLI
+```bash
+# List folder
+smbclient "//192.168.1.200/Methodist-11 Document" -U wilianto%wilianto -c "ls"
+
+# Download file
+smbclient "//192.168.1.200/Methodist-11 Document" -U wilianto%wilianto -c "get \"nama file.docx\" ~/file.docx"
+
+# Upload file
+smbclient "//192.168.1.200/Methodist-11 Document" -U wilianto%wilianto -c "put ~/file.docx \"nama file.docx\""
+```
+
+### Catatan
+- Mount CIFS tidak support di Android kernel (Function not implemented)
+- Alternatif: Download-edit-upload via smbclient
+- Atau: ES File Explorer (Android) → SMB → open with WPS (Android)
 
 ---
