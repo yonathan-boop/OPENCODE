@@ -389,6 +389,14 @@ playwright install chromium
 - **Lokasi:** C:\Users\Admin\Documents\image-tools-mcp-v1.2.1-windows-amd64.exe
 - **Status:** ✅ Installed
 
+### Buka Chrome/Website via Python
+```python
+import webbrowser
+webbrowser.open('https://youtube.com')
+```
+- Work di Windows
+- Langsung buka browser default
+
 ### OpenCode MCP Config
 - **File:** C:\Users\Admin\.config\opencode\opencode.json
 - **Config:** 
