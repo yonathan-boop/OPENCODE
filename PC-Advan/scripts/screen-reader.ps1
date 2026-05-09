@@ -213,20 +213,21 @@ function Invoke-OCR {
 function Invoke-OCRWithCoordinates {
     param([string]$ImagePath)
     try {
-        if (-not (Test-Path -LiteralPath $TesseractPath)) { return @() }
-        if (-not (Test-Path -LiteralPath $ImagePath)) { return @() }
+        if (-not (Test-Path -LiteralPath $TesseractPath)) { Write-Host "DEBUG: Tesseract not found"; return @() }
+        if (-not (Test-Path -LiteralPath $ImagePath)) { Write-Host "DEBUG: Image not found"; return @() }
 
         $tsvOutput = & $TesseractPath "$ImagePath" stdout -l eng+ind --psm 11 tsv 2>$null
-        if (-not $tsvOutput) { return @() }
+        if (-not $tsvOutput) { Write-Host "DEBUG: TSV output empty"; return @() }
 
         $lines = $tsvOutput -split "`n" | Where-Object { $_ -ne "" }
-        if ($lines.Count -lt 2) { return @() }
+        if ($lines.Count -lt 2) { Write-Host "DEBUG: Only $($lines.Count) lines"; return @() }
+        Write-Host "DEBUG: TSV lines = $($lines.Count), first line: '$($lines[0].Substring(0, [Math]::Min(50, $lines[0].Length)))'"
 
         $header = $lines[0] -split "`t"
         $colIdx = @{}
         for ($i = 0; $i -lt $header.Count; $i++) { $colIdx[$header[$i].Trim()] = $i }
 
-        $words = @()
+        $words = [System.Collections.ArrayList]@()
         for ($i = 1; $i -lt $lines.Count; $i++) {
             $cols = $lines[$i] -split "`t"
             if ($cols.Count -le $colIdx["text"]) { continue }
@@ -234,7 +235,7 @@ function Invoke-OCRWithCoordinates {
             $conf = [double]$cols[$colIdx["conf"]]
             $text = $cols[$colIdx["text"]]
             if ($conf -le 0 -or [string]::IsNullOrWhiteSpace($text)) { continue }
-            $words += @{
+            [void]$words.Add(@{
                 block = [int]$cols[$colIdx["block_num"]]
                 par   = [int]$cols[$colIdx["par_num"]]
                 line  = [int]$cols[$colIdx["line_num"]]
@@ -244,26 +245,44 @@ function Invoke-OCRWithCoordinates {
                 height = [int]$cols[$colIdx["height"]]
                 text  = $text.Trim()
                 conf  = $conf
-            }
+            })
         }
-        if ($words.Count -eq 0) { return @() }
-        return Merge-TSVElements -Words $words
-    } catch { return @() }
+        Write-Host "DEBUG: Words parsed = $($words.Count)"
+        if ($words.Count -eq 0) { Write-Host "DEBUG: No words found - checking first data row columns..."; return @() }
+        $result = Merge-TSVElements -Words $words
+        Write-Host "DEBUG: Merged elements = $($result.Count)"
+        return $result
+    } catch { Write-Host "DEBUG: Exception: $_"; return @() }
 }
 
 function Merge-TSVElements {
     param([array]$Words)
+    Write-Host "DEBUG Merge-TSVElements: Words received = $($Words.Count), type = $($Words[0].GetType().Name)"
+    Write-Host "DEBUG Merge-TSVElements: First word keys: $($Words[0].Keys -join ',')"
     $elements = @()
-    $groups = $Words | Group-Object { "$($_.block).$($_.par).$($_.line)" }
+    $groups = $Words | Group-Object { "{0}.{1}.{2}" -f $_['block'], $_['par'], $_['line'] }
+    Write-Host "DEBUG Merge-TSVElements: Groups = $($groups.Count)"
 
+    $groupIdx = 0
     foreach ($group in $groups) {
-        $sorted = $group.Group | Sort-Object left
+        $groupIdx++
+        Write-Host "DEBUG: Processing group $groupIdx, group.Group type = $($group.Group.GetType().Name), count = $(@($group.Group).Count)"
+        $sorted = @($group.Group | Sort-Object { $_['left'] })
+        Write-Host "DEBUG: sorted count = $($sorted.Count)"
+        if ($sorted.Count -eq 0) { continue }
         $currentGroup = @($sorted[0])
 
+        if ($sorted.Count -ge 3) { 
+            $lefts = @($sorted | ForEach-Object { $_['left'] }); 
+            $widths = @($sorted | ForEach-Object { $_['width'] }); 
+            Write-Host "DEBUG GRP $groupIdx ($($sorted.Count) words): lefts=$($lefts -join ',') widths=$($widths -join ',')" 
+        }
         for ($i = 1; $i -lt $sorted.Count; $i++) {
             $prev = $currentGroup[-1]
             $curr = $sorted[$i]
-            $gap = $curr.left - ($prev.left + $prev.width)
+            $g = $curr['left'] - ($prev['left'] + $prev['width'])
+            if ($g -gt 5 -and $sorted.Count -ge 3) { Write-Host "DEBUG GRP $groupIdx gap>5: $($prev['text']) -> $($curr['text']) gap=$g" }
+            $gap = $g
             if ($gap -le 5) {
                 $currentGroup += $curr
             } else {
@@ -280,11 +299,15 @@ function Merge-TSVElements {
 
 function New-MergedElement {
     param([array]$Words)
-    $minLeft = ($Words | Measure-Object left -Minimum).Minimum
-    $minTop = ($Words | Measure-Object top -Minimum).Minimum
-    $maxRight = ($Words | ForEach-Object { $_.left + $_.width } | Measure-Object -Maximum).Maximum
-    $maxBottom = ($Words | ForEach-Object { $_.top + $_.height } | Measure-Object -Maximum).Maximum
-    $fullText = ($Words | ForEach-Object { $_.text }) -join " "
+    $lefts = @($Words | ForEach-Object { $_['left'] })
+    $tops = @($Words | ForEach-Object { $_['top'] })
+    $rights = @($Words | ForEach-Object { $_['left'] + $_['width'] })
+    $bottoms = @($Words | ForEach-Object { $_['top'] + $_['height'] })
+    $minLeft = ($lefts | Measure-Object -Minimum).Minimum
+    $minTop = ($tops | Measure-Object -Minimum).Minimum
+    $maxRight = ($rights | Measure-Object -Maximum).Maximum
+    $maxBottom = ($bottoms | Measure-Object -Maximum).Maximum
+    $fullText = ($Words | ForEach-Object { $_['text'] }) -join " "
     return @{
         Text    = $fullText
         X       = $minLeft
@@ -423,7 +446,9 @@ if ($imagePath -and $imagePath -notlike "ERROR:*") {
 
     # --- OCR Text (With Coordinates) ---
     if ($WithCoordinates) {
+        Write-Host "DEBUG: WithCoordinates = true"
         $ocrElements = Invoke-OCRWithCoordinates -ImagePath $imagePath
+        Write-Host "DEBUG: ocrElements count = $($ocrElements.Count)"
         $uiRawData = @()
         if ($mode -ne "FilePath") {
             $hwnd_coord = Get-ActiveWindowHandle

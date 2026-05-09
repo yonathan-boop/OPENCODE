@@ -108,6 +108,14 @@ Lihat file terpisah di COMMON/docs/:
 
 ## 📋 RECENT ACTIVITY
 
+### 📋 GIT PUSH PROTOCOL
+1. WAJIB specify exact `workdir` saat spawn sub-agent buat commit/push
+2. Jangan `git add -A` di root tanpa ls dulu
+3. Dua repo wajib: `C:\Users\Advan\Desktop\memory` (shared) + `C:\Users\Advan\memory` (local)
+4. Kalau ragu → spawn sub-agent khusus push dengan instruksi path lengkap
+
+--- 
+
 ### 9 Mei 2026 — PC-Advan
 - Install VS Code v1.116.0
 - Install Extension Pack for Java

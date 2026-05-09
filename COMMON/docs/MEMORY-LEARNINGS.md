@@ -108,3 +108,27 @@ User menegaskan bahwa semua task eksekusi WAJIB via sub-agent (`task` tool). Ota
 - Sub-agent dikasih instruksi spesifik, gak perlu paham konteks penuh
 
 ---
+
+## [LRN-20260509-005] sub_agent_path_specification
+
+**Tanggal**: 2026-05-09
+**Priority**: high
+**Status**: active
+
+### Summary
+Waktu spawn sub-agent untuk git commit/push, WAJIB specify exact working directory. Jangan biarkan sub-agent nebak path.
+
+### Details
+- Sub-agent init repo di `C:\Users\Advan\` (root) instead of `C:\Users\Advan\memory\`
+- `git add -A` di root nyaris stage ribuan file sampah dari Recycle Bin, AppData, dll
+- Untung gak sempat commit, cuma staging — bisa di-clean
+
+### Action
+- Selalu set `workdir` parameter dengan path exact
+- Untuk push, dua repo wajib:
+  - `C:\Users\Advan\Desktop\memory` (shared, remote: GitHub)
+  - `C:\Users\Advan\memory` (local daily notes)
+- Kalau ragu, spawn sub-agent dedicated khusus push dengan instruksi path lengkap
+- Jangan `git add -A` sebelum ls dulu
+
+---
