@@ -6,8 +6,31 @@ Corrections, insights, and knowledge gaps captured during development.
 
 ---
 
-## [LRN-20260509-001] inference_from_short_prompts
+## [LRN-20260509-004] heartbeat_skip_saat_kosong
 
+**Logged**: 2026-05-09
+**Priority**: high
+**Status**: active
+**Area**: config
+
+### Summary
+HEARTBEAT.md yang kosong menyebabkan heartbeat API call skip. Isi dengan task checklist biar heartbeat aktif.
+
+### Details
+- File HEARTBEAT.md ada komentar: "Keep this file empty to skip heartbeat API calls"
+- Awalnya kosong → heartbeat gak pernah dikirim
+- User kira aku cuma reaktif padahal heartbeat cuma perlu diaktifkan
+
+### Action
+- HEARTBEAT.md harus selalu berisi task checklist
+- Jangan dikosongin kalau mau heartbeat aktif
+- Tetap perlu cek tanggal di setiap chat karena bisa beda hari
+
+### Metadata
+- Source: user_feedback
+- Tags: heartbeat, config
+
+---
 **Logged**: 2026-05-09
 **Priority**: high
 **Status**: promoted
