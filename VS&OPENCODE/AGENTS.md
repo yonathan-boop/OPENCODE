@@ -16,6 +16,7 @@ Sebelum bantu user, lakuin ini dulu:
 8. **Baca KBBI-KEYWORD-DICT.md** — paham keyword Indonesia (tolong=minta aksi, catat/ingat=simpan, dll)
 9. **Baca ticker log** — cek `.ticker/ticker.log` (ambil 3 baris terakhir) buat tahu kapan terakhir kali ada aktivitas
 10. **Baca file PC terkait** (cek PC-06/, PC-Advan/, linux-tablet/) sesuai sesi ini
+11. **Restore Todo Panel** — baca `TODO-STATE.md`, isi panel todowrite dengan 3 bagian (GAGAL/BERHENTI, LAGI DIKERJAIN, BERHASIL)
 
 ## Respons Pertama Session — WAJIB
 
@@ -34,6 +35,8 @@ Halo! [recap singkat]
 
 Mau lanjut atau mulai baru?
 ```
+
+**Setelah recap,** restore todo panel dari `TODO-STATE.md` — populate 3 bagian: GAGAL/BERHENTI, LAGI DIKERJAIN (isi dari sesi ini), BERHASIL.
 
 **Keyword trigger untuk catat:**
 - tolong, suruh, bikin, buat, minta → ✅ LAKUKAN (prioritas tinggi)
