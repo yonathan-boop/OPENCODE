@@ -71,6 +71,8 @@ Di-update: 16 April 2026
    - Cocok buat scraping, batch edit, atau task berat lain
    - **Adaptive Timeout:** setiap task dicatat realtime-nya → estimasi timeout berikutnya = waktu real + buffer kecil
    - **Git commit + push** diserahkan ke sub-agent, otak urus catat memory
+   - **WAJIB konsisten:** otak JANGAN kerjakan sendiri task eksekusi (edit file, git, browser, script) — selalu spawn sub-agent
+   - **Pengecualian:** todowrite, baca memory, planning, catat — itu otak
 
 7. **Todo Panel Standar (9 Mei 2026):**
    - Panel todowrite selalu ditampilkan di samping tiap sesi

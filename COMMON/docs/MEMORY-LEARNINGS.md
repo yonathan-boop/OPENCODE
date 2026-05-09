@@ -83,3 +83,25 @@ Asisten harus rajin membaca memory di awal sesi dan rajin menyimpan hal penting 
 - Promosikan pola yang berulang ke `MASTER-MEMORY.md`
 
 ---
+
+## [LRN-20260509-004] wajib_pakai_sub_agent_untuk_eksekusi
+
+**Tanggal**: 2026-05-09
+**Priority**: high
+**Status**: active
+
+### Summary
+User menegaskan bahwa semua task eksekusi WAJIB via sub-agent (`task` tool). Otak (main session) hanya boleh planning, strategi, dan catat memory.
+
+### Details
+- User protes karena commit/push dilakukan langsung, bukan via sub-agent
+- Sub-agent protocol sudah ditetapkan di MASTER-MEMORY.md
+- Otak = perencana, sub-agent = eksekutor
+
+### Action
+- Planning → spawn sub-agent → sub-agent eksekusi → otak terima hasil
+- Git commit/push → sub-agent yang jalanin
+- Coding/file creation → sub-agent yang jalanin
+- Semua command yang bukan memory/planning → sub-agent
+
+---
