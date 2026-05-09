@@ -72,6 +72,11 @@ Di-update: 16 April 2026
    - **Adaptive Timeout:** setiap task dicatat realtime-nya → estimasi timeout berikutnya = waktu real + buffer kecil
    - **Git commit + push** diserahkan ke sub-agent, otak urus catat memory
 
+7. **Todo Panel Standar (9 Mei 2026):**
+   - Panel todowrite selalu ditampilkan di samping tiap sesi
+   - 3 bagian: **GAGAL/BERHENTI** (persisten), **LAGI DIKERJAIN** (update per sesi), **BERHASIL** (persisten)
+   - Otak update otomatis pas mulai sesi dan pas tugas selesai
+
 5. **ORGANISASI FILE (PENTING!):**
    - **SEMUA file WAJIK dalam folder memory**, tidak boleh di luar
    - Folder disusun sesuai PC & kategori
@@ -528,6 +533,9 @@ webbrowser.open('https://youtube.com')
 - Alur: **Otak (main session)** → spawn sub-agent → sub-agent eksekusi → balik hasil ke otak
 - Sub-agent punya context terpisah, gak ngabisin token otak
 - Cocok buat scraping, batch edit, atau task berat lain
+- **Screen Reader** dibuat: `PC-Advan/scripts/screen-reader.ps1` — screenshot + Tesseract OCR + UI info
+- **Ollama DILARANG** — tidak boleh diinstall/dijalankan
+- **opencode-image-proxy** terinstall (tapi gak ada free vision model)
 
 ---
 

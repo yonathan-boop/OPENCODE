@@ -4,6 +4,27 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260509-003] jangan_jalankan_ollama
+
+**Tanggal**: 2026-05-09
+**Priority**: high
+**Status**: active
+
+### Summary
+Jangan pernah menjalankan Ollama. User melarang keras.
+
+### Details
+- Ollama consume resource berat
+- User tidak mau Ollama jalan di PC-nya
+- Cari alternatif lain untuk vision/image processing
+
+### Action
+- JANGAN install, jalankan, atau restart Ollama
+- Untuk vision: cari API gratis atau tool lain (Tesseract OCR, free vision API)
+- Kalau butuh vision model, tanya dulu sebelum install apa pun
+
+---
+
 ## [LRN-20260422-001] inference_from_short_prompts
 
 **Tanggal**: 2026-04-22
