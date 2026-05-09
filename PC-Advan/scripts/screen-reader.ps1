@@ -11,7 +11,8 @@ param(
     [switch]$ActiveWindow,
     [switch]$FullScreen,
     [switch]$UIInfoOnly,
-    [string]$FilePath
+    [string]$FilePath,
+    [switch]$WithCoordinates
 )
 
 $ErrorActionPreference = "Stop"
@@ -208,6 +209,163 @@ function Invoke-OCR {
     }
 }
 
+# ---------- 6. OCR with Coordinate (TSV) ----------
+function Invoke-OCRWithCoordinates {
+    param([string]$ImagePath)
+    try {
+        if (-not (Test-Path -LiteralPath $TesseractPath)) { return @() }
+        if (-not (Test-Path -LiteralPath $ImagePath)) { return @() }
+
+        $tsvOutput = & $TesseractPath "$ImagePath" stdout -l eng+ind --psm 11 tsv 2>$null
+        if (-not $tsvOutput) { return @() }
+
+        $lines = $tsvOutput -split "`n" | Where-Object { $_ -ne "" }
+        if ($lines.Count -lt 2) { return @() }
+
+        $header = $lines[0] -split "`t"
+        $colIdx = @{}
+        for ($i = 0; $i -lt $header.Count; $i++) { $colIdx[$header[$i].Trim()] = $i }
+
+        $words = @()
+        for ($i = 1; $i -lt $lines.Count; $i++) {
+            $cols = $lines[$i] -split "`t"
+            if ($cols.Count -le $colIdx["text"]) { continue }
+            if ([int]$cols[$colIdx["level"]] -ne 5) { continue }
+            $conf = [double]$cols[$colIdx["conf"]]
+            $text = $cols[$colIdx["text"]]
+            if ($conf -le 0 -or [string]::IsNullOrWhiteSpace($text)) { continue }
+            $words += @{
+                block = [int]$cols[$colIdx["block_num"]]
+                par   = [int]$cols[$colIdx["par_num"]]
+                line  = [int]$cols[$colIdx["line_num"]]
+                left  = [int]$cols[$colIdx["left"]]
+                top   = [int]$cols[$colIdx["top"]]
+                width = [int]$cols[$colIdx["width"]]
+                height = [int]$cols[$colIdx["height"]]
+                text  = $text.Trim()
+                conf  = $conf
+            }
+        }
+        if ($words.Count -eq 0) { return @() }
+        return Merge-TSVElements -Words $words
+    } catch { return @() }
+}
+
+function Merge-TSVElements {
+    param([array]$Words)
+    $elements = @()
+    $groups = $Words | Group-Object { "$($_.block).$($_.par).$($_.line)" }
+
+    foreach ($group in $groups) {
+        $sorted = $group.Group | Sort-Object left
+        $currentGroup = @($sorted[0])
+
+        for ($i = 1; $i -lt $sorted.Count; $i++) {
+            $prev = $currentGroup[-1]
+            $curr = $sorted[$i]
+            $gap = $curr.left - ($prev.left + $prev.width)
+            if ($gap -le 5) {
+                $currentGroup += $curr
+            } else {
+                $elements += New-MergedElement -Words $currentGroup
+                $currentGroup = @($curr)
+            }
+        }
+        if ($currentGroup.Count -gt 0) {
+            $elements += New-MergedElement -Words $currentGroup
+        }
+    }
+    return $elements
+}
+
+function New-MergedElement {
+    param([array]$Words)
+    $minLeft = ($Words | Measure-Object left -Minimum).Minimum
+    $minTop = ($Words | Measure-Object top -Minimum).Minimum
+    $maxRight = ($Words | ForEach-Object { $_.left + $_.width } | Measure-Object -Maximum).Maximum
+    $maxBottom = ($Words | ForEach-Object { $_.top + $_.height } | Measure-Object -Maximum).Maximum
+    $fullText = ($Words | ForEach-Object { $_.text }) -join " "
+    return @{
+        Text    = $fullText
+        X       = $minLeft
+        Y       = $minTop
+        Width   = $maxRight - $minLeft
+        Height  = $maxBottom - $minTop
+        CenterX = [math]::Round(($minLeft + $maxRight) / 2)
+        CenterY = [math]::Round(($minTop + $maxBottom) / 2)
+    }
+}
+
+# ---------- 7. UI Element Raw Data (for type matching) ----------
+function Get-UIElementRawData {
+    param([IntPtr]$hwnd, [int]$MaxDepth = 3)
+    $result = @()
+    try {
+        Add-Type -AssemblyName UIAutomationClient -ErrorAction Stop
+        $root = [System.Windows.Automation.AutomationElement]::RootElement
+        if ($hwnd -eq [IntPtr]::Zero) { return $result }
+
+        $cond = New-Object System.Windows.Automation.PropertyCondition(
+            [System.Windows.Automation.AutomationElement]::NativeWindowHandleProperty, $hwnd.ToInt32())
+        $targetWindow = $root.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $cond)
+        if ($targetWindow -eq $null) {
+            $pid = Get-WindowProcessId -hwnd $hwnd
+            $procCond = New-Object System.Windows.Automation.PropertyCondition(
+                [System.Windows.Automation.AutomationElement]::ProcessIdProperty, $pid)
+            $targetWindow = $root.FindFirst([System.Windows.Automation.TreeScope]::Descendants, $procCond)
+            if ($targetWindow -eq $null) { return $result }
+        }
+
+        function WalkTree {
+            param($element, $depth)
+            if ($depth -gt $MaxDepth -or $element -eq $null) { return }
+            try {
+                $ctrlType = "Text"
+                $name = ""
+                try { $ctrlType = ($element.Current.ControlType.ProgrammaticName -replace "^ControlType\.", "") } catch { }
+                try { $name = $element.Current.Name } catch { }
+                try {
+                    $r = $element.Current.BoundingRectangle
+                    if (-not [string]::IsNullOrWhiteSpace($name) -and $r.Width -gt 0 -and $r.Height -gt 0) {
+                        $result += @{
+                            Type   = $ctrlType
+                            Text   = $name
+                            X      = [int]$r.X
+                            Y      = [int]$r.Y
+                            Width  = [int]$r.Width
+                            Height = [int]$r.Height
+                        }
+                    }
+                } catch { }
+                $children = $element.FindAll([System.Windows.Automation.TreeScope]::Children, [System.Windows.Automation.Condition]::TrueCondition)
+                if ($children -ne $null) {
+                    for ($i = 0; $i -lt $children.Count; $i++) { WalkTree -element $children[$i] -depth ($depth + 1) }
+                }
+            } catch { }
+        }
+        WalkTree -element $targetWindow -depth 0
+    } catch { }
+    return $result
+}
+
+function Get-MatchingUIType {
+    param([string]$Text, [int]$X, [int]$Y, [int]$Width, [int]$Height, [array]$UIElements)
+    $ocrCx = $X + $Width / 2
+    $ocrCy = $Y + $Height / 2
+    $textLower = $Text.ToLower()
+    foreach ($ui in $UIElements) {
+        $inX = ($ocrCx -ge ($ui.X - 10)) -and ($ocrCx -le ($ui.X + $ui.Width + 10))
+        $inY = ($ocrCy -ge ($ui.Y - 10)) -and ($ocrCy -le ($ui.Y + $ui.Height + 10))
+        if ($inX -and $inY) {
+            $uiTextLower = $ui.Text.ToLower()
+            if ($uiTextLower -eq $textLower -or $uiTextLower -like "*$textLower*" -or $textLower -like "*$uiTextLower*") {
+                return $ui.Type
+            }
+        }
+    }
+    return "Text"
+}
+
 # ========== MAIN ==========
 $output = @"
 
@@ -262,6 +420,30 @@ if ($imagePath -and $imagePath -notlike "ERROR:*") {
     $output += "--- OCR TEXT ---`n"
     $ocrText = Invoke-OCR -ImagePath $imagePath
     $output += "$ocrText`n`n"
+
+    # --- OCR Text (With Coordinates) ---
+    if ($WithCoordinates) {
+        $ocrElements = Invoke-OCRWithCoordinates -ImagePath $imagePath
+        $uiRawData = @()
+        if ($mode -ne "FilePath") {
+            $hwnd_coord = Get-ActiveWindowHandle
+            $uiRawData = Get-UIElementRawData -hwnd $hwnd_coord
+        }
+        $output += "--- OCR TEXT (WITH COORDINATES) ---`n"
+        if ($ocrElements.Count -gt 0) {
+            foreach ($el in $ocrElements) {
+                $type = "Text"
+                if ($uiRawData.Count -gt 0) {
+                    $matched = Get-MatchingUIType -Text $el.Text -X $el.X -Y $el.Y -Width $el.Width -Height $el.Height -UIElements $uiRawData
+                    if ($matched) { $type = $matched }
+                }
+                $output += "[$type] `"$($el.Text)`" → ($($el.X), $($el.Y), $($el.Width), $($el.Height))`n"
+            }
+        } else {
+            $output += "(tidak ada teks terdeteksi)`n"
+        }
+        $output += "`n"
+    }
 
     # Cleanup temp file
     if ($mode -ne "FilePath" -and (Test-Path -LiteralPath $imagePath)) {
