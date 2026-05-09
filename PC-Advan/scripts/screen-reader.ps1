@@ -272,17 +272,12 @@ function Merge-TSVElements {
         if ($sorted.Count -eq 0) { continue }
         $currentGroup = @($sorted[0])
 
-        if ($sorted.Count -ge 3) { 
-            $lefts = @($sorted | ForEach-Object { $_['left'] }); 
-            $widths = @($sorted | ForEach-Object { $_['width'] }); 
-            Write-Host "DEBUG GRP $groupIdx ($($sorted.Count) words): lefts=$($lefts -join ',') widths=$($widths -join ',')" 
-        }
         for ($i = 1; $i -lt $sorted.Count; $i++) {
             $prev = $currentGroup[-1]
             $curr = $sorted[$i]
-            $g = $curr['left'] - ($prev['left'] + $prev['width'])
-            if ($g -gt 5 -and $sorted.Count -ge 3) { Write-Host "DEBUG GRP $groupIdx gap>5: $($prev['text']) -> $($curr['text']) gap=$g" }
-            $gap = $g
+            $pl = $prev['left']; $pw = $prev['width']; $cl = $curr['left']
+            $gap = $cl - ($pl + $pw)
+            if ($groupIdx -eq 2) { Write-Host "DEBUG GRP2 i=$i '$($prev['text'])'->'$($curr['text'])': cl=$cl - (pl=$pl + pw=$pw) = $gap" }
             if ($gap -le 5) {
                 $currentGroup += $curr
             } else {
