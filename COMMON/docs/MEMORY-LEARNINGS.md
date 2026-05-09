@@ -97,11 +97,14 @@ User menegaskan bahwa semua task eksekusi WAJIB via sub-agent (`task` tool). Ota
 - User protes karena commit/push dilakukan langsung, bukan via sub-agent
 - Sub-agent protocol sudah ditetapkan di MASTER-MEMORY.md
 - Otak = perencana, sub-agent = eksekutor
+- **Yang termasuk tugas otak (boleh langsung):** baca memory, catat memory, planning, strategi, komunikasi dengan user
+- **Yang WAJIB sub-agent:** bikin/edit file, run command, commit/push, scraping, batch edit
 
 ### Action
-- Planning → spawn sub-agent → sub-agent eksekusi → otak terima hasil
-- Git commit/push → sub-agent yang jalanin
-- Coding/file creation → sub-agent yang jalanin
-- Semua command yang bukan memory/planning → sub-agent
+- Baca & catat memory → OTAK langsung (butuh full context, gak bisa diringkas)
+- Planning → spawn sub-agent → sub-agent eksekusi → otak verifikasi + catat
+- Git commit/push → sub-agent
+- Coding/file creation → sub-agent
+- Sub-agent dikasih instruksi spesifik, gak perlu paham konteks penuh
 
 ---
