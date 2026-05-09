@@ -13,8 +13,33 @@ Sebelum bantu user, lakuin ini dulu:
 5. **Baca MEMORY-LEARNINGS.md** — belajar dari pengalaman masa lalu
 6. **Baca MEMORY-ERRORS.md** — hindari error yang udah pernah terjadi
 7. **Baca MEMORY-FEATURE-REQUESTS.md** — tahu apa yang user mau kembangkan
-8. **Baca ticker log** — cek `.ticker/ticker.log` (ambil 3 baris terakhir) buat tahu kapan terakhir kali ada aktivitas
-9. **Baca file PC terkait** (cek PC-06/, PC-Advan/, linux-tablet/) sesuai sesi ini
+8. **Baca KBBI-KEYWORD-DICT.md** — paham keyword Indonesia (tolong=minta aksi, catat/ingat=simpan, dll)
+9. **Baca ticker log** — cek `.ticker/ticker.log` (ambil 3 baris terakhir) buat tahu kapan terakhir kali ada aktivitas
+10. **Baca file PC terkait** (cek PC-06/, PC-Advan/, linux-tablet/) sesuai sesi ini
+
+## Respons Pertama Session — WAJIB
+
+Di respons pertama tiap sesi, KETUKAN 3 hal:
+
+1. **Session recap** — "terakhir ngapain" (ringkasan aktivitas sesi sebelumnya)
+2. **Open tasks** — apa yang masih terbuka
+3. **Anything urgent** — kalau ada hal urgent dari heartbeat yang harus tahu
+
+Format:
+```
+Halo! [recap singkat]
+
+**Yang sudah dilakukan** (kalau ada)
+**Yang masih terbuka** (kalau ada)
+
+Mau lanjut atau mulai baru?
+```
+
+**Keyword trigger untuk catat:**
+- tolong, suruh, bikin, buat, minta → ✅ LAKUKAN (prioritas tinggi)
+- catat, ingat, ingin dicatat, jelaskan → 📝 SIMPAN ke memory
+- salah, bukan gitu → ❌ KOREKSI → log ke ERRORS.md
+- jangan, gak usah → 🚫 SKIP
 
 ## Memory System
 

@@ -65,6 +65,11 @@ Di-update: 16 April 2026
    - Buat sub-memory file jika perlu (per-PC, per-project, per-topic)
    - Jangan ada yang terlewat, SELALU SIMPAN
 
+6. **Sub-Agent Protocol (9 Mei 2026):**
+   - Semua task eksekusi via `task` tool — otak (main session) hanya planning + receive hasil
+   - Sub-agent punya context terpisah, gak ngabisin token otak
+   - Cocok buat scraping, batch edit, atau task berat lain
+
 5. **ORGANISASI FILE (PENTING!):**
    - **SEMUA file WAJIK dalam folder memory**, tidak boleh di luar
    - Folder disusun sesuai PC & kategori
@@ -513,6 +518,14 @@ webbrowser.open('https://youtube.com')
 - win32com sudah tersedia (dari pywin32)
 - **Pesan penting user:** "kamu itu kan tidak bisa langsung megerjakan hal besar... jadi harus rajin mencatat dan membaca di memori, tolong di simpan ya"
 - Install docxtpl 0.20.2 + jinja2 3.1.6 (untuk edit Word pake template)
+
+---
+
+### 9 Mei 2026 — PC-Advan
+- **Sub-Agent Protocol** ditetapkan: semua task dikerjakan via `task` tool (sub-agent)
+- Alur: **Otak (main session)** → spawn sub-agent → sub-agent eksekusi → balik hasil ke otak
+- Sub-agent punya context terpisah, gak ngabisin token otak
+- Cocok buat scraping, batch edit, atau task berat lain
 
 ---
 
