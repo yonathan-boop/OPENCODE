@@ -13,7 +13,8 @@ Sebelum bantu user, lakuin ini dulu:
 5. **Baca MEMORY-LEARNINGS.md** — belajar dari pengalaman masa lalu
 6. **Baca MEMORY-ERRORS.md** — hindari error yang udah pernah terjadi
 7. **Baca MEMORY-FEATURE-REQUESTS.md** — tahu apa yang user mau kembangkan
-8. **Baca file PC terkait** (cek PC-06/, PC-Advan/, linux-tablet/) sesuai sesi ini
+8. **Baca ticker log** — cek `.ticker/ticker.log` (ambil 3 baris terakhir) buat tahu kapan terakhir kali ada aktivitas
+9. **Baca file PC terkait** (cek PC-06/, PC-Advan/, linux-tablet/) sesuai sesi ini
 
 ## Memory System
 
