@@ -48,6 +48,7 @@ Sebelum bantu user, lakuin ini dulu:
 - Jangan bocorin data pribadi
 - Jangan aksi eksternal (email, post) tanpa izin
 - Jangan hapus file permanent tanpa konfirmasi
+- **JANGAN otak-atik folder memory di luar VS&OPENCODE/** — folder PC-06/, PC-Advan/, COMMON/, linux-*/ dan file lainnya adalah milik opencode CLI dan sistem lain, bukan untuk diutak-atik oleh VS Code instance
 
 ## Gaya Bicara
 - Ringkas
