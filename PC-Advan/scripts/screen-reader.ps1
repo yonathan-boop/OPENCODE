@@ -246,28 +246,19 @@ function Invoke-OCRWithCoordinates {
                 conf  = $conf
             })
         }
-        Write-Host "DEBUG: Words parsed = $($words.Count)"
-        if ($words.Count -eq 0) { Write-Host "DEBUG: No words found - checking first data row columns..."; return @() }
+        if ($words.Count -eq 0) { return @() }
         $result = Merge-TSVElements -Words $words
-        Write-Host "DEBUG: Merged elements = $($result.Count)"
         return $result
-    } catch { Write-Host "DEBUG: Exception: $_"; return @() }
+    } catch { return @() }
 }
 
 function Merge-TSVElements {
     param([array]$Words)
-    Write-Host "DEBUG Merge-TSVElements: Words received = $($Words.Count), type = $($Words[0].GetType().Name)"
-    Write-Host "DEBUG Merge-TSVElements: First word keys: $($Words[0].Keys -join ',')"
     $elements = @()
     $groups = $Words | Group-Object { "{0}.{1}.{2}" -f $_['block'], $_['par'], $_['line'] }
-    Write-Host "DEBUG Merge-TSVElements: Groups = $($groups.Count)"
 
-    $groupIdx = 0
     foreach ($group in $groups) {
-        $groupIdx++
-        Write-Host "DEBUG: Processing group $groupIdx, group.Group type = $($group.Group.GetType().Name), count = $(@($group.Group).Count)"
         $sorted = @($group.Group | Sort-Object { $_['left'] })
-        Write-Host "DEBUG: sorted count = $($sorted.Count)"
         if ($sorted.Count -eq 0) { continue }
         $currentGroup = @($sorted[0])
         $mergedRight = $sorted[0]['left'] + $sorted[0]['width']
@@ -441,9 +432,7 @@ if ($imagePath -and $imagePath -notlike "ERROR:*") {
 
     # --- OCR Text (With Coordinates) ---
     if ($WithCoordinates) {
-        Write-Host "DEBUG: WithCoordinates = true"
         $ocrElements = Invoke-OCRWithCoordinates -ImagePath $imagePath
-        Write-Host "DEBUG: ocrElements count = $($ocrElements.Count)"
         $uiRawData = @()
         if ($mode -ne "FilePath") {
             $hwnd_coord = Get-ActiveWindowHandle
