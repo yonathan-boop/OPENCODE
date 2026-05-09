@@ -213,15 +213,14 @@ function Invoke-OCR {
 function Invoke-OCRWithCoordinates {
     param([string]$ImagePath)
     try {
-        if (-not (Test-Path -LiteralPath $TesseractPath)) { Write-Host "DEBUG: Tesseract not found"; return @() }
-        if (-not (Test-Path -LiteralPath $ImagePath)) { Write-Host "DEBUG: Image not found"; return @() }
+        if (-not (Test-Path -LiteralPath $TesseractPath)) { return @() }
+        if (-not (Test-Path -LiteralPath $ImagePath)) { return @() }
 
         $tsvOutput = & $TesseractPath "$ImagePath" stdout -l eng+ind --psm 11 tsv 2>$null
-        if (-not $tsvOutput) { Write-Host "DEBUG: TSV output empty"; return @() }
+        if (-not $tsvOutput) { return @() }
 
         $lines = $tsvOutput -split "`n" | Where-Object { $_ -ne "" }
-        if ($lines.Count -lt 2) { Write-Host "DEBUG: Only $($lines.Count) lines"; return @() }
-        Write-Host "DEBUG: TSV lines = $($lines.Count), first line: '$($lines[0].Substring(0, [Math]::Min(50, $lines[0].Length)))'"
+        if ($lines.Count -lt 2) { return @() }
 
         $header = $lines[0] -split "`t"
         $colIdx = @{}
@@ -271,18 +270,19 @@ function Merge-TSVElements {
         Write-Host "DEBUG: sorted count = $($sorted.Count)"
         if ($sorted.Count -eq 0) { continue }
         $currentGroup = @($sorted[0])
+        $mergedRight = $sorted[0]['left'] + $sorted[0]['width']
 
         for ($i = 1; $i -lt $sorted.Count; $i++) {
-            $prev = $currentGroup[-1]
             $curr = $sorted[$i]
-            $pl = $prev['left']; $pw = $prev['width']; $cl = $curr['left']
-            $gap = $cl - ($pl + $pw)
-            if ($groupIdx -eq 2) { Write-Host "DEBUG GRP2 i=$i '$($prev['text'])'->'$($curr['text'])': cl=$cl - (pl=$pl + pw=$pw) = $gap" }
+            $gap = $curr['left'] - $mergedRight
             if ($gap -le 5) {
                 $currentGroup += $curr
+                $cr = $curr['left'] + $curr['width']
+                if ($cr -gt $mergedRight) { $mergedRight = $cr }
             } else {
                 $elements += New-MergedElement -Words $currentGroup
                 $currentGroup = @($curr)
+                $mergedRight = $curr['left'] + $curr['width']
             }
         }
         if ($currentGroup.Count -gt 0) {
