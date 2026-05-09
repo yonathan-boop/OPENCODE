@@ -69,6 +69,8 @@ Di-update: 16 April 2026
    - Semua task eksekusi via `task` tool — otak (main session) hanya planning + receive hasil
    - Sub-agent punya context terpisah, gak ngabisin token otak
    - Cocok buat scraping, batch edit, atau task berat lain
+   - **Adaptive Timeout:** setiap task dicatat realtime-nya → estimasi timeout berikutnya = waktu real + buffer kecil
+   - **Git commit + push** diserahkan ke sub-agent, otak urus catat memory
 
 5. **ORGANISASI FILE (PENTING!):**
    - **SEMUA file WAJIK dalam folder memory**, tidak boleh di luar
