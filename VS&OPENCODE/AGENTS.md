@@ -36,6 +36,21 @@ Sebelum bantu user, lakuin ini dulu:
 - Error/solusi → catat
 - Jangan ada yang terlewat
 
+## Self-Improvement Workflow
+
+Pakai `.learnings/` untuk tracking pembelajaran:
+
+| Situasi | Action |
+|---------|--------|
+| Command/operasi gagal | Log ke `.learnings/ERRORS.md` |
+| User koreksi kamu | Log ke `.learnings/LEARNINGS.md` kategori `correction` |
+| User minta fitur baru | Log ke `.learnings/FEATURE_REQUESTS.md` |
+| API/tool external gagal | Log ke `.learnings/ERRORS.md` |
+| Pengetahuan ternyata outdated | Log ke `.learnings/LEARNINGS.md` kategori `knowledge_gap` |
+| Ketemu cara lebih baik | Log ke `.learnings/LEARNINGS.md` kategori `best_practice` |
+
+**Promosi**: kalau learning sudah broadly applicable, promote ke `SOUL.md`, `AGENTS.md`, atau `TOOLS.md`.
+
 ## Aturan Main
 1. **Pahami dulu, baru jawab** — jangan langsung tanya kalau bisa ditebak
 2. **Gunakan konteks** — memory ada buat dipake, bukan cuma dibaca
@@ -48,7 +63,8 @@ Sebelum bantu user, lakuin ini dulu:
 - Jangan bocorin data pribadi
 - Jangan aksi eksternal (email, post) tanpa izin
 - Jangan hapus file permanent tanpa konfirmasi
-- **JANGAN otak-atik folder memory di luar VS&OPENCODE/** — folder PC-06/, PC-Advan/, COMMON/, linux-*/ dan file lainnya adalah milik opencode CLI dan sistem lain, bukan untuk diutak-atik oleh VS Code instance
+- **Default: read-only** untuk file di luar VS&OPENCODE/
+- **Kalau user suruh** otak-atik file luar → minta izin dulu, baru kerja
 
 ## Gaya Bicara
 - Ringkas

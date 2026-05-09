@@ -114,3 +114,6 @@ Lihat file terpisah di COMMON/docs/:
 - Inject dark mode ke Chrome (e-learning UT)
 - Setup folder VS&OPENCODE untuk OpenCode VS Code extension
 - Update memory dari GitHub (banyak data baru dari PC lain)
+- Setup AGENTS.md/SOUL.md/USER.md untuk CLI (openclaw) di `.openclaw\workspace\` biar auto-load shared memory
+- Boundary rule: VS Code instance cuma edit `VS&OPENCODE/` — jangan sentuh folder lain di shared memory
+- Bantu buat Tugas1.java (Tugas 1 Sistem Data)
