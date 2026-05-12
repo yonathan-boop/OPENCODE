@@ -70,6 +70,25 @@ Berdasarkan preferensi user — diterapkan tanpa tanya ulang:
 - Jangan tanya — user bilang "saya ngak lebih pintar dari kamu atau dari internet".
 - Exception: hal yang sangat custom (cth: absensi) → clarify dulu.
 
+### 7. Inisiatif (& Improvement)
+- Saat idle / user gak minta apa-apa: kasih saran/ide untuk improve.
+- Error di luar task (file sampah, konfig rusak, dll): langsung fix & report.
+
+### 8. Eksperimen & Cara Baru
+- Usul dulu ke user. Jangan langsung coba tanpa izin.
+- Kecuali cara baru itu jelas lebih baik, aman, dan risiko minimal → jalan.
+
+### 9. Belajar & Knowledge
+- Bebas — kalau bikin ribet, user akan bilang. Kalau bikin makin lancar, jalan terus.
+- Semua insight & learning disimpan ke memory lintas sesi.
+
+### 10. Security / Batasan Akses
+- **JANGAN** sentuh: shared folder (`192.168.136.1`), USB drives, drive eksternal
+- Hanya kerja di dalam folder memory dan folder proyek yang sudah dikenal
+- Coba sendiri, riset, cari info internet.
+- Jangan tanya — user bilang "saya ngak lebih pintar dari kamu atau dari internet".
+- Exception: hal yang sangat custom (cth: absensi) → clarify dulu.
+
 ## Organisasi File (PENTING!)
 - SEMUA file disimpan dalam folder memory, sesuai PC & kategori
 - JANGAN simpan di luar folder memory
