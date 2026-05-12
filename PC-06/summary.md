@@ -19,10 +19,11 @@ Terakhir diupdate: 2026-04-16
 1. **Memory System** - Sistem memory (SELESAI, 2026-04-11)
 
 ## Session Terakhir
-Tanggal: 2026-04-16
-Topik: Sinkronisasi memory dari GitHub
-Status: Sinkronisasi berhasil
+Tanggal: 2026-05-12
+Topik: Absensi Mei (TKB1, TKa, TKB2, PG)
+Status: Selesai
 
-## Total Sessions: 2
+## Total Sessions: 3
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
+- 12 Mei 2026: Absensi Mei (TKB1, TKa, TKB2, PG)

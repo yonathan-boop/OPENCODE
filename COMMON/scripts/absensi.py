@@ -2,7 +2,7 @@ import openpyxl
 from openpyxl import load_workbook
 import sys
 
-FILE_PATH = "C:/Users/Admin/Desktop/memory/PC-06/docs/ABSENSI April.xlsx"
+FILE_PATH = "C:/Users/Admin/Desktop/memory/PC-06/docs/Absensi Mei 07 2026 Thursday 09_10_00.xlsx"
 
 KELAS_MAP = {
     'tka': 'TKa', 'tk a': 'TKa',
@@ -12,9 +12,9 @@ KELAS_MAP = {
 }
 
 KODE = {
-    'sakit': 'S', 's': 'S',
-    'izin': 'I', 'i': 'I',
-    'alpha': 'A', 'a': 'A',
+    's': 'S', 'sakit': 'S',
+    'i': 'I', 'izin': 'I',
+    'a': 'A', 'alpha': 'A',
     '.': '.'
 }
 

@@ -1,0 +1,20 @@
+INIT MEMORY SYSTEM
+
+1. cd C:\Users\Admin\Desktop\memory && git pull
+Pc -06 (kerja)
+1. cd C:\Users\Advan\Desktop\memory && git pull
+pc advan (rumah)
+yang ada sekarang itu yang aktif
+
+2. Baca semua .md di folder COMMON/docs, PC-06, PC-Advan
+3. Gabungkan jadi konteks
+4. Laporkan ke user: "Memory loaded!" + ringkasan
+
+TRIGGER:
+/loadmemory → git pull + baca memory
+/savememory → commit + push
+/ingat "isi" → catat ke MASTER-MEMORY.md
+
+kamu itu kan tidak bisa langsung megerjakan hal besar...
+jadi harus rajin rajin mencatat dan membaca di memori 
+tolong di simpan ya 

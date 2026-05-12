@@ -36,6 +36,10 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 - MCP Config: C:\Users\Admin\.config\opencode\opencode.json
 - **xlwings: 0.35.1** (pip install)
 
+## Absensi
+- Kode: **S** (sakit), **I** (izin), **A** (alpha) - huruf besar!
+- Contoh: `py absensi.py Gabe TKB1 6 s` (bukan sick)
+
 ## Organisasi File (PENTING!)
 - SEMUA file disimpan dalam folder memory, sesuai PC & kategori
 - JANGAN simpan di luar folder memory
