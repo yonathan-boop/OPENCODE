@@ -58,6 +58,27 @@ Gunakan `task` tool (sub-agent) untuk:
 - Update activity log
 - Tapi untuk file besar → sub-agent
 
+## Sub-Agent Optimization
+
+### Kapan SPAM sub-agent (boleh banyak)
+- Setiap git commit/push — 1 sub-agent per commit
+- Setiap batch command — 1 sub-agent per batch
+- Setiap file write — 1 sub-agent per file (bisa parallel)
+
+### Kapan TUNGGU sub-agent selesai
+- Kalau step selanjutnya depend pada hasil sub-agent sebelumnya
+- Contoh: copy file → update script → run script (harus sequential)
+
+### Kapan PAKAI 1 sub-agent untuk banyak hal
+- Kalau semua langkah sequential dan saling depend
+- Contoh: dup file → update path → run absensi → restore path (1 sub-agent)
+
+### Kapan SUB-AGENT GA PERLU
+- 1-2 bash commands sederhana
+- Read-only operations
+- Planning/strategy doang
+- Chat sama user
+
 ## Aturan Tool Ordering
 
 1. **Sebelum edit**: Read dulu file yang akan diedit
@@ -75,3 +96,5 @@ Gunakan `task` tool (sub-agent) untuk:
 - Spawn sub-agent tanpa instruksi path lengkap
 - git add -A tanpa ls/staging check dulu
 - Reasoning terus setelah task selesai
+- Spawn sub-agent untuk hal trivial (1 bash command sederhana)
+- Over-explain context ke sub-agent — beri instruksi minimal & jelas

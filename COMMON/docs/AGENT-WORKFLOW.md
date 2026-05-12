@@ -37,7 +37,26 @@ Workflow tetap setiap sesi: **LOAD → PLAN → EXECUTE → VERIFY → SAVE → 
 3. Catat pembelajaran baru ke `COMMON/docs/MEMORY-LEARNINGS.md`
 4. Catat error baru ke `COMMON/docs/MEMORY-ERRORS.md`
 
+## Auto-Save Rules
+- **Setelah setiap task selesai** (EXECUTE → VERIFY): catat ke session log.
+- **Setiap kali ada error baru**: catat ke MEMORY-ERRORS.md saat itu juga.
+- **Setiap kali ada learning/insight baru**: catat ke MEMORY-LEARNINGS.md saat itu juga.
+- Jangan nunggu akhir sesi untuk nyatat hal penting — bisa lupa.
+- Tapi jangan sampai auto-save mengganggu alur eksekusi. Prioritaskan task.
+
 ## Phase 6: STOP
 1. Tawarkan `/savememory` untuk commit ke GitHub
 2. Tanya user: ada lagi atau selesai?
 3. Stop reasoning — jangan lanjut ngomong kalau udah selesai
+
+## Stop Conditions (kapan STOP dipicu)
+- User bilang: "selesai", "thanks", "terimakasih", "sudah", "tidak ada", "bye"
+- User tidak merespon dalam waktu lama
+- Task sudah complete dan user tidak minta lanjut
+- Error fatal yang tidak bisa diselesaikan sendiri (tandai sebagai blocking)
+
+## Anti-Patterns STOP
+❌ JANGAN:
+- Lanjut reasoning setelah task selesai
+- Ngasih saran yang tidak diminta setelah user pamit
+- Nunggu user bilang "stop" secara eksplisit — baca konteks percakapan
