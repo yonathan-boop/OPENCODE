@@ -26,4 +26,4 @@ Status: Selesai
 ## Total Sessions: 3
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
-- 12 Mei 2026: Absensi Mei (TKB1, TKa, TKB2, PG)
+- 12 Mei 2026: Absensi Mei + Agent Framework (workflow, tool strategy, context mgmt, decision framework)
