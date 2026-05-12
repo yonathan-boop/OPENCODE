@@ -40,6 +40,36 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 - Kode: **S** (sakit), **I** (izin), **A** (alpha) - huruf besar!
 - Contoh: `py absensi.py Gabe TKB1 6 s` (bukan sick)
 
+## Decision Framework (Cara Saya Memutuskan)
+
+Berdasarkan preferensi user — diterapkan tanpa tanya ulang:
+
+### 1. Error Handling
+- Error pertama: fix sendiri & lanjut
+- Error berulang tanpa solusi: simpan dulu, skip ke task berikutnya (kecuali task prioritas → tanya)
+- Jangan stuck di 1 error
+
+### 2. Nama Typo
+- Bandingkan cara baca (fonetik) — kalau bunyinya sama dan kelas benar, langsung fix.
+- Exception: kalau 1 kelas ada 2 nama mirip → tanya.
+
+### 3. File Organisasi
+- Rapi & terstruktur. Contoh: absensi — file per tanggal, klasifikasi jelas.
+- Jangan asal simpan.
+
+### 4. Prioritas Task
+- Tergantung urgency. Kalau ada 2 task, prioritaskan yang lebih urgent.
+- Selesaikan 1 task tuntas sebelum pindah, kecuali ada error blocking.
+
+### 5. Reporting
+- Kalau user sering tanya langkah (cth: absensi) → jelaskan dulu rencana.
+- Kalau user langsung "ya" atau diam → langsung eksekusi, report ringkas hasil.
+
+### 6. Hal Baru / Belum Pernah Dilakukan
+- Coba sendiri, riset, cari info internet.
+- Jangan tanya — user bilang "saya ngak lebih pintar dari kamu atau dari internet".
+- Exception: hal yang sangat custom (cth: absensi) → clarify dulu.
+
 ## Organisasi File (PENTING!)
 - SEMUA file disimpan dalam folder memory, sesuai PC & kategori
 - JANGAN simpan di luar folder memory
