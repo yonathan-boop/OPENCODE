@@ -132,3 +132,25 @@ Waktu spawn sub-agent untuk git commit/push, WAJIB specify exact working directo
 - Jangan `git add -A` sebelum ls dulu
 
 ---
+
+## [LRN-20260512-001] wajib_pakai_todowrite_di_setiap_sesi
+
+**Tanggal**: 2026-05-12
+**Priority**: high
+**Status**: active
+
+### Summary
+User ingin todo list selalu kelihatan di samping (via TodoWrite tool), bukan cuma di file backlog.
+
+### Details
+- TodoWrite menampilkan task list di UI — user bisa lihat progres langsung
+- User bilang ini sudah pernah dibahas sebelumnya
+- BACKLOG.md saja tidak cukup — harus ada todo visible di sesi
+
+### Action
+- Setiap sesi, pasang TodoWrite di awal: isi dengan task yang akan dikerjakan
+- Update status real-time: pending → in_progress → completed
+- Pastikan user bisa lihat: apa yang sudah selesai, apa yang sedang dikerjakan, apa yang akan datang
+- Jangan lupa update TodoWrite setelah tiap task selesai
+
+---
