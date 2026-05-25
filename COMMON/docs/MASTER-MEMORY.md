@@ -156,6 +156,19 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 - File hasil: Absensi April 23 2026 Thursday 12_21_13.xlsx
 
+### Absensi 25 Mei 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 25/5 | PG | Edbert Reynaldo Lim | S |
+| 25/5 | TKB2 | Richa Dwily | S |
+| 25/5 | TKB1 | Sheera Leticia Nainggolan | I |
+| 25/5 | TKB1 | Sheryn Florencia Nainggolan | I |
+| 25/5 | TKa | Joevanca | S |
+| 25/5 | TKa | Melviano | I |
+
+- File daily: Absensi Mei 25 2026 Monday 10_39_17.xlsx
+
 ### Absensi 27 April 2026
 
 | Tanggal | Kelas | Nama | Alasan |

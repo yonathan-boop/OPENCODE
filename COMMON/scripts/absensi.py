@@ -2,7 +2,7 @@ import openpyxl
 from openpyxl import load_workbook
 import sys
 
-FILE_PATH = "C:/Users/Admin/Desktop/memory/PC-06/docs/Absensi Mei 07 2026 Thursday 09_10_00.xlsx"
+FILE_PATH = "C:/Users/Admin/Desktop/memory/PC-06/docs/ABSENSI Mei.xlsx"
 
 KELAS_MAP = {
     'tka': 'TKa', 'tk a': 'TKa',
@@ -51,7 +51,9 @@ def absen(nama, kelas, tanggal, alasan):
     nama_ditemukan = None
     for row in range(7, 100):
         nama_murid = ws.cell(row, 3).value
-        if nama_murid and (nama.lower() in nama_murid.lower() or nama_murid.lower() in nama.lower()):
+        if not nama_murid or len(str(nama_murid).strip()) <= 1:
+            continue
+        if nama.lower() in nama_murid.lower() or nama_murid.lower() in nama.lower():
             row_ditemukan = row
             nama_ditemukan = nama_murid
             break

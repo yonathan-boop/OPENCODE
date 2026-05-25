@@ -19,11 +19,14 @@ Terakhir diupdate: 2026-04-16
 1. **Memory System** - Sistem memory (SELESAI, 2026-04-11)
 
 ## Session Terakhir
-Tanggal: 2026-05-12
-Topik: Absensi Mei (TKB1, TKa, TKB2, PG)
+Tanggal: 2026-05-25
+Topik: Absensi 25 Mei (PG, TKB2, TKB1, TKa)
 Status: Selesai
 
-## Total Sessions: 3
+## Total Sessions: 5
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
-- 12 Mei 2026: Absensi Mei + Agent Framework (workflow, tool strategy, context mgmt, decision framework)
+- 12 Mei 2026: Absensi Mei + Agent Framework
+- 13 Mei 2026: Absensi 13 Mei (TKB2, TKB1, TKa, PG)
+- 21 Mei 2026: Update Absensi 18-21 Mei (PG)
+- 25 Mei 2026: Absensi 25 Mei (PG, TKB2, TKB1, TKa)
