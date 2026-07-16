@@ -39,6 +39,8 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 ## Absensi
 - Kode: **S** (sakit), **I** (izin), **A** (alpha) - huruf besar!
 - Contoh: `py absensi.py Gabe TKB1 6 s` (bukan sick)
+- Tahun ajaran baru 2026/2027: file di folder `Absensi T.P 2026-2027`
+- Master file: `ABSENSI Juli.xlsx` (nama murid dari `DAFTAR MURID T.P.2026-2027 lengkap.xlsx`)
 
 ## Decision Framework (Cara Saya Memutuskan)
 

@@ -100,7 +100,7 @@ Di-update: 16 April 2026
 ### Struktur Excel Absensi (Format Baru)
 - Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
 - Row 7+ = data murid, Kolom 3 = nama
-- Row 6 = header tanggal (April 1 = col 4, April 2 = col 5, dst)
+- Row 6 = header tanggal (Juli 1 = col 4, Juli 2 = col 5, dst)
 - Tidak ada sheet 'Data'
 
 ### Cara Pakai
@@ -123,7 +123,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | Rabin 15/4 | TKB1 | Naraya | S |
 
 ### Absensi Excel File
-- **File:** C:\Users\Admin\Desktop\memory\PC-06\docs\ABSENSI April.xlsx
+- **File:** C:\Users\Admin\Desktop\memory\PC-06\docs\Absensi T.P 2026-2027\ABSENSI Juli.xlsx
 - **Status:** Aktif digunakan
 - **ATURAN:** 
   - Setiap update WAJIB duplicate dulu (buat file baru), baru edit
@@ -131,7 +131,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
   - File lama = arsip, tidak dihapus
 - **Format Nama File Duplicate:** Absensi <bulan> <tgl> <tahun> <hari> <jam>_<menit>_<detik>.xlsx
   - Contoh: Absensi April 22 2026 Wednesday 10_27_21.xlsx
-- **Lokasi File:** C:\Users\Admin\Desktop\memory\PC-06\docs\
+- **Lokasi File:** C:\Users\Admin\Desktop\memory\PC-06\docs\Absensi T.P 2026-2027\
 
 ### Absensi 23 April 2026
 

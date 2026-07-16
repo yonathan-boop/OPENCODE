@@ -13,12 +13,12 @@ Begitu trigger ini di-paste, langsung LAKUKAN:
 Saya bekerja dengan absensi siswa TK.
 
 **Folder:** C:\Users\Admin\Desktop\memory\PC-06\docs\
-**File:** ABSENSI Mei.xlsx (file utama, untuk di-copy)
+**File:** ABSENSI Juli.xlsx (file utama, untuk di-copy)
 
 ## 📝 ATURAN (WAJIB IKUTI)
 
 1. **1 file baru per hari** - Jangan lebih dari 1 file/hari
-2. **Wajib DUPLICATE dulu** - Jangan edit ABSENSI Mei.xlsx langsung!
+2. **Wajib DUPLICATE dulu** - Jangan edit ABSENSI Juli.xlsx langsung!
 3. Nama file: `Absensi <bulan> <tgl> <tahun> <hari> <jam>_<menit>_<detik>.xlsx`
    - Contoh: `Absensi Mei 30 2026 Thursday 12_19_06.xlsx`
 
@@ -28,7 +28,7 @@ Saya bekerja dengan absensi siswa TK.
 
 **Langkah 1: Duplicate file**
 ```
-cp "PC-06/docs/ABSENSI Mei.xlsx" "PC-06/docs/Absensi Mei 30 2026 Thursday 12_19_06.xlsx"
+cp "PC-06/docs/Absensi T.P 2026-2027/ABSENSI Juli.xlsx" "PC-06/docs/Absensi T.P 2026-2027/Absensi Juli 30 2026 Thursday 12_19_06.xlsx"
 ```
 
 **Langkah 2: Edit file baru**
@@ -50,11 +50,11 @@ cp "PC-06/docs/ABSENSI Mei.xlsx" "PC-06/docs/Absensi Mei 30 2026 Thursday 12_19_
 | Absen PG | Playgroup |
 
 ### Posisi Cell:
-- Row 6 = header tanggal (April 1 = col 4, April 2 = col 5, dst)
+- Row 6 = header tanggal (Juli 1 = col 4, Juli 2 = col 5, dst)
 - Row 7+ = data murid
 - Kolom 3 = nama murid
 
-### Tanggal Mei → Kolom:
+### Tanggal Juli → Kolom:
 | Tanggal | Kolom |
 |---------|-------|
 | 1 | 4 |
@@ -82,7 +82,7 @@ Jika nama tidak ditemukan langsung, cek dulu:
 
 ```python
 from openpyxl import load_workbook
-wb = load_workbook('PC-06/docs/Absensi Mei 30 2026 Thursday 12_19_06.xlsx')
+wb = load_workbook('PC-06/docs/Absensi T.P 2026-2027/Absensi Juli 30 2026 Thursday 12_19_06.xlsx')
 
 # Cek nama di sheet TKa
 ws = wb['TKa']
@@ -94,11 +94,11 @@ for r in range(7, 50):
 
 ## 📌 CONTOH UPDATE
 
-**Input: TKa 18 April - Aldrich sakit**
+**Input: TKa 18 Juli - Aldrich sakit**
 
 ```python
 from openpyxl import load_workbook
-wb = load_workbook('PC-06/docs/Absensi April 30 2026 Thursday 12_19_06.xlsx')
+wb = load_workbook('PC-06/docs/Absensi T.P 2026-2027/Absensi Juli 30 2026 Thursday 12_19_06.xlsx')
 
 # April 18 = col 21, row Aldrich = 7
 wb['TKa'].cell(7, 21).value = 'S'
@@ -109,7 +109,7 @@ print('Done!')
 
 ## ❌ YANG TIDAK BOLEH
 
-1. Jangan edit ABSENSI Mei.xlsx langsung
+1. Jangan edit ABSENSI Juli.xlsx langsung
 2. Jangan tanya "mau duplicate dulu?" - Langsung lakukan!
 3. Jangan kasih command ke user untuk dijalankan - LAKUKAN SENDIRI
 4. Jangan biarkan file tanpa status yang jelas

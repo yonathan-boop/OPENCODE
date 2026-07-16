@@ -58,7 +58,7 @@ Bersumber dari memory bersama: `C:\Users\Advan\Desktop\memory\`
 
 ### 2. Absensi Murid
 - **Script:** COMMON/scripts/absensi.py
-- **Excel:** PC-06/docs/ABSENSI April.xlsx, ABSENSI Mei.xlsx
+- **Excel:** PC-06/docs/Absensi T.P 2026-2027/ABSENSI Juli.xlsx
 - **Kelas:** TKa, TKB1, TKB2, PG
 - **Format:** Setiap hari duplicate Excel dulu, baru edit
 - **Backup:** Banyak file arsip di PC-06/docs/
