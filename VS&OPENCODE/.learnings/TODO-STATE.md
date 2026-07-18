@@ -1,6 +1,6 @@
 # TODO-STATE.md — Persistent Todo Panel State
 
-Di-update: 9 Mei 2026
+Di-update: 18 Juli 2026
 
 ## ≡≡≡ GAGAL / BERHENTI ≡≡≡
 - scraping YouTube (timeout)
@@ -14,3 +14,6 @@ Di-update: 9 Mei 2026
 - git commit via sub-agent
 - koreksi: sub-agent WAJIB konsisten
 - todo panel standar + auto-restore
+- restore memory dari Windows.old (18 Juli 2026)
+- setup agent system di PC baru (18 Juli 2026)
+- install Git 2.55.0 + AOMEI Partition Assistant (18 Juli 2026)

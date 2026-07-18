@@ -1,29 +1,31 @@
 # Memory Summary
 
-Terakhir diupdate: 2026-04-16
+Terakhir diupdate: 2026-07-18
 
 ## User Info
-- **Nama**: Admin
+- **Nama**: yonat (sebelumnya Admin di PC lama)
 - **Bahasa**: Indonesia
-- **OS**: Windows
-- **Nama komputer**: pc-06 (WORK-PC, OFFICE-06)
-- **PC name lain**: Advan (PC rumah)
+- **OS**: Windows (install ulang)
+- **Nama komputer**: yonat-PC (baru)
+- **PC name lain**: Advan (PC rumah), pc-06 (kantor, lama)
 
 ## Yang Saya Tahu Tentang User
 1. Menggunakan AI assistant
-2. Folder utama kerja di C:\Users\Admin\.work
-3. Workspace di C:\Users\Admin\.work\workspace
-4. Model AI default: openrouter/minimax/minimax-m2.5:free
+2. Folder memory: C:\Users\yonat\OneDrive\Desktop\memory
+3. GitHub: https://github.com/yonathan-boop/OPENCODE
+4. Suka instruksi singkat, hasil clean & modern
+5. Kerja: absensi sekolah, dokumen ujian, coding
 
 ## Project Aktif
-1. **Memory System** - Sistem memory (SELESAI, 2026-04-11)
+1. **Memory System** - Sistem memory (SELESAI, 2026-04-11, restored 2026-07-18)
+2. **Agent System** - Sub-agent delegation protocol (aktif 2026-07-18)
 
 ## Session Terakhir
-Tanggal: 2026-07-16
-Topik: Absensi 16 Juli (PG: Hans I, TKB1: Khandrick Tan I 13-18 Juli, Richelcia Wijaya I 15 Juli)
+Tanggal: 2026-07-18
+Topik: Restore memory system + setup agent dari Windows.old
 Status: Selesai
 
-## Total Sessions: 7
+## Total Sessions: 8
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
 - 12 Mei 2026: Absensi Mei + Agent Framework
@@ -33,3 +35,4 @@ Status: Selesai
 - 25 Mei 2026: Absensi 25 Mei (PG, TKB2, TKB1, TKa)
 - 11 Juli 2026: Migrasi absensi ke tahun ajaran baru 2026-2027
 - 16 Juli 2026: Absensi 16 Juli (PG, TKB1)
+- 18 Juli 2026: Restore memory dari Windows.old + setup agent system
