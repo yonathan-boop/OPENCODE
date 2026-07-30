@@ -15,9 +15,10 @@ Di-update: 16 April 2026
 
 ## 📋 TENTANG KAMU (USER)
 
-- **Name:** Admin (di pc-06) / Advan (di pc-rumah)
+- **Name:** Admin (di pc-06) / Advan (di pc-rumah) / Digitalisasi (PC baru)
 - **Workspace pc-06:** C:\Users\Admin\.work\workspace
 - **Workspace Advan:** C:\Users\Advan\Desktop\workspace
+- **Workspace Digitalisasi:** C:\Users\Digitalisasi\Desktop\memory
 - **GitHub:** https://github.com/yonathan-boop/OPENCODE
 
 ---
@@ -40,6 +41,15 @@ Di-update: 16 April 2026
 - **PyAutoGUI:** ✅ installed
 - **Image Tools MCP:** C:\Users\Advan\Documents\image-tools-mcp\image-tools-mcp-v1.2.1-windows-amd64.exe
 - **MCP Config:** C:\Users\Advan\.config\opencode\opencode.json (tanpa Ollama)
+
+### Digitalisasi-PC (Baru - 29 Juli 2026)
+- Nama: Digitalisasi, Digitalisasi-PC
+- OS: Windows 10
+- Folder memory: C:\Users\Digitalisasi\Desktop\memory
+- **Git:** C:\Program Files\Git\bin\git.exe (v2.55.0.3, via winget)
+- **cloudflared:** C:\Program Files (x86)\cloudflared\cloudflared.exe (v2026.7.3, via winget)
+- **Cloudflare Tunnel:** Quick Tunnel (trycloudflare.com) untuk localhost:5774
+- **Desktop shortcut:** start-tunnel.bat
 
 ---
 
@@ -551,6 +561,24 @@ webbrowser.open('https://youtube.com')
 - **Screen Reader** dibuat: `PC-Advan/scripts/screen-reader.ps1` — screenshot + Tesseract OCR + UI info
 - **Ollama DILARANG** — tidak boleh diinstall/dijalankan
 - **opencode-image-proxy** terinstall (tapi gak ada free vision model)
+
+---
+
+### 29 Juli 2026 — Digitalisasi-PC (Session 1)
+- **Git** v2.55.0.3 diinstall via winget
+- **Memory repo** di-clone dari GitHub
+- **opencode config** dibuat di `C:\Users\Digitalisasi\.config\opencode\opencode.jsonc`
+- **cloudflared** v2026.7.3 diinstall via winget
+- **Cloudflare Tunnel (Quick)** berjalan: `trycloudflare.com`, ekspose localhost:5774
+- **Startup script:** `start-tunnel.bat` di Desktop
+- **Cloudflare service** terinstall dengan token (tapi belum ada domain)
+
+### 30 Juli 2026 — Digitalisasi-PC (Session 2)
+- **2 aplikasi di-tunnel**: Dapodik (5774) + E-Rapor (8535)
+- **E-Rapor error HTTP 500** — Fix: `dirname()` backslash issue di Constants.php
+- **E-Rapor mode lite** — Fix: HTTPS detection dari header Cloudflare (X-Forwarded-Proto, Cf-Visitor)
+- **Domain udah dipake** — Dapodik jalan, E-Rapor masih perlu restart Apache
+- **CATATAN-TUNNEL.txt** disimpan di Desktop & memory/COMMON/docs/ sebagai panduan
 
 ---
 

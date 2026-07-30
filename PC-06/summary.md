@@ -3,29 +3,29 @@
 Terakhir diupdate: 2026-07-18
 
 ## User Info
-- **Nama**: yonat (sebelumnya Admin di PC lama)
+- **Nama**: Digitalisasi (PC baru)
 - **Bahasa**: Indonesia
-- **OS**: Windows (install ulang)
-- **Nama komputer**: yonat-PC (baru)
-- **PC name lain**: Advan (PC rumah), pc-06 (kantor, lama)
+- **OS**: Windows 10
+- **Nama komputer**: Digitalisasi-PC
+- **PC name lain**: Advan (PC rumah), pc-06 (kantor, lama), yonat-PC
 
 ## Yang Saya Tahu Tentang User
-1. Menggunakan AI assistant
-2. Folder memory: C:\Users\yonat\OneDrive\Desktop\memory
+1. Menggunakan AI assistant (opencode CLI)
+2. Folder memory: C:\Users\Digitalisasi\Desktop\memory
 3. GitHub: https://github.com/yonathan-boop/OPENCODE
 4. Suka instruksi singkat, hasil clean & modern
 5. Kerja: absensi sekolah, dokumen ujian, coding
 
 ## Project Aktif
-1. **Memory System** - Sistem memory (SELESAI, 2026-04-11, restored 2026-07-18)
-2. **Agent System** - Sub-agent delegation protocol (aktif 2026-07-18)
+1. **Memory System** - Sistem memory (SELESAI, restored 2026-07-29)
+2. **Cloudflare Tunnel** - Ekspose localhost:5774 ke internet via trycloudflare.com (Quick Tunnel)
 
 ## Session Terakhir
-Tanggal: 2026-07-18
-Topik: Restore memory system + setup agent dari Windows.old
+Tanggal: 2026-07-30
+Topik: Fix e-Rapor + Cloudflare Tunnel + domain setup
 Status: Selesai
 
-## Total Sessions: 8
+## Total Sessions: 10
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
 - 12 Mei 2026: Absensi Mei + Agent Framework

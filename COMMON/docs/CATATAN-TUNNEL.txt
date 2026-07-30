@@ -1,0 +1,81 @@
+=== CATATAN CLOUDFLARE TUNNEL ===
+Dibuat: 30 Juli 2026
+PC: Digitalisasi-PC
+
+------------------------------
+1. INSTALL YANG DIBUTUHKAN
+------------------------------
+- Git: winget install --id Git.Git -e
+- Cloudflared: winget install --id Cloudflare.cloudflared -e
+
+------------------------------
+2. MEMORY REPO
+------------------------------
+- Lokasi: C:\Users\Digitalisasi\Desktop\memory
+- Clone: git clone https://github_pat_...@github.com/yonathan-boop/OPENCODE.git memory
+- Token PAT ada di git remote (sudah include di URL)
+
+------------------------------
+3. START TUNNEL (QUICK TUNNEL - TANPA DOMAIN)
+------------------------------
+Aplikasi 1 (port 5774):
+  "C:\Program Files (x86)\cloudflared\cloudflared.exe" tunnel --url http://localhost:5774
+
+Aplikasi 2 - E-Rapor (port 8535):
+  "C:\Program Files (x86)\cloudflared\cloudflared.exe" tunnel --url http://127.0.0.1:8535 --no-tls-verify
+
+Biar gampang: double-click file .bat di Desktop:
+  - start-tunnel.bat    (port 5774)
+  - eraport.bat         (port 8535)
+
+------------------------------
+4. MASALAH & SOLUSI
+------------------------------
+
+MASALAH #1: HTTP 500 - "baseURL is not a valid URL"
+  Gejala: E-Rapor error 500 saat diakses via Cloudflare Tunnel
+  Penyebab: dirname() di Windows menghasilkan backslash (\),
+            jadi URL-nya: http://domain.trycloudflare.com\/ (gak valid)
+  Lokasi file: C:\newappraporsd2025\wwwroot\app\Config\Constants.php
+  Baris 80 (aslinya):
+    $base=... dirname($_SERVER['SCRIPT_NAME']);
+  Solusi: tambah str_replace('\\','/', ...)
+    $base=... str_replace('\\','/', dirname($_SERVER['SCRIPT_NAME']));
+
+MASALAH #2: Mode Lite (CSS/JS gak loading)
+  Gejala: Halaman kebuka tapi polosan, tanpa styling
+  Penyebab: Cloudflare kirim HTTPS ke user, tapi kirim HTTP ke server.
+            PHP detek $_SERVER['HTTPS'] = off, jadi base URL pake http://
+            Browser blok asset http:// sebagai mixed content.
+  Solusi: Tambah deteksi header Cloudflare di Constants.php baris 80:
+    $https = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off';
+    $https = $https || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https');
+    $https = $https || (isset($_SERVER['HTTP_CF_VISITOR']) && strpos($_SERVER['HTTP_CF_VISITOR'], '"https"') !== false);
+    $base = ($https ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . str_replace('\\','/', dirname($_SERVER['SCRIPT_NAME']));
+
+MASALAH #3: Apache perlu restart
+  Gejala: Perubahan Constants.php gak生效 sampai Apache di-restart
+  Solusi: Buka CMD sebagai Administrator, jalanin:
+    net stop httpd && net start httpd
+  Atau:
+    "C:\newappraporsd2025\serverapp\bin\httpd.exe" -k restart
+
+------------------------------
+5. FILE PENTING
+------------------------------
+- Config opencode: C:\Users\Digitalisasi\.config\opencode\opencode.jsonc
+- Memory: C:\Users\Digitalisasi\Desktop\memory
+- E-Rapor: C:\newappraporsd2025\
+  - Apache config: C:\newappraporsd2025\serverapp\conf\httpd.conf
+  - App code: C:\newappraporsd2025\wwwroot\
+  - Constants: C:\newappraporsd2025\wwwroot\app\Config\Constants.php
+  - Log error: C:\newappraporsd2025\serverapp\logs\error.log
+
+------------------------------
+6. NEXT (KALAU PAKE DOMAIN SENDIRI)
+------------------------------
+- Beli domain (Niagahoster/Rumahweb, ~Rp15-25k/thn)
+- Daftar Cloudflare gratis, pointing domain ke Cloudflare
+- Di dashboard Cloudflare: Zero Trust > Networks > Tunnels > setup domain
+- Token tunnel udah terinstall sebagai Windows service (otomatis jalan)
+- Tinggal akses: https://domainkamu.com
