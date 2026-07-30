@@ -154,3 +154,33 @@ User ingin todo list selalu kelihatan di samping (via TodoWrite tool), bukan cum
 - Jangan lupa update TodoWrite setelah tiap task selesai
 
 ---
+
+## [LRN-20260730-001] simpan_masalah_dengan_tags
+
+**Tanggal**: 2026-07-30
+**Priority**: high
+**Status**: active
+
+### Summary
+User minta setiap masalah + solusi yang kita kerjakan dicatat di memory/GitHub dengan hashtag biar gampang dicari.
+
+### Details
+- Contoh tag: #tunnel #cloudflare #eraport #dapodik #baseurl #litmode #css #https #apache
+- File CATATAN-TUNNEL.txt pake format tag di baris pertama
+- User ingin bisa `grep "#eraport"` atau cari via keyword apapun
+
+### Action
+- Setiap ada masalah+solusi, catat ke file .txt relevan di `COMMON/docs/`
+- Pakai format: `#tag` di atas/bawah setiap entry
+- Commit + push biar bisa diakses dari PC manapun
+- Template:
+  ==========================
+  #tag1 #tag2
+  ==========================
+  MASALAH: ...
+    Gejala: ...
+    Penyebab: ...
+    Lokasi: ...
+    SOLUSI: ...
+
+---
