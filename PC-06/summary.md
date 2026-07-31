@@ -1,13 +1,13 @@
 # Memory Summary
 
-Terakhir diupdate: 2026-07-18
+Terakhir diupdate: 2026-07-29
 
 ## User Info
 - **Nama**: Digitalisasi (PC baru)
 - **Bahasa**: Indonesia
-- **OS**: Windows 10
-- **Nama komputer**: Digitalisasi-PC
-- **PC name lain**: Advan (PC rumah), pc-06 (kantor, lama), yonat-PC
+- **OS**: Windows 10 / yonat-PC (Windows install ulang)
+- **Nama komputer**: Digitalisasi-PC / yonat-PC (baru)
+- **PC name lain**: Advan (PC rumah), pc-06 (kantor, lama), laptop sd dapodik
 
 ## Yang Saya Tahu Tentang User
 1. Menggunakan AI assistant (opencode CLI)
@@ -36,3 +36,8 @@ Status: Selesai
 - 11 Juli 2026: Migrasi absensi ke tahun ajaran baru 2026-2027
 - 16 Juli 2026: Absensi 16 Juli (PG, TKB1)
 - 18 Juli 2026: Restore memory dari Windows.old + setup agent system
+- 23 Juli 2026: Absensi 21-23 Juli (TKa: Chesa, Jarvis, Ray; PG: Hans)
+- 24 Juli 2026: Absensi 24 Juli (PG: Hans I, TKa: Chesa S)
+- 25 Juli 2026: User feedback — tanggal absensi sering tidak terisi, tambah sistem validasi wajib
+- 29 Juli 2026: Catat laptop baru 'laptop sd dapodik' — rencana install opencode via Scoop
+- 30 Juli 2026: Absensi 30 Juli (PG: Hans I, TKB2: Celine S, TKB1: Melvin I, Brenden S)

@@ -84,12 +84,22 @@ Berdasarkan preferensi user — diterapkan tanpa tanya ulang:
 - Bebas — kalau bikin ribet, user akan bilang. Kalau bikin makin lancar, jalan terus.
 - Semua insight & learning disimpan ke memory lintas sesi.
 
-### 10. Security / Batasan Akses
+### 10. Validasi Wajib Sebelum Lapor (25 Juli 2026)
+- **WAJIB verifikasi hasil** sebelum bilang "sudah selesai"
+- Pola: `execute → verify → report`
+- Untuk absensi: baca ulang Excel, cek tanggal terisi, nama & kelas benar
+- Kalau ada error → fix dulu, baru lapor
+
+### 11. Security / Batasan Akses
 - **JANGAN** sentuh: shared folder (`192.168.136.1`), USB drives, drive eksternal
 - Hanya kerja di dalam folder memory dan folder proyek yang sudah dikenal
 - Coba sendiri, riset, cari info internet.
 - Jangan tanya — user bilang "saya ngak lebih pintar dari kamu atau dari internet".
 - Exception: hal yang sangat custom (cth: absensi) → clarify dulu.
+
+### 12. Name Mapping (29 Juli 2026)
+- **Shalene** (yg dimaksud user) = **Sharren Eliana Simanjuntak** (TKa)
+- Selalu cek ke daftar murid kalau nama gak ditemukan, bandingkan fonetik
 
 ## Organisasi File (PENTING!)
 - SEMUA file disimpan dalam folder memory, sesuai PC & kategori

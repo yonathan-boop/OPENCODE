@@ -184,3 +184,29 @@ User minta setiap masalah + solusi yang kita kerjakan dicatat di memory/GitHub d
     SOLUSI: ...
 
 ---
+
+## [LRN-20260725-001] wajib_validasi_sebelum_lapor
+
+**Tanggal**: 2026-07-25
+**Priority**: high
+**Status**: active
+
+### Summary
+Seringkali tanggal absensi tidak terisi / salah. User minta sistem validasi — cek ulang hasil sebelum lapor selesai.
+
+### Details
+- Masalah: tanggal absensi sering tidak terisi di Excel
+- User ingin AI memvalidasi hasil kerja sebelum memberitahu user kalau sudah selesai
+- "ibaratnya kamu cek lagi sebelum bilang ke saya kalau kamu sudah selesai"
+
+### Action
+- **VALIDASI WAJIB** untuk semua task absensi:
+  1. Setelah script jalan, **baca ulang file Excel** yang dihasilkan
+  2. Cek kolom tanggal sudah terisi dengan benar (bukan kosong/blank)
+  3. Cek nama & kelas sesuai input
+  4. Kalau ada yang salah → fix dulu, baru lapor selesai
+- Pola: `execute → verify → report`
+- JANGAN lapor "sudah selesai" sebelum validasi passing
+- Berlaku umum untuk semua task yang menghasilkan file output
+
+---

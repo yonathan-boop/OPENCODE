@@ -1,6 +1,6 @@
 # MEMORI KOMPREHENSIF - Admin's AI Assistant
 
-Di-update: 16 April 2026
+Di-update: 29 Juli 2026
 
 ---
 
@@ -31,6 +31,18 @@ Di-update: 16 April 2026
 - Folder kerja: C:\Users\Admin\.work
 - Model: minimax-m2.5-free
 - Screen: 1920 x 1080
+
+### yonat-PC (Sekarang - Baru)
+- Nama: yonat-PC
+- OS: Windows (install ulang)
+- User: yonat
+- OpenCode: v1.18.3 via Scoop
+- Memory: C:\Users\yonat\OneDrive\Desktop\memory
+
+### Laptop SD Dapodik (Belum Disetup)
+- Nama: laptop sd dapodik
+- Status: Belum diinstall opencode
+- Install method: Scoop (rencana)
 
 ### PC-Advan (Rumah)
 - Nama: ADVAN, ADVAN-PC, DESKTOP-1E1LBB7
@@ -215,6 +227,54 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | 22/4 | TKa | Aldrich, Darren Elvano, Richelcia | S |
 
 - File hasil: Absensi April 22 2026 Wednesday 10_27_21.xlsx
+
+### Absensi 21-23 Juli 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 21/7 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 22/7 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 23/7 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 23/7 | TKa | Jarvis Derren Lai | S |
+| 23/7 | TKa | Ray Richson | S |
+
+- File hasil: Absensi Juli 23 2026 Wednesday 11_58_10.xlsx
+
+### Absensi 24 Juli 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 24/7 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 24/7 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+
+### Absensi 30 Juli 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 30/7 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 30/7 | TKB2 | Celine Grace Zhang | S |
+| 30/7 | TKB1 | Melvin Panca Sihombing | I |
+| 30/7 | TKB1 | Brenden Maxwell Angkasa | S |
+
+- File hasil: Absensi Juli 30 2026 Thursday 09_24_56.xlsx
+
+### Absensi 29 Juli 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 29/7 | TKB2 | Jayoti Marnida Haulian Kaur | S |
+| 28/7 | PG | Kimita Dessyana Meisim | I |
+| 28/7 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 28/7 | TKB(2) | Shelomitha Eliora Simanjuntak | S |
+| 28/7 | TKB(2) | Jocelyn Marcella Su | S |
+| 29/7 | TKB(2) | Jocelyn Marcella Su | S |
+| 29/7 | TKB(2) | Joevanca Chesa Athalia | S |
+| 29/7 | TKB(2) | Celine Grace Zhang | S |
+| 28/7 | TKa | Chesa Efrata Ronatio Tampubolon | I |
+| 28/7 | TKa | Sharren Eliana Simanjuntak | S |
+| 29/7 | TKa | Chesa Efrata Ronatio Tampubolon | I |
+
+- File hasil: Absensi Juli 29 2026 Wednesday 09_40_10.xlsx
 
 ### Absensi 17 April 2026
 
@@ -579,6 +639,10 @@ webbrowser.open('https://youtube.com')
 - **E-Rapor mode lite** — Fix: HTTPS detection dari header Cloudflare (X-Forwarded-Proto, Cf-Visitor)
 - **Domain udah dipake** — Dapodik jalan, E-Rapor masih perlu restart Apache
 - **CATATAN-TUNNEL.txt** disimpan di Desktop & memory/COMMON/docs/ sebagai panduan
+
+### 30 Juli 2026 — yonat-PC
+- Absensi 30 Juli: PG (Hans I), TKB2 (Celine S), TKB1 (Melvin I, Brenden S)
+- File: Absensi Juli 30 2026 Thursday 09_24_56.xlsx
 
 ---
 
