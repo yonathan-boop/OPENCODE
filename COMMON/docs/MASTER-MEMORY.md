@@ -146,11 +146,15 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ### Absensi Excel File
 - **File:** C:\Users\Admin\Desktop\memory\PC-06\docs\Absensi T.P 2026-2027\ABSENSI Juli.xlsx
-- **Status:** Aktif digunakan
-- **ATURAN:** 
-  - Setiap update WAJIB duplicate dulu (buat file baru), baru edit
+- **Status:** Aktif digunakan (REKAPAN LENGKAP — selalu diupdate, jangan pernah jadi file stale)
+- **PENTING (31 Juli 2026):** Merge semua file harian Juli → ABSENSI Juli.xlsx sekarang lengkap (46 tanda, 13-30 Juli). File harian adalah arsip snapshot.
+- **ATURAN:**
+  - ABSENSI Juli.xlsx = file utama yang selalu paling lengkap. Semua update absensi TULIS KE FILE INI (lewat absensi.py)
+  - Setiap hari: **duplicate ABSENSI Juli.xlsx dulu** → arsip harian (snapshot lengkap sampai hari sebelumnya), LALU update master dengan absen hari ini
   - **1 file baru per hari** - tidak boleh lebih dari 1 file sehari
   - File lama = arsip, tidak dihapus
+  - JANGAN duplicate file harian lama yang datanya tidak lengkap — selalu dari ABSENSI Juli.xlsx (file terlengkap)
+  - Kalau ada keraguan data lengkap atau tidak → cek dulu dengan merge_absensi.py
 - **Format Nama File Duplicate:** Absensi <bulan> <tgl> <tahun> <hari> <jam>_<menit>_<detik>.xlsx
   - Contoh: Absensi April 22 2026 Wednesday 10_27_21.xlsx
 - **Lokasi File:** C:\Users\Admin\Desktop\memory\PC-06\docs\Absensi T.P 2026-2027\
