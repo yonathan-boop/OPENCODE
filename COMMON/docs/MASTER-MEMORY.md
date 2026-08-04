@@ -155,6 +155,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 - Arsip harian 4/8: Absensi Agustus 4 2026 Tuesday 08_59_50.xlsx
 - Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn
+- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17, VERSI TERBARU). ABSENSI Agustus.xlsx = v1.0 kosong.
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
@@ -170,13 +171,16 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | Rabu 15/4 | TKB1 | Gabe | I |
 | Rabin 15/4 | TKB1 | Naraya | S |
 
-### Absensi Excel File
-- **File (Agustus):** C:\Users\yonat\OneDrive\Desktop\memory\PC-06\docs\Absensi T.P 2026-2027\ABSENSI Agustus.xlsx
+### Absensi Excel File (SISTEM VERSI — 4 Agustus 2026)
+- **ABSENSI Agustus.xlsx = v1.0 sumber awal** (struktur & nama murid dari Juli, label "Agustus", SEMUA mark kosong). File ini TIDAK pernah diisi langsung.
+- **Sistem versi:** setiap kali ada update → copy versi terbaru → file versi baru → isi data. File versi terbaru = paling lengkap & yang dipegang (FILE_PATH absensi.py nunjuk ke situ).
+- **Backfill bebas:** di versi terbaru boleh diisi tanggal berapa saja (1-31), termasuk yang sebelumnya terlewat.
+- Contoh rantai: `Absensi Agustus 1 2026 Saturday 09_00_00.xlsx` (v-tgl-1, 8 mark) → `Absensi Agustus 3 2026 Monday 09_00_00.xlsx` (v-tgl-3, 15 mark) → `Absensi Agustus 4 2026 Tuesday 09_00_00.xlsx` (v-tgl-4, 17 mark, VERSI TERBARU).
 - **File (Juli, arsip):** ABSENSI Juli.xlsx — master bulan Juli, jadi arsip permanen
-- **Status:** ABSENSI Agustus.xlsx = Aktif digunakan (REKAPAN LENGKAP — selalu diupdate, jangan pernah jadi file stale)
-- **PENTING (4 Agustus 2026):** Master Agustus dibuat dari master Juli (struktur & nama murid sama, semua mark dihapus, label bulan jadi "Agustus"). absensi.py sudah diarahkan ke file Agustus.
+- **PENTING (4 Agustus 2026):** Konsep versi dikoreksi user: ABSENSI Agustus.xlsx = v1.0 kosong (sumber awal), jangan menumpuk data di master. Tiap update bikin file versi baru (copy dari versi terakhir), absensi.py diarahkan ke versi terbaru. File snapshot harian yang isinya stale TIDAK dibuat lagi (dulu sempat keliru: "Absensi Agustus 4 08_59_50" isinya lama → dihapus).
 - **ATURAN:**
-  - ABSENSI Agustus.xlsx = file utama yang selalu paling lengkap. Semua update absensi TULIS KE FILE INI (lewat absensi.py)
+  - ABSENSI Agustus.xlsx = sumber awal, TIDAK diisi langsung
+  - Tiap update: copy versi terakhir → versi baru → isi data (via absensi.py yang diarahkan ke versi baru)
   - Setiap hari: **duplicate ABSENSI Juli.xlsx dulu** → arsip harian (snapshot lengkap sampai hari sebelumnya), LALU update master dengan absen hari ini
   - **1 file baru per hari** - tidak boleh lebih dari 1 file sehari
   - File lama = arsip, tidak dihapus
