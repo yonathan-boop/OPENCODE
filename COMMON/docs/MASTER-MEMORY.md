@@ -1,6 +1,6 @@
 # MEMORI KOMPREHENSIF - Admin's AI Assistant
 
-Di-update: 29 Juli 2026
+Di-update: 4 Agustus 2026
 
 ---
 
@@ -117,7 +117,8 @@ Di-update: 29 Juli 2026
 
 ### Script
 - File: absensi.py
-- Lokasi: C:/Users/Admin/Desktop/memory/COMMON/scripts/absensi.py
+- Lokasi: C:/Users/yonat/OneDrive/Desktop/memory/COMMON/scripts/absensi.py
+- FILE_PATH saat ini: ABSENSI Agustus.xlsx
 
 ### Struktur Excel Absensi (Format Baru)
 - Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
@@ -129,6 +130,31 @@ Di-update: 29 Juli 2026
 ```
 py absensi.py <nama> <kelas> <tanggal> <alasan>
 ```
+
+### Absensi 1, 3, 4 Agustus 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 1/8 | PG | Eireen Lorenzo (disebut "Irene") | I |
+| 3/8 | PG | Kimita Dessyana Meisim | I |
+| 4/8 | PG | Kimita Dessyana Meisim | I |
+| 1/8 | TKa | Matthew Batara Hamonangan Nainggolan | I |
+| 3/8 | TKa | Rizky Alfonzo Siregar | S |
+| 3/8 | TKa | Ellena Clarissa Toh (disebut "Elena") | S |
+| 1/8 | TKB(2) | Jemia Zhevano Yamresa Kembaren | S |
+| 1/8 | TKB(2) | Celine Grace Zhang | S |
+| 1/8 | TKB(2) | Jocelyn Marcella Su (disebut "Yoselyn") | S |
+| 3/8 | TKB(2) | Celine Grace Zhang | S |
+| 3/8 | TKB(2) | Rui Reynara Shen | S |
+| 3/8 | TKB(2) | Keyla Toshiro | S |
+| 3/8 | TKB1 | Aletta Felicia Siburian (disebut "Alleta") | A |
+| 4/8 | TKB1 | Aletta Felicia Siburian | S |
+| 1/8 | TKB1 | Kenzo Ichigo Susantio | S |
+| 1/8 | TKB1 | Amora Felicya Situmrang | S |
+| 1/8 | TKB1 | Clayton Moliver Tan | S |
+
+- Arsip harian 4/8: Absensi Agustus 4 2026 Tuesday 08_59_50.xlsx
+- Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
@@ -145,11 +171,12 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | Rabin 15/4 | TKB1 | Naraya | S |
 
 ### Absensi Excel File
-- **File:** C:\Users\Admin\Desktop\memory\PC-06\docs\Absensi T.P 2026-2027\ABSENSI Juli.xlsx
-- **Status:** Aktif digunakan (REKAPAN LENGKAP — selalu diupdate, jangan pernah jadi file stale)
-- **PENTING (31 Juli 2026):** Merge semua file harian Juli → ABSENSI Juli.xlsx sekarang lengkap (46 tanda, 13-30 Juli). File harian adalah arsip snapshot.
+- **File (Agustus):** C:\Users\yonat\OneDrive\Desktop\memory\PC-06\docs\Absensi T.P 2026-2027\ABSENSI Agustus.xlsx
+- **File (Juli, arsip):** ABSENSI Juli.xlsx — master bulan Juli, jadi arsip permanen
+- **Status:** ABSENSI Agustus.xlsx = Aktif digunakan (REKAPAN LENGKAP — selalu diupdate, jangan pernah jadi file stale)
+- **PENTING (4 Agustus 2026):** Master Agustus dibuat dari master Juli (struktur & nama murid sama, semua mark dihapus, label bulan jadi "Agustus"). absensi.py sudah diarahkan ke file Agustus.
 - **ATURAN:**
-  - ABSENSI Juli.xlsx = file utama yang selalu paling lengkap. Semua update absensi TULIS KE FILE INI (lewat absensi.py)
+  - ABSENSI Agustus.xlsx = file utama yang selalu paling lengkap. Semua update absensi TULIS KE FILE INI (lewat absensi.py)
   - Setiap hari: **duplicate ABSENSI Juli.xlsx dulu** → arsip harian (snapshot lengkap sampai hari sebelumnya), LALU update master dengan absen hari ini
   - **1 file baru per hari** - tidak boleh lebih dari 1 file sehari
   - File lama = arsip, tidak dihapus
