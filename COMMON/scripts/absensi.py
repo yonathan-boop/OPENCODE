@@ -2,7 +2,7 @@ import openpyxl
 from openpyxl import load_workbook
 import sys
 
-FILE_PATH = "C:/Users/yonat/OneDrive/Desktop/memory/PC-06/docs/Absensi T.P 2026-2027/Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx"
+FILE_PATH = "C:/Users/yonat/OneDrive/Desktop/memory/PC-06/docs/Absensi T.P 2026-2027/Absensi 7 Agustus 2026 Friday 11_33_00.xlsx"
 
 KELAS_MAP = {
     'tka': 'TKa', 'tk a': 'TKa',

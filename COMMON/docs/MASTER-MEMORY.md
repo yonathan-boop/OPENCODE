@@ -153,9 +153,27 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | 1/8 | TKB1 | Amora Felicya Situmrang | S |
 | 1/8 | TKB1 | Clayton Moliver Tan | S |
 
-- Arsip harian 4/8: Absensi Agustus 4 2026 Tuesday 08_59_50.xlsx
-- Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn
-- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17, VERSI TERBARU). ABSENSI Agustus.xlsx = v1.0 kosong.
+### Absensi 6 Agustus 2026 (backfill)
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 6/8 | TKa | Lionel Oscar Hu | S |
+| 6/8 | TKB1 | Richelcia Wijaya (disebut "Richele") | S |
+| 6/8 | TKB1 | Kayyvant Boido Bona Sinaga (disebut "Kayvant") | I |
+
+### Absensi 7 Agustus 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 7/8 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 7/8 | TKB2 | Shelomitha Eliora Simanjuntak (disebut "Shelomita") | S |
+| 7/8 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 7/8 | TKa | Ezequiel Levin Chai | S |
+| 7/8 | TKa | Sharren Eliana Simanjuntak (disebut "Sharene") | I |
+
+- File versi terbaru: Absensi 7 Agustus 2026 Friday 11_33_00.xlsx
+- Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn, Richele→Richelcia, Kayvant→Kayyvant, Shelomita→Shelomitha, Sharene→Sharren
+- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 (VERSI TERBARU). ABSENSI Agustus.xlsx = v1.0 kosong.
 - Format nama versi: tgl dulu baru bulan, jam_menit_detik = waktu asli (mis. "Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx").
 
 ### Kelas: TKa, TKB1, TKB2, PG
@@ -176,7 +194,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - **ABSENSI Agustus.xlsx = v1.0 sumber awal** (struktur & nama murid dari Juli, label "Agustus", SEMUA mark kosong). File ini TIDAK pernah diisi langsung.
 - **Sistem versi:** setiap kali ada update → copy versi terbaru → file versi baru → isi data. File versi terbaru = paling lengkap & yang dipegang (FILE_PATH absensi.py nunjuk ke situ).
 - **Backfill bebas:** di versi terbaru boleh diisi tanggal berapa saja (1-31), termasuk yang sebelumnya terlewat.
-- Contoh rantai: `Absensi 1 Agustus 2026 Saturday 10_04_37.xlsx` (v-tgl-1, 8 mark) → `Absensi 3 Agustus 2026 Monday 10_04_37.xlsx` (v-tgl-3, 15 mark) → `Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx` (v-tgl-4, 17 mark, VERSI TERBARU).
+- Contoh rantai: `Absensi 1 Agustus 2026 Saturday 10_04_37.xlsx` (v-tgl-1, 8 mark) → `Absensi 3 Agustus 2026 Monday 10_04_37.xlsx` (v-tgl-3, 15 mark) → `Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx` (v-tgl-4, 17 mark) → `Absensi 5 Agustus 2026 Wednesday 09_00_45.xlsx` (v-tgl-5) → `Absensi 7 Agustus 2026 Friday 11_33_00.xlsx` (v-tgl-7, VERSI TERBARU).
 - **Format nama file versi:** `Absensi <tgl> <bulan> <tahun> <hari> <jam>_<menit>_<detik>.xlsx` (contoh: "Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx" — tgl dulu, baru bulan, jam_menit_detik = waktu asli file dibuat). Bukan "Agustus 4".
 - **File (Juli, arsip):** ABSENSI Juli.xlsx — master bulan Juli, jadi arsip permanen
 - **PENTING (4 Agustus 2026):** Konsep versi dikoreksi user: ABSENSI Agustus.xlsx = v1.0 kosong (sumber awal), jangan menumpuk data di master. Tiap update bikin file versi baru (copy dari versi terakhir), absensi.py diarahkan ke versi terbaru. File snapshot harian yang isinya stale TIDAK dibuat lagi (dulu sempat keliru: "Absensi Agustus 4 08_59_50" isinya lama → dihapus).
