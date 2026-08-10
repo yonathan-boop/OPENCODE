@@ -6,11 +6,14 @@
     "PC-06": "PC-06",
     "WORK-PC": "PC-06",
     "OFFICE-06": "PC-06",
+    "PC-05": "PC-05",
+    "PC GURU": "PC-05",
     "linux-hp": "linux-hp",
     "linux-tablet": "linux-tablet",
     "linux-tablet-5": "linux-tablet-5"
   },
   "folders": {
+    "PC-05": "PC-05/",
     "PC-06": "PC-06/",
     "PC-Advan": "PC-Advan/",
     "linux-hp": "linux-hp/",
