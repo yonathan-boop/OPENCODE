@@ -36,6 +36,8 @@ Fakta-fakta penting tentang user di PC ini:
 - **Office** (Word, Excel, Project, Visio — satu kesatuan, TIDAK BOLEH di-uninstall)
 - **Share folder** (SMB: LanmanServer, LanmanWorkstation)
 - **Jaringan** (termasuk ZeroTier, TP-Link, cloudflared)
+- **Windows Defender** (sengaja dimatikan user — JANGAN diaktifkan)
+- **Windows Update** (sengaja dikunci user sampai 2099 — JANGAN dijalankan/disentuh)
 - **Remote tools** (UltraViewer, Remote Administrator, Chrome Remote Desktop)
 - **Veyon** (service Manual — boleh dibuka manual saat perlu)
 - **Git / Node / XAMPP** (dev tools)
