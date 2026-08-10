@@ -38,11 +38,11 @@ Di-update: 4 Agustus 2026
 - User: yonat
 - OpenCode: v1.18.3 via Scoop
 - Memory: C:\Users\yonat\OneDrive\Desktop\memory
+- GitHub token: ghp_ (classic, tanpa exp date) dipakai di remote URL — 10 Agustus 2026
 
-### Laptop SD Dapodik (Belum Disetup)
-- Nama: laptop sd dapodik
-- Status: Belum diinstall opencode
-- Install method: Scoop (rencana)
+### Digitalisasi-PC / Laptop SD Dapodik (SAMA, 10 Agustus 2026)
+- Nama: Digitalisasi, Digitalisasi-PC, laptop sd dapodik — **ini mesin yang sama** (dikonfirmasi user 10 Agustus 2026)
+- Status: opencode SUDAH terinstall
 
 ### PC-Advan (Rumah)
 - Nama: ADVAN, ADVAN-PC, DESKTOP-1E1LBB7
@@ -54,8 +54,8 @@ Di-update: 4 Agustus 2026
 - **Image Tools MCP:** C:\Users\Advan\Documents\image-tools-mcp\image-tools-mcp-v1.2.1-windows-amd64.exe
 - **MCP Config:** C:\Users\Advan\.config\opencode\opencode.json (tanpa Ollama)
 
-### Digitalisasi-PC (Baru - 29 Juli 2026)
-- Nama: Digitalisasi, Digitalisasi-PC
+### Digitalisasi-PC (Baru - 29 Juli 2026) = Laptop SD Dapodik
+- Nama: Digitalisasi, Digitalisasi-PC (= laptop sd dapodik, mesin yang sama)
 - OS: Windows 10
 - Folder memory: C:\Users\Digitalisasi\Desktop\memory
 - **Git:** C:\Program Files\Git\bin\git.exe (v2.55.0.3, via winget)
@@ -171,9 +171,21 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | 7/8 | TKa | Ezequiel Levin Chai | S |
 | 7/8 | TKa | Sharren Eliana Simanjuntak (disebut "Sharene") | I |
 
-- File versi terbaru: Absensi 7 Agustus 2026 Friday 11_33_00.xlsx
+### Absensi 10 Agustus 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 10/8 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 10/8 | PG | Leonil Albert Toh | S |
+| 10/8 | TKB1 | Lucas Helsinki Sijabat | I |
+| 10/8 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 10/8 | TKa | Mikaylo Zionathan Girsang (disebut "Mikayla") | S |
+
+- **KIMITA KELUAR SEKOLAH (10 Agustus 2026):** Kimita Dessyana Meisim (PG) resmi keluar dari sekolah → row-nya dihapus dari roster PG di versi file terbaru (arsip tetap ada di file versi lama). Jangan cari/mark Kimita lagi.
+- Nama murid dicocokkan fonetik: Mikayla→Mikaylo Zionathan Girsang (TKa)
+- File versi terbaru: Absensi 10 Agustus 2026 Monday 10_34_36.xlsx
 - Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn, Richele→Richelcia, Kayvant→Kayyvant, Shelomita→Shelomitha, Sharene→Sharren
-- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 (VERSI TERBARU). ABSENSI Agustus.xlsx = v1.0 kosong.
+- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 (VERSI TERBARU, 5 mark). ABSENSI Agustus.xlsx = v1.0 kosong.
 - Format nama versi: tgl dulu baru bulan, jam_menit_detik = waktu asli (mis. "Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx").
 
 ### Kelas: TKa, TKB1, TKB2, PG
@@ -194,7 +206,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - **ABSENSI Agustus.xlsx = v1.0 sumber awal** (struktur & nama murid dari Juli, label "Agustus", SEMUA mark kosong). File ini TIDAK pernah diisi langsung.
 - **Sistem versi:** setiap kali ada update → copy versi terbaru → file versi baru → isi data. File versi terbaru = paling lengkap & yang dipegang (FILE_PATH absensi.py nunjuk ke situ).
 - **Backfill bebas:** di versi terbaru boleh diisi tanggal berapa saja (1-31), termasuk yang sebelumnya terlewat.
-- Contoh rantai: `Absensi 1 Agustus 2026 Saturday 10_04_37.xlsx` (v-tgl-1, 8 mark) → `Absensi 3 Agustus 2026 Monday 10_04_37.xlsx` (v-tgl-3, 15 mark) → `Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx` (v-tgl-4, 17 mark) → `Absensi 5 Agustus 2026 Wednesday 09_00_45.xlsx` (v-tgl-5) → `Absensi 7 Agustus 2026 Friday 11_33_00.xlsx` (v-tgl-7, VERSI TERBARU).
+- Contoh rantai: `Absensi 1 Agustus 2026 Saturday 10_04_37.xlsx` (v-tgl-1, 8 mark) → `Absensi 3 Agustus 2026 Monday 10_04_37.xlsx` (v-tgl-3, 15 mark) → `Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx` (v-tgl-4, 17 mark) → `Absensi 5 Agustus 2026 Wednesday 09_00_45.xlsx` (v-tgl-5) → `Absensi 7 Agustus 2026 Friday 11_33_00.xlsx` (v-tgl-7) → `Absensi 10 Agustus 2026 Monday 10_34_36.xlsx` (v-tgl-10, VERSI TERBARU, 5 mark).
 - **Format nama file versi:** `Absensi <tgl> <bulan> <tahun> <hari> <jam>_<menit>_<detik>.xlsx` (contoh: "Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx" — tgl dulu, baru bulan, jam_menit_detik = waktu asli file dibuat). Bukan "Agustus 4".
 - **File (Juli, arsip):** ABSENSI Juli.xlsx — master bulan Juli, jadi arsip permanen
 - **PENTING (4 Agustus 2026):** Konsep versi dikoreksi user: ABSENSI Agustus.xlsx = v1.0 kosong (sumber awal), jangan menumpuk data di master. Tiap update bikin file versi baru (copy dari versi terakhir), absensi.py diarahkan ke versi terbaru. File snapshot harian yang isinya stale TIDAK dibuat lagi (dulu sempat keliru: "Absensi Agustus 4 08_59_50" isinya lama → dihapus).

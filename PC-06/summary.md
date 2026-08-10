@@ -1,13 +1,13 @@
 # Memory Summary
 
-Terakhir diupdate: 2026-08-07
+Terakhir diupdate: 2026-08-10
 
 ## User Info
 - **Nama**: Digitalisasi (PC baru)
 - **Bahasa**: Indonesia
 - **OS**: Windows 10 / yonat-PC (Windows install ulang)
 - **Nama komputer**: Digitalisasi-PC / yonat-PC (baru)
-- **PC name lain**: Advan (PC rumah), pc-06 (kantor, lama), laptop sd dapodik
+- **PC name lain**: Advan (PC rumah), pc-06 (kantor, lama), laptop sd dapodik (= Digitalisasi-PC, opencode sudah terinstall)
 
 ## Yang Saya Tahu Tentang User
 1. Menggunakan AI assistant (opencode CLI)
@@ -21,8 +21,8 @@ Terakhir diupdate: 2026-08-07
 2. **Cloudflare Tunnel** - Ekspose localhost:5774 ke internet via trycloudflare.com (Quick Tunnel)
 
 ## Session Terakhir
-Tanggal: 2026-08-07
-Topik: Absensi 6 & 7 Agustus 2026
+Tanggal: 2026-08-10
+Topik: Absensi 10 Agustus 2026 + ganti GitHub token (classic, tanpa exp date)
 Status: Selesai (validasi lulus)
 
 ## Total Sessions: 10
@@ -42,3 +42,4 @@ Status: Selesai (validasi lulus)
 - 29 Juli 2026: Catat laptop baru 'laptop sd dapodik' — rencana install opencode via Scoop
 - 30 Juli 2026: Absensi 30 Juli (PG: Hans I, TKB2: Celine S, TKB1: Melvin I, Brenden S)
 - 7 Agustus 2026: Absensi 6 Agustus (backfill: Lionel S, Richele S, Kayvant I) + Absensi 7 Agustus (Hans I, Shelomita S, Chesa S, Ezequiel S, Sharene I) — file versi: Absensi 7 Agustus 2026 Friday 11_33_00.xlsx
+- 10 Agustus 2026: Absensi 10 Agustus (Hans I, Leonil S; Lucas I; Chesa S, Mikaylo S) — file: Absensi 10 Agustus 2026 Monday 10_34_36.xlsx; Kimita keluar sekolah; ganti GitHub token classic (tanpa exp); konfirmasi Digitalisasi = laptop sd dapodik (opencode sudah terinstall)
