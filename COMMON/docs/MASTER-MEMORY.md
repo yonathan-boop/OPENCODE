@@ -63,6 +63,17 @@ Di-update: 4 Agustus 2026
 - **Cloudflare Tunnel:** Quick Tunnel (trycloudflare.com) untuk localhost:5774
 - **Desktop shortcut:** start-tunnel.bat
 
+### PC-05 / PC Guru (BARU, 10 Agustus 2026)
+- Nama: PC-05 — panggilan AI di sini: **PC Guru**
+- OS: Windows 11 Pro (build 26200)
+- Hardware: Intel i3-10105, RAM 7.8 GB, C: 185 GB
+- Folder memory: C:\Users\PC-05\Desktop\memory
+- **Git:** C:\Program Files\Git\cmd\git.exe (v2.55.0.3, via winget) — token di Windows Credential Manager
+- Workflow: share folder + ZeroTier + Word/Excel + print/scan (Epson L3210)
+- **JANGAN sentuh:** print, Office (satu kesatuan), share folder, jaringan, ZeroTier, remote tools, Veyon
+- **Debloat:** lihat PC-05/docs/2026-08-10-debloat.md — auto-cleanup via task "PC-Guru-Cleanup" (pc-guru-cleanup.ps1)
+- **Perilaku:** delegasikan tugas ringan ke sub-agent (perintah user, wajib tertanam)
+
 ---
 
 ## 📋 ATURAN UTAMA

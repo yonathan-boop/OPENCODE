@@ -25,5 +25,27 @@ Fakta-fakta penting tentang user di PC ini:
 - Suka instruksi singkat, hasil clean & modern
 - Rajin simpan & baca memory (jangan ada yang terlewat)
 
+## Workflow Kerja (PC-05)
+1. Ambil file dari **share folder** (kadang lewat **ZeroTier**)
+2. Buka di **Word / Excel**
+3. **Print / scan** (Epson L3210)
+- Itu saja rutinitasnya.
+
+## JANGAN DISENTUH (aturan user, 10 Agustus 2026)
+- **Print** (Epson L3210 + service EPSON_PM_RPCV4_11 + Spooler)
+- **Office** (Word, Excel, Project, Visio — satu kesatuan, TIDAK BOLEH di-uninstall)
+- **Share folder** (SMB: LanmanServer, LanmanWorkstation)
+- **Jaringan** (termasuk ZeroTier, TP-Link, cloudflared)
+- **Remote tools** (UltraViewer, Remote Administrator, Chrome Remote Desktop)
+- **Veyon** (service Manual — boleh dibuka manual saat perlu)
+- **Git / Node / XAMPP** (dev tools)
+
+## Aturan Perilaku dari User
+- **Delegasi tugas ringan ke sub-agent** (task tool) — user bilang "kamu kan bisa delegasikan tugas yang ringan-ringan" — WAJIB tertanam: otak planning, sub-agent eksekusi.
+- User kasih izin penuh untuk eksekusi; kalau butuh admin/UAC tinggal bilang, user approve.
+- Kalau ragu menyentuh sesuatu yang berhubungan print/Office/jaringan → JANGAN sentuh, tanya dulu.
+
 ## Pesan Penting dari User
 - "kamu itu kan tidak bisa langsung mengerjakan hal besar... jadi harus rajin rajin mencatat dan membaca di memori"
+- "intinya kamu yang execute aku kasih izin" (debloat PC-05)
+- "anggap lah dia bandel gitu" — semua yang sudah dimatikan harus tetap mati tiap kali PC dinyalakan (diperkuat task PC-Guru-Cleanup)
