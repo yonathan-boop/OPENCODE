@@ -74,6 +74,22 @@ Di-update: 4 Agustus 2026
 - **Debloat:** lihat PC-05/docs/2026-08-10-debloat.md — auto-cleanup via task "PC-Guru-Cleanup" (pc-guru-cleanup.ps1)
 - **Perilaku:** delegasikan tugas ringan ke sub-agent (perintah user, wajib tertanam)
 
+### linux-hp (Termux Android, Xiaomi 2412DPC0AG)
+- **Nama:** linux-hp (HP Xiaomi)
+- **OS:** Android 16, kernel 6.6.89-android15, arch aarch64
+- **Device:** Xiaomi 2412DPC0AG
+- **Lokasi:** /data/data/com.termux/files/home
+- **opencode:** v1.18.16
+- **Node.js:** v26.4.0
+- **Git:** 2.55.0
+- **Python:** 3.14.6
+- **OpenClaw:** 2026.7.1-2
+- **Storage:** 479GB total, 151GB available
+- **openclaw:** terinstal via npm (glibc node, tidak perlu proot-distro)
+- **Trigger:** cd ~/OPENCODE && git pull
+- **Save:** cd ~/OPENCODE && git add . && git commit -m "update" && git push
+- **openclaw:** `openclaw` (gateway local mode, localhost:19001)
+
 ---
 
 ## 📋 ATURAN UTAMA

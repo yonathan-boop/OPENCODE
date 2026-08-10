@@ -6,7 +6,7 @@ CARAKERJA:
 1. Deteksi folder memory aktif:
    - pc-06 (kerja): C:\Users\Admin\Desktop\memory
    - PC-Advan (rumah): C:\Users\Advan\Desktop\memory
-   - linux-hp: /root/memory-linux-hp
+   - linux-hp: ~/OPENCODE
    - linux-tablet: /data/data/com.termux/files/home/Desktop/New Folder/memory
    - linux-tablet-5: /data/data/com.termux/files/home/Desktop/New Folder/memory (VNC 5905)
 2. cd ke folder memory aktif
