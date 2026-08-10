@@ -32,4 +32,5 @@ Status: Selesai
 - Service dimatikan (Disabled): chromoting (Chrome Remote Desktop), isaHelperSvc (Intel Security Assist), MyEpson Portal Service, GoogleUpdater*
 - Service manual: VeyonService (bisa dibuka manual)
 - Auto-cleanup tiap login: scheduled task "PC-Guru-Cleanup" → jalankan PC-05/scripts/pc-guru-cleanup.ps1
+- Edge: jarang dipakai → auto-mati tiap login (proses msedge di-kill di pc-guru-cleanup.ps1), tetap bisa dibuka manual
 - RAM bebas naik ~2.0 → 2.9 GB (dari 7.8 GB)

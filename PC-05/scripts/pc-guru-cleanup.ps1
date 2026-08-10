@@ -34,3 +34,5 @@ Set-ItemProperty -Path "HKLM:\Software\Policies\Google\Chrome" -Name "Background
 New-Item -Path "HKLM:\Software\Policies\Microsoft\Edge" -Force | Out-Null
 Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Edge" -Name "StartupBoostEnabled" -Value 0 -Type DWord -Force
 Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Edge" -Name "BackgroundModeEnabled" -Value 0 -Type DWord -Force
+
+Get-Process -Name "msedge" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
