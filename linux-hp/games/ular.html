@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Ular</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 16px;
+  }
+  h1 { font-size: 1.5rem; letter-spacing: 2px; text-transform: uppercase; color: #34d399; }
+  .scoreboard {
+    display: flex;
+    gap: 24px;
+    font-size: 1rem;
+  }
+  .scoreboard span { color: #94a3b8; }
+  .scoreboard b { color: #f8fafc; }
+  canvas {
+    background: #1e293b;
+    border: 3px solid #334155;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+    touch-action: none;
+  }
+  .controls { display: flex; gap: 8px; }
+  button {
+    background: #334155;
+    color: #f8fafc;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background .15s;
+  }
+  button:hover { background: #475569; }
+  button.primary { background: #34d399; color: #0f172a; font-weight: 700; }
+  button.primary:hover { background: #6ee7b7; }
+  .dpad { display: none; grid-template-columns: repeat(3, 60px); gap: 6px; margin-top: 8px; }
+  .dpad button { padding: 14px; font-size: 1.2rem; }
+  .msg { font-size: .9rem; color: #94a3b8; }
+  @media (max-width: 600px) { .dpad { display: grid; } }
+</style>
+</head>
+<body>
+  <h1>🐍 Game Ular</h1>
+  <div class="scoreboard">
+    <div>Skor: <b id="score">0</b></div>
+    <div>Tertinggi: <b id="best">0</b></div>
+  </div>
+  <canvas id="game" width="480" height="480"></canvas>
+  <div class="controls">
+    <button class="primary" id="toggle">Mulai</button>
+  </div>
+  <div class="dpad">
+    <div></div>
+    <button data-d="up">↑</button>
+    <div></div>
+    <button data-d="left">←</button>
+    <button data-d="down">↓</button>
+    <button data-d="right">→</button>
+  </div>
+  <div class="msg">Main pakai panah keyboard atau tombol di layar</div>
+
+<script>
+  const canvas = document.getElementById('game');
+  const ctx = canvas.getContext('2d');
+  const scoreEl = document.getElementById('score');
+  const bestEl = document.getElementById('best');
+  const toggleBtn = document.getElementById('toggle');
+
+  const SIZE = 20;
+  const CELLS = canvas.width / SIZE;
+
+  let snake, dir, nextDir, food, score, best, timer, running;
+
+  best = +(localStorage.getItem('ular-best') || 0);
+  bestEl.textContent = best;
+
+  function reset() {
+    snake = [{ x: 10, y: 10 }];
+    dir = { x: 1, y: 0 };
+    nextDir = dir;
+    score = 0;
+    scoreEl.textContent = 0;
+    spawnFood();
+  }
+
+  function spawnFood() {
+    do {
+      food = {
+        x: Math.floor(Math.random() * CELLS),
+        y: Math.floor(Math.random() * CELLS)
+      };
+    } while (snake.some(s => s.x === food.x && s.y === food.y));
+  }
+
+  function draw() {
+    ctx.fillStyle = '#1e293b';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#ef4444';
+    ctx.beginPath();
+    ctx.arc(food.x * SIZE + SIZE / 2, food.y * SIZE + SIZE / 2, SIZE / 2 - 2, 0, Math.PI * 2);
+    ctx.fill();
+
+    snake.forEach((seg, i) => {
+      const isHead = i === 0;
+      ctx.fillStyle = isHead ? '#34d399' : '#10b981';
+      ctx.fillRect(seg.x * SIZE + 1, seg.y * SIZE + 1, SIZE - 2, SIZE - 2);
+      if (isHead) {
+        ctx.fillStyle = '#0f172a';
+        const eyeOff = SIZE / 6;
+        const cx = seg.x * SIZE + SIZE / 2 + dir.x * 3;
+        const cy = seg.y * SIZE + SIZE / 2 + dir.y * 3;
+        ctx.beginPath();
+        ctx.arc(cx - dir.y * eyeOff, cy - dir.x * eyeOff, 2, 0, Math.PI * 2);
+        ctx.arc(cx + dir.y * eyeOff, cy + dir.x * eyeOff, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+  }
+
+  function step() {
+    dir = nextDir;
+    let head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+
+    if (head.x < 0) head.x = CELLS - 1;
+    else if (head.x >= CELLS) head.x = 0;
+    if (head.y < 0) head.y = CELLS - 1;
+    else if (head.y >= CELLS) head.y = 0;
+
+    const hitSelf = snake.some(s => s.x === head.x && s.y === head.y);
+
+    if (hitSelf) return gameOver();
+
+    snake.unshift(head);
+
+    if (head.x === food.x && head.y === food.y) {
+      score++;
+      scoreEl.textContent = score;
+      spawnFood();
+    } else {
+      snake.pop();
+    }
+    draw();
+  }
+
+  function gameOver() {
+    clearInterval(timer);
+    running = false;
+    toggleBtn.textContent = 'Main Lagi';
+    if (score > best) {
+      best = score;
+      bestEl.textContent = best;
+      localStorage.setItem('ular-best', best);
+    }
+    ctx.fillStyle = 'rgba(15,23,42,.75)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = 'bold 28px system-ui';
+    ctx.textAlign = 'center';
+    ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2 - 8);
+    ctx.font = '16px system-ui';
+    ctx.fillStyle = '#94a3b8';
+    ctx.fillText('Skor: ' + score, canvas.width / 2, canvas.height / 2 + 22);
+  }
+
+  function start() {
+    reset();
+    draw();
+    running = true;
+    toggleBtn.textContent = 'Ulangi';
+    clearInterval(timer);
+    timer = setInterval(step, 110);
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    if (running) { clearInterval(timer); running = false; toggleBtn.textContent = 'Lanjut'; }
+    else start();
+  });
+
+  const keyMap = {
+    ArrowUp: { x: 0, y: -1 },
+    ArrowDown: { x: 0, y: 1 },
+    ArrowLeft: { x: -1, y: 0 },
+    ArrowRight: { x: 1, y: 0 },
+    w: { x: 0, y: -1 }, W: { x: 0, y: -1 },
+    s: { x: 0, y: 1 }, S: { x: 0, y: 1 },
+    a: { x: -1, y: 0 }, A: { x: -1, y: 0 },
+    d: { x: 1, y: 0 }, D: { x: 1, y: 0 }
+  };
+
+  document.addEventListener('keydown', e => {
+    const d = keyMap[e.key];
+    if (d) {
+      e.preventDefault();
+      if (d.x === -dir.x && d.y === -dir.y) return;
+      nextDir = d;
+    } else if (e.key === ' ') {
+      e.preventDefault();
+      toggleBtn.click();
+    }
+  });
+
+  document.querySelectorAll('.dpad button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const d = { up: { x: 0, y: -1 }, down: { x: 0, y: 1 }, left: { x: -1, y: 0 }, right: { x: 1, y: 0 } }[btn.dataset.d];
+      if (d.x === -dir.x && d.y === -dir.y) return;
+      nextDir = d;
+      if (!running) start();
+    });
+  });
+
+  reset();
+  draw();
+</script>
+</body>
+</html>
