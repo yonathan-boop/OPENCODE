@@ -69,7 +69,15 @@ Bersumber dari memory bersama: `C:\Users\Advan\Desktop\memory\`
 - **Format:** Folio (8.5x13), TNR 11, margin 0.5/0.6/1/1
 - **Aturan:** Copy-paste plain text, jangan parsing otomatis
 
-### 4. YouTube Automation (PC-Advan)
+### 4. Website SD Methodist-11 (LIVE)
+- **URL:** https://methodist-11.my.id
+- **Web lokal:** localhost:8090
+- **File:** COMMON/project-sd-methodist-11/
+- **Tunnel:** Cloudflare named tunnel "Linux HP" (token), BUKAN quick tunnel
+- **Trigger:** user bilang "hidupkan website" → `bash linux-tablet/scripts/start-website.sh`
+- **Detail:** linux-tablet/docs/WEBSITE-METHODIST11.md
+
+### 5. YouTube Automation (PC-Advan)
 - **Tools:** PyAutoGUI + Tesseract OCR
 - **Script:** PC-Advan/scripts/
 - **Cara:** Buka Chrome → scroll → screenshot → OCR

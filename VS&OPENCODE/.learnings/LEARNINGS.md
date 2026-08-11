@@ -6,6 +6,35 @@ Corrections, insights, and knowledge gaps captured during development.
 
 ---
 
+## [LRN-20260811-001] cloudflare_named_tunnel_website
+
+**Logged**: 2026-08-11
+**Priority**: high
+**Status**: active
+**Area**: website-infra
+
+### Summary
+Website SD Methodist-11 live via Cloudflare NAMED tunnel (token), bukan quick tunnel. Domain methodist-11.my.id → localhost:8090.
+
+### Details
+- Install: `pkg install cloudflared` (Termux, v2026.7.3)
+- Jalankan: `cloudflared tunnel run --token <TOKEN>` (tunnelID 912a22fa-...)
+- Dashboard ingress: methodist-11.my.id → http://localhost:8090, config auto ke-push (cloudflared polling)
+- Error 1033 = DNS record bukan CNAME tunnel / hostname tidak ter-ingress
+- DNS cache lokal bisa nyimpen NXDOMAIN lama → bypass dengan `--resolve` atau tunggu
+- Script trigger: `bash linux-tablet/scripts/start-website.sh` (kata kunci user: "hidupkan website")
+
+### Action
+- Simpan token + prosedur di `linux-tablet/docs/WEBSITE-METHODIST11.md`
+- JANGAN pakai quick tunnel untuk domain ini
+
+### Metadata
+- Source: user_feedback
+- Related Files: linux-tablet/docs/WEBSITE-METHODIST11.md, linux-tablet/scripts/start-website.sh
+- Tags: cloudflare, tunnel, website, methodist-11
+
+---
+
 ## [LRN-20260509-004] heartbeat_skip_saat_kosong
 
 **Logged**: 2026-05-09
