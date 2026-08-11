@@ -1,6 +1,6 @@
 # MEMORI KOMPREHENSIF - Admin's AI Assistant
 
-Di-update: 4 Agustus 2026
+Di-update: 11 Agustus 2026
 
 ---
 
@@ -89,6 +89,9 @@ Di-update: 4 Agustus 2026
 - **Trigger:** cd ~/OPENCODE && git pull
 - **Save:** cd ~/OPENCODE && git add . && git commit -m "update" && git push
 - **openclaw:** `openclaw` (gateway local mode, localhost:19001)
+- **GitHub token:** ghp_ (classic, tanpa exp date) dipakai di remote URL — 11 Agustus 2026
+- **Web server lokal:** python http.server 8090 di ~/OPENCODE/linux-hp/web (website SD Methodist-11)
+- **Game server lokal:** python http.server 8089 di ~/OPENCODE/linux-hp/games (ular.html)
 
 ---
 
@@ -737,6 +740,11 @@ webbrowser.open('https://youtube.com')
 ### 30 Juli 2026 — yonat-PC
 - Absensi 30 Juli: PG (Hans I), TKB2 (Celine S), TKB1 (Melvin I, Brenden S)
 - File: Absensi Juli 30 2026 Thursday 09_24_56.xlsx
+
+### 11 Agustus 2026 — linux-tablet
+- **Model utama opencode diganti** → `opencode/big-pickle` (via OpenRouter)
+- File: `~/.config/opencode/opencode.jsonc` — model lama `opencode/ling-3.0-tiny-free` diganti
+- Keputusan user: big pickle jadi model utama
 
 ---
 
