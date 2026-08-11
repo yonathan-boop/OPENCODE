@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SD Swasta Methodist-11 — Menciptakan Generasi Penerus Berdisiplin Tinggi, Bertanggung Jawab, Pintar, Berbakti pada Orang Tua, Bangsa dan Negara serta Berakhlak Mulia</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --biru: #1e40af;
+    --biru-tua: #1e3a8a;
+    --kuning: #f59e0b;
+    --latar: #f9fafb;
+    --teks: #1f2937;
+    --abu: #6b7280;
+  }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--teks); background: var(--latar); line-height: 1.6; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  header { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 10; }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; font-weight: 800; color: var(--biru-tua); }
+  .logo img { height: 40px; width: auto; }
+  .logo span { color: var(--kuning); }
+  nav a { color: var(--teks); text-decoration: none; margin-left: 22px; font-size: .9rem; font-weight: 600; }
+  nav a:hover { color: var(--biru); }
+  .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+  .hero { background: linear-gradient(135deg, var(--biru-tua), var(--biru) 60%, #3b82f6); color: #fff; text-align: center; padding: 80px 20px 90px; }
+  .hero h1 { font-size: 2.3rem; margin-bottom: 8px; }
+  .hero .tagline { color: #bfdbfe; font-size: 1rem; margin-bottom: 24px; }
+  .hero p { font-size: 1.05rem; opacity: .95; max-width: 620px; margin: 0 auto 28px; }
+  .btn { display: inline-block; background: var(--kuning); color: #1f2937; font-weight: 700; padding: 12px 28px; border-radius: 999px; text-decoration: none; transition: transform .15s; }
+  .btn:hover { transform: translateY(-2px); }
+  .pengumuman { display: inline-block; background: rgba(255,255,255,.15); border: 1px dashed rgba(255,255,255,.5); border-radius: 999px; padding: 8px 20px; font-size: .9rem; font-weight: 600; margin-bottom: 20px; }
+  .diskon { color: #fde68a; font-weight: 800; }
+
+  section { padding: 64px 0; }
+  section h2 { text-align: center; font-size: 1.6rem; color: var(--biru-tua); margin-bottom: 8px; }
+  .sub { text-align: center; color: var(--abu); margin-bottom: 40px; font-size: .95rem; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card { background: #fff; border-radius: 14px; padding: 28px 24px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,.06); transition: transform .15s; }
+  .card:hover { transform: translateY(-4px); }
+  .card .icon { font-size: 2rem; margin-bottom: 12px; }
+  .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+  .card p { font-size: .9rem; color: var(--abu); }
+
+  .white { background: #fff; }
+  .box { background: var(--latar); border-left: 4px solid var(--biru); border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
+  .box h3 { color: var(--biru-tua); font-size: 1.05rem; margin-bottom: 6px; }
+  .box ul { padding-left: 20px; font-size: .92rem; }
+  .box li { margin-bottom: 6px; }
+
+  .fasilitas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .fasilitas-item { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 2px 8px rgba(0,0,0,.05); font-size: .92rem; font-weight: 600; }
+  .fasilitas-item .c { background: #dbeafe; color: var(--biru); border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: .8rem; flex-shrink: 0; }
+
+  .feature { display: flex; gap: 32px; align-items: center; background: #fff; }
+  .feature img { width: 45%; border-radius: 14px; object-fit: cover; box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+  .feature .txt h3 { font-size: 1.2rem; color: var(--biru-tua); margin-bottom: 8px; }
+  .feature .txt p { color: var(--abu); font-size: .95rem; }
+
+  .galeri { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .galeri img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.1); transition: transform .15s; }
+  .galeri img:hover { transform: scale(1.02); }
+
+  .contact { background: #fff; text-align: center; }
+  .contact .info { font-weight: 600; color: var(--teks); margin-bottom: 6px; }
+  .contact .info .lbl { display: block; color: var(--abu); font-size: .85rem; font-weight: 400; }
+  .sosmed { display: flex; justify-content: center; gap: 14px; margin: 24px 0; flex-wrap: wrap; }
+  .sosmed a { display: inline-block; background: var(--biru-tua); color: #fff; text-decoration: none; font-size: .85rem; font-weight: 700; padding: 10px 20px; border-radius: 999px; transition: background .15s; }
+  .sosmed a:hover { background: var(--biru); }
+  .catatan { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; border-radius: 12px; padding: 16px 20px; max-width: 640px; margin: 20px auto 0; font-size: .88rem; }
+
+  footer { background: var(--teks); color: #cbd5e1; text-align: center; padding: 20px; font-size: .85rem; }
+
+  @media (max-width: 768px) {
+    .nav { height: 56px; }
+    nav { display: none; position: absolute; top: 56px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 12px 20px; box-shadow: 0 4px 10px rgba(0,0,0,.08); }
+    nav.open { display: flex; }
+    nav a { margin: 10px 0; }
+    .menu-toggle { display: block; }
+    .hero h1 { font-size: 1.7rem; }
+    .card-grid, .fasilitas-grid, .galeri { grid-template-columns: 1fr; }
+    .feature { flex-direction: column; text-align: center; }
+    .feature img { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <div class="logo">
+      <img src="assets/images/Picture1.png" alt="Logo Methodist-11">
+      <span>SD Swasta <span style="color:var(--kuning);">Methodist-11</span></span>
+    </div>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <nav id="menu">
+      <a href="#beranda">Beranda</a>
+      <a href="#kenapa">Kenapa Kami</a>
+      <a href="#visi">Visi & Misi</a>
+      <a href="#fasilitas">Fasilitas</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="beranda">
+  <div class="container">
+    <div class="pengumuman">📢 Dibuka pendaftaran murid baru <b>tahun ajaran 2026/2027</b> — <span class="diskon">DISKON PENDAFTARAN MARET 50%</span> · kuota terbatas!!!</div>
+    <h1>SD Swasta Methodist-11</h1>
+    <div class="tagline">Menciptakan Generasi Penerus Berdisiplin Tinggi, Bertanggung Jawab, Pintar, Berbakti pada Orang Tua, Bangsa dan Negara serta Berakhlak Mulia.</div>
+    <p>Halo Sobat Methodist! Selamat datang di website resmi SD Swasta Methodist-11. Sekolah yang beriman, cerdas, berkarakter, dan berwawasan global.</p>
+    <a href="#kontak" class="btn">Info Pendaftaran</a>
+  </div>
+</section>
+
+<section id="kenapa">
+  <div class="container">
+    <h2>Kenapa Harus Methodist-11?</h2>
+    <p class="sub">Alasan orang tua memilih kami</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="icon">💰</div>
+        <h3>Uang Sekolah Terjangkau & Transparan</h3>
+        <p>Di Methodist 11, biaya sekolah relatif terjangkau dibanding sekolah swasta lain dengan kualitas setara. Sekolah ini memberikan kesempatan yang adil bagi semua siswa.</p>
+      </div>
+      <div class="card">
+        <div class="icon">👩‍🏫</div>
+        <h3>Guru dan Lingkungan</h3>
+        <p>Guru-guru yang berpengalaman dan peduli membantu siswa berkembang sesuai potensi mereka. Didukung dengan lingkungan belajar yang aman, tertib, dan positif.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📖</div>
+        <h3>Akal, Budi, dan Rohani</h3>
+        <p>Methodist 11 tidak hanya menekankan prestasi akademik. Pendidikan di sini menegaskan akal budi dan rohani siswa, sehingga mereka tidak hanya cerdas secara intelektual, tetapi juga memiliki iman, moral, dan nilai hidup yang kuat.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white" id="visi">
+  <div class="container">
+    <h2>Visi & Misi</h2>
+    <p class="sub">Fondasi pendidikan kami</p>
+    <div class="box">
+      <h3>Visi</h3>
+      <p>Membentuk Peserta Didik yang beriman, cerdas, berkarakter, dan berwawasan global.</p>
+    </div>
+    <div class="box">
+      <h3>Misi</h3>
+      <ul>
+        <li>Menerapkan program keagamaan yang mampu membentuk peserta didik yang beriman kepada Allah, dan berakhlak mulia kepada sesama manusia.</li>
+        <li>Melaksanakan pembelajaran berbasis literasi, dan numerasi untuk membentuk kecerdasan peserta didik.</li>
+        <li>Menanamkan nilai-nilai Profile Pelajar Pancasila melalui kegiatan ekstrakurikuler.</li>
+        <li>Mengintegrasikan teknologi informasi dan komunikasi dalam proses pembelajaran untuk membangun wawasan peserta didik.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="fasilitas">
+  <div class="container">
+    <h2>Aktivitas & Fasilitas</h2>
+    <p class="sub">Sekolah Methodist-11 memiliki banyak fasilitas guna menunjang kegiatan belajar mengajar</p>
+    <div class="fasilitas-grid">
+      <div class="fasilitas-item"><span class="c">1</span> Ruang belajar Full AC + LCD Infocus</div>
+      <div class="fasilitas-item"><span class="c">2</span> Lab Bahasa Full AC + LCD Infocus</div>
+      <div class="fasilitas-item"><span class="c">3</span> Lab Komputer Full AC + LCD Infocus</div>
+      <div class="fasilitas-item"><span class="c">4</span> Lab Kimia / Biologi Full AC</div>
+      <div class="fasilitas-item"><span class="c">5</span> Perpustakaan Full AC</div>
+      <div class="fasilitas-item"><span class="c">6</span> Aula Full AC</div>
+      <div class="fasilitas-item"><span class="c">7</span> Ruang Bermain TK</div>
+      <div class="fasilitas-item"><span class="c">8</span> Alat Bermain Anak PG dan TK</div>
+      <div class="fasilitas-item"><span class="c">9</span> Kolam Renang</div>
+      <div class="fasilitas-item"><span class="c">10</span> Ruang Serba Guna</div>
+    </div>
+  </div>
+</section>
+
+<section class="white">
+  <div class="container">
+    <div class="feature">
+      <img src="assets/images/kegiatan.jpg" alt="Kegiatan Sekolah">
+      <div class="txt">
+        <h3>🏅 Sekolah yang Asik dan Sportif</h3>
+        <p>Methodist-11 aktif dalam perlombaan baik tingkat kota maupun Nasional. Kami percaya setiap anak memiliki bakat yang perlu diarahkan, didukung, dan dirayakan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>Guru-Guru Hebat</h2>
+    <p class="sub">Pendidik yang berpengalaman dan penuh dedikasi</p>
+    <div class="feature">
+      <div class="txt">
+        <h3>Berkembang Bersama Pendidik Terbaik</h3>
+        <p>Guru-guru di Methodist-11 tidak hanya mengajar, tetapi membimbing dengan teladan. Mereka membantu setiap siswa menemukan potensi terbaiknya di lingkungan yang aman dan positif.</p>
+      </div>
+      <img src="assets/images/IMG_5825.jpg" alt="Guru-guru Methodist-11">
+    </div>
+  </div>
+</section>
+
+<section class="white" id="galeri">
+  <div class="container">
+    <h2>Galeri Kegiatan</h2>
+    <p class="sub">Dokumentasi kegiatan sekolah</p>
+    <div class="galeri">
+      <img src="assets/images/WhatsApp-1.jpg" alt="Kegiatan 1">
+      <img src="assets/images/WhatsApp-2.jpg" alt="Kegiatan 2">
+      <img src="assets/images/dokumentasi-1.jpg" alt="Dokumentasi 1">
+      <img src="assets/images/dokumentasi-2.jpg" alt="Dokumentasi 2">
+      <img src="assets/images/dokumentasi-3.jpg" alt="Dokumentasi 3">
+      <img src="assets/images/dokumentasi-4.jpg" alt="Dokumentasi 4">
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="kontak">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <p class="sub">Kunjungi Methodist-11 — informasi kontak dan pendaftaran</p>
+    <p class="info"><span class="lbl">Alamat</span>📍 Jl. Berlian Sari III No.151 A, Kedai Durian, Kec. Medan Johor, Kota Medan, Sumatera Utara 20147</p>
+    <p class="info"><span class="lbl">Telepon</span>📞 +(016) 7880439</p>
+    <p class="info"><span class="lbl">Jam Operasional</span>🕖 07:00 AM – 12:15 PM (Senin–Sabtu)</p>
+    <div class="sosmed">
+      <a href="https://www.facebook.com/share/1BdTevxTPR/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/methodist_11/?hl=id" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.youtube.com/@sdmethodist1157" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://wa.me/6285261053664?text=Halo%20Miss%20saya%20ingin%20bertanya%20tentang%20pendaftaran" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+    <div class="catatan">
+      💡 Halo Sobat Methodist! Website ini masih dalam tahap pengembangan, jadi mohon maaf nih, kita belum ada mode pendaftaran dan pembayaran online-nya. Jadi kalau mau daftar wajib datang ke sekolah ya.
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 SD Swasta Methodist-11 — Semua data diambil dari website resmi (methodist-11.infinityfree.me)
+</footer>
+
+<script>
+  function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
+</script>
+</body>
+</html>
