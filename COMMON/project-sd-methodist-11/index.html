@@ -62,8 +62,21 @@
   .feature .txt p { color: var(--abu); font-size: .95rem; }
 
   .galeri { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .galeri img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.1); transition: transform .15s; }
+  .galeri img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.1); transition: transform .15s; cursor: zoom-in; }
   .galeri img:hover { transform: scale(1.02); }
+  .galeri.lainnya { margin-top: 20px; }
+  .galeri-center { text-align: center; margin-top: 28px; }
+
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 100; align-items: center; justify-content: center; flex-direction: column; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,.6); }
+  .lightbox .lb-btn { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.15); color: #fff; border: none; width: 48px; height: 48px; border-radius: 50%; font-size: 1.6rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+  .lightbox .lb-btn:hover { background: rgba(255,255,255,.35); }
+  .lightbox .lb-prev { left: 16px; }
+  .lightbox .lb-next { right: 16px; }
+  .lightbox .lb-close { top: 16px; left: 50%; transform: translateX(-50%); width: 42px; height: 42px; font-size: 1.3rem; }
+  .lightbox .lb-close:hover { background: rgba(255,0,0,.6); }
+  .lightbox .lb-counter { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #fff; font-size: .85rem; background: rgba(255,255,255,.15); padding: 4px 14px; border-radius: 999px; }
 
   .contact { background: #fff; text-align: center; }
   .contact .info { font-weight: 600; color: var(--teks); margin-bottom: 6px; }
@@ -210,17 +223,52 @@
 <section class="white" id="galeri">
   <div class="container">
     <h2>Galeri Kegiatan</h2>
-    <p class="sub">Dokumentasi kegiatan sekolah</p>
-    <div class="galeri">
-      <img src="assets/images/WhatsApp-1.jpg" alt="Kegiatan 1">
-      <img src="assets/images/WhatsApp-2.jpg" alt="Kegiatan 2">
-      <img src="assets/images/dokumentasi-1.jpg" alt="Dokumentasi 1">
-      <img src="assets/images/dokumentasi-2.jpg" alt="Dokumentasi 2">
-      <img src="assets/images/dokumentasi-3.jpg" alt="Dokumentasi 3">
-      <img src="assets/images/dokumentasi-4.jpg" alt="Dokumentasi 4">
+    <p class="sub">Dokumentasi kegiatan sekolah — klik foto untuk memperbesar</p>
+    <div class="galeri" id="galeri-utama">
+      <img src="assets/images/WhatsApp-1.jpg" alt="Kegiatan 1" onclick="openLightbox(this.src)">
+      <img src="assets/images/WhatsApp-2.jpg" alt="Kegiatan 2" onclick="openLightbox(this.src)">
+      <img src="assets/images/dokumentasi-1.jpg" alt="Dokumentasi 1" onclick="openLightbox(this.src)">
+      <img src="assets/images/dokumentasi-2.jpg" alt="Dokumentasi 2" onclick="openLightbox(this.src)">
+      <img src="assets/images/dokumentasi-3.jpg" alt="Dokumentasi 3" onclick="openLightbox(this.src)">
+      <img src="assets/images/dokumentasi-4.jpg" alt="Dokumentasi 4" onclick="openLightbox(this.src)">
+    </div>
+    <div class="galeri lainnya" id="galeri-lainnya" style="display:none;">
+      <img src="assets/images/galeri/galeri-01.jpg" alt="Foto lainnya 1" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-02.jpg" alt="Foto lainnya 2" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-03.jpg" alt="Foto lainnya 3" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-04.jpg" alt="Foto lainnya 4" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-05.jpg" alt="Foto lainnya 5" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-06.jpg" alt="Foto lainnya 6" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-07.jpg" alt="Foto lainnya 7" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-08.jpg" alt="Foto lainnya 8" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-09.jpg" alt="Foto lainnya 9" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-10.jpg" alt="Foto lainnya 10" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-11.jpg" alt="Foto lainnya 11" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-12.jpg" alt="Foto lainnya 12" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-13.jpeg" alt="Foto lainnya 13" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-14.jpeg" alt="Foto lainnya 14" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-15.jpeg" alt="Foto lainnya 15" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-16.jpeg" alt="Foto lainnya 16" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-17.jpeg" alt="Foto lainnya 17" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-18.jpeg" alt="Foto lainnya 18" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-19.jpeg" alt="Foto lainnya 19" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-20.jpeg" alt="Foto lainnya 20" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-21.jpeg" alt="Foto lainnya 21" onclick="openLightbox(this.src)">
+      <img src="assets/images/galeri/galeri-22.jpeg" alt="Foto lainnya 22" onclick="openLightbox(this.src)">
+    </div>
+    <div class="galeri-center">
+      <button class="btn" id="btn-galeri" onclick="toggleGaleri()">Lihat Foto Lainnya</button>
     </div>
   </div>
 </section>
+
+<div class="lightbox" id="lightbox" onclick="lightboxBg(event)">
+  <button class="lb-btn lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-btn lb-prev" onclick="lbNav(-1)">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-btn lb-next" onclick="lbNav(1)">›</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
 
 <section class="contact" id="kontak">
   <div class="container">
@@ -247,6 +295,58 @@
 
 <script>
   function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
+
+  let lbItems = [];
+  let lbIdx = 0;
+
+  function galeriItems() {
+    const imgs = document.querySelectorAll('#galeri-utama img, #galeri-lainnya img');
+    return Array.prototype.slice.call(imgs).map(function (i) { return i.getAttribute('src'); });
+  }
+
+  function openLightbox(src) {
+    lbItems = galeriItems();
+    lbIdx = lbItems.indexOf(src);
+    if (lbIdx === -1) lbIdx = 0;
+    showLb();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function lightboxBg(e) {
+    if (e.target.id === 'lightbox') closeLightbox();
+  }
+
+  function showLb() {
+    const img = document.getElementById('lb-img');
+    img.src = lbItems[lbIdx];
+    document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
+  }
+
+  function lbNav(d) {
+    lbIdx = (lbIdx + d + lbItems.length) % lbItems.length;
+    showLb();
+  }
+
+  function toggleGaleri() {
+    const g = document.getElementById('galeri-lainnya');
+    const btn = document.getElementById('btn-galeri');
+    const hidden = g.style.display === 'none';
+    g.style.display = hidden ? 'grid' : 'none';
+    btn.textContent = hidden ? 'Tutup Foto Lainnya' : 'Lihat Foto Lainnya';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
 </script>
 </body>
 </html>
