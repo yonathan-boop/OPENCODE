@@ -21,7 +21,7 @@ html { font-size: 20px; }
   .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
 
   .hero { background: linear-gradient(135deg, var(--biru-tua), var(--biru) 60%, #3b82f6); color: #fff; text-align: center; padding: 80px 20px 90px; }
-  .hero h1 { font-size: 2.3rem; margin-bottom: 8px; }
+  .hero h1 { font-size: 1.85rem; margin-bottom: 8px; overflow-wrap: anywhere; text-wrap: balance; }
   .hero .tagline { color: #bfdbfe; font-size: 1rem; margin-bottom: 24px; }
   .hero p { font-size: 1.05rem; opacity: .95; max-width: 620px; margin: 0 auto 28px; }
   .btn { display: inline-block; background: var(--kuning); color: #1f2937; font-weight: 700; padding: 12px 28px; border-radius: 999px; text-decoration: none; transition: transform .15s; }
@@ -94,14 +94,14 @@ html { font-size: 20px; }
     nav.open { display: flex; }
     nav a { margin: 10px 0; }
     .menu-toggle { display: block; }
-    .hero h1 { font-size: 1.7rem; }
+    .hero h1 { font-size: 1.35rem; }
     .card-grid, .fasilitas-grid, .galeri, .kartu-grid, .foto-grid { grid-template-columns: 1fr; }
     .feature { flex-direction: column; text-align: center; }
     .feature img { width: 100%; }
-    .scroll-row { gap: 14px; }
+    .scroll-row { gap: 12px; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
     .scroll-row .kartu { flex: 0 0 260px; }
     #kegiatan .scroll-row .kartu,
-    #pengumuman .scroll-row .kartu { flex: 0 0 100%; scroll-snap-align: center; }
+    #pengumuman .scroll-row .kartu { flex: 0 0 calc(100% - 24px); }
     .list-item { flex-direction: column; align-items: flex-start; }
     .list-item img { width: 100%; height: 170px; }
     .list-item .arrow { margin-left: 0; }
@@ -113,6 +113,9 @@ html { font-size: 20px; }
 .kartu { background: #fff; border-radius: 14px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,.06); display: flex; flex-direction: column; transition: transform .15s; }
 .kartu:hover { transform: translateY(-4px); }
 .kartu img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.kartu > a { display: block; }
+.kartu > a img { display: block; transition: transform .15s; }
+.kartu > a:hover img { transform: scale(1.03); }
 .kartu .kartu-badan { padding: 20px 22px; display: flex; flex-direction: column; flex: 1; }
 .kartu .tgl { color: var(--abu); font-size: .8rem; font-weight: 600; margin-bottom: 6px; }
 .kartu h3 { font-size: 1.1rem; color: var(--biru-tua); margin-bottom: 8px; }
@@ -138,6 +141,8 @@ html { font-size: 20px; }
 /* Strip horizontal (galeri & kegiatan) */
 .scroll-row { display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 14px; }
 .scroll-row .kartu { flex: 0 0 320px; scroll-snap-align: start; }
+#kegiatan .scroll-row .kartu,
+#pengumuman .scroll-row .kartu { flex: 1 1 0; min-width: 0; }
 .scroll-row::-webkit-scrollbar { height: 8px; }
 .scroll-row::-webkit-scrollbar-track { background: #e5e7eb; border-radius: 999px; }
 .scroll-row::-webkit-scrollbar-thumb { background: var(--biru); border-radius: 999px; }

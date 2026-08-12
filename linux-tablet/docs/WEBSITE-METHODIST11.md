@@ -1,6 +1,6 @@
 # WEBSITE SD METHODIST-11 + CLOUDFLARE TUNNEL (linux-tablet)
 
-Di-update: 12 Agustus 2026 (r3: nama 2 baris, layout HP)
+Di-update: 12 Agustus 2026 (r4: judul hero rapi, gambar kartu bisa diklik)
 
 ## Status: AKTIF & LIVE
 
@@ -34,6 +34,9 @@ Di-update: 12 Agustus 2026 (r3: nama 2 baris, layout HP)
 
 ## Catatan Penting
 
+- **12 Agustus 2026 — R4 (user feedback):**
+  - **Judul hero "lewat batas":** penyebab = `html { font-size: 20px }` menaikkan `.hero h1` (2.3rem→46px desktop, 1.7rem→34px HP) sehingga di HP teks panjang jadi kebesaran/penuh. Fix: `.hero h1` desktop → `1.85rem` (≈37px), HP → `1.35rem` (≈27px), plus `overflow-wrap: anywhere; text-wrap: balance;` supaya wrap rapi & kata panjang tak pernah overflow. Terverifikasi render: judul pas di container, tanpa horizontal scroll.
+  - **Gambar kartu Pengumuman & Kegiatan kini bisa diklik** (sama seperti judul): `<img>` di dalam kartu index dibungkus `<a href="...">` menuju halaman detail — imunisasi, obat-cacing (pengumuman), 17-agustus, ibadah-rutin, harkdiknas, kunjungan-milo (kegiatan). CSS baru: `.kartu > a { display: block; }` + `.kartu > a:hover img { transform: scale(1.03); }`. Kartu galeri sudah full-clickable sebelumnya.
 - **12 Agustus 2026 — Navbar E-Rapor:** Semua halaman dapat item navbar `📍 E-Rapor` (href `https://eraportsdmethodist11.my.id/`, target _blank) setelah link Kontak. Domain e-rapor beda zone dari methodist-11.my.id.
 - **12 Agustus 2026 — Momen galeri "Kegiatan Kelas" DIHAPUS** (user: belum ada ide): `pages/galeri/kegiatan-kelas.html` + folder `assets/images/galeri/kegiatan-kelas/` (galeri-01..11) + kartu di index #galeri + item/nota di arsip galeri. Galeri momen sekarang tinggal 2: `17-agustus` & `outdoor`.
 - **12 Agustus 2026 — R3 (layout HP + nama):**
