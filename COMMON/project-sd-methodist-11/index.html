@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta Methodist-11 — Menciptakan Generasi Penerus Berdisiplin Tinggi, Bertanggung Jawab, Pintar, Berbakti pada Orang Tua, Bangsa dan Negara serta Berakhlak Mulia</title>
-<link rel="stylesheet" href="assets/css/style.css?v=9">
+<link rel="stylesheet" href="assets/css/style.css?v=10">
 </head>
 <body>
 
 <header>
   <div class="container nav">
-    <div class="logo">
+    <a class="logo cursor-pointer" href="/">
       <img src="assets/images/Picture1.png" alt="Logo Methodist-11">
       <span class="logo-txt">
         <span class="logo-nama">Methodist Titus</span>
         <span class="logo-sub">TK - SD - SMP Swasta</span>
         <span class="logo-full">Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta Methodist-11</span>
       </span>
-    </div>
+    </a>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <nav id="menu">
       <a href="#beranda">Beranda</a>
@@ -29,7 +29,7 @@
       <a href="#galeri">Galeri</a>
       <a href="#lokasi">Lokasi</a>
       <a href="#kontak">Kontak</a>
-      <a href="https://eraportsdmethodist11.my.id/" target="_blank" rel="noopener">📍 E-Rapor</a>
+      <a class="e-rapor" href="https://eraportsdmethodist11.my.id/" target="_blank" rel="noopener">📍 E-Rapor</a>
     </nav>
   </div>
 </header>
@@ -93,16 +93,16 @@
     <h2>Aktivitas & Fasilitas</h2>
     <p class="sub">Sekolah Methodist-11 memiliki banyak fasilitas guna menunjang kegiatan belajar mengajar</p>
     <div class="fasilitas-grid">
-      <div class="fasilitas-item"><span class="c">1</span> Ruang belajar Full AC + LCD Infocus</div>
-      <div class="fasilitas-item"><span class="c">2</span> Lab Bahasa Full AC + LCD Infocus</div>
-      <div class="fasilitas-item"><span class="c">3</span> Lab Komputer Full AC + LCD Infocus</div>
-      <div class="fasilitas-item"><span class="c">4</span> Lab Kimia / Biologi Full AC</div>
-      <div class="fasilitas-item"><span class="c">5</span> Perpustakaan Full AC</div>
-      <div class="fasilitas-item"><span class="c">6</span> Aula Full AC</div>
-      <div class="fasilitas-item"><span class="c">7</span> Ruang Bermain TK</div>
-      <div class="fasilitas-item"><span class="c">8</span> Alat Bermain Anak PG dan TK</div>
-      <div class="fasilitas-item"><span class="c">9</span> Kolam Renang</div>
-      <div class="fasilitas-item"><span class="c">10</span> Ruang Serba Guna</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">1</span> Ruang belajar Full AC + LCD Infocus</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">2</span> Lab Bahasa Full AC + LCD Infocus</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">3</span> Lab Komputer Full AC + LCD Infocus</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">4</span> Lab Kimia / Biologi Full AC</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">5</span> Perpustakaan Full AC</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">6</span> Aula Full AC</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">7</span> Ruang Bermain TK</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">8</span> Alat Bermain Anak PG dan TK</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">9</span> Kolam Renang</div>
+      <div class="fasilitas-item cursor-pointer" role="button" tabindex="0" aria-haspopup="dialog"><span class="c">10</span> Ruang Serba Guna</div>
     </div>
   </div>
 </section>
@@ -110,7 +110,7 @@
 <section class="white">
   <div class="container">
     <div class="feature">
-      <img src="assets/images/kegiatan.jpg" alt="Kegiatan Sekolah">
+      <img src="assets/images/kegiatan.jpg" alt="Kegiatan Sekolah" onclick="openLightbox(this.src)">
       <div class="txt">
         <h3>🏅 Sekolah yang Asik dan Sportif</h3>
         <p>Methodist-11 aktif dalam perlombaan baik tingkat kota maupun Nasional. Kami percaya setiap anak memiliki bakat yang perlu diarahkan, didukung, dan dirayakan.</p>
@@ -128,7 +128,7 @@
         <h3>Berkembang Bersama Pendidik Terbaik</h3>
         <p>Guru-guru di Methodist-11 tidak hanya mengajar, tetapi membimbing dengan teladan. Mereka membantu setiap siswa menemukan potensi terbaiknya di lingkungan yang aman dan positif.</p>
       </div>
-      <img src="assets/images/IMG_5825.jpg" alt="Guru-guru Methodist-11">
+      <img src="assets/images/IMG_5825.jpg" alt="Guru-guru Methodist-11" onclick="openLightbox(this.src)">
     </div>
   </div>
 </section>
@@ -139,7 +139,7 @@
     <p class="sub">Informasi terbaru dari sekolah</p>
     <div class="scroll-row no-scrollbar">
       <div class="kartu">
-        <a href="pages/pengumuman/imunisasi.html"><img src="assets/images/pengumuman/imunisasi.jpg" alt="Imunisasi"></a>
+        <a href="pages/pengumuman/imunisasi.html"><img src="assets/images/pengumuman/imunisasi.jpg" alt="Imunisasi" onclick="event.preventDefault();openLightbox(this.src)"></a>
         <div class="kartu-badan">
           <div class="tgl">12 Agustus 2026</div>
           <h3><a href="pages/pengumuman/imunisasi.html">Imunisasi untuk Seluruh Siswa</a></h3>
@@ -147,7 +147,7 @@
         </div>
       </div>
       <div class="kartu">
-        <a href="pages/pengumuman/obat-cacing.html"><img src="assets/images/pengumuman/obat-cacing.jpg" alt="Obat Cacing"></a>
+        <a href="pages/pengumuman/obat-cacing.html"><img src="assets/images/pengumuman/obat-cacing.jpg" alt="Obat Cacing" onclick="event.preventDefault();openLightbox(this.src)"></a>
         <div class="kartu-badan">
           <div class="tgl">10 Agustus 2026</div>
           <h3><a href="pages/pengumuman/obat-cacing.html">Pemberian Obat Cacing</a></h3>
@@ -174,7 +174,7 @@
     <p class="sub">Apa saja yang sekolah lakukan</p>
     <div class="scroll-row no-scrollbar">
       <div class="kartu">
-        <a href="pages/kegiatan/17-agustus.html"><img src="assets/images/galeri/17-agustus/WhatsApp-1.jpg" alt="Peringatan 17 Agustus"></a>
+        <a href="pages/kegiatan/17-agustus.html"><img src="assets/images/galeri/17-agustus/WhatsApp-1.jpg" alt="Peringatan 17 Agustus" onclick="event.preventDefault();openLightbox(this.src)"></a>
         <div class="kartu-badan">
           <h3>Peringatan HUT ke-80 Kemerdekaan RI</h3>
           <p>Upacara bendera dan lomba 17-an yang meriah bersama seluruh siswa dan guru. Dokumentasi lengkap tahun lalu ada di halaman kegiatan.</p>
@@ -182,7 +182,7 @@
         </div>
       </div>
       <div class="kartu">
-        <a href="pages/kegiatan/ibadah-rutin.html"><img src="assets/images/kegiatan/ibadah-1.jpg" alt="Ibadah Rutin"></a>
+        <a href="pages/kegiatan/ibadah-rutin.html"><img src="assets/images/kegiatan/ibadah-1.jpg" alt="Ibadah Rutin" onclick="event.preventDefault();openLightbox(this.src)"></a>
         <div class="kartu-badan">
           <h3>Ibadah Rutin Mingguan</h3>
           <p>Kegiatan ibadah rutin setiap minggu untuk membentuk karakter, iman, dan akhlak mulia siswa.</p>
@@ -190,7 +190,7 @@
         </div>
       </div>
       <div class="kartu">
-        <a href="pages/kegiatan/harkdiknas.html"><img src="assets/images/kegiatan/harkdiknas-1.jpg" alt="Harkdiknas"></a>
+        <a href="pages/kegiatan/harkdiknas.html"><img src="assets/images/kegiatan/harkdiknas-1.jpg" alt="Harkdiknas" onclick="event.preventDefault();openLightbox(this.src)"></a>
         <div class="kartu-badan">
           <h3>Kegiatan Harkdiknas 2024</h3>
           <p>Peringatan Hari Pendidikan Nasional 2024 bersama seluruh siswa dan guru.</p>
@@ -198,7 +198,7 @@
         </div>
       </div>
       <div class="kartu">
-        <a href="pages/kegiatan/kunjungan-milo.html"><img src="assets/images/kegiatan/milo-1.jpg" alt="Kunjungan Susu Milo"></a>
+        <a href="pages/kegiatan/kunjungan-milo.html"><img src="assets/images/kegiatan/milo-1.jpg" alt="Kunjungan Susu Milo" onclick="event.preventDefault();openLightbox(this.src)"></a>
         <div class="kartu-badan">
           <h3>Kunjungan Susu Milo</h3>
           <p>Kunjungan edukatif tentang susu sehat untuk seluruh siswa.</p>
@@ -218,14 +218,14 @@
     <p class="sub">Dokumentasi kegiatan sekolah per momen — klik untuk melihat foto lengkap</p>
     <div class="scroll-row">
       <a class="kartu" href="pages/galeri/17-agustus.html">
-        <img src="assets/images/galeri/17-agustus/WhatsApp-1.jpg" alt="Galeri 17 Agustus">
+        <img src="assets/images/galeri/17-agustus/WhatsApp-1.jpg" alt="Galeri 17 Agustus" onclick="event.preventDefault();openLightbox(this.src)">
         <div class="kartu-badan">
           <h3>17 Agustus 2025</h3>
           <p>Dokumentasi peringatan kemerdekaan RI.</p>
         </div>
       </a>
       <a class="kartu" href="pages/galeri/outdoor.html">
-        <img src="assets/images/galeri/outdoor/galeri-12.jpg" alt="Galeri Outdoor">
+        <img src="assets/images/galeri/outdoor/galeri-12.jpg" alt="Galeri Outdoor" onclick="event.preventDefault();openLightbox(this.src)">
         <div class="kartu-badan">
           <h3>Kegiatan Outdoor</h3>
           <p>Kegiatan di luar kelas dan lingkungan sekolah.</p>
@@ -270,11 +270,163 @@
 </section>
 
 <footer>
-  © 2026 Yayasan Pendidikan Kristen Methodist Titus<br>TK-SD-SMP Swasta Methodist-11 — Semua data diambil dari website resmi (methodist-11.infinityfree.me)
+  © 2026 Yayasan Pendidikan Kristen Methodist Titus<br>TK-SD-SMP Swasta Methodist-11
 </footer>
+
+<div class="popup-overlay" id="popup-pengumuman" onclick="closePopup()">
+  <div class="popup" onclick="gotoPengumuman()">
+    <button class="popup-close" onclick="event.stopPropagation(); closePopup()" aria-label="Tutup">✕</button>
+    <span class="popup-badge">📢 PENGUMUMAN TERBARU</span>
+    <h3>Imunisasi untuk Seluruh Siswa</h3>
+    <p class="popup-tgl">12 Agustus 2026</p>
+    <p>Kegiatan imunisasi untuk seluruh siswa SD Methodist-11 akan dilaksanakan bekerjasama dengan puskesmas setempat. Orang tua dimohon mengisi surat persetujuan.</p>
+    <button type="button" class="btn" onclick="gotoPengumuman()">Lihat Selengkapnya</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-fasilitas" onclick="tutupFasilitas()">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-fas-judul" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="tutupFasilitas()" aria-label="Tutup">✕</button>
+    <img id="modal-fas-img" src="" alt="Gambar Fasilitas">
+    <div class="modal-badan">
+      <h3 id="modal-fas-judul"></h3>
+      <p id="modal-fas-desk"></p>
+    </div>
+  </div>
+</div>
+
+  <div class="lightbox" id="lightbox" onclick="lightboxBg(event)">
+    <button class="lb-btn lb-close" onclick="closeLightbox()">✕</button>
+    <button class="lb-btn lb-prev" onclick="lbNav(-1)">‹</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-btn lb-next" onclick="lbNav(1)">›</button>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
 
 <script>
   function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
+
+  (function () {
+    if (sessionStorage.getItem('m11-popup-pengumuman') === '1') return;
+    var el = document.getElementById('popup-pengumuman');
+    if (el) {
+      el.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+  })();
+
+  function closePopup() {
+    var el = document.getElementById('popup-pengumuman');
+    if (el) el.classList.remove('show');
+    document.body.style.overflow = '';
+    sessionStorage.setItem('m11-popup-pengumuman', '1');
+  }
+
+  function gotoPengumuman() {
+    closePopup();
+    var s = document.getElementById('pengumuman');
+    if (s) s.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var el = document.getElementById('popup-pengumuman');
+    if (el && el.classList.contains('show')) closePopup();
+    var m = document.getElementById('modal-fasilitas');
+    if (m && m.classList.contains('show')) tutupFasilitas();
+  });
+
+  var lbItems = [];
+  var lbIdx = 0;
+  function galeriItems() {
+    var imgs = document.querySelectorAll('.kartu img, .feature img');
+    return Array.prototype.slice.call(imgs).map(function (i) { return i.src; });
+  }
+  function openLightbox(src) {
+    lbItems = galeriItems();
+    lbIdx = lbItems.indexOf(src);
+    if (lbIdx === -1) lbIdx = 0;
+    showLb();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lightboxBg(e) {
+    if (e.target.id === 'lightbox') closeLightbox();
+  }
+  function showLb() {
+    document.getElementById('lb-img').src = lbItems[lbIdx];
+    document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
+  }
+  function lbNav(d) {
+    lbIdx = (lbIdx + d + lbItems.length) % lbItems.length;
+    showLb();
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+
+  function placeholderFasilitas(i) {
+    var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='450' viewBox='0 0 800 450'>"
+      + "<rect width='800' height='450' fill='#1e3a8a'/>"
+      + "<rect x='300' y='120' width='200' height='180' fill='#f59e0b'/>"
+      + "<rect x='330' y='150' width='60' height='60' fill='#ffffff'/>"
+      + "<rect x='410' y='150' width='60' height='60' fill='#ffffff'/>"
+      + "<rect x='330' y='230' width='140' height='70' fill='#fcd34d'/>"
+      + "<polygon points='280,120 520,120 400,60' fill='#dc2626'/>"
+      + "<text x='400' y='330' font-family='Arial' font-size='26' fill='#bfdbfe' text-anchor='middle'>Fasilitas " + i + "</text>"
+      + "</svg>";
+    return "data:image/svg+xml," + encodeURIComponent(svg);
+  }
+
+  var FASILITAS = [
+    { judul: 'Ruang belajar Full AC + LCD Infocus', desk: 'Setiap ruang kelas dilengkapi pendingin ruangan (AC) dan proyektor LCD agar proses belajar mengajar tetap nyaman, sejuk, dan lebih interaktif.' },
+    { judul: 'Lab Bahasa Full AC + LCD Infocus', desk: 'Laboratorium bahasa ber-AC dengan perangkat LCD Infocus untuk mendukung pembelajaran bahasa yang lebih interaktif dan menyenangkan.' },
+    { judul: 'Lab Komputer Full AC + LCD Infocus', desk: 'Laboratorium komputer ber-AC yang dilengkapi sejumlah unit PC dan LCD Infocus untuk mengembangkan kemampuan digital siswa sejak dini.' },
+    { judul: 'Lab Kimia / Biologi Full AC', desk: 'Laboratorium IPA (Kimia/Biologi) ber-AC yang aman dan lengkap, siap mendukung praktikum sains siswa dengan bimbingan guru.' },
+    { judul: 'Perpustakaan Full AC', desk: 'Perpustakaan ber-AC dengan koleksi buku yang terus diperbarui untuk menumbuhkan budaya membaca dan literasi siswa.' },
+    { judul: 'Aula Full AC', desk: 'Aula ber-AC yang luas, digunakan untuk ibadah, rapat, pentas seni, serta berbagai kegiatan sekolah lainnya.' },
+    { judul: 'Ruang Bermain TK', desk: 'Ruang bermain khusus anak TK yang aman dan menyenangkan untuk mengembangkan kreativitas dan motorik anak.' },
+    { judul: 'Alat Bermain Anak PG dan TK', desk: 'Tersedia berbagai alat bermain edukatif untuk anak PG dan TK, baik di dalam maupun luar ruangan.' },
+    { judul: 'Kolam Renang', desk: 'Kolam renang sekolah untuk pembelajaran renang dan pengembangan keterampilan motorik siswa.' },
+    { judul: 'Ruang Serba Guna', desk: 'Ruang serbaguna yang fleksibel untuk berbagai kegiatan sekolah, mulai dari seminar hingga latihan ekstrakurikuler.' }
+  ];
+
+  var fasilitasAktif = null;
+
+  function bukaFasilitas(i) {
+    var f = FASILITAS[i];
+    fasilitasAktif = i;
+    document.getElementById('modal-fas-img').src = placeholderFasilitas(i + 1);
+    document.getElementById('modal-fas-img').alt = f.judul;
+    document.getElementById('modal-fas-judul').textContent = f.judul;
+    document.getElementById('modal-fas-desk').textContent = f.desk;
+    document.getElementById('modal-fasilitas').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    document.querySelector('.modal-close').focus();
+  }
+
+  function tutupFasilitas() {
+    fasilitasAktif = null;
+    document.getElementById('modal-fasilitas').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.fasilitas-item').forEach(function (item, i) {
+    item.addEventListener('click', function () { bukaFasilitas(i); });
+    item.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        bukaFasilitas(i);
+      }
+    });
+  });
 </script>
 </body>
 </html>

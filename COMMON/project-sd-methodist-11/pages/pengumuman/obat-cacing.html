@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pemberian Obat Cacing - Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta Methodist-11</title>
-<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/style.css?v=10">
 </head>
 <body>
 
 <header>
   <div class="container nav">
-    <div class="logo">
+    <a class="logo cursor-pointer" href="/">
       <img src="../../assets/images/Picture1.png" alt="Logo Methodist-11">
       <span>Yayasan Pendidikan Kristen Methodist Titus<br>TK-SD-SMP Swasta <span style="color:var(--kuning);">Methodist-11</span></span>
-    </div>
+    </a>
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <nav id="menu">
       <a href="../../index.html#beranda">Beranda</a>
@@ -25,7 +25,7 @@
       <a href="../../index.html#galeri">Galeri</a>
       <a href="../../index.html#lokasi">Lokasi</a>
       <a href="../../index.html#kontak">Kontak</a>
-      <a href="https://eraportsdmethodist11.my.id/" target="_blank" rel="noopener">📍 E-Rapor</a>
+      <a class="e-rapor" href="https://eraportsdmethodist11.my.id/" target="_blank" rel="noopener">📍 E-Rapor</a>
     </nav>
   </div>
 </header>
@@ -42,18 +42,61 @@
     <div class="artikel">
       <p>Dalam rangka program kesehatan sekolah, seluruh siswa kelas 1-6 akan diberikan obat cacing (albendazole) oleh tim kesehatan sekolah.</p>
       <p>Pelaksanaan pemberian obat dilakukan di kelas masing-masing. Anak diharapkan sudah sarapan sebelum kegiatan agar obat bekerja optimal.</p>
-      <img src="../../assets/images/pengumuman/obat-cacing.jpg" alt="Pemberian obat cacing">
+      <img src="../../assets/images/pengumuman/obat-cacing.jpg" alt="Pemberian obat cacing" onclick="openLightbox(this.src)">
       <p>Apabila anak memiliki riwayat alergi atau sedang dalam kondisi kurang sehat, mohon segera melapor kepada wali kelas sebelum kegiatan berlangsung.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  © 2026 Yayasan Pendidikan Kristen Methodist Titus<br>TK-SD-SMP Swasta Methodist-11 — Semua data diambil dari website resmi (methodist-11.infinityfree.me)
+  © 2026 Yayasan Pendidikan Kristen Methodist Titus<br>TK-SD-SMP Swasta Methodist-11
 </footer>
+
+  <div class="lightbox" id="lightbox" onclick="lightboxBg(event)">
+    <button class="lb-btn lb-close" onclick="closeLightbox()">✕</button>
+    <button class="lb-btn lb-prev" onclick="lbNav(-1)">‹</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-btn lb-next" onclick="lbNav(1)">›</button>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
 
 <script>
   function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
+  var lbItems = [];
+  var lbIdx = 0;
+  function galeriItems() {
+    var imgs = document.querySelectorAll('.artikel img');
+    return Array.prototype.slice.call(imgs).map(function (i) { return i.src; });
+  }
+  function openLightbox(src) {
+    lbItems = galeriItems();
+    lbIdx = lbItems.indexOf(src);
+    if (lbIdx === -1) lbIdx = 0;
+    showLb();
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lightboxBg(e) {
+    if (e.target.id === 'lightbox') closeLightbox();
+  }
+  function showLb() {
+    document.getElementById('lb-img').src = lbItems[lbIdx];
+    document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
+  }
+  function lbNav(d) {
+    lbIdx = (lbIdx + d + lbItems.length) % lbItems.length;
+    showLb();
+  }
+  document.addEventListener('keydown', function (e) {
+    if (!document.getElementById('lightbox').classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
 </script>
 </body>
 </html>

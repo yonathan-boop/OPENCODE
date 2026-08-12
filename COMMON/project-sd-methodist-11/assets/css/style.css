@@ -13,14 +13,19 @@ html { font-size: 20px; }
 
   header { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 10; }
   .nav { display: flex; align-items: center; justify-content: space-between; height: auto; min-height: 64px; padding: 10px 32px; }
-.logo { display: flex; align-items: center; gap: 10px; color: var(--biru-tua); }
+.logo { display: flex; align-items: center; gap: 10px; color: var(--biru-tua); text-decoration: none; cursor: pointer; transition: opacity .2s ease; }
 .logo img { height: 40px; width: auto; }
 .logo-txt { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; line-height: 1.2; min-width: 0; }
 .logo-nama { font-size: 1.1rem; font-weight: 800; color: var(--biru-tua); letter-spacing: .01em; }
 .logo-sub { font-size: .68rem; font-weight: 600; color: var(--abu); letter-spacing: .02em; }
 .logo-full { display: none; font-size: .58rem; color: var(--abu); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
-  nav a { color: var(--teks); text-decoration: none; margin-left: 22px; font-size: .9rem; font-weight: 600; }
-  nav a:hover { color: var(--biru); }
+.logo:hover { opacity: .8; }
+.cursor-pointer { cursor: pointer; }
+  nav { display: flex; align-items: center; gap: 6px; }
+  nav a { color: var(--teks); text-decoration: none; font-size: .9rem; font-weight: 600; padding: 8px 12px; border-radius: 8px; transition: color .2s ease, background-color .2s ease; }
+  nav a:hover { color: #2563eb; background: #eff6ff; }
+  nav a.e-rapor { color: #2563eb; }
+  nav a.e-rapor:hover { background: #eff6ff; }
   .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
 
   .hero { background: linear-gradient(135deg, var(--biru-tua), var(--biru) 60%, #3b82f6); color: #fff; text-align: center; padding: 80px 20px 90px; }
@@ -50,7 +55,9 @@ html { font-size: 20px; }
   .box li { margin-bottom: 6px; }
 
   .fasilitas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .fasilitas-item { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 2px 8px rgba(0,0,0,.05); font-size: .92rem; font-weight: 600; }
+  .fasilitas-item { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 2px 8px rgba(0,0,0,.05); font-size: .92rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease; }
+  .fasilitas-item:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.12); border-color: #3b82f6; }
+  .fasilitas-item:focus-visible { outline: 2px solid var(--biru); outline-offset: 2px; }
   .fasilitas-item .c { background: #dbeafe; color: var(--biru); border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: .8rem; flex-shrink: 0; }
 
   .feature { display: flex; gap: 32px; align-items: center; background: #fff; }
@@ -187,3 +194,29 @@ html { font-size: 20px; }
 .kartu h3 { font-size: 18px; }
 .kartu p { font-size: 14px; }
 .kartu .btn-sm { font-size: 14px; }
+
+/* Pop-up Pengumuman Terbaru */
+.popup-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.72); backdrop-filter: blur(5px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
+.popup-overlay.show { display: flex; }
+.popup { position: relative; background: #fff; border-radius: 18px; max-width: 460px; width: 100%; padding: 30px 26px 26px; text-align: center; box-shadow: 0 24px 70px rgba(0,0,0,.4); animation: popup-in .35s ease; }
+.popup-close { position: absolute; top: 12px; right: 12px; background: #f1f5f9; border: none; width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 1rem; line-height: 1; color: var(--abu); }
+.popup-close:hover { background: #fee2e2; color: #dc2626; }
+.popup-badge { display: inline-block; background: #fef3c7; color: #92400e; font-weight: 700; font-size: .75rem; letter-spacing: .05em; padding: 6px 14px; border-radius: 999px; margin-bottom: 12px; }
+.popup h3 { color: var(--biru-tua); font-size: 1.25rem; margin-bottom: 4px; }
+.popup .popup-tgl { color: var(--abu); font-size: .85rem; margin-bottom: 12px; }
+.popup p { color: var(--teks); font-size: .95rem; margin-bottom: 22px; }
+@keyframes popup-in { from { transform: translateY(22px) scale(.96); opacity: 0; } to { transform: none; opacity: 1; } }
+#pengumuman { scroll-margin-top: 80px; }
+
+/* Modal Fasilitas */
+.modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.72); backdrop-filter: blur(5px); z-index: 9998; align-items: center; justify-content: center; padding: 20px; }
+.modal-overlay.show { display: flex; }
+.modal { position: relative; background: #fff; border-radius: 18px; max-width: 520px; width: 100%; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,.4); animation: popup-in .35s ease; }
+.modal img { display: block; width: 100%; height: 260px; object-fit: cover; }
+.modal-badan { padding: 24px 26px 28px; }
+.modal-badan h3 { color: var(--biru-tua); font-size: 1.25rem; margin-bottom: 10px; }
+.modal-badan p { color: var(--teks); font-size: .95rem; line-height: 1.7; margin: 0; }
+.modal-close { position: absolute; top: 12px; right: 12px; background: rgba(15,23,42,.55); color: #fff; border: none; width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; line-height: 1; transition: background .15s; }
+.modal-close:hover { background: #dc2626; }
+@media (max-width: 768px) { .modal img { height: 200px; } }
+.kartu img, .feature img, .list-item img, .artikel img { cursor: zoom-in; }
