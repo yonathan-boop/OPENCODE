@@ -766,7 +766,8 @@ webbrowser.open('https://youtube.com')
   - Hook: `.githooks/pre-commit` (ter-commit ke repo), `core.hooksPath=.githooks` di-set di PC ini
   - **PC lain WAJIB jalankan** `git config core.hooksPath .githooks` sekali setelah pull, biar hook ikut aktif
   - Jangan edit footer-meta versi manual — biar hook yang naikin
-- Commit terkait: `980a340` (catatan kaki), `b8ae2aa` (setup auto-bump)
+- **Cache-buster CSS otomatis**: hook juga menaikkan `style.css?v=N` setiap commit → HP/browser tidak perlu clear cache manual (perbaiki ikon sosmed biru di HP, commit `3aff9b7`, versi 0.0003)
+- Commit terkait: `980a340` (catatan kaki), `b8ae2aa` (setup auto-bump), `3aff9b7` (cache-buster otomatis)
 
 ---
 
