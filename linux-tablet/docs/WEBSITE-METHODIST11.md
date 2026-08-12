@@ -1,6 +1,6 @@
 # WEBSITE SD METHODIST-11 + CLOUDFLARE TUNNEL (linux-tablet)
 
-Di-update: 12 Agustus 2026
+Di-update: 12 Agustus 2026 (restrukturisasi)
 
 ## Status: AKTIF & LIVE
 
@@ -34,7 +34,8 @@ Di-update: 12 Agustus 2026
 
 ## Catatan Penting
 
-- **12 Agustus 2026:** Tambah section "Lokasi Kami" (#lokasi) di index.html — Google Maps embed (q=3.5271,98.6891, z=16, output=embed tanpa API key) + link "Petunjuk Arah". Commit `3b9570a`. Perlu `git pull` + restart website di linux-tablet biar live.
+- **12 Agustus 2026 — RESTRUKTURISASI:** Website jadi multi-halaman. `index.html` = ringkasan terbaru (3 kartu per section: Pengumuman, Kegiatan, Galeri momen). Detail pindah halaman di `pages/` (sub folder): `pages/pengumuman/{imunisasi,obat-cacing,juara-kelas}.html`, `pages/kegiatan/{17-agustus,ibadah-rutin,pentas-seni}.html`, `pages/galeri/{17-agustus,kegiatan-kelas,outdoor}.html`. CSS dipindah ke `assets/css/style.css`. Foto galeri dikelompokkan per momen: `assets/images/galeri/17-agustus/` (6), `kegiatan-kelas/` (11), `outdoor/` (11). Commit `7f1a746`. Judul/isi masih placeholder contoh — user bakal ganti & nambah momen sendiri. Perlu `git pull` + restart website di linux-tablet.
+- **12 Agustus 2026:** Tambah section "Lokasi Kami" (#lokasi) di index.html — Google Maps embed (q=3.5271,98.6891, z=16, output=embed tanpa API key) + link "Petunjuk Arah". Commit `3b9570a`.
 - **DNS cache lokal tablet** sempat nyimpen NXDOMAIN lama → kalau curl 000/ga resolve, bypass dengan `--resolve methodist-11.my.id:443:104.21.87.167` atau tunggu beberapa menit.
 - **Error 1033** = DNS record bukan CNAME tunnel / hostname gak di-ingress → cek tab Public Hostname di dashboard Zero Trust.
 - **JANGAN pakai quick tunnel** untuk domain ini — domain sudah route ke named tunnel "Linux HP".
