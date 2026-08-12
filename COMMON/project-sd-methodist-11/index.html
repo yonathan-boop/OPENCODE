@@ -4,108 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SD Swasta Methodist-11 — Menciptakan Generasi Penerus Berdisiplin Tinggi, Bertanggung Jawab, Pintar, Berbakti pada Orang Tua, Bangsa dan Negara serta Berakhlak Mulia</title>
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --biru: #1e40af;
-    --biru-tua: #1e3a8a;
-    --kuning: #f59e0b;
-    --latar: #f9fafb;
-    --teks: #1f2937;
-    --abu: #6b7280;
-  }
-  body { font-family: 'Segoe UI', system-ui, sans-serif; color: var(--teks); background: var(--latar); line-height: 1.6; }
-  .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
-
-  header { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 10; }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .logo { display: flex; align-items: center; gap: 10px; font-size: 1.05rem; font-weight: 800; color: var(--biru-tua); }
-  .logo img { height: 40px; width: auto; }
-  .logo span { color: var(--kuning); }
-  nav a { color: var(--teks); text-decoration: none; margin-left: 22px; font-size: .9rem; font-weight: 600; }
-  nav a:hover { color: var(--biru); }
-  .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
-
-  .hero { background: linear-gradient(135deg, var(--biru-tua), var(--biru) 60%, #3b82f6); color: #fff; text-align: center; padding: 80px 20px 90px; }
-  .hero h1 { font-size: 2.3rem; margin-bottom: 8px; }
-  .hero .tagline { color: #bfdbfe; font-size: 1rem; margin-bottom: 24px; }
-  .hero p { font-size: 1.05rem; opacity: .95; max-width: 620px; margin: 0 auto 28px; }
-  .btn { display: inline-block; background: var(--kuning); color: #1f2937; font-weight: 700; padding: 12px 28px; border-radius: 999px; text-decoration: none; transition: transform .15s; }
-  .btn:hover { transform: translateY(-2px); }
-  .pengumuman { display: inline-block; background: rgba(255,255,255,.15); border: 1px dashed rgba(255,255,255,.5); border-radius: 999px; padding: 8px 20px; font-size: .9rem; font-weight: 600; margin-bottom: 20px; }
-  .diskon { color: #fde68a; font-weight: 800; }
-
-  section { padding: 64px 0; }
-  section h2 { text-align: center; font-size: 1.6rem; color: var(--biru-tua); margin-bottom: 8px; }
-  .sub { text-align: center; color: var(--abu); margin-bottom: 40px; font-size: .95rem; }
-
-  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .card { background: #fff; border-radius: 14px; padding: 28px 24px; text-align: center; box-shadow: 0 4px 14px rgba(0,0,0,.06); transition: transform .15s; }
-  .card:hover { transform: translateY(-4px); }
-  .card .icon { font-size: 2rem; margin-bottom: 12px; }
-  .card h3 { font-size: 1.05rem; margin-bottom: 8px; }
-  .card p { font-size: .9rem; color: var(--abu); }
-
-  .white { background: #fff; }
-  .box { background: var(--latar); border-left: 4px solid var(--biru); border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
-  .box h3 { color: var(--biru-tua); font-size: 1.05rem; margin-bottom: 6px; }
-  .box ul { padding-left: 20px; font-size: .92rem; }
-  .box li { margin-bottom: 6px; }
-
-  .fasilitas-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .fasilitas-item { display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 10px; padding: 14px 16px; box-shadow: 0 2px 8px rgba(0,0,0,.05); font-size: .92rem; font-weight: 600; }
-  .fasilitas-item .c { background: #dbeafe; color: var(--biru); border-radius: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: .8rem; flex-shrink: 0; }
-
-  .feature { display: flex; gap: 32px; align-items: center; background: #fff; }
-  .feature img { width: 45%; border-radius: 14px; object-fit: cover; box-shadow: 0 6px 20px rgba(0,0,0,.1); }
-  .feature .txt h3 { font-size: 1.2rem; color: var(--biru-tua); margin-bottom: 8px; }
-  .feature .txt p { color: var(--abu); font-size: .95rem; }
-
-  .galeri { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .galeri img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,.1); transition: transform .15s; cursor: zoom-in; }
-  .galeri img:hover { transform: scale(1.02); }
-  .galeri.lainnya { margin-top: 20px; }
-  .galeri-center { text-align: center; margin-top: 28px; }
-
-  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 100; align-items: center; justify-content: center; flex-direction: column; }
-  .lightbox.open { display: flex; }
-  .lightbox img { max-width: 92vw; max-height: 88vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,.6); }
-  .lightbox .lb-btn { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,.15); color: #fff; border: none; width: 48px; height: 48px; border-radius: 50%; font-size: 1.6rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .15s; }
-  .lightbox .lb-btn:hover { background: rgba(255,255,255,.35); }
-  .lightbox .lb-prev { left: 16px; }
-  .lightbox .lb-next { right: 16px; }
-  .lightbox .lb-close { top: 16px; left: 50%; transform: translateX(-50%); width: 42px; height: 42px; font-size: 1.3rem; }
-  .lightbox .lb-close:hover { background: rgba(255,0,0,.6); }
-  .lightbox .lb-counter { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); color: #fff; font-size: .85rem; background: rgba(255,255,255,.15); padding: 4px 14px; border-radius: 999px; }
-
-  .contact { background: #fff; text-align: center; }
-  .contact .info { font-weight: 600; color: var(--teks); margin-bottom: 6px; }
-  .contact .info .lbl { display: block; color: var(--abu); font-size: .85rem; font-weight: 400; }
-  .sosmed { display: flex; justify-content: center; gap: 14px; margin: 24px 0; flex-wrap: wrap; }
-  .sosmed a { display: inline-block; background: var(--biru-tua); color: #fff; text-decoration: none; font-size: .85rem; font-weight: 700; padding: 10px 20px; border-radius: 999px; transition: background .15s; }
-  .sosmed a:hover { background: var(--biru); }
-  .catatan { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; border-radius: 12px; padding: 16px 20px; max-width: 640px; margin: 20px auto 0; font-size: .88rem; }
-
-  .map-wrap { background: #fff; border-radius: 14px; padding: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
-  .map-wrap iframe { display: block; width: 100%; height: 420px; border: 0; border-radius: 10px; }
-  .map-alamat { text-align: center; color: var(--abu); font-size: .95rem; margin-top: 16px; }
-  .map-alamat a { color: var(--biru); font-weight: 600; }
-  @media (max-width: 768px) { .map-wrap iframe { height: 300px; } }
-
-  footer { background: var(--teks); color: #cbd5e1; text-align: center; padding: 20px; font-size: .85rem; }
-
-  @media (max-width: 768px) {
-    .nav { height: 56px; }
-    nav { display: none; position: absolute; top: 56px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 12px 20px; box-shadow: 0 4px 10px rgba(0,0,0,.08); }
-    nav.open { display: flex; }
-    nav a { margin: 10px 0; }
-    .menu-toggle { display: block; }
-    .hero h1 { font-size: 1.7rem; }
-    .card-grid, .fasilitas-grid, .galeri { grid-template-columns: 1fr; }
-    .feature { flex-direction: column; text-align: center; }
-    .feature img { width: 100%; }
-  }
-</style>
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
@@ -121,6 +20,8 @@
       <a href="#kenapa">Kenapa Kami</a>
       <a href="#visi">Visi & Misi</a>
       <a href="#fasilitas">Fasilitas</a>
+      <a href="#pengumuman">Pengumuman</a>
+      <a href="#kegiatan">Kegiatan</a>
       <a href="#galeri">Galeri</a>
       <a href="#lokasi">Lokasi</a>
       <a href="#kontak">Kontak</a>
@@ -227,55 +128,104 @@
   </div>
 </section>
 
-<section class="white" id="galeri">
+<section id="pengumuman">
   <div class="container">
-    <h2>Galeri Kegiatan</h2>
-    <p class="sub">Dokumentasi kegiatan sekolah — klik foto untuk memperbesar</p>
-    <div class="galeri" id="galeri-utama">
-      <img src="assets/images/WhatsApp-1.jpg" alt="Kegiatan 1" onclick="openLightbox(this.src)">
-      <img src="assets/images/WhatsApp-2.jpg" alt="Kegiatan 2" onclick="openLightbox(this.src)">
-      <img src="assets/images/dokumentasi-1.jpg" alt="Dokumentasi 1" onclick="openLightbox(this.src)">
-      <img src="assets/images/dokumentasi-2.jpg" alt="Dokumentasi 2" onclick="openLightbox(this.src)">
-      <img src="assets/images/dokumentasi-3.jpg" alt="Dokumentasi 3" onclick="openLightbox(this.src)">
-      <img src="assets/images/dokumentasi-4.jpg" alt="Dokumentasi 4" onclick="openLightbox(this.src)">
-    </div>
-    <div class="galeri lainnya" id="galeri-lainnya" style="display:none;">
-      <img src="assets/images/galeri/galeri-01.jpg" alt="Foto lainnya 1" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-02.jpg" alt="Foto lainnya 2" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-03.jpg" alt="Foto lainnya 3" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-04.jpg" alt="Foto lainnya 4" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-05.jpg" alt="Foto lainnya 5" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-06.jpg" alt="Foto lainnya 6" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-07.jpg" alt="Foto lainnya 7" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-08.jpg" alt="Foto lainnya 8" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-09.jpg" alt="Foto lainnya 9" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-10.jpg" alt="Foto lainnya 10" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-11.jpg" alt="Foto lainnya 11" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-12.jpg" alt="Foto lainnya 12" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-13.jpeg" alt="Foto lainnya 13" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-14.jpeg" alt="Foto lainnya 14" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-15.jpeg" alt="Foto lainnya 15" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-16.jpeg" alt="Foto lainnya 16" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-17.jpeg" alt="Foto lainnya 17" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-18.jpeg" alt="Foto lainnya 18" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-19.jpeg" alt="Foto lainnya 19" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-20.jpeg" alt="Foto lainnya 20" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-21.jpeg" alt="Foto lainnya 21" onclick="openLightbox(this.src)">
-      <img src="assets/images/galeri/galeri-22.jpeg" alt="Foto lainnya 22" onclick="openLightbox(this.src)">
-    </div>
-    <div class="galeri-center">
-      <button class="btn" id="btn-galeri" onclick="toggleGaleri()">Lihat Foto Lainnya</button>
+    <h2>Pengumuman</h2>
+    <p class="sub">Informasi terbaru dari sekolah</p>
+    <div class="kartu-grid">
+      <div class="kartu">
+        <img src="assets/images/galeri/17-agustus/dokumentasi-2.jpg" alt="Imunisasi">
+        <div class="kartu-badan">
+          <div class="tgl">12 Agustus 2026</div>
+          <h3>Imunisasi untuk Seluruh Siswa</h3>
+          <p>Kegiatan imunisasi untuk seluruh siswa SD Methodist-11 akan dilaksanakan bekerjasama dengan puskesmas setempat. Orang tua dimohon mengisi surat persetujuan.</p>
+          <a class="btn-sm" href="pages/pengumuman/imunisasi.html">Baca Selengkapnya</a>
+        </div>
+      </div>
+      <div class="kartu">
+        <img src="assets/images/galeri/17-agustus/WhatsApp-1.jpg" alt="Obat Cacing">
+        <div class="kartu-badan">
+          <div class="tgl">10 Agustus 2026</div>
+          <h3>Pemberian Obat Cacing</h3>
+          <p>Pemberian obat cacing (albendazole) untuk seluruh siswa kelas 1-6 dilakukan oleh tim kesehatan sekolah. Anak diharapkan sarapan sebelum kegiatan.</p>
+          <a class="btn-sm" href="pages/pengumuman/obat-cacing.html">Baca Selengkapnya</a>
+        </div>
+      </div>
+      <div class="kartu">
+        <img src="assets/images/galeri/kegiatan-kelas/galeri-01.jpg" alt="Juara Kelas">
+        <div class="kartu-badan">
+          <div class="tgl">5 Agustus 2026</div>
+          <h3>Juara Kelas Semester Ganjil</h3>
+          <p>Selamat kepada para juara kelas semester ganjil tahun ajaran 2026/2027. Pengumuman lengkap dapat dilihat di papan informasi sekolah.</p>
+          <a class="btn-sm" href="pages/pengumuman/juara-kelas.html">Baca Selengkapnya</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="lightbox" id="lightbox" onclick="lightboxBg(event)">
-  <button class="lb-btn lb-close" onclick="closeLightbox()">✕</button>
-  <button class="lb-btn lb-prev" onclick="lbNav(-1)">‹</button>
-  <img id="lb-img" src="" alt="">
-  <button class="lb-btn lb-next" onclick="lbNav(1)">›</button>
-  <div class="lb-counter" id="lb-counter"></div>
-</div>
+<section class="white" id="kegiatan">
+  <div class="container">
+    <h2>Kegiatan</h2>
+    <p class="sub">Apa saja yang sekolah lakukan</p>
+    <div class="kartu-grid">
+      <div class="kartu">
+        <img src="assets/images/galeri/17-agustus/WhatsApp-1.jpg" alt="Peringatan 17 Agustus">
+        <div class="kartu-badan">
+          <h3>Peringatan HUT ke-80 Kemerdekaan RI</h3>
+          <p>Upacara bendera dan lomba 17-an yang meriah bersama seluruh siswa dan guru. Dokumentasi lengkap tahun lalu ada di halaman kegiatan.</p>
+          <a class="btn-sm" href="pages/kegiatan/17-agustus.html">Lihat Kegiatan</a>
+        </div>
+      </div>
+      <div class="kartu">
+        <img src="assets/images/kegiatan.jpg" alt="Ibadah Rutin">
+        <div class="kartu-badan">
+          <h3>Ibadah Rutin Mingguan</h3>
+          <p>Kegiatan ibadah rutin setiap minggu untuk membentuk karakter, iman, dan akhlak mulia siswa.</p>
+          <a class="btn-sm" href="pages/kegiatan/ibadah-rutin.html">Lihat Kegiatan</a>
+        </div>
+      </div>
+      <div class="kartu">
+        <img src="assets/images/galeri/kegiatan-kelas/galeri-03.jpg" alt="Pentas Seni">
+        <div class="kartu-badan">
+          <h3>Pentas Seni dan Bakat Siswa</h3>
+          <p>Penampilan bakat dan kreativitas siswa di hadapan orang tua dan guru, mulai dari menyanyi, menari, hingga drama.</p>
+          <a class="btn-sm" href="pages/kegiatan/pentas-seni.html">Lihat Kegiatan</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeri">
+  <div class="container">
+    <h2>Galeri</h2>
+    <p class="sub">Dokumentasi kegiatan sekolah per momen — klik untuk melihat foto lengkap</p>
+    <div class="kartu-grid">
+      <a class="kartu" href="pages/galeri/17-agustus.html">
+        <img src="assets/images/galeri/17-agustus/WhatsApp-1.jpg" alt="Galeri 17 Agustus">
+        <div class="kartu-badan">
+          <h3>17 Agustus 2025</h3>
+          <p>Dokumentasi peringatan kemerdekaan RI.</p>
+        </div>
+      </a>
+      <a class="kartu" href="pages/galeri/kegiatan-kelas.html">
+        <img src="assets/images/galeri/kegiatan-kelas/galeri-01.jpg" alt="Galeri Kegiatan Kelas">
+        <div class="kartu-badan">
+          <h3>Kegiatan Kelas</h3>
+          <p>Kegiatan belajar dan bermain di dalam kelas.</p>
+        </div>
+      </a>
+      <a class="kartu" href="pages/galeri/outdoor.html">
+        <img src="assets/images/galeri/outdoor/galeri-12.jpg" alt="Galeri Outdoor">
+        <div class="kartu-badan">
+          <h3>Kegiatan Outdoor</h3>
+          <p>Kegiatan di luar kelas dan lingkungan sekolah.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 
 <section class="contact" id="kontak">
   <div class="container">
@@ -313,58 +263,6 @@
 
 <script>
   function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
-
-  let lbItems = [];
-  let lbIdx = 0;
-
-  function galeriItems() {
-    const imgs = document.querySelectorAll('#galeri-utama img, #galeri-lainnya img');
-    return Array.prototype.slice.call(imgs).map(function (i) { return i.getAttribute('src'); });
-  }
-
-  function openLightbox(src) {
-    lbItems = galeriItems();
-    lbIdx = lbItems.indexOf(src);
-    if (lbIdx === -1) lbIdx = 0;
-    showLb();
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  function lightboxBg(e) {
-    if (e.target.id === 'lightbox') closeLightbox();
-  }
-
-  function showLb() {
-    const img = document.getElementById('lb-img');
-    img.src = lbItems[lbIdx];
-    document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
-  }
-
-  function lbNav(d) {
-    lbIdx = (lbIdx + d + lbItems.length) % lbItems.length;
-    showLb();
-  }
-
-  function toggleGaleri() {
-    const g = document.getElementById('galeri-lainnya');
-    const btn = document.getElementById('btn-galeri');
-    const hidden = g.style.display === 'none';
-    g.style.display = hidden ? 'grid' : 'none';
-    btn.textContent = hidden ? 'Tutup Foto Lainnya' : 'Lihat Foto Lainnya';
-  }
-
-  document.addEventListener('keydown', function (e) {
-    if (!document.getElementById('lightbox').classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') lbNav(-1);
-    if (e.key === 'ArrowRight') lbNav(1);
-  });
 </script>
 </body>
 </html>

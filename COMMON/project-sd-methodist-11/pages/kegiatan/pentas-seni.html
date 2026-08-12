@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pentas Seni dan Bakat Siswa — SD Swasta Methodist-11</title>
+  <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo">
+        <img src="../../assets/images/Picture1.png" alt="Logo Methodist-11">
+        <span>SD Swasta <span style="color:var(--kuning);">Methodist-11</span></span>
+      </div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+      <nav id="menu">
+        <a href="../../index.html#beranda">Beranda</a>
+        <a href="../../index.html#kenapa">Kenapa Kami</a>
+        <a href="../../index.html#visi">Visi & Misi</a>
+        <a href="../../index.html#fasilitas">Fasilitas</a>
+        <a href="../../index.html#pengumuman">Pengumuman</a>
+        <a href="../../index.html#kegiatan">Kegiatan</a>
+        <a href="../../index.html#galeri">Galeri</a>
+        <a href="../../index.html#lokasi">Lokasi</a>
+        <a href="../../index.html#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Pentas Seni dan Bakat Siswa</h1>
+      <div class="tgl">Tahun Ajaran 2026/2027</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <a class="back" href="../../index.html#kegiatan">← Kembali ke Kegiatan</a>
+      <div class="artikel">
+        <p>Pentas seni menjadi ajang bagi siswa untuk menampilkan bakat dan kreativitas mereka, mulai dari menyanyi, menari, membaca puisi, hingga drama kolaborasi dengan teman sekelas.</p>
+        <p>Acara disaksikan oleh orang tua dan guru sebagai bentuk apresiasi atas perkembangan anak.</p>
+      </div>
+      <div class="foto-grid">
+        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-03.jpg" alt="Pentas seni 1" onclick="openLightbox(this.src)">
+        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-04.jpg" alt="Pentas seni 2" onclick="openLightbox(this.src)">
+        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-05.jpg" alt="Pentas seni 3" onclick="openLightbox(this.src)">
+        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-06.jpg" alt="Pentas seni 4" onclick="openLightbox(this.src)">
+        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-07.jpg" alt="Pentas seni 5" onclick="openLightbox(this.src)">
+        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-08.jpg" alt="Pentas seni 6" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 SD Swasta Methodist-11 — Semua data diambil dari website resmi (methodist-11.infinityfree.me)
+  </footer>
+
+  <div class="lightbox" id="lightbox" onclick="lightboxBg(event)">
+    <button class="lb-btn lb-close" onclick="closeLightbox()">✕</button>
+    <button class="lb-btn lb-prev" onclick="lbNav(-1)">‹</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-btn lb-next" onclick="lbNav(1)">›</button>
+    <div class="lb-counter" id="lb-counter"></div>
+  </div>
+
+  <script>
+    function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
+
+    let lbItems = [];
+    let lbIdx = 0;
+
+    function galeriItems() {
+      const imgs = document.querySelectorAll('.foto-grid img');
+      return Array.prototype.slice.call(imgs).map(function (i) { return i.getAttribute('src'); });
+    }
+
+    function openLightbox(src) {
+      lbItems = galeriItems();
+      lbIdx = lbItems.indexOf(src);
+      if (lbIdx === -1) lbIdx = 0;
+      showLb();
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function lightboxBg(e) {
+      if (e.target.id === 'lightbox') closeLightbox();
+    }
+
+    function showLb() {
+      const img = document.getElementById('lb-img');
+      img.src = lbItems[lbIdx];
+      document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
+    }
+
+    function lbNav(d) {
+      lbIdx = (lbIdx + d + lbItems.length) % lbItems.length;
+      showLb();
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lbNav(-1);
+      if (e.key === 'ArrowRight') lbNav(1);
+    });
+  </script>
+</body>
+</html>
