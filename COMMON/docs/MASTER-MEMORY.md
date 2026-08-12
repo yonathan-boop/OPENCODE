@@ -767,7 +767,8 @@ webbrowser.open('https://youtube.com')
   - **PC lain WAJIB jalankan** `git config core.hooksPath .githooks` sekali setelah pull, biar hook ikut aktif
   - Jangan edit footer-meta versi manual — biar hook yang naikin
 - **Cache-buster CSS otomatis**: hook juga menaikkan `style.css?v=N` setiap commit → HP/browser tidak perlu clear cache manual (perbaiki ikon sosmed biru di HP, commit `3aff9b7`, versi 0.0003)
-- Commit terkait: `980a340` (catatan kaki), `b8ae2aa` (setup auto-bump), `3aff9b7` (cache-buster otomatis)
+- **Menu Kalender Pendidikan**: ditambahkan sebelum E-Rapor di semua 13 halaman → `pages/kalender.html` (embed PDF `assets/kalender/KALENDER-PENDIDIKAN-2026-2027.pdf` dari `D:\New folder\`, + tombol unduh), commit `0bfcd7c`
+- Commit terkait: `980a340` (catatan kaki), `b8ae2aa` (setup auto-bump), `3aff9b7` (cache-buster otomatis), `0bfcd7c` (menu kalender)
 
 ---
 
