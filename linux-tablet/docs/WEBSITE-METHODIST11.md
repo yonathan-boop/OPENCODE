@@ -1,6 +1,6 @@
 # WEBSITE SD METHODIST-11 + CLOUDFLARE TUNNEL (linux-tablet)
 
-Di-update: 12 Agustus 2026 (r2: nama yayasan, font, foto asli, fix lightbox)
+Di-update: 12 Agustus 2026 (r3: nama 2 baris, layout HP)
 
 ## Status: AKTIF & LIVE
 
@@ -34,6 +34,13 @@ Di-update: 12 Agustus 2026 (r2: nama yayasan, font, foto asli, fix lightbox)
 
 ## Catatan Penting
 
+- **12 Agustus 2026 — R3 (layout HP + nama):**
+  - Nama 2 baris di logo/hero/footer: `Yayasan Pendidikan Kristen Methodist Titus`<br>`TK-SD-SMP Swasta Methodist-11` (pake `<br>` sebelum TK; jangan taruh `<br>` di `<title>`/atribut/paragraf).
+  - **Pengumuman ikut scroll ke samping** (`.kartu-grid` → `.scroll-row`), sama kayak Kegiatan & Galeri.
+  - Font kartu kegiatan & pengumuman dikecilkan lagi (`.kartu .tgl` 13px, `h3` 18px, `p` 14px, `.btn-sm` 14px) karena kelihatan jelek di HP saat font global 20px.
+  - Tombol "Lihat ... Lainnya" dibuat full-width di mobile (`.more-wrap .btn` di media query) biar nampak jelas di HP.
+  - Foto obat cacing di-copy ulang (user ganti file) → `assets/images/pengumuman/obat-cacing.jpg` (954×739).
+  - Semua foto asli di-resize ≤1280px, JPEG q82 (<300KB). Sumber foto: `C:\Users\yonat\OneDrive\Desktop\New folder`.
 - **12 Agustus 2026 — R2 (user feedback):**
   - Nama sekolah di semua halaman → **Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta Methodist-11**.
   - Font diperbesar ~25% (`html { font-size: 20px; }`); logo navbar kecil biar muat nama panjang.
