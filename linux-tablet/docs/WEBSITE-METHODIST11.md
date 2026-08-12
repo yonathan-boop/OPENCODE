@@ -1,6 +1,6 @@
 # WEBSITE SD METHODIST-11 + CLOUDFLARE TUNNEL (linux-tablet)
 
-Di-update: 12 Agustus 2026 (restrukturisasi)
+Di-update: 12 Agustus 2026 (r2: nama yayasan, font, foto asli, fix lightbox)
 
 ## Status: AKTIF & LIVE
 
@@ -34,6 +34,14 @@ Di-update: 12 Agustus 2026 (restrukturisasi)
 
 ## Catatan Penting
 
+- **12 Agustus 2026 — R2 (user feedback):**
+  - Nama sekolah di semua halaman → **Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta Methodist-11**.
+  - Font diperbesar ~25% (`html { font-size: 20px; }`); logo navbar kecil biar muat nama panjang.
+  - Foto ASLI di-copy & di-resize dari `C:\Users\yonat\OneDrive\Desktop\New folder` → `assets/images/pengumuman/{imunisasi,obat-cacing}.jpg` & `assets/images/kegiatan/{ibadah-1,harkdiknas-1..3,milo-1..4}.jpg`. Juara Kelas tetap TANPA gambar.
+  - Kegiatan: `pentas-seni.html` DIHAPUS → ganti `harkdiknas.html` + baru `kunjungan-milo.html`. Index `#kegiatan` jadi 4 kartu (scroll horizontal).
+  - **Fix lightbox:** di semua halaman galeri/kegiatan, `galeriItems()` pakai `return i.src;` (bukan `getAttribute('src')`) — dulu klik foto selalu tampil foto pertama.
+  - Layout index: pengumuman = 3 kartu (imunisasi & obat-cacing ada foto, juara-kelas tidak) + tombol "Lihat Pengumuman Lainnya"; kegiatan & galeri = strip scroll ke samping + tombol "Lihat ... Lainnya" → halaman arsip `pages/{pengumuman,kegiatan,galeri}.html` (daftar lama, scroll ke bawah).
+  - Foto kegiatan dari folder lama: "Kegiatan 17 Agustus 2024" KOSONG (foto 17-agustus.html masih pakai galeri existing); folder "Kegiatan Acara luar Ruangan TK" berisi HEIC/MP4 → belum dipakai.
 - **12 Agustus 2026 — RESTRUKTURISASI:** Website jadi multi-halaman. `index.html` = ringkasan terbaru (3 kartu per section: Pengumuman, Kegiatan, Galeri momen). Detail pindah halaman di `pages/` (sub folder): `pages/pengumuman/{imunisasi,obat-cacing,juara-kelas}.html`, `pages/kegiatan/{17-agustus,ibadah-rutin,pentas-seni}.html`, `pages/galeri/{17-agustus,kegiatan-kelas,outdoor}.html`. CSS dipindah ke `assets/css/style.css`. Foto galeri dikelompokkan per momen: `assets/images/galeri/17-agustus/` (6), `kegiatan-kelas/` (11), `outdoor/` (11). Commit `7f1a746`. Judul/isi masih placeholder contoh — user bakal ganti & nambah momen sendiri. Perlu `git pull` + restart website di linux-tablet.
 - **12 Agustus 2026:** Tambah section "Lokasi Kami" (#lokasi) di index.html — Google Maps embed (q=3.5271,98.6891, z=16, output=embed tanpa API key) + link "Petunjuk Arah". Commit `3b9570a`.
 - **DNS cache lokal tablet** sempat nyimpen NXDOMAIN lama → kalau curl 000/ga resolve, bypass dengan `--resolve methodist-11.my.id:443:104.21.87.167` atau tunggu beberapa menit.

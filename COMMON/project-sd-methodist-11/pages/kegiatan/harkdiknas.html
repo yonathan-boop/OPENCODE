@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pentas Seni dan Bakat Siswa — SD Swasta Methodist-11</title>
+  <title>Kegiatan Harkdiknas 2024 - Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta Methodist-11</title>
   <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <div class="container nav">
       <div class="logo">
         <img src="../../assets/images/Picture1.png" alt="Logo Methodist-11">
-        <span>SD Swasta <span style="color:var(--kuning);">Methodist-11</span></span>
+        <span>Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta <span style="color:var(--kuning);">Methodist-11</span></span>
       </div>
       <button class="menu-toggle" onclick="toggleMenu()">☰</button>
       <nav id="menu">
@@ -30,8 +30,8 @@
 
   <section class="page-hero">
     <div class="container">
-      <h1>Pentas Seni dan Bakat Siswa</h1>
-      <div class="tgl">Tahun Ajaran 2026/2027</div>
+      <h1>Kegiatan Harkdiknas 2024</h1>
+      <div class="tgl">2 Mei 2024</div>
     </div>
   </section>
 
@@ -39,22 +39,19 @@
     <div class="container">
       <a class="back" href="../../index.html#kegiatan">← Kembali ke Kegiatan</a>
       <div class="artikel">
-        <p>Pentas seni menjadi ajang bagi siswa untuk menampilkan bakat dan kreativitas mereka, mulai dari menyanyi, menari, membaca puisi, hingga drama kolaborasi dengan teman sekelas.</p>
-        <p>Acara disaksikan oleh orang tua dan guru sebagai bentuk apresiasi atas perkembangan anak.</p>
+        <p>Dalam rangka memperingati Hari Pendidikan Nasional, seluruh siswa, guru, dan staf SD Methodist-11 mengikuti upacara bendera dan berbagai kegiatan edukatif. Suasana penuh semangat mewarnai seluruh rangkaian acara.</p>
+        <p>Kegiatan ini menjadi momen untuk mengenang jasa para pahlawan pendidikan sekaligus menumbuhkan rasa cinta tanah air kepada seluruh siswa. Berikut dokumentasinya:</p>
       </div>
       <div class="foto-grid">
-        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-03.jpg" alt="Pentas seni 1" onclick="openLightbox(this.src)">
-        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-04.jpg" alt="Pentas seni 2" onclick="openLightbox(this.src)">
-        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-05.jpg" alt="Pentas seni 3" onclick="openLightbox(this.src)">
-        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-06.jpg" alt="Pentas seni 4" onclick="openLightbox(this.src)">
-        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-07.jpg" alt="Pentas seni 5" onclick="openLightbox(this.src)">
-        <img src="../../assets/images/galeri/kegiatan-kelas/galeri-08.jpg" alt="Pentas seni 6" onclick="openLightbox(this.src)">
+        <img src="../../assets/images/kegiatan/harkdiknas-1.jpg" alt="Harkdiknas 1" onclick="openLightbox(this.src)">
+        <img src="../../assets/images/kegiatan/harkdiknas-2.jpg" alt="Harkdiknas 2" onclick="openLightbox(this.src)">
+        <img src="../../assets/images/kegiatan/harkdiknas-3.jpg" alt="Harkdiknas 3" onclick="openLightbox(this.src)">
       </div>
     </div>
   </section>
 
   <footer>
-    © 2026 SD Swasta Methodist-11 — Semua data diambil dari website resmi (methodist-11.infinityfree.me)
+    © 2026 Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta Methodist-11 — Semua data diambil dari website resmi (methodist-11.infinityfree.me)
   </footer>
 
   <div class="lightbox" id="lightbox" onclick="lightboxBg(event)">
@@ -73,7 +70,7 @@
 
     function galeriItems() {
       const imgs = document.querySelectorAll('.foto-grid img');
-      return Array.prototype.slice.call(imgs).map(function (i) { return i.getAttribute('src'); });
+      return Array.prototype.slice.call(imgs).map(function (i) { return i.src; });
     }
 
     function openLightbox(src) {
