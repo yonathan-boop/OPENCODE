@@ -101,6 +101,10 @@ html { font-size: 20px; scroll-behavior: smooth; }
   .map-alamat a { color: var(--biru); font-weight: 600; }
   @media (max-width: 768px) { .map-wrap iframe { height: 300px; } }
 
+  .kalender-wrap { border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,.06); background: #fff; }
+  .pdf-frame { width: 100%; height: 78vh; display: block; border: 0; }
+  .kalender-action { text-align: center; margin-top: 18px; }
+
   footer { background: var(--teks); color: #cbd5e1; text-align: center; padding: 20px; font-size: .85rem; }
   .footer-meta { margin-top: 10px; font-size: .72rem; color: #94a3b8; text-align: center; }
 
