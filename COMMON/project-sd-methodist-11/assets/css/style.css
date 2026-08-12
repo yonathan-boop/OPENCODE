@@ -102,6 +102,7 @@ html { font-size: 20px; scroll-behavior: smooth; }
   @media (max-width: 768px) { .map-wrap iframe { height: 300px; } }
 
   footer { background: var(--teks); color: #cbd5e1; text-align: center; padding: 20px; font-size: .85rem; }
+  .footer-meta { margin-top: 10px; font-size: .72rem; color: #94a3b8; text-align: center; }
 
   @media (max-width: 768px) {
     .nav { min-height: 56px; padding: 8px 12px; }
