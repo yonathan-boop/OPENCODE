@@ -41,6 +41,7 @@ Di-update: 12 Agustus 2026 (r3: nama 2 baris, layout HP)
   - **Pengumuman ikut scroll ke samping** (`.kartu-grid` → `.scroll-row`), sama kayak Kegiatan & Galeri.
   - Font kartu kegiatan & pengumuman dikecilkan lagi (`.kartu .tgl` 13px, `h3` 18px, `p` 14px, `.btn-sm` 14px) karena kelihatan jelek di HP saat font global 20px.
   - Tombol "Lihat ... Lainnya" dibuat full-width di mobile (`.more-wrap .btn` di media query) biar nampak jelas di HP.
+  - **Di HP: kartu Pengumuman & Kegiatan full-width (muat 1 per layar)** via `#kegiatan .scroll-row .kartu, #pengumuman .scroll-row .kartu { flex: 0 0 100%; scroll-snap-align: center; }` — tetap bisa geser ke samping; kartu galeri tetap 260px.
   - Foto obat cacing di-copy ulang (user ganti file) → `assets/images/pengumuman/obat-cacing.jpg` (954×739).
   - Semua foto asli di-resize ≤1280px, JPEG q82 (<300KB). Sumber foto: `C:\Users\yonat\OneDrive\Desktop\New folder`.
 - **12 Agustus 2026 — R2 (user feedback):**
