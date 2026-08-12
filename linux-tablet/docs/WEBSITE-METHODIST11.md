@@ -34,6 +34,7 @@ Di-update: 12 Agustus 2026 (r3: nama 2 baris, layout HP)
 
 ## Catatan Penting
 
+- **12 Agustus 2026 — Momen galeri "Kegiatan Kelas" DIHAPUS** (user: belum ada ide): `pages/galeri/kegiatan-kelas.html` + folder `assets/images/galeri/kegiatan-kelas/` (galeri-01..11) + kartu di index #galeri + item/nota di arsip galeri. Galeri momen sekarang tinggal 2: `17-agustus` & `outdoor`.
 - **12 Agustus 2026 — R3 (layout HP + nama):**
   - Nama 2 baris di logo/hero/footer: `Yayasan Pendidikan Kristen Methodist Titus`<br>`TK-SD-SMP Swasta Methodist-11` (pake `<br>` sebelum TK; jangan taruh `<br>` di `<title>`/atribut/paragraf).
   - **Pengumuman ikut scroll ke samping** (`.kartu-grid` → `.scroll-row`), sama kayak Kegiatan & Galeri.
