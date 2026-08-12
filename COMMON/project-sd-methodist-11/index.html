@@ -312,19 +312,22 @@
   });
 
   (function () {
-    if (sessionStorage.getItem('m11-popup-pengumuman') === '1') return;
-    var el = document.getElementById('popup-pengumuman');
-    if (el) {
-      el.classList.add('show');
-      document.body.style.overflow = 'hidden';
+    var n = parseInt(localStorage.getItem('m11-popup-count') || '0', 10) + 1;
+    if (n >= 3) {
+      n = 0;
+      var el = document.getElementById('popup-pengumuman');
+      if (el) {
+        el.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
     }
+    localStorage.setItem('m11-popup-count', String(n));
   })();
 
   function closePopup() {
     var el = document.getElementById('popup-pengumuman');
     if (el) el.classList.remove('show');
     document.body.style.overflow = '';
-    sessionStorage.setItem('m11-popup-pengumuman', '1');
   }
 
   function gotoPengumuman() {
