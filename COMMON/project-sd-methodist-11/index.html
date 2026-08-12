@@ -86,6 +86,12 @@
   .sosmed a:hover { background: var(--biru); }
   .catatan { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; border-radius: 12px; padding: 16px 20px; max-width: 640px; margin: 20px auto 0; font-size: .88rem; }
 
+  .map-wrap { background: #fff; border-radius: 14px; padding: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+  .map-wrap iframe { display: block; width: 100%; height: 420px; border: 0; border-radius: 10px; }
+  .map-alamat { text-align: center; color: var(--abu); font-size: .95rem; margin-top: 16px; }
+  .map-alamat a { color: var(--biru); font-weight: 600; }
+  @media (max-width: 768px) { .map-wrap iframe { height: 300px; } }
+
   footer { background: var(--teks); color: #cbd5e1; text-align: center; padding: 20px; font-size: .85rem; }
 
   @media (max-width: 768px) {
@@ -116,6 +122,7 @@
       <a href="#visi">Visi & Misi</a>
       <a href="#fasilitas">Fasilitas</a>
       <a href="#galeri">Galeri</a>
+      <a href="#lokasi">Lokasi</a>
       <a href="#kontak">Kontak</a>
     </nav>
   </div>
@@ -286,6 +293,17 @@
     <div class="catatan">
       💡 Halo Sobat Methodist! Website ini masih dalam tahap pengembangan, jadi mohon maaf nih, kita belum ada mode pendaftaran dan pembayaran online-nya. Jadi kalau mau daftar wajib datang ke sekolah ya.
     </div>
+  </div>
+</section>
+
+<section class="white" id="lokasi">
+  <div class="container">
+    <h2>Lokasi Kami</h2>
+    <p class="sub">Jl. Berlian Sari III No.151 A, Kedai Durian, Kec. Medan Johor, Kota Medan, Sumatera Utara</p>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps?q=3.5271,98.6891&z=16&hl=id&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta Lokasi SD Swasta Methodist-11"></iframe>
+    </div>
+    <p class="map-alamat">📍 Buka rute ke sekolah → <a href="https://www.google.com/maps/dir/?api=1&destination=3.5271,98.6891" target="_blank" rel="noopener">Petunjuk Arah (Google Maps)</a></p>
   </div>
 </section>
 
