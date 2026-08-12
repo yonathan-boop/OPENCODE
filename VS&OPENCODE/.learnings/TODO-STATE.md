@@ -6,7 +6,7 @@ Di-update: 18 Juli 2026
 - scraping YouTube (timeout)
 
 ## ≡≡≡ LAGI DIKERJAIN ≡≡≡
-(update per sesi)
+- tunggu user racik website SD Methodist-11 dari PC → saat bilang siap, git pull biar update (12 Agustus 2026)
 
 ## ≡≡≡ BERHASIL ≡≡≡
 - bikin sub-agent protocol

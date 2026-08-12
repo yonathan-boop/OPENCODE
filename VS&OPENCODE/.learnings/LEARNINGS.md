@@ -133,3 +133,27 @@ User mengubah aturan: file di luar VS&OPENCODE/ bersifat read-only default, jika
 
 ---
 
+## [LRN-20260812-001] selalu_fetch_sebelum_pull_website
+
+**Logged**: 2026-08-12
+**Priority**: high
+**Status**: active
+**Area**: website-infra
+
+### Summary
+Saat user minta "tarik/pull data website", WAJIB verifikasi source remote benar-benar terbaru — jangan percaya ref lokal `origin/main` yang bisa stale.
+
+### Details
+- Ref lokal `origin/main` bisa ketinggalan dari remote meskipun sudah pernah pull.
+- Cara cek: `git fetch origin` dulu, lalu bandingkan `git rev-parse main origin/main` atau cek `git ls-remote origin` (HEAD/refs/heads/main).
+- Kasus nyata: remote di `00de43e`, lokal masih `980a340` — 4 commit belum masuk karena aku pakai ref lama.
+- Setelah `git fetch`, gunakan `git merge origin/main` (fast-forward) untuk ambil yang baru.
+
+### Action
+- Setiap "coba tarik lagi / ambil data terbaru" → jalankan `git fetch origin` + cek `git rev-parse main origin/main` SEBELUM pull/merge.
+- Jangan skip fetch dan langsung pull yang mengandalkan ref lokal.
+
+### Metadata
+- Source: user_feedback
+- Related Files: COMMON/project-sd-methodist-11/, WEBSITE-METHODIST11.md
+- Tags: git, pull, fetch, website
