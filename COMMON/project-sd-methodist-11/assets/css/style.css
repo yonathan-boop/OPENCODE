@@ -84,9 +84,15 @@ html { font-size: 20px; scroll-behavior: smooth; }
   .contact { background: #fff; text-align: center; }
   .contact .info { font-weight: 600; color: var(--teks); margin-bottom: 6px; }
   .contact .info .lbl { display: block; color: var(--abu); font-size: .85rem; font-weight: 400; }
-  .sosmed { display: flex; justify-content: center; gap: 14px; margin: 24px 0; flex-wrap: wrap; }
-  .sosmed a { display: inline-block; background: var(--biru-tua); color: #fff; text-decoration: none; font-size: .85rem; font-weight: 700; padding: 10px 20px; border-radius: 999px; transition: background .15s; }
-  .sosmed a:hover { background: var(--biru); }
+  .sosmed { display: flex; justify-content: center; align-items: center; gap: 14px; margin: 24px 0; flex-wrap: wrap; }
+  .sosmed a { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; color: #fff; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,.12); transition: transform .2s ease; }
+  .sosmed a svg { display: block; flex-shrink: 0; }
+  .sosmed a.fb { background: #1877F2; }
+  .sosmed a.ig { background: #E4405F; }
+  .sosmed a.yt { background: #FF0000; }
+  .sosmed a.wa { background: #25D366; }
+  .sosmed a.op { background: #1E3A8A; }
+  .sosmed a:hover { transform: scale(1.1); }
   .catatan { background: #fef3c7; border: 1px solid #fcd34d; color: #92400e; border-radius: 12px; padding: 16px 20px; max-width: 640px; margin: 20px auto 0; font-size: .88rem; }
 
   .map-wrap { background: #fff; border-radius: 14px; padding: 12px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
