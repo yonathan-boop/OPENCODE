@@ -1,0 +1,7 @@
+#!/bin/sh
+# Auto-bump website version footer saat ada file website yang di-commit.
+if git diff --cached --name-only | grep -Eq 'COMMON/project-sd-methodist-11/(index\.html|pages/|assets/css/)'; then
+  powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$(git rev-parse --show-toplevel)/COMMON/project-sd-methodist-11/bump-version.ps1" || exit 1
+  git add COMMON/project-sd-methodist-11/index.html COMMON/project-sd-methodist-11/pages COMMON/project-sd-methodist-11/assets/css
+fi
+exit 0
