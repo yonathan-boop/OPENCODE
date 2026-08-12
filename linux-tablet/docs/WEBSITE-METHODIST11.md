@@ -1,6 +1,6 @@
 # WEBSITE SD METHODIST-11 + CLOUDFLARE TUNNEL (linux-tablet)
 
-Di-update: 11 Agustus 2026
+Di-update: 12 Agustus 2026
 
 ## Status: AKTIF & LIVE
 
@@ -34,6 +34,7 @@ Di-update: 11 Agustus 2026
 
 ## Catatan Penting
 
+- **12 Agustus 2026:** Tambah section "Lokasi Kami" (#lokasi) di index.html — Google Maps embed (q=3.5271,98.6891, z=16, output=embed tanpa API key) + link "Petunjuk Arah". Commit `3b9570a`. Perlu `git pull` + restart website di linux-tablet biar live.
 - **DNS cache lokal tablet** sempat nyimpen NXDOMAIN lama → kalau curl 000/ga resolve, bypass dengan `--resolve methodist-11.my.id:443:104.21.87.167` atau tunggu beberapa menit.
 - **Error 1033** = DNS record bukan CNAME tunnel / hostname gak di-ingress → cek tab Public Hostname di dashboard Zero Trust.
 - **JANGAN pakai quick tunnel** untuk domain ini — domain sudah route ke named tunnel "Linux HP".
