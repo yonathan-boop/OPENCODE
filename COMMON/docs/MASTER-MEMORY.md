@@ -758,6 +758,16 @@ webbrowser.open('https://youtube.com')
 - File: `~/.config/opencode/opencode.jsonc` — model lama `opencode/ling-3.0-tiny-free` diganti
 - Keputusan user: big pickle jadi model utama
 
+### 12 Agustus 2026 — yonat-PC
+- **Website SD Methodist-11** (`COMMON/project-sd-methodist-11/`): ikon sosmed pakai SVG brand resmi (FB/IG/YT/WA/Operator), warna brand + lingkaran 48px seragam
+- **Catatan kaki versi** di footer semua 13 halaman: `Versi 0.0002` (style kecil `.footer-meta`)
+- **Auto-bump versi OTOMATIS**: setiap commit yang menyentuh file website (index.html, pages/, assets/css/) → versi footer naik 1 tingkat (0.0002 → 0.0003, dst) via pre-commit hook
+  - Script: `COMMON/project-sd-methodist-11/bump-version.ps1`
+  - Hook: `.githooks/pre-commit` (ter-commit ke repo), `core.hooksPath=.githooks` di-set di PC ini
+  - **PC lain WAJIB jalankan** `git config core.hooksPath .githooks` sekali setelah pull, biar hook ikut aktif
+  - Jangan edit footer-meta versi manual — biar hook yang naikin
+- Commit terkait: `980a340` (catatan kaki), `b8ae2aa` (setup auto-bump)
+
 ---
 
 *Catatan: Semua konfigurasi di-sync via GitHub*
