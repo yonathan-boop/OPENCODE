@@ -1,6 +1,6 @@
 # Memory Summary - PC-05 (PC Guru)
 
-Terakhir diupdate: 2026-08-10
+Terakhir diupdate: 2026-08-13
 
 ## User Info
 - **Nama**: PC-05
@@ -21,9 +21,8 @@ Terakhir diupdate: 2026-08-10
 1. **Memory System** - Sistem memory lintas PC (aktif)
 
 ## Session Terakhir
-Tanggal: 2026-08-10 (2 sesi)
-Topik Sesi 1: Integrasi pertama PC-05 ke memory system, identitas PC Guru
-Topik Sesi 2: Debloat PC-05 — buang bloatware & matikan startup yang tidak penting
+Tanggal: 2026-08-13
+Topik: PC lelet — matikan semua proses selain Chrome & Word; RAM bebas naik 0.8 → 1.78 GB
 Status: Selesai
 
 ## Debloat PC-05 (10 Agustus 2026)
@@ -34,3 +33,12 @@ Status: Selesai
 - Auto-cleanup tiap login: scheduled task "PC-Guru-Cleanup" → jalankan PC-05/scripts/pc-guru-cleanup.ps1
 - Edge: jarang dipakai → auto-mati tiap login (proses msedge di-kill di pc-guru-cleanup.ps1), tetap bisa dibuka manual
 - RAM bebas naik ~2.0 → 2.9 GB (dari 7.8 GB)
+
+## Cleanup Tambahan (13 Agustus 2026) — hanya Chrome & Word
+- Masalah: PC lelet, user mau pakai Chrome + Word saja, yang lain dimatikan
+- Ditambahkan ke pc-guru-cleanup.ps1 (permanen, jalan tiap login elevated):
+  - Kill proses: msedgewebview2, SearchHost, SnippingTool, TiWorker, WidgetService
+  - Service Disabled: **wuauserv** (Windows Update — update memang dikunci user, wuauserv masih jalan & bikin TiWorker 775 MB), **WSearch** (Windows Search — biang webview2/SearchHost yang bangkit lagi)
+  - Widgets dimatikan permanen via policy `HKLM\SOFTWARE\Policies\Microsoft\Dsh` → AllowNewsAndInterests=0
+- Hasil: RAM bebas 0.8 → 1.78 GB, TiWorker/Widgets/SnippingTool mati permanen, Chrome & Word tetap jalan
+- Catatan: msedgewebview2/SearchHost bisa muncul lagi saat Start menu / search box dibuka — wajar, cuma seumur dipakai
