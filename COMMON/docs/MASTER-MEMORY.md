@@ -223,11 +223,25 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | 11/8 | TKB1 | Lucas Helsinki Sijabat | I |
 | 11/8 | TKB1 | Aletta Felicia Siburian (disebut "Alleta") | S |
 
+### Absensi 12 Agustus 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 12/8 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 12/8 | PG | Stefano Benedict Imanuel (disebut "Stevano") | I |
+| 12/8 | PG | Axelle Sean Chandra (disebut "Axele") | I |
+| 12/8 | TKB2 | Ferencia Lu | S |
+| 12/8 | TKB1 | Lucas Helsinki Sijabat | I |
+| 12/8 | TKa | Carencya Chailinskie (disebut "Carenya") | S |
+| 12/8 | TKa | Axelle Tiandra Ong (disebut "Axell") | S |
+| 12/8 | TKa | Mikaylo Zionathan Girsang | S |
+| 12/8 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+
 - **KIMITA KELUAR SEKOLAH (10 Agustus 2026):** Kimita Dessyana Meisim (PG) resmi keluar dari sekolah → row-nya dihapus dari roster PG di versi file terbaru (arsip tetap ada di file versi lama). Jangan cari/mark Kimita lagi.
 - Nama murid dicocokkan fonetik: Mikayla→Mikaylo Zionathan Girsang (TKa)
-- File versi terbaru: Absensi 11 Agustus 2026 Tuesday 13_48_14.xlsx
-- Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn, Richele→Richelcia, Kayvant→Kayyvant, Shelomita→Shelomitha, Sharene→Sharren
-- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 → v-tgl-11 (VERSI TERBARU, 7 mark). ABSENSI Agustus.xlsx = v1.0 kosong.
+- File versi terbaru: Absensi 12 Agustus 2026 Wednesday 08_51_41.xlsx
+- Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn, Richele→Richelcia, Kayvant→Kayyvant, Shelomita→Shelomitha, Sharene→Sharren, Stevano→Stefano Benedict Imanuel, Axele→Axelle Sean Chandra, Carenya→Carencya Chailinskie, Axell→Axelle Tiandra Ong
+- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 → v-tgl-11 (7 mark) → v-tgl-12 (VERSI TERBARU, 9 mark). ABSENSI Agustus.xlsx = v1.0 kosong.
 - Format nama versi: tgl dulu baru bulan, jam_menit_detik = waktu asli (mis. "Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx").
 
 ### Kelas: TKa, TKB1, TKB2, PG
