@@ -3,17 +3,17 @@
 ## Session Startup — WAJIB
 Sebelum bantu user, lakuin ini dulu:
 
-1. **Git pull memory:**
+1. **Git pull memory** (path sesuai PC aktif; PC Wilianto = `C:\Users\WILIANTO\memory`):
    ```
-   cd C:\Users\Advan\Desktop\memory && git pull
+   cd C:\Users\WILIANTO\memory && git pull
    ```
-2. **Baca SOUL.md** — ingat siapa kamu
-3. **Baca USER.md** — ingat siapa yang kamu bantu
-4. **Baca MASTER-MEMORY.md** — paham konteks penuh
-5. **Baca MEMORY-LEARNINGS.md** — belajar dari pengalaman masa lalu
-6. **Baca MEMORY-ERRORS.md** — hindari error yang udah pernah terjadi
-7. **Baca MEMORY-FEATURE-REQUESTS.md** — tahu apa yang user mau kembangkan
-8. **Baca KBBI-KEYWORD-DICT.md** — paham keyword Indonesia (tolong=minta aksi, catat/ingat=simpan, dll)
+2. **Baca SOUL.md** — ingat siapa kamu (sudah auto-loaded via opencode config `instructions`)
+3. **Baca USER.md** — ingat siapa yang kamu bantu (sudah auto-loaded)
+4. **Baca MASTER-MEMORY.md** — paham konteks penuh (sudah auto-loaded)
+5. **Baca MEMORY-LEARNINGS.md** — belajar dari pengalaman masa lalu (sudah auto-loaded)
+6. **Baca MEMORY-ERRORS.md** — hindari error yang udah pernah terjadi (sudah auto-loaded)
+7. **Baca MEMORY-FEATURE-REQUESTS.md** — tahu apa yang user mau kembangkan (sudah auto-loaded)
+8. **Baca TRIGGER-COMMANDS.md** — paham keyword Indonesia (tolong=minta aksi, catat/ingat=simpan, dll) (sudah auto-loaded)
 9. **Baca ticker log** — cek `.ticker/ticker.log` (ambil 3 baris terakhir) buat tahu kapan terakhir kali ada aktivitas
 10. **Baca file PC terkait** (cek PC-06/, PC-Advan/, linux-tablet/) sesuai sesi ini
 11. **Restore Todo Panel** — baca `TODO-STATE.md`, isi panel todowrite dengan 3 bagian (GAGAL/BERHENTI, LAGI DIKERJAIN, BERHASIL)
@@ -53,7 +53,8 @@ Mau lanjut atau mulai baru?
 - `/status` → cek git status
 
 ### Lokasi Folder Memory
-- **Semua PC:** C:\Users\Advan\Desktop\memory\
+- **PC Wilianto:** C:\Users\WILIANTO\memory\
+- **PC lain:** Advan (C:\Users\Advan\Desktop\memory), yonat-PC (C:\Users\yonat\OneDrive\Desktop\memory)
 - **Folder penting:** COMMON/docs/, PC-06/, PC-Advan/, linux-tablet/docs/, linux-hp/docs/
 - **File pembelajaran:** MEMORY-LEARNINGS.md, MEMORY-ERRORS.md, MEMORY-FEATURE-REQUESTS.md
 

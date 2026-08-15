@@ -4,20 +4,20 @@
 
 Saat session baru dimulai, ATAU saat user ketik "halo", "hai", "hello", atau sapaan lainnya:
 
-1. **Git pull memory:**
+1. **Git pull memory** (path sesuai PC aktif; PC Wilianto = `C:\Users\WILIANTO\memory`):
    ```
-   cd C:\Users\yonat\OneDrive\Desktop\memory && git pull
+   cd C:\Users\WILIANTO\memory && git pull
    ```
 
-2. **Baca file berikut secara berurutan:**
-   - `C:\Users\yonat\OneDrive\Desktop\memory\VS&OPENCODE\SOUL.md` — Identitas AI
-   - `C:\Users\yonat\OneDrive\Desktop\memory\VS&OPENCODE\USER.md` — Profil user
-   - `C:\Users\yonat\OneDrive\Desktop\memory\VS&OPENCODE\AGENTS.md` — Protokol kerja
-   - `C:\Users\yonat\OneDrive\Desktop\memory\COMMON\docs\MASTER-MEMORY.md` — Memory utama
-   - `C:\Users\yonat\OneDrive\Desktop\memory\COMMON\docs\MEMORY-LEARNINGS.md` — Pembelajaran
-   - `C:\Users\yonat\OneDrive\Desktop\memory\COMMON\docs\MEMORY-ERRORS.md` — Error yang perlu dihindari
-   - `C:\Users\yonat\OneDrive\Desktop\memory\PC-06\summary.md` — Ringkasan PC
-   - `C:\Users\yonat\OneDrive\Desktop\memory\PC-06\facts.md` — Fakta user
+2. **Baca file berikut secara berurutan** (semua sudah auto-loaded via opencode config `instructions` di PC Wilianto):
+   - `C:\Users\WILIANTO\memory\VS&OPENCODE\SOUL.md` — Identitas AI
+   - `C:\Users\WILIANTO\memory\VS&OPENCODE\USER.md` — Profil user
+   - `C:\Users\WILIANTO\memory\VS&OPENCODE\AGENTS.md` — Protokol kerja
+   - `C:\Users\WILIANTO\memory\COMMON\docs\MASTER-MEMORY.md` — Memory utama
+   - `C:\Users\WILIANTO\memory\COMMON\docs\MEMORY-LEARNINGS.md` — Pembelajaran
+   - `C:\Users\WILIANTO\memory\COMMON\docs\MEMORY-ERRORS.md` — Error yang perlu dihindari
+   - `C:\Users\WILIANTO\memory\PC-06\summary.md` — Ringkasan PC
+   - `C:\Users\WILIANTO\memory\PC-06\facts.md` — Fakta user
 
 3. **Set todo panel** dari `VS&OPENCODE/.learnings/TODO-STATE.md`
 
@@ -58,6 +58,6 @@ Saat session baru dimulai, ATAU saat user ketik "halo", "hai", "hello", atau sap
 
 ## Memory Location
 
-- **Folder:** `C:\Users\yonat\OneDrive\Desktop\memory`
+- **Folder (PC Wilianto):** `C:\Users\WILIANTO\memory`
 - **GitHub:** https://github.com/yonathan-boop/OPENCODE
-- **PC aktif:** yonat-PC (Windows baru, user: yonat)
+- **PC aktif:** PC Wilianto (WILIANTO-PC, user: WILIANTO)
