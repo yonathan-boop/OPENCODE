@@ -42,23 +42,26 @@ Di-update: 11 Agustus 2026
 
 ### WEBSITE SD METHODIST-11 + DOMAIN (15 Agustus 2026)
 - **Domain:** methodist-11.my.id (Cloudflare, proxied)
-- **Tunnel:** `pc-06` (ID `34a83caa-06fb-458f-8ea6-86a7731b8fe7`) — dashboard-managed (token mode)
-- **cloudflared:** C:\Program Files (x86)\cloudflared\cloudflared.exe (v2026.8.2), service `Cloudflared` (Auto, LocalSystem), command: `tunnel run --token-file C:\ProgramData\cloudflared\token`
-- **Origin:** http://localhost:8090 → `python http.server 8090` di `COMMON/project-sd-methodist-11`
-- **DNS:** `@` CNAME → `34a83caa-06fb-458f-8ea6-86a7731b8fe7.cfargotunnel.com` (proxy ON). JANGAN pakai A/AAAA → bikin error 530.
-- **Public Hostname tunnel:** methodist-11.my.id → http://localhost:8090 (Zero Trust → Tunnels → pc-06)
+- **Tunnel AKTIF (baru, 15/8):** ID `21b93a76-e59c-4f4e-b627-0302883f3f8d` — dashboard-managed (token mode). Ganti karena versi cloudflared lama (2024.10.1) tidak support; upgrade ke v2026.8.2.
+- **Tunnel LAMA (tidak dipakai lagi):** `pc-06` (ID `34a83caa-06fb-458f-8ea6-86a7731b8fe7`)
+- **cloudflared:** C:\Program Files (x86)\cloudflared\cloudflared.exe (v2026.8.2 via winget upgrade), service `Cloudflared` (Auto, LocalSystem), command: `tunnel run --token eyJ...` (token tunnel 21b93a76)
+- **Origin:** http://localhost:8090 → web server Node (`serve8090.js` di temp opencode) serve `COMMON/project-sd-methodist-11` di **PC Wilianto** (server utama). Python belum terinstall.
+- **DNS:** `@` CNAME → `21b93a76-e59c-4f4e-b627-0302883f3f8d.cfargotunnel.com` (proxy ON). JANGAN pakai A/AAAA → bikin error 530.
+- **Public Hostname tunnel:** methodist-11.my.id → http://localhost:8090 (Zero Trust → Tunnels → tunnel 21b93a76)
 - **Error 1033/530:** penyebabnya DNS record masih A/AAAA, bukan CNAME ke tunnel. Fix: delete A/AAAA, add CNAME. Record A/AAAA yang "auto muncul" harus dihapus dulu, baru CNAME bisa dibuat.
-- **Cara nyalakan website:** 1) `python -m http.server 8090` (folder project) 2) service Cloudflared harus Running
+- **Error 503:** connector terhubung tapi origin tak terjangkau → cek web server 8090 jalan + versi cloudflared harus baru (update via winget).
+- **Cara nyalakan website:** 1) web server 8090 jalan (Node serve8090.js atau python http.server) 2) service Cloudflared harus Running. Di PC Wilianto sudah otomatis via Task Scheduler `Start-SDWebsite`.
 - **2 PC 1 domain (konsep, 15/8):** bisa — 1 tunnel + connector cloudflared di tiap PC (copy token/config), DNS tetap nunjuk ke tunnel ID yang sama. PC yang online aja yang dijalankan cloudflared-nya. Subdomain beda per PC juga bisa.
-- **PEMBAGIAN PERAN (15/8):** yonat-PC = **pembuat & testing** website (jalanin localhost:8090 + service Cloudflared buat testing). PC Wilianto = **server utama** (nanti yang jadi tujuan tunnel/domain methodist-11.my.id).
+- **PEMBAGIAN PERAN (15/8):** yonat-PC = **pembuat & testing** website. PC Wilianto = **server utama** (tunnel 21b93a76 → localhost:8090, website LIVE 200).
 
-### PC Wilianto (SERVER WEBSITE - BARU, 15 Agustus 2026)
-- Nama: PC Wilianto, user `WILIANTO` (Windows)
-- Peran: **server utama website SD Methodist-11** (tunnel pc-06 → localhost:8090)
-- **Node.js:** udah terinstall (C:\Program Files\nodejs) → npm jalan
-- **Status setup:** lagi install opencode via `npm install -g opencode-ai`; fix error PowerShell: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
-- **Rencana:** clone memory repo (token sudah dikasih user), install cloudflared, jalanin tunnel + http.server 8090
-- **GitHub:** https://github.com/yonathan-boop/OPENCODE
+### PC Wilianto (SERVER WEBSITE - AKTIF, 15 Agustus 2026)
+- Nama: PC Wilianto, user `WILIANTO` (Windows), komputer `WILIANTO-PC`
+- Peran: **server utama website SD Methodist-11** (tunnel 21b93a76 → localhost:8090) — **SELESAI, website live status 200**
+- **Node.js:** v24.19.0 terinstall (C:\Program Files\nodejs) → npm jalan
+- **cloudflared:** v2026.8.2 (upgrade dari 2024.10.1), service `Cloudflared` Auto
+- **Web server:** node script serve8090.js (static server, folder `C:\Users\WILIANTO\memory\COMMON\project-sd-methodist-11`), Task Scheduler `Start-SDWebsite` biar otomatis jalan
+- **Python:** belum terinstall (pakai Node dulu)
+- **GitHub:** https://github.com/yonathan-boop/OPENCODE (clone di C:\Users\WILIANTO\memory)
 
 ### Digitalisasi-PC / Laptop SD Dapodik (SAMA, 10 Agustus 2026)
 - Nama: Digitalisasi, Digitalisasi-PC, laptop sd dapodik — **ini mesin yang sama** (dikonfirmasi user 10 Agustus 2026)
