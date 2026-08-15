@@ -7,6 +7,7 @@ Di-update: 18 Juli 2026
 
 ## ≡≡≡ LAGI DIKERJAIN ≡≡≡
 - tunggu user racik website SD Methodist-11 dari PC → saat bilang siap, git pull biar update (12 Agustus 2026)
+- setup domain methodist-11.my.id → tunnel pc-06 (SELESAI 15/8, jalan status 200)
 
 ## ≡≡≡ BERHASIL ≡≡≡
 - bikin sub-agent protocol

@@ -40,6 +40,17 @@ Di-update: 11 Agustus 2026
 - Memory: C:\Users\yonat\OneDrive\Desktop\memory
 - GitHub token: ghp_ (classic, tanpa exp date) dipakai di remote URL — 10 Agustus 2026
 
+### WEBSITE SD METHODIST-11 + DOMAIN (15 Agustus 2026)
+- **Domain:** methodist-11.my.id (Cloudflare, proxied)
+- **Tunnel:** `pc-06` (ID `34a83caa-06fb-458f-8ea6-86a7731b8fe7`) — dashboard-managed (token mode)
+- **cloudflared:** C:\Program Files (x86)\cloudflared\cloudflared.exe (v2026.8.2), service `Cloudflared` (Auto, LocalSystem), command: `tunnel run --token-file C:\ProgramData\cloudflared\token`
+- **Origin:** http://localhost:8090 → `python http.server 8090` di `COMMON/project-sd-methodist-11`
+- **DNS:** `@` CNAME → `34a83caa-06fb-458f-8ea6-86a7731b8fe7.cfargotunnel.com` (proxy ON). JANGAN pakai A/AAAA → bikin error 530.
+- **Public Hostname tunnel:** methodist-11.my.id → http://localhost:8090 (Zero Trust → Tunnels → pc-06)
+- **Error 1033/530:** penyebabnya DNS record masih A/AAAA, bukan CNAME ke tunnel. Fix: delete A/AAAA, add CNAME. Record A/AAAA yang "auto muncul" harus dihapus dulu, baru CNAME bisa dibuat.
+- **Cara nyalakan website:** 1) `python -m http.server 8090` (folder project) 2) service Cloudflared harus Running
+- **2 PC 1 domain (konsep, 15/8):** bisa — 1 tunnel + connector cloudflared di tiap PC (copy token/config), DNS tetap nunjuk ke tunnel ID yang sama. PC yang online aja yang dijalankan cloudflared-nya. Subdomain beda per PC juga bisa.
+
 ### Digitalisasi-PC / Laptop SD Dapodik (SAMA, 10 Agustus 2026)
 - Nama: Digitalisasi, Digitalisasi-PC, laptop sd dapodik — **ini mesin yang sama** (dikonfirmasi user 10 Agustus 2026)
 - Status: opencode SUDAH terinstall

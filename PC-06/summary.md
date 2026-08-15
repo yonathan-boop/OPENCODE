@@ -19,11 +19,12 @@ Terakhir diupdate: 2026-08-15
 ## Project Aktif
 1. **Memory System** - Sistem memory (SELESAI, restored 2026-07-29)
 2. **Cloudflare Tunnel** - Ekspose localhost:5774 ke internet via trycloudflare.com (Quick Tunnel)
+3. **Website SD Methodist-11** - methodist-11.my.id (Cloudflare) via tunnel `pc-06` → localhost:8090 (SELESAI, 15 Agustus 2026)
 
 ## Session Terakhir
 Tanggal: 2026-08-15
-Topik: Absensi 13-15 Agustus 2026
-Status: Selesai (validasi lulus, 11 mark)
+Topik: Setup domain methodist-11.my.id → tunnel pc-06 → website SD Methodist-11 (localhost:8090)
+Status: Selesai (website jalan, status 200); sebelumnya: Absensi 13-15 Agustus (11 mark)
 
 ## Total Sessions: 10
 - 11 April 2026: Setup memory system
@@ -46,3 +47,4 @@ Status: Selesai (validasi lulus, 11 mark)
 - 11 Agustus 2026: Absensi 11 Agustus (Hans I; Jayoti I; Ruby S, Chesa S, Mikaylo S; Lucas I, Alleta S) — file: Absensi 11 Agustus 2026 Tuesday 13_48_14.xlsx; validasi lulus (7 mark)
 - 12 Agustus 2026: Absensi 12 Agustus (Hans I, Stefano I, Axelle Sean I; Ferencia S; Lucas I; Carencya S, Axelle Tiandra S, Mikaylo S, Chesa S) — file: Absensi 12 Agustus 2026 Wednesday 08_51_41.xlsx; validasi lulus (9 mark)
 - 15 Agustus 2026: Absensi 13-15 Agustus (13: Hans I, Mikaylo S, Axelle Tiandra S, Chesa S, Lucas I; 14: Valerie S, Axelle Tiandra S; 15: Axelle Sean I, Dareen I, Brielle S, Valerie S) — file: Absensi 15 Agustus 2026 Saturday 10_18_23.xlsx; Dareen Chandra ditambahkan user ke roster PG; validasi lulus (11 mark)
+- 15 Agustus 2026: Setup domain methodist-11.my.id → tunnel pc-06 → website SD Methodist-11 (localhost:8090). Fix: DNS harus CNAME ke tunnel (bukan A/AAAA) — error 530/1033 hilang, website jalan status 200. Detail di MASTER-MEMORY.md
