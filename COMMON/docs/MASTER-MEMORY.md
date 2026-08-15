@@ -50,6 +50,15 @@ Di-update: 11 Agustus 2026
 - **Error 1033/530:** penyebabnya DNS record masih A/AAAA, bukan CNAME ke tunnel. Fix: delete A/AAAA, add CNAME. Record A/AAAA yang "auto muncul" harus dihapus dulu, baru CNAME bisa dibuat.
 - **Cara nyalakan website:** 1) `python -m http.server 8090` (folder project) 2) service Cloudflared harus Running
 - **2 PC 1 domain (konsep, 15/8):** bisa — 1 tunnel + connector cloudflared di tiap PC (copy token/config), DNS tetap nunjuk ke tunnel ID yang sama. PC yang online aja yang dijalankan cloudflared-nya. Subdomain beda per PC juga bisa.
+- **PEMBAGIAN PERAN (15/8):** yonat-PC = **pembuat & testing** website (jalanin localhost:8090 + service Cloudflared buat testing). PC Wilianto = **server utama** (nanti yang jadi tujuan tunnel/domain methodist-11.my.id).
+
+### PC Wilianto (SERVER WEBSITE - BARU, 15 Agustus 2026)
+- Nama: PC Wilianto, user `WILIANTO` (Windows)
+- Peran: **server utama website SD Methodist-11** (tunnel pc-06 → localhost:8090)
+- **Node.js:** udah terinstall (C:\Program Files\nodejs) → npm jalan
+- **Status setup:** lagi install opencode via `npm install -g opencode-ai`; fix error PowerShell: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`
+- **Rencana:** clone memory repo (token sudah dikasih user), install cloudflared, jalanin tunnel + http.server 8090
+- **GitHub:** https://github.com/yonathan-boop/OPENCODE
 
 ### Digitalisasi-PC / Laptop SD Dapodik (SAMA, 10 Agustus 2026)
 - Nama: Digitalisasi, Digitalisasi-PC, laptop sd dapodik — **ini mesin yang sama** (dikonfirmasi user 10 Agustus 2026)
