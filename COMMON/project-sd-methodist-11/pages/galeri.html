@@ -4,7 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Galeri Kegiatan - Yayasan Pendidikan Kristen Methodist Titus TK-SD-SMP Swasta Methodist-11</title>
-<link rel="stylesheet" href="../assets/css/style.css?v=16">
+<script>
+  (function () {
+    try {
+      var t = localStorage.getItem('m11-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { }
+  })();
+</script>
+<link rel="stylesheet" href="../assets/css/style.css?v=17">
 </head>
 <body>
 
@@ -17,7 +25,6 @@
         <span class="logo-sub">TK-SD-SMP Swasta Methodist-11</span>
       </span>
     </a>
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     <nav id="menu">
       <div class="menu-row">
         <a href="../index.html#beranda">Beranda</a>
@@ -35,6 +42,10 @@
         <a class="e-rapor" href="https://eraportsdmethodist11.my.id/" target="_blank" rel="noopener">📍 E-Rapor</a>
       </div>
     </nav>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Ganti mode gelap terang" title="Mode gelap">🌙</button>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </div>
   </div>
 </header>
 
@@ -84,6 +95,19 @@
   </div>
 
 <script>
+  function toggleTheme() {
+    var el = document.documentElement;
+    var t = el.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    el.setAttribute('data-theme', t);
+    try { localStorage.setItem('m11-theme', t); } catch (e) { }
+    var b = document.getElementById('theme-toggle');
+    if (b) b.textContent = t === 'dark' ? '☀️' : '🌙';
+  }
+  (function () {
+    var b = document.getElementById('theme-toggle');
+    if (b) b.textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? '☀️' : '🌙';
+  })();
+
   function toggleMenu() { document.getElementById('menu').classList.toggle('open'); }
 
   function closeMenu() { document.getElementById('menu').classList.remove('open'); }

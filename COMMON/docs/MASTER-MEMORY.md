@@ -824,6 +824,7 @@ webbrowser.open('https://youtube.com')
 - **Navbar desktop 2 baris**: menu dibagi 2 baris via `.menu-row` (baris 1: Beranda/Kenapa Kami/Visi & Misi/Fasilitas/Pengumuman; baris 2: Kegiatan/Galeri/Lokasi/Kontak/Kalender Pendidikan/E-Rapor) biar tidak melebar; `scroll-margin-top` 90px; commit `bb192ea`
 - **Footer**: `Versi 0.0004 — Transparansi 50%` (teks transparansi diminta user dipasang lagi)
 - Commit terkait: `980a340` (catatan kaki), `b8ae2aa` (setup auto-bump), `3aff9b7` (cache-buster otomatis), `0bfcd7c` (menu kalender), `bb192ea` (navbar 2 baris)
+- **DARK MODE (15 Agustus 2026):** toggle 🌙/☀️ di navbar semua 14 halaman (tombol `.theme-toggle` dalam `.nav-actions`). CSS: hardcoded `#fff` di-refactor → `var(--surface)`; blok `[data-theme="dark"]` + variabel dark ditambahkan di akhir `style.css`. Anti-flash inline script di `<head>` tiap halaman (baca localStorage `m11-theme`, fallback `prefers-color-scheme`). Pilihan persist di localStorage `m11-theme`. Tema dark: latar `#0b1220`, surface `#121a2f`, teks `#e5e7eb`, biru terang `#60a5fa`, hero tetap gradient biru tua (`--hero-a/b` dikunci). Belum di-commit saat ini — cache-buster `?v=16` akan naik otomatis oleh pre-commit hook setelah commit.
 
 ---
 
