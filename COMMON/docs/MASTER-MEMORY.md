@@ -1,6 +1,6 @@
 # MEMORI KOMPREHENSIF - Admin's AI Assistant
 
-Di-update: 11 Agustus 2026
+Di-update: 19 Agustus 2026
 
 ---
 
@@ -276,12 +276,62 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | 15/8 | TKa | Brielle Claire Arinauli Pardosi | S |
 | 15/8 | TKa | Valerie Sharon Nainggolan | S |
 
+### Absensi 18-19 Agustus 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 18/8 | PG | Axelle Sean Chandra | I |
+| 18/8 | PG | Eireen Lorenzo | S |
+| 18/8 | TKa | Edbert Reynaldo Lim | S |
+| 18/8 | TKB(2) | Liora Eliana Panjaitan | S |
+| 18/8 | TKB(2) | Willian Geoffrey Utama | S |
+| 18/8 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+| 18/8 | TKB1 | Richelcia Wijaya | S |
+| 19/8 | PG | Nathanael Alessandro Buaya | S |
+| 19/8 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 19/8 | TKa | Edbert Reynaldo Lim | S |
+| 19/8 | TKa | Chesa Efrata Ronatio Tampubolon | I |
+| 19/8 | TKa | Axelle Tiandra Ong | S |
+| 19/8 | TKB(2) | Liora Eliana Panjaitan | S |
+| 19/8 | TKB(2) | Willian Geoffrey Utama | S |
+| 19/8 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+| 19/8 | TKB1 | Richelcia Wijaya | S |
+| 19/8 | TKB1 | Venedict Sky Lou | S |
+
 - **KIMITA KELUAR SEKOLAH (10 Agustus 2026):** Kimita Dessyana Meisim (PG) resmi keluar dari sekolah → row-nya dihapus dari roster PG di versi file terbaru (arsip tetap ada di file versi lama). Jangan cari/mark Kimita lagi.
 - Nama murid dicocokkan fonetik: Mikayla→Mikaylo Zionathan Girsang (TKa)
-- File versi terbaru: Absensi 15 Agustus 2026 Saturday 10_18_23.xlsx
+- File versi terbaru: Absensi 19 Agustus 2026 Tuesday 08_00_00.xlsx
 - Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn, Richele→Richelcia, Kayvant→Kayyvant, Shelomita→Shelomitha, Sharene→Sharren, Stevano→Stefano Benedict Imanuel, Axele→Axelle Sean Chandra, Carenya→Carencya Chailinskie, Axell→Axelle Tiandra Ong
-- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 → v-tgl-11 (7 mark) → v-tgl-12 (9 mark) → v-tgl-15 (VERSI TERBARU, 11 mark). ABSENSI Agustus.xlsx = v1.0 kosong.
+- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 → v-tgl-11 (7 mark) → v-tgl-12 (9 mark) → v-tgl-15 (11 mark) → v-tgl-19 (17 mark18-19) → v-tgl-21 (VERSI TERBARU, 19 mark20-21). ABSENSI Agustus.xlsx = v1.0 kosong.
 - Format nama versi: tgl dulu baru bulan, jam_menit_detik = waktu asli (mis. "Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx").
+
+### Absensi 20-21 Agustus 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 20/8 | PG | Nathanael Alessandro Buaya | S |
+| 20/8 | PG | Erick Raphael Nasution | S |
+| 20/8 | TKa | Edbert Reynaldo Lim | S |
+| 20/8 | TKa | Axelle Tiandra Ong | S |
+| 20/8 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+| 20/8 | TKB1 | Coryn Aurora Zhan | S |
+| 20/8 | TKB1 | Venedict Sky Lou | S |
+| 20/8 | TKB1 | Melvin Panca Sihombing | S |
+| 20/8 | TKB(2) | Darren Elvano | S |
+| 20/8 | TKB(2) | Lishaalini Krisna Naidu | S |
+| 20/8 | TKB(2) | Liora Eliana Panjaitan | S |
+| 20/8 | TKB(2) | Willian Geoffrey Utama | S |
+| 21/8 | PG | Nathanael Alessandro Buaya | S |
+| 21/8 | PG | Erick Raphael Nasution | S |
+| 21/8 | TKa | Axelle Tiandra Ong | S |
+| 21/8 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+| 21/8 | TKB(2) | Shane Michael Lienardie | S |
+| 21/8 | TKB(2) | Damian Almero Chen | S |
+| 21/8 | TKB(2) | Ferencia Lu | S |
+
+- File versi terbaru: Absensi 21 Agustus 2026 Friday 12_44_43.xlsx (12 mark tgl 20 + 7 mark tgl 21)
+- Nama mapping baru (konfirmasi user): "Eric"→Erick Raphael Nasution (PG), "Coryn"→Coryn Aurora Zhan (TKB1; HATI-HATI ada juga Corin Falove Manurung di TKB1 — 2 nama mirip 1 kelas), "Valencia"→**Ferencia Lu** (TKB2, user salah sebut Valencia), "Daren Elvano"→Darren Elvano (TKB2), "Lisahalini"→Lishaalini Krisna Naidu (TKB2), "Shane"→Shane Michael Lienardie, "Damian"→Damian Almero Chen
+- Catatan: Darren Elvano & Lishaalini sekarang di TKB(2) (naik kelas dari TKa tahun ajaran lalu); murid baru terdeteksi di roster: Shane Michael Lienardie, Damian Almero Chen, Coryn Aurora Zhan, Erick Raphael Nasution
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
@@ -716,6 +766,11 @@ webbrowser.open('https://youtube.com')
 - Install Tesseract OCR + image_tools_mcp untuk OCR local
 - Discuss OCR local solution (Tesseract + image_tools_mcp)
 - **ATURAN BARU: SEMUA HAL WAJIB DISIMPAN KE MEMORY**
+
+### 19 Agustus 2026 - yonat-PC (Session 1):
+- Absensi 18 Agustus (7 mark): PG (Axelle Sean I, Eireen S); TKa (Edbert S); TKB2 (Liora S, Willian S); TKB1 (Kayyvant S, Richelcia S)
+- Absensi 19 Agustus (10 mark): PG (Nathanael S, Hans I); TKa (Edbert S, Chesa I, Axelle Tiandra S); TKB2 (Liora S, Willian S); TKB1 (Kayyvant S, Richelcia S, Venedict S)
+- 17/17 command OK, 0 error
 
 ## 📋 CARA EDIT DOKUMEN UJIAN (WORD)
 

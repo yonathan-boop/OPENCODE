@@ -1,6 +1,6 @@
 # Memory Summary
 
-Terakhir diupdate: 2026-08-15
+Terakhir diupdate: 2026-08-19
 
 ## User Info
 - **Nama**: Digitalisasi (PC baru)
@@ -22,11 +22,11 @@ Terakhir diupdate: 2026-08-15
 3. **Website SD Methodist-11** - methodist-11.my.id (Cloudflare) via tunnel `pc-06` → localhost:8090 (SELESAI, 15 Agustus 2026)
 
 ## Session Terakhir
-Tanggal: 2026-08-15
-Topik: Setup domain methodist-11.my.id → tunnel BARU 21b93a76 → PC Wilianto (server utama) → website SD Methodist-11 (localhost:8090)
-Status: Selesai (website live status 200); sebelumnya: Absensi 13-15 Agustus (11 mark)
+Tanggal: 2026-08-21
+Topik: Absensi 20-21 Agustus (19 mark: 12 tgl 20 + 7 tgl 21) — file: Absensi 21 Agustus 2026 Friday 12_44_43.xlsx; mapping nama baru (Eric→Erick, Coryn→Coryn Aurora Zhan, Valencia→Ferencia Lu)
+Status: Selesai, validasi lulus
 
-## Total Sessions: 10
+## Total Sessions: 11
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
 - 12 Mei 2026: Absensi Mei + Agent Framework
@@ -48,3 +48,5 @@ Status: Selesai (website live status 200); sebelumnya: Absensi 13-15 Agustus (11
 - 12 Agustus 2026: Absensi 12 Agustus (Hans I, Stefano I, Axelle Sean I; Ferencia S; Lucas I; Carencya S, Axelle Tiandra S, Mikaylo S, Chesa S) — file: Absensi 12 Agustus 2026 Wednesday 08_51_41.xlsx; validasi lulus (9 mark)
 - 15 Agustus 2026: Absensi 13-15 Agustus (13: Hans I, Mikaylo S, Axelle Tiandra S, Chesa S, Lucas I; 14: Valerie S, Axelle Tiandra S; 15: Axelle Sean I, Dareen I, Brielle S, Valerie S) — file: Absensi 15 Agustus 2026 Saturday 10_18_23.xlsx; Dareen Chandra ditambahkan user ke roster PG; validasi lulus (11 mark)
 - 15 Agustus 2026: Setup domain methodist-11.my.id → tunnel BARU 21b93a76 → PC Wilianto (server utama) → website SD Methodist-11 (localhost:8090). Fix: cloudflared harus v2026.8.2 (versi lama 2024.10.1 unsupported), DNS CNAME ke `21b93a76-...cfargotunnel.com` (bukan A/AAAA) — error 530/503 hilang, website live status 200. Detail di MASTER-MEMORY.md
+- 19 Agustus 2026: Absensi 18-19 Agustus (17 mark) — file baru: Absensi 19 Agustus 2026 Tuesday 08_00_00.xlsx. ERROR: AI langsung edit file lama (15 Agustus) tanpa bikin versi baru → di-restore via git restore, file baru dibuat. VALIDASI WAJIB: copy → file baru → update FILE_PATH → isi → validasi
+- 21 Agustus 2026: Absensi 20-21 Agustus (12+7 mark) — file: Absensi 21 Agustus 2026 Friday 12_44_43.xlsx; mapping: Eric→Erick Raphael Nasution, Coryn→Coryn Aurora Zhan (bukan Corin Falove Manurung), Valencia→Ferencia Lu; murid baru di roster: Shane Michael Lienardie, Damian Almero Chen, Coryn Aurora Zhan, Erick Raphael Nasution; validasi lulus
