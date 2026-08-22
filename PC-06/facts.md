@@ -29,6 +29,7 @@ Fakta-fakta penting tentang user yang harus saya ingat:
 ## Projects
 - Memory system: Sistem memory baru (dibuat 11 April 2026)
 - Sinkronisasi: Semua memory di-sync via GitHub
+- Website SD Methodist-11: LIVE 22 Agustus 2026 — host di server Linux (root, /root/memory), tunnel Cloudflare 8f8b0f53 → localhost:8090. Recovery kit: linux-server/docs/SERVER-SETUP.md + linux-server/scripts/start-website.sh (token tunnel di dalamnya)
 
 ## OCR & Image Tools
 - Tesseract OCR: C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.0)

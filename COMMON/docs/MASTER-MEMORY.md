@@ -40,19 +40,16 @@ Di-update: 19 Agustus 2026
 - Memory: C:\Users\yonat\OneDrive\Desktop\memory
 - GitHub token: ghp_ (classic, tanpa exp date) dipakai di remote URL — 10 Agustus 2026
 
-### WEBSITE SD METHODIST-11 + DOMAIN (15 Agustus 2026)
+### WEBSITE SD METHODIST-11 + DOMAIN (UPDATE 22 Agustus 2026 — PINDAH SERVER)
 - **Domain:** methodist-11.my.id (Cloudflare, proxied)
-- **Tunnel AKTIF (baru, 15/8):** ID `21b93a76-e59c-4f4e-b627-0302883f3f8d` — dashboard-managed (token mode). Ganti karena versi cloudflared lama (2024.10.1) tidak support; upgrade ke v2026.8.2.
-- **Tunnel LAMA (tidak dipakai lagi):** `pc-06` (ID `34a83caa-06fb-458f-8ea6-86a7731b8fe7`)
-- **cloudflared:** C:\Program Files (x86)\cloudflared\cloudflared.exe (v2026.8.2 via winget upgrade), service `Cloudflared` (Auto, LocalSystem), command: `tunnel run --token eyJ...` (token tunnel 21b93a76)
-- **Origin:** http://localhost:8090 → web server Node (`serve8090.js` di temp opencode) serve `COMMON/project-sd-methodist-11` di **PC Wilianto** (server utama). Python belum terinstall.
-- **DNS:** `@` CNAME → `21b93a76-e59c-4f4e-b627-0302883f3f8d.cfargotunnel.com` (proxy ON). JANGAN pakai A/AAAA → bikin error 530.
-- **Public Hostname tunnel:** methodist-11.my.id → http://localhost:8090 (Zero Trust → Tunnels → tunnel 21b93a76)
-- **Error 1033/530:** penyebabnya DNS record masih A/AAAA, bukan CNAME ke tunnel. Fix: delete A/AAAA, add CNAME. Record A/AAAA yang "auto muncul" harus dihapus dulu, baru CNAME bisa dibuat.
-- **Error 503:** connector terhubung tapi origin tak terjangkau → cek web server 8090 jalan + versi cloudflared harus baru (update via winget).
-- **Cara nyalakan website:** 1) web server 8090 jalan (Node serve8090.js atau python http.server) 2) service Cloudflared harus Running. Di PC Wilianto sudah otomatis via Task Scheduler `Start-SDWebsite`.
-- **2 PC 1 domain (konsep, 15/8):** bisa — 1 tunnel + connector cloudflared di tiap PC (copy token/config), DNS tetap nunjuk ke tunnel ID yang sama. PC yang online aja yang dijalankan cloudflared-nya. Subdomain beda per PC juga bisa.
-- **PEMBAGIAN PERAN (15/8):** yonat-PC = **pembuat & testing** website. PC Wilianto = **server utama** (tunnel 21b93a76 → localhost:8090, website LIVE 200).
+- **Tunnel AKTIF (baru, 22/8):** ID `8f8b0f53-c70d-4bec-85d9-34e24da3c8ff` — dashboard-managed (token mode), jalan di **SERVER LINUX** milik user (root, online >5 bulan).
+- **Host sekarang = Server Linux:** clone memory di `/root/memory`, cloudflared v2026.8.2 (`cloudflared tunnel run --token <TOKEN>`, log /var/log/cloudflared-tunnel.log) + web server Node `serve8090.js` port 8090 serve `/root/memory/COMMON/project-sd-methodist-11` (log /var/log/sd-website.log). TIDAK ada systemd → proses pakai setsid double-fork; **setelah reboot jalankan**: `bash ~/memory/linux-server/scripts/start-website.sh`
+- **RECOVERY KIT:** `linux-server/docs/SERVER-SETUP.md` (langkah pindah server lengkap) + `linux-server/scripts/start-website.sh` (token tunnel ada di variabel TOKEN)
+- **Tunnel LAMA (tidak dipakai):** `21b93a76` (PC Wilianto, 15/8), `pc-06` (ID `34a83caa-06fb-458f-8ea6-86a7731b8fe7`), `Linux HP` (ID `912a22fa-051a-4891-897a-f2ff20f2d5f2`, linux-tablet)
+- **DNS:** `@` CNAME → `8f8b0f53-c70d-4bec-85d9-34e24da3c8ff.cfargotunnel.com` (proxy ON). JANGAN pakai A/AAAA → bikin error 530. Ganti DNS harus manual di dashboard (Zero Trust public hostname TIDAK otomatis menimpa record lama → error 1033 menetap)
+- **Public Hostname tunnel 8f8b0f53:** methodist-11.my.id → http://localhost:8090 (config ter-push otomatis ~30 detik)
+- **Error 502/503:** connector terhubung tapi origin mati → cek web server 8090. **Error 1033/530:** DNS/CNAME salah tunnel atau tunnel tak aktif.
+- **PEMBAGIAN PERAN (update 22/8):** yonat-PC = pembuat & testing website. **Server Linux = server utama** (tunnel 8f8b0f53 → localhost:8090, LIVE 200). PC Wilianto tidak lagi melayani website.
 
 ### PC Wilianto (SERVER WEBSITE - AKTIF, 15 Agustus 2026)
 - Nama: PC Wilianto, user `WILIANTO` (Windows), komputer `WILIANTO-PC`

@@ -1,6 +1,6 @@
 # Memory Summary
 
-Terakhir diupdate: 2026-08-19
+Terakhir diupdate: 2026-08-22
 
 ## User Info
 - **Nama**: Digitalisasi (PC baru)
@@ -19,7 +19,7 @@ Terakhir diupdate: 2026-08-19
 ## Project Aktif
 1. **Memory System** - Sistem memory (SELESAI, restored 2026-07-29)
 2. **Cloudflare Tunnel** - Ekspose localhost:5774 ke internet via trycloudflare.com (Quick Tunnel)
-3. **Website SD Methodist-11** - methodist-11.my.id (Cloudflare) via tunnel `pc-06` → localhost:8090 (SELESAI, 15 Agustus 2026)
+3. **Website SD Methodist-11** - methodist-11.my.id (Cloudflare) via tunnel 8f8b0f53 → server Linux (/root/memory) → localhost:8090 (LIVE, 22 Agustus 2026; pindah dari PC Wilianto/tunnel 21b93a76)
 
 ## Session Terakhir
 Tanggal: 2026-08-21
@@ -50,3 +50,4 @@ Status: Selesai, validasi lulus
 - 15 Agustus 2026: Setup domain methodist-11.my.id → tunnel BARU 21b93a76 → PC Wilianto (server utama) → website SD Methodist-11 (localhost:8090). Fix: cloudflared harus v2026.8.2 (versi lama 2024.10.1 unsupported), DNS CNAME ke `21b93a76-...cfargotunnel.com` (bukan A/AAAA) — error 530/503 hilang, website live status 200. Detail di MASTER-MEMORY.md
 - 19 Agustus 2026: Absensi 18-19 Agustus (17 mark) — file baru: Absensi 19 Agustus 2026 Tuesday 08_00_00.xlsx. ERROR: AI langsung edit file lama (15 Agustus) tanpa bikin versi baru → di-restore via git restore, file baru dibuat. VALIDASI WAJIB: copy → file baru → update FILE_PATH → isi → validasi
 - 21 Agustus 2026: Absensi 20-21 Agustus (12+7 mark) — file: Absensi 21 Agustus 2026 Friday 12_44_43.xlsx; mapping: Eric→Erick Raphael Nasution, Coryn→Coryn Aurora Zhan (bukan Corin Falove Manurung), Valencia→Ferencia Lu; murid baru di roster: Shane Michael Lienardie, Damian Almero Chen, Coryn Aurora Zhan, Erick Raphael Nasution; validasi lulus
+- 22 Agustus 2026: Server BARU Linux (root) jadi host website methodist-11.my.id — clone memory ke /root/memory, setup opencode.json instructions auto-load memory, install cloudflared v2026.8.2, web server node serve8090.js port 8090, tunnel BARU 8f8b0f53 (token), DNS CNAME diganti manual di dashboard → 8f8b0f53-....cfargotunnel.com (error 530 hilang setelah DNS diganti). PC Wilianto (21b93a76) tidak dipakai lagi. Recovery kit di linux-server/. Website live HTTP 200
