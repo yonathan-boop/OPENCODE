@@ -299,7 +299,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - Nama murid dicocokkan fonetik: Mikayla→Mikaylo Zionathan Girsang (TKa)
 - File versi terbaru: Absensi 19 Agustus 2026 Tuesday 08_00_00.xlsx
 - Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn, Richele→Richelcia, Kayvant→Kayyvant, Shelomita→Shelomitha, Sharene→Sharren, Stevano→Stefano Benedict Imanuel, Axele→Axelle Sean Chandra, Carenya→Carencya Chailinskie, Axell→Axelle Tiandra Ong
-- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 → v-tgl-11 (7 mark) → v-tgl-12 (9 mark) → v-tgl-15 (11 mark) → v-tgl-19 (17 mark18-19) → v-tgl-21 (VERSI TERBARU, 19 mark20-21). ABSENSI Agustus.xlsx = v1.0 kosong.
+- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 → v-tgl-11 (7 mark) → v-tgl-12 (9 mark) → v-tgl-15 (11 mark) → v-tgl-19 (17 mark18-19) → v-tgl-21 (19 mark20-21) → v-tgl-22 (VERSI TERBARU, 8 mark22). ABSENSI Agustus.xlsx = v1.0 kosong.
 - Format nama versi: tgl dulu baru bulan, jam_menit_detik = waktu asli (mis. "Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx").
 
 ### Absensi 20-21 Agustus 2026
@@ -329,6 +329,24 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - File versi terbaru: Absensi 21 Agustus 2026 Friday 12_44_43.xlsx (12 mark tgl 20 + 7 mark tgl 21)
 - Nama mapping baru (konfirmasi user): "Eric"→Erick Raphael Nasution (PG), "Coryn"→Coryn Aurora Zhan (TKB1; HATI-HATI ada juga Corin Falove Manurung di TKB1 — 2 nama mirip 1 kelas), "Valencia"→**Ferencia Lu** (TKB2, user salah sebut Valencia), "Daren Elvano"→Darren Elvano (TKB2), "Lisahalini"→Lishaalini Krisna Naidu (TKB2), "Shane"→Shane Michael Lienardie, "Damian"→Damian Almero Chen
 - Catatan: Darren Elvano & Lishaalini sekarang di TKB(2) (naik kelas dari TKa tahun ajaran lalu); murid baru terdeteksi di roster: Shane Michael Lienardie, Damian Almero Chen, Coryn Aurora Zhan, Erick Raphael Nasution
+
+### Absensi 22 Agustus 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 22/8 | PG | Nathanael Alessandro Buaya | S |
+| 22/8 | PG | Erick Raphael Nasution | S |
+| 22/8 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+| 22/8 | TKa | Carencya Chailinskie | I |
+| 22/8 | TKa | Axelle Tiandra Ong | S |
+| 22/8 | TKa | Hugo Chavez Tarigan | I |
+| 22/8 | TKB(2) | Ferencia Lu | S |
+| 22/8 | TKB(2) | Jemia Zhevano Yamresa Kembaren | S |
+
+- File versi terbaru: Absensi 22 Agustus 2026 Saturday 10_00_52.xlsx (8 mark, validasi lulus)
+- Mapping hari ini: "Varencya"→Ferencia Lu (pola sama dgn "Valencia"), "Hugo"→Hugo Chavez Tarigan (TKa) — pertama kali tercatat
+- **ROSTER DISINKRONKAN** dengan `DAFTAR MURID T.P.2026-2027 lengkap.xlsx` (folder `PC-06/docs/Absensi T.P 2025-2026/`): TKa (33) & TKB(2) (25) identik; **Kayla Hosanna Charissa Sihombing** (TKB1 r11) DIHAPUS dari absensi — tidak ada di daftar resmi & tanpa mark; Kimita tetap tidak masuk (sudah keluar); urutan PG beda dikit (Dareen paling bawah) — dibiarkan aman
+- Prinsip user (22/8): update nama TIDAK BOLEH menggeser mark antar murid — rename selalu in-place per nama, jangan insert/delete row di tengah list
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
@@ -768,6 +786,12 @@ webbrowser.open('https://youtube.com')
 - Absensi 18 Agustus (7 mark): PG (Axelle Sean I, Eireen S); TKa (Edbert S); TKB2 (Liora S, Willian S); TKB1 (Kayyvant S, Richelcia S)
 - Absensi 19 Agustus (10 mark): PG (Nathanael S, Hans I); TKa (Edbert S, Chesa I, Axelle Tiandra S); TKB2 (Liora S, Willian S); TKB1 (Kayyvant S, Richelcia S, Venedict S)
 - 17/17 command OK, 0 error
+
+### 22 Agustus 2026 - yonat-PC (Session 1):
+- Absensi 22 Agustus (8 mark): PG (Nathanael S, Erick S); TKB1 (Kayyvant S); TKa (Carencya I, Axelle Tiandra S, Hugo Chavez Tarigan I); TKB(2) (Ferencia Lu S, Jemia S)
+- Hugo Chavez Tarigan (TKa) pertama kali tercatat; roster disinkronkan ke DAFTAR MURID T.P.2026-2027 lengkap.xlsx — Kayla Hosanna Charissa Sihombing (TKB1) dihapus (tak ada di daftar resmi, tanpa mark)
+- File: Absensi 22 Agustus 2026 Saturday 10_00_52.xlsx — validasi lulus (262=262 sel utuh)
+- Catatan teknis: task tool sub-agent return kosong 3x berturut-turut → eksekusi dialihkan manual oleh otak
 
 ## 📋 CARA EDIT DOKUMEN UJIAN (WORD)
 

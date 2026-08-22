@@ -210,3 +210,25 @@ Seringkali tanggal absensi tidak terisi / salah. User minta sistem validasi — 
 - Berlaku umum untuk semua task yang menghasilkan file output
 
 ---
+
+## [LRN-20260819-002] absensi_sistem_versi_wajib
+
+**Tanggal**: 2026-08-19
+**Priority**: critical
+**Status**: active
+
+### Summary
+User marah besar karena AI langsung edit file absensi tanpa bikin versi baru. Ini sudah aturan sejak 4 Agustus 2026 tapi AI masih melanggar.
+
+### Details
+- Sistem versi absensi: SETIAP update harus copy versi terbaru → file baru → isi data di file baru
+- JANGAN PERNAH edit file yang sudah ada langsung (in-place)
+- File lama = arsip, tidak boleh diubah
+- Format nama versi: `Absensi <tgl> <bulan> <tahun> <hari> <jam>_<menit>_<detik>.xlsx`
+
+### Action
+- WAJIB follow prosedur: copy → file baru → update FILE_PATH → isi → validasi
+- Kalau ragu, baca dulu MASTER-MEMORY.md bagian "SISTEM VERSI"
+- Jangan pernah anggap "edit in-place" sebagai cara cepat
+
+---

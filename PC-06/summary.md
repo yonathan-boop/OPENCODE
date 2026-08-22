@@ -22,11 +22,11 @@ Terakhir diupdate: 2026-08-22
 3. **Website SD Methodist-11** - methodist-11.my.id (Cloudflare) via tunnel 8f8b0f53 → server Linux (/root/memory) → localhost:8090 (LIVE, 22 Agustus 2026; pindah dari PC Wilianto/tunnel 21b93a76)
 
 ## Session Terakhir
-Tanggal: 2026-08-21
-Topik: Absensi 20-21 Agustus (19 mark: 12 tgl 20 + 7 tgl 21) — file: Absensi 21 Agustus 2026 Friday 12_44_43.xlsx; mapping nama baru (Eric→Erick, Coryn→Coryn Aurora Zhan, Valencia→Ferencia Lu)
+Tanggal: 2026-08-22
+Topik: Absensi 22 Agustus (8 mark) — file: Absensi 22 Agustus 2026 Saturday 10_00_52.xlsx; Hugo Chavez Tarigan (TKa) pertama kali tercatat; roster disinkronkan ke daftar resmi (Kayla TKB1 dihapus)
 Status: Selesai, validasi lulus
 
-## Total Sessions: 11
+## Total Sessions: 12
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
 - 12 Mei 2026: Absensi Mei + Agent Framework
@@ -51,3 +51,4 @@ Status: Selesai, validasi lulus
 - 19 Agustus 2026: Absensi 18-19 Agustus (17 mark) — file baru: Absensi 19 Agustus 2026 Tuesday 08_00_00.xlsx. ERROR: AI langsung edit file lama (15 Agustus) tanpa bikin versi baru → di-restore via git restore, file baru dibuat. VALIDASI WAJIB: copy → file baru → update FILE_PATH → isi → validasi
 - 21 Agustus 2026: Absensi 20-21 Agustus (12+7 mark) — file: Absensi 21 Agustus 2026 Friday 12_44_43.xlsx; mapping: Eric→Erick Raphael Nasution, Coryn→Coryn Aurora Zhan (bukan Corin Falove Manurung), Valencia→Ferencia Lu; murid baru di roster: Shane Michael Lienardie, Damian Almero Chen, Coryn Aurora Zhan, Erick Raphael Nasution; validasi lulus
 - 22 Agustus 2026: Server BARU Linux (root) jadi host website methodist-11.my.id — clone memory ke /root/memory, setup opencode.json instructions auto-load memory, install cloudflared v2026.8.2, web server node serve8090.js port 8090, tunnel BARU 8f8b0f53 (token), DNS CNAME diganti manual di dashboard → 8f8b0f53-....cfargotunnel.com (error 530 hilang setelah DNS diganti). PC Wilianto (21b93a76) tidak dipakai lagi. Recovery kit di linux-server/. Website live HTTP 200
+- 22 Agustus 2026: Absensi 22 Agustus (8 mark) — file: Absensi 22 Agustus 2026 Saturday 10_00_52.xlsx; Hugo Chavez Tarigan (TKa) pertama kali tercatat; "Varencya"→Ferencia Lu; roster disinkronkan ke DAFTAR MURID T.P.2026-2027 lengkap.xlsx — Kayla Hosanna Charissa Sihombing (TKB1) dihapus (tak ada di resmi, tanpa mark); validasi lulus (262=262 sel)
