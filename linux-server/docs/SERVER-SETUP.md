@@ -19,9 +19,22 @@ Di-update: 22 Agustus 2026
 | DNS | CNAME `@` -> `8f8b0f53-c70d-4bec-85d9-34e24da3c8ff.cfargotunnel.com`, proxy ON |
 | Public Hostname | methodist-11.my.id -> http://localhost:8090 (Zero Trust dashboard) |
 
+| Cron daemon | terinstall via apt (`cron`), start manual setsid — ikut dinyalakan oleh start-website.sh |
+
+## AUTO-BACKUP MEMORY HARIAN (22 Agustus 2026)
+
+- **Script:** `/root/memory/linux-server/scripts/backup-memory.sh`
+  - `git pull --rebase` → `git add -A` → commit `auto-backup <tgl>` (skip kalau tidak ada perubahan) → push → log ke `/var/log/memory-backup.log`
+- **Cron:** `0 14 * * *` (root crontab) = **jam 21:00 WIB tiap hari** (server pakai UTC)
+- **Log:** `/var/log/memory-backup.log`
+- Test manual: `bash /root/memory/linux-server/scripts/backup-memory.sh`
+- Verifikasi push: `git -C /root/memory rev-parse HEAD` harus sama dengan `git -C /root/memory rev-parse origin/main`
+
 ## Cara nyalakan (1 perintah)
 
     bash ~/memory/linux-server/scripts/start-website.sh
+
+(start-website.sh juga menyalakan cron daemon + verifikasi entry auto-backup)
 
 ## RECOVERY TOTAL (server mati -> pindah server baru)
 
@@ -40,7 +53,8 @@ Di-update: 22 Agustus 2026
 
 ## Catatan penting
 
-- TIDAK ada systemd di server ini -> proses pakai pola double-fork setsid (lihat script). Setelah reboot WAJIB jalankan script lagi.
+- TIDAK ada systemd di server ini -> proses pakai pola double-fork setsid (lihat script). Setelah reboot WAJIB jalankan script lagi (script juga menyalakan cron daemon untuk auto-backup).
+- Cron daemon tidak auto-start setelah reboot (tidak ada systemd) -> dinyalakan oleh start-website.sh.
 - Error 1033/530 = DNS record tidak menunjuk ke tunnel aktif -> cek DNS CNAME & tab Public Hostname.
 - Config push dari dashboard ke cloudflared butuh ~30 detik setelah disimpan.
 - Tunnel-tunnel LAMA (tidak dipakai): 21b93a76 (PC Wilianto), pc-06/34a83caa, Linux HP/912a22fa.
