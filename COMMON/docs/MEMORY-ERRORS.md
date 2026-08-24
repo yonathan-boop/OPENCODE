@@ -83,3 +83,30 @@ Task tool (sub-agent) balik hasil kosong 3x berturut-turut dengan state "complet
 3. Laporan sub-agent yang sukses pun sempat korup karakter (teks Indonesia rusak) → indikasi masalah encoding pipeline output
 
 ---
+
+---
+
+## [ERR-20260824-001] Web Terminal Error - Path Script Pindah Repo
+
+**Tanggal**: 2026-08-24
+**Severity**: medium
+**Status**: fixed
+
+### Summary
+Web terminal online (ttyd port 7681) langsung exit code 127 tiap buka sesi = command not found.
+
+### Penyebab
+- ttyd masih menjalankan `bash /root/memory/linux-server/scripts/pilih-terminal.sh` (path LAMA)
+- Script sudah pindah ke repo terpisah `/root/SERVER-LINUX/scripts/pilih-terminal.sh`
+- Path lama tidak ada lagi → sesi terminal mati seketika
+
+### SOLUSI
+1. Restart ttyd dengan path baru: `bash /root/SERVER-LINUX/scripts/pilih-terminal.sh`
+2. Update `start-website.sh` → sekarang 4 layanan: web 8090, tunnel utama, ttyd 7681, tunnel terminal (quick)
+3. Validasi: lokal 200, publik 200, auth 401 tanpa login ✅
+
+### PELAJARAN
+- **Kalau pindah file/script antar folder/repo, WAJIB cek & update semua service yang memanggil path itu**
+- URL quick tunnel terminal BERUBAH tiap restart — cek `/var/log/cloudflared-terminal.log`
+- start-website.sh sekarang print URL terminal terbaru di akhir run
+#terminal #ttyd #server-linux #path-error #exit127
