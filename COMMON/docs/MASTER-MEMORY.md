@@ -40,6 +40,17 @@ Di-update: 19 Agustus 2026
 - Memory: C:\Users\yonat\OneDrive\Desktop\memory
 - GitHub token: ghp_ (classic, tanpa exp date) dipakai di remote URL — 10 Agustus 2026
 
+### BACKUP METHODIST-11 (REDESIGN 24 Agustus 2026 — SISTEM UPDATE LANGSUNG)
+- **Script:** `PC-06/scripts/backup-methodist.ps1` | **Source:** `\\192.168.136.1\Methodist-11 Document` = DATA UTAMA, HANYA DIBACA — script TANPA /MOV /MOVE /PURGE /MIR (mustahil menghapus source)
+- **Struktur E:\Back Up:**
+  - `Harian\Methodist-11 Document\` ← 1 folder tetap, sinkron update langsung (robocopy /E /XO). File terhapus di source DIPERTAHANKAN (keputusan user)
+  - `Semester\<Ganjil|Genap> <TA>\` ← full copy seutuhnya, MANUAL via `.\backup-methodist.ps1 -Semester` (skip kalau folder sudah ada)
+- **Task Scheduler:** `Backup Methodist Harian` — tiap hari **11:35**, StartWhenAvailable (PC mati → jalan saat nyala), State Ready
+- **Desain LAMA DIBATALKAN:** jangan pernah bikin copy per tanggal lagi (boros memori) — koreksi user 24/8
+- Seed pertama 24/8 dari "Back up 20 Juni 2026" ("Copy 20 Agustus" sudah dihapus user krn tak lengkap) → hasil: 108.714 file / 33.56 GB
+- **Quirk ERROR 112:** docx kecil bisa gagal "disk full palsu" (metadata SMB korup saat pre-allocation robocopy) padahal disk bebas → retry sync biasanya beres; kalau masih gagal pakai Copy-Item manual
+- Folder lama (`Copy 6 Februari` 189GB, `Copy of Data 1 Juli 2025`, `Back up 20 Juni`, ISO Win11) DIBIARKAN dulu (keputusan user)
+
 ### WEBSITE SD METHODIST-11 + DOMAIN (UPDATE 22 Agustus 2026 — PINDAH SERVER)
 - **Domain:** methodist-11.my.id (Cloudflare, proxied)
 - **Tunnel AKTIF (baru, 22/8):** ID `8f8b0f53-c70d-4bec-85d9-34e24da3c8ff` — dashboard-managed (token mode), jalan di **SERVER LINUX** milik user (root, online >5 bulan).

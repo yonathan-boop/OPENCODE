@@ -1,110 +1,97 @@
-# backup-methodist.ps1
-# Incremental backup \\192.168.136.1\Methodist-11 Document -> E:\Back Up\
-# Strategi: copy backup terakhir (lokal, cepat) → lalu robocopy source → new (hanya file lebih baru)
+﻿# backup-methodist.ps1
+# Backup Methodist-11 - SISTEM UPDATE LANGSUNG (bukan duplikat per tanggal)
+#
+# ATURAN KEAMANAN SOURCE (WAJIB):
+#   - Source \\192.168.136.1\Methodist-11 Document adalah data utama, HANYA DIBACA.
+#   - TIDAK ADA flag /MOV /MOVE /PURGE /MIR di script ini -> mustahil menghapus isi source.
+#   - File yang terhapus/di-rename di source TETAP tersimpan di backup (tanpa purge).
+#
+# Pemakaian:
+#   .\backup-methodist.ps1            -> BACKUP HARIAN: sinkron 1 folder tetap
+#                                        E:\Back Up\Harian\Methodist-11 Document
+#   .\backup-methodist.ps1 -Semester  -> BACKUP SEMESTER (manual): full copy seutuhnya ke
+#                                        E:\Back Up\Semester\<Ganjil|Genap> <T.A>\
 
-$source = "\\192.168.136.1\Methodist-11 Document"
+param([switch]$Semester)
+
+$source     = "\\192.168.136.1\Methodist-11 Document"
 $baseBackup = "E:\Back Up"
+$months     = @{ 1="Januari"; 2="Februari"; 3="Maret"; 4="April"; 5="Mei"; 6="Juni"; 7="Juli"; 8="Agustus"; 9="September"; 10="Oktober"; 11="November"; 12="Desember" }
+$today      = Get-Date
 
-$months = @{
-    1="Januari"; 2="Februari"; 3="Maret"; 4="April"
-    5="Mei"; 6="Juni"; 7="Juli"; 8="Agustus"
-    9="September"; 10="Oktober"; 11="November"; 12="Desember"
+function Write-Log {
+    param($LogPath, $Msg)
+    "{0} | {1}" -f (Get-Date -Format "yyyy-MM-dd HH:mm:ss"), $Msg | Tee-Object -FilePath $LogPath -Append
 }
 
-$today = Get-Date
-$day = $today.Day
-$month = $months[$today.Month]
-$year = $today.Year
-$dateIndonesian = "$day $month $year"
-
-$logDir = $baseBackup
-if (!(Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
-$logFile = "$logDir\backup-log-$($today.ToString('yyyy-MM-dd-HHmmss')).txt"
-
-function Log($msg) {
-    $ts = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    "$ts | $msg" | Tee-Object -FilePath $logFile -Append
+function Show-Stats {
+    param($Dest, $LogPath, $StartedAt)
+    $files = Get-ChildItem -LiteralPath $Dest -Recurse -File -ErrorAction SilentlyContinue
+    $sizeGB = [math]::Round((($files | Measure-Object Length -Sum).Sum) / 1GB, 2)
+    $mins = [math]::Round(((Get-Date) - $StartedAt).TotalMinutes, 1)
+    Write-Log $LogPath ("Statistik: File {0} | Folder {1} | Total {2} GB | Durasi {3} menit" -f $files.Count, (Get-ChildItem -LiteralPath $Dest -Recurse -Directory -ErrorAction SilentlyContinue).Count, $sizeGB, $mins)
 }
 
-# Cek akses
-if (!(Test-Path $source)) {
-    Log "ERROR: Source tidak dapat diakses: $source"
+# ==== Cek akses ====
+if (!(Test-Path -LiteralPath $source)) {
+    Write-Host "ERROR: Source tidak dapat diakses: $source"
     exit 1
 }
-if (!(Test-Path $baseBackup)) {
-    Log "ERROR: Drive backup tidak dapat diakses: $baseBackup"
+if (!(Test-Path -LiteralPath $baseBackup)) {
+    Write-Host "ERROR: Drive backup tidak dapat diakses: $baseBackup"
     exit 1
-}
-
-# Cari folder backup terakhir
-$lastBackup = Get-ChildItem -Path $baseBackup -Directory |
-    Where-Object { $_.Name -match "^Copy\s" -or $_.Name -match "^Copy of\s" } |
-    Sort-Object LastWriteTime -Descending |
-    Select-Object -First 1
-
-$destFolder = "$baseBackup\Copy $dateIndonesian"
-
-# Skip kalau folder hari ini sudah ada
-if (Test-Path $destFolder) {
-    Log "Folder backup hari ini sudah ada: $destFolder — skip."
-    exit 0
 }
 
 $startTime = Get-Date
 
-if ($lastBackup) {
-    Log "=== INCREMENTAL BACKUP ==="
-    Log "Source: $source"
-    Log "Last backup: $($lastBackup.Name)"
-    Log "Target: $destFolder"
-    
-    # STEP 1: Copy backup terakhir ke folder baru (lokal, cepat — tidak lewat network)
-    Log "Step 1: Copy backup terakhir ke folder baru (lokal)..."
-    New-Item -ItemType Directory -Path $destFolder -Force | Out-Null
-    
-    $robocopyLocal = & robocopy $lastBackup.FullName $destFolder /E /DCOPY:T /COPY:DAT /R:1 /W:1 /NP /NDL /NJH /NJS /XF "*.tmp" "~`$*"
-    $localExit = $LASTEXITCODE
-    Log "Step 1 selesai (exit: $localExit)"
-    
-    # STEP 2: Robocopy source → dest dengan /XO (hanya file lebih baru dari source)
-    Log "Step 2: Update dari source (hanya file baru/updated)..."
-    $robocopyLog = "$logDir\robocopy-$($today.ToString('yyyy-MM-dd-HHmmss')).log"
-    
-    & robocopy $source $destFolder /E /XO /DCOPY:T /COPY:DAT /R:3 /W:5 /NP /NDL /NJH /NJS /LOG+:$robocopyLog /XF "*.tmp" "~`$*"
-    $netExit = $LASTEXITCODE
-    Log "Step 2 selesai (exit: $netExit)"
-    
-    if ($netExit -ge 8) {
-        Log "WARNING: Ada error di robocopy. Cek: $robocopyLog"
+if ($Semester) {
+    # ================= MODE SEMESTER (manual, full copy seutuhnya) =================
+    $y = $today.Year; $m = $today.Month
+    if ($m -ge 7) { $label = "Ganjil $y-$($y + 1)" } else { $label = "Genap $($y - 1)-$y" }
+
+    $dest   = Join-Path $baseBackup "Semester\$label\Methodist-11 Document"
+    $logDir = Join-Path $baseBackup "Semester\logs"
+    New-Item -ItemType Directory -Path $logDir -Force | Out-Null
+    $logFile = Join-Path $logDir ("semester-{0}.txt" -f $today.ToString("yyyy-MM-dd-HHmmss"))
+
+    if (Test-Path -LiteralPath $dest) {
+        Write-Log $logFile "Folder semester '$label' sudah ada - SKIP (tidak menimpa backup lama)."
+        exit 0
     }
-    
-} else {
-    Log "=== FULL BACKUP (pertama kali) ==="
-    Log "Source: $source"
-    Log "Target: $destFolder"
-    
-    $robocopyLog = "$logDir\robocopy-$($today.ToString('yyyy-MM-dd-HHmmss')).log"
-    & robocopy $source $destFolder /E /DCOPY:T /COPY:DAT /R:3 /W:5 /NP /NDL /NJH /NJS /LOG+:$robocopyLog /XF "*.tmp" "~`$*"
-    $exitCode = $LASTEXITCODE
-    Log "Full backup selesai (exit: $exitCode)"
+
+    Write-Log $logFile "=== BACKUP SEMESTER '$label' - FULL COPY ==="
+    Write-Log $logFile "Source: $source"
+    Write-Log $logFile "Target: $dest"
+
+    $rcLog = Join-Path $logDir ("robocopy-{0}.log" -f $today.ToString("yyyy-MM-dd-HHmmss"))
+    & robocopy $source $dest /E /COPY:DAT /DCOPY:T /R:3 /W:5 /NP /NDL /NJH /NJS /LOG+:$rcLog /XF "*.tmp" "~`$*"
+    $code = $LASTEXITCODE
+    Write-Log $logFile "Robocopy selesai (exit: $code)"
+    if ($code -ge 8) { Write-Log $logFile "WARNING: ada error robocopy - cek detail: $rcLog" }
+
+    Show-Stats -Dest $dest -LogPath $logFile -StartedAt $startTime
+    Write-Log $logFile "Log detail robocopy: $rcLog"
 }
+else {
+    # ================= MODE HARIAN (default): 1 folder tetap, update langsung =================
+    $dest   = Join-Path $baseBackup "Harian\Methodist-11 Document"
+    $logDir = Join-Path $baseBackup "Harian\logs"
+    New-Item -ItemType Directory -Path $logDir -Force | Out-Null
+    $logFile = Join-Path $logDir ("harian-{0}.txt" -f $today.ToString("yyyy-MM-dd"))
 
-$elapsed = (Get-Date) - $startTime
-$elapsedMin = [math]::Round($elapsed.TotalMinutes, 1)
+    Write-Log $logFile "=== BACKUP HARIAN - UPDATE LANGSUNG (copy saja, tanpa purge) ==="
+    Write-Log $logFile "Source: $source"
+    Write-Log $logFile "Target: $dest"
 
-# Statistik
-if (Test-Path $destFolder) {
-    $fileCount = (Get-ChildItem -Path $destFolder -Recurse -File -ErrorAction SilentlyContinue).Count
-    $folderCount = (Get-ChildItem -Path $destFolder -Recurse -Directory -ErrorAction SilentlyContinue).Count
-    $totalSize = (Get-ChildItem -Path $destFolder -Recurse -File -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum
-    $sizeGB = [math]::Round($totalSize / 1GB, 2)
-    
-    Log "=== SELESAI ==="
-    Log "Folder: $destFolder"
-    Log "File: $fileCount | Folder: $folderCount | Size: $sizeGB GB"
-    Log "Waktu: $elapsedMin menit"
-} else {
-    Log "WARNING: Folder backup tidak terbentuk"
+    # /E  : semua subfolder termasuk kosong
+    # /XO : lewati file yang versinya di backup sudah lebih baru dari source
+    # Tanpa /PURGE /MIR /MOV /MOVE -> tidak ada penghapusan di kedua sisi
+    $rcLog = Join-Path $logDir ("robocopy-{0}.log" -f $today.ToString("yyyy-MM-dd-HHmmss"))
+    & robocopy $source $dest /E /XO /COPY:DAT /DCOPY:T /R:3 /W:5 /NP /NDL /NJH /NJS /LOG+:$rcLog /XF "*.tmp" "~`$*"
+    $code = $LASTEXITCODE
+    Write-Log $logFile "Sinkron selesai (exit: $code)"
+    if ($code -ge 8) { Write-Log $logFile "WARNING: ada error robocopy - cek detail: $rcLog" }
+
+    Show-Stats -Dest $dest -LogPath $logFile -StartedAt $startTime
+    Write-Log $logFile "Log detail robocopy: $rcLog"
 }
-
-Log "Log: $logFile"

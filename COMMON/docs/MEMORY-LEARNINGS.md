@@ -232,3 +232,27 @@ User marah besar karena AI langsung edit file absensi tanpa bikin versi baru. In
 - Jangan pernah anggap "edit in-place" sebagai cara cepat
 
 ---
+
+## [LRN-20260824-001] backup_harian_tanpa_duplikasi
+
+**Tanggal**: 2026-08-24
+**Priority**: high
+**Status**: active
+
+### Summary
+User koreksi desain backup: JANGAN bikin salinan penuh per tanggal (boros memori). Backup harian = update langsung ke 1 folder tetap. Full copy hanya untuk backup semester (manual, 1 folder per semester).
+
+### Details
+- Desain lama: tiap run copy backup terakhir → folder baru + robocopy → data terduplikasi tiap hari
+- User: "ngapain copy local lagi dan buat file jadi berganda ganda... sistem update data langsung"
+- File terhapus di source DIPERTAHANKAN di backup harian (tanpa purge) — user pilih aman
+- Source `\\192.168.136.1\Methodist-11 Document` = file utama sangat penting — COPY saja, jangan cut/move/purge/mirror
+
+### Action
+- Backup harian: robocopy /E /XO ke 1 folder tetap (`Harian\`), tanpa purge
+- Backup semester: full copy manual via flag `-Semester`, skip kalau folder sudah ada
+- Prinsip umum: sebelum bikin sistem duplikasi, tanya user soal kebutuhan memori
+- Detail lengkap: MASTER-MEMORY.md bagian "BACKUP METHODIST-11"
+
+---
+
