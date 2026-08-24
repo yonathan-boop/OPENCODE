@@ -311,7 +311,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - Nama murid dicocokkan fonetik: Mikayla→Mikaylo Zionathan Girsang (TKa)
 - File versi terbaru: Absensi 19 Agustus 2026 Tuesday 08_00_00.xlsx
 - Nama murid dicocokkan fonetik: Irene→Eireen, Elena→Ellena, Alleta→Aletta, Yoselyn→Jocelyn, Richele→Richelcia, Kayvant→Kayyvant, Shelomita→Shelomitha, Sharene→Sharren, Stevano→Stefano Benedict Imanuel, Axele→Axelle Sean Chandra, Carenya→Carencya Chailinskie, Axell→Axelle Tiandra Ong
-- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 → v-tgl-11 (7 mark) → v-tgl-12 (9 mark) → v-tgl-15 (11 mark) → v-tgl-19 (17 mark18-19) → v-tgl-21 (19 mark20-21) → v-tgl-22 (VERSI TERBARU, 8 mark22). ABSENSI Agustus.xlsx = v1.0 kosong.
+- Rantai versi: v-tgl-1 (8) → v-tgl-3 (15) → v-tgl-4 (17) → v-tgl-5 → v-tgl-7 → v-tgl-10 → v-tgl-11 (7 mark) → v-tgl-12 (9 mark) → v-tgl-15 (11 mark) → v-tgl-19 (17 mark18-19) → v-tgl-21 (19 mark20-21) → v-tgl-22 (8 mark22) → v-tgl-24 (VERSI TERBARU, 3 mark24). ABSENSI Agustus.xlsx = v1.0 kosong.
 - Format nama versi: tgl dulu baru bulan, jam_menit_detik = waktu asli (mis. "Absensi 4 Agustus 2026 Tuesday 10_04_37.xlsx").
 
 ### Absensi 20-21 Agustus 2026
@@ -359,6 +359,17 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - Mapping hari ini: "Varencya"→Ferencia Lu (pola sama dgn "Valencia"), "Hugo"→Hugo Chavez Tarigan (TKa) — pertama kali tercatat
 - **ROSTER DISINKRONKAN** dengan `DAFTAR MURID T.P.2026-2027 lengkap.xlsx` (folder `PC-06/docs/Absensi T.P 2025-2026/`): TKa (33) & TKB(2) (25) identik; **Kayla Hosanna Charissa Sihombing** (TKB1 r11) DIHAPUS dari absensi — tidak ada di daftar resmi & tanpa mark; Kimita tetap tidak masuk (sudah keluar); urutan PG beda dikit (Dareen paling bawah) — dibiarkan aman
 - Prinsip user (22/8): update nama TIDAK BOLEH menggeser mark antar murid — rename selalu in-place per nama, jangan insert/delete row di tengah list
+
+### Absensi 24 Agustus 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 24/8 | TKa | Carencya Chailinskie | I |
+| 24/8 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+| 24/8 | TKB1 | Venedict Sky Lou | S |
+
+- File versi terbaru: Absensi 24 Agustus 2026 Monday 09_01_05.xlsx (3 mark, validasi lulus — verifikasi ganda otak+sub-agent)
+- **KOREKSI MAPPING KOLOM (24/8):** workbook versi Agustus ini SATU blok bulan saja — header `r5c4="Agustus"`, hari 1–31 di kolom 4–34 → tanggal d = kolom 3+d (24/8 = kolom 27). Catatan lama "Juli 1 = col 4 → Agustus 1 = col 35" HANYA berlaku untuk file era Juli (ABSENSI Juli.xlsx). absensi.py resolve via header row 6 jadi tetap akurat; validasi manual harus pakai kolom 3+d.
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
@@ -804,6 +815,12 @@ webbrowser.open('https://youtube.com')
 - Hugo Chavez Tarigan (TKa) pertama kali tercatat; roster disinkronkan ke DAFTAR MURID T.P.2026-2027 lengkap.xlsx — Kayla Hosanna Charissa Sihombing (TKB1) dihapus (tak ada di daftar resmi, tanpa mark)
 - File: Absensi 22 Agustus 2026 Saturday 10_00_52.xlsx — validasi lulus (262=262 sel utuh)
 - Catatan teknis: task tool sub-agent return kosong 3x berturut-turut → eksekusi dialihkan manual oleh otak
+
+### 24 Agustus 2026 - yonat-PC (Session 1):
+- Redesign backup Methodist-11: sistem update langsung (tanpa copy per tanggal) — detail di bagian BACKUP METHODIST-11
+- Absensi 24 Agustus (3 mark): TKa (Carencya I); TKB1 (Kayyvant S, Venedict S)
+- File: Absensi 24 Agustus 2026 Monday 09_01_05.xlsx — validasi ganda lulus (3 mark kolom 27, sel utuh +3)
+- Koreksi mapping kolom: workbook Agustus = 1 blok bulan, tanggal d = kolom 3+d (24/8 = col 27)
 
 ## 📋 CARA EDIT DOKUMEN UJIAN (WORD)
 

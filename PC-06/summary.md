@@ -22,11 +22,11 @@ Terakhir diupdate: 2026-08-22
 3. **Website SD Methodist-11** - methodist-11.my.id (Cloudflare) via tunnel 8f8b0f53 → server Linux (/root/memory) → localhost:8090 (LIVE, 22 Agustus 2026; pindah dari PC Wilianto/tunnel 21b93a76)
 
 ## Session Terakhir
-Tanggal: 2026-08-22
-Topik: Absensi 22 Agustus (8 mark) — file: Absensi 22 Agustus 2026 Saturday 10_00_52.xlsx; Hugo Chavez Tarigan (TKa) pertama kali tercatat; roster disinkronkan ke daftar resmi (Kayla TKB1 dihapus)
-Status: Selesai, validasi lulus
+Tanggal: 2026-08-24
+Topik: Absensi 24 Agustus (3 mark: Carencya TKa I, Kayyvant & Venedict TKB1 S) — file: Absensi 24 Agustus 2026 Monday 09_01_05.xlsx; + redesign backup Methodist-11 (update langsung)
+Status: Selesai, validasi ganda lulus
 
-## Total Sessions: 12
+## Total Sessions: 13
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
 - 12 Mei 2026: Absensi Mei + Agent Framework
@@ -52,3 +52,4 @@ Status: Selesai, validasi lulus
 - 21 Agustus 2026: Absensi 20-21 Agustus (12+7 mark) — file: Absensi 21 Agustus 2026 Friday 12_44_43.xlsx; mapping: Eric→Erick Raphael Nasution, Coryn→Coryn Aurora Zhan (bukan Corin Falove Manurung), Valencia→Ferencia Lu; murid baru di roster: Shane Michael Lienardie, Damian Almero Chen, Coryn Aurora Zhan, Erick Raphael Nasution; validasi lulus
 - 22 Agustus 2026: Server BARU Linux (root) jadi host website methodist-11.my.id — clone memory ke /root/memory, setup opencode.json instructions auto-load memory, install cloudflared v2026.8.2, web server node serve8090.js port 8090, tunnel BARU 8f8b0f53 (token), DNS CNAME diganti manual di dashboard → 8f8b0f53-....cfargotunnel.com (error 530 hilang setelah DNS diganti). PC Wilianto (21b93a76) tidak dipakai lagi. Recovery kit di linux-server/. Website live HTTP 200
 - 22 Agustus 2026: Absensi 22 Agustus (8 mark) — file: Absensi 22 Agustus 2026 Saturday 10_00_52.xlsx; Hugo Chavez Tarigan (TKa) pertama kali tercatat; "Varencya"→Ferencia Lu; roster disinkronkan ke DAFTAR MURID T.P.2026-2027 lengkap.xlsx — Kayla Hosanna Charissa Sihombing (TKB1) dihapus (tak ada di resmi, tanpa mark); validasi lulus (262=262 sel)
+- 24 Agustus 2026: Redesign backup Methodist-11 (update langsung, tanpa copy per tanggal) + Absensi 24 Agustus (3 mark: Carencya TKa I, Kayyvant & Venedict TKB1 S) — file: Absensi 24 Agustus 2026 Monday 09_01_05.xlsx; koreksi mapping kolom: workbook Agustus 1 blok bulan, tgl d = kolom 3+d; validasi ganda lulus
