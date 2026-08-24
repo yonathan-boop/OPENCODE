@@ -12,15 +12,25 @@ Di-install: 24 Agustus 2026 (server Linux root, Ubuntu 22.04 container)
 - Network joined: **633e31d8a2212ce2** ("my-first-network", PRIVATE) — status OK
 - IP ZeroTier server ini: **192.168.195.60/24** (interface ztxoobb5ca)
 
-## PENTING: Cara Start Manual (server TIDAK punya systemd aktif)
-Setelah reboot container, jalankan:
+## PENTING: Mode ON-DEMAND (keputusan user 24 Agu)
+ZeroTier TIDAK dijalankan terus-menerus — cukup saat butuh akses Wilianto saja.
+Jangan masukkan ke start-website.sh / cron / auto-start apapun.
+
+**Nyalakan (saat dibutuhkan):**
 ```bash
 chmod 666 /dev/net/tun        # WAJIB — default permission 600 (root only), daemon jalan sebagai user zerotier-one
 setsid zerotier-one -d < /dev/null > /var/log/zerotier-startup.log 2>&1 &
 ```
+Tunggu ~10 detik sampai `zerotier-cli info` = ONLINE.
+
+**Matikan (kalau selesai):**
+```bash
+kill $(pgrep -x zerotier-one)
+```
+
 - Tanpa `chmod 666 /dev/net/tun`, daemon ONLINE tapi network GAK mau nempel (error TUN/TAP saat join).
 - Gejala tanpa chmod: `join OK` tapi `listnetworks` kosong padahal peers ke-list.
-- Pertimbangkan: masukkan ke start-website.sh supaya auto jalan setelah reboot.
+- Konsumsi RAM saat jalan: ~14 MB.
 
 ## Perangkat Lain di Network ZeroTier
 | Device | IP ZeroTier | Keterangan |
