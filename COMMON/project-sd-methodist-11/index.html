@@ -12,7 +12,7 @@
     } catch (e) { }
   })();
 </script>
-<link rel="stylesheet" href="assets/css/style.css?v=17">
+<link rel="stylesheet" href="assets/css/style.css?v=18">
 </head>
 <body>
 
@@ -154,6 +154,14 @@
     <p class="sub">Informasi terbaru dari sekolah</p>
     <div class="scroll-row no-scrollbar">
       <div class="kartu">
+        <a href="pages/pengumuman/study-tour.html"><img src="assets/images/pengumuman/study-tour.jpg" alt="Study Tour Rahmat Zoo &amp; Park" onclick="event.preventDefault();openLightbox(this.src)"></a>
+        <div class="kartu-badan">
+          <div class="tgl">24 Agustus 2026</div>
+          <h3><a href="pages/pengumuman/study-tour.html">Study Tour ke Rahmat Zoo &amp; Park</a></h3>
+          <p>Study tour murid kelas I-VI ke Rahmat Zoo &amp; Park Perbaungan dilaksanakan Sabtu, 19 September 2026. Pembayaran paling lambat 11 September 2026 via wali kelas.</p>
+        </div>
+      </div>
+      <div class="kartu">
         <a href="pages/pengumuman/imunisasi.html"><img src="assets/images/pengumuman/imunisasi.jpg" alt="Imunisasi" onclick="event.preventDefault();openLightbox(this.src)"></a>
         <div class="kartu-badan">
           <div class="tgl">12 Agustus 2026</div>
@@ -188,6 +196,14 @@
     <h2>Kegiatan</h2>
     <p class="sub">Apa saja yang sekolah lakukan</p>
     <div class="scroll-row no-scrollbar">
+      <div class="kartu">
+        <a href="pages/kegiatan/imlek.html"><img src="assets/images/galeri/imlek/imlek-001.jpg" alt="Perayaan Imlek" loading="lazy" onclick="event.preventDefault();openLightbox(this.src)"></a>
+        <div class="kartu-badan">
+          <h3>Perayaan Imlek</h3>
+          <p>Kemeriahan perayaan Tahun Baru Imlek bersama seluruh siswa dan guru.</p>
+          <a class="btn-sm" href="pages/kegiatan/imlek.html">Lihat Kegiatan</a>
+        </div>
+      </div>
       <div class="kartu">
         <a href="pages/kegiatan/17-agustus.html"><img src="assets/images/galeri/17-agustus/WhatsApp-1.jpg" alt="Peringatan 17 Agustus" onclick="event.preventDefault();openLightbox(this.src)"></a>
         <div class="kartu-badan">
@@ -286,16 +302,16 @@
 
 <footer>
   © 2026 Yayasan Pendidikan Kristen Methodist Titus<br>TK-SD-SMP Swasta Methodist-11
-  <div class="footer-meta">Versi 0.0005</div>
+  <div class="footer-meta">Versi 0.0006</div>
 </footer>
 
 <div class="popup-overlay" id="popup-pengumuman" onclick="closePopup()">
   <div class="popup" onclick="gotoPengumuman()">
     <button class="popup-close" onclick="event.stopPropagation(); closePopup()" aria-label="Tutup">✕</button>
     <span class="popup-badge">📢 PENGUMUMAN TERBARU</span>
-    <h3>Imunisasi untuk Seluruh Siswa</h3>
-    <p class="popup-tgl">12 Agustus 2026</p>
-    <p>Kegiatan imunisasi untuk seluruh siswa SD Methodist-11 akan dilaksanakan bekerjasama dengan puskesmas setempat. Orang tua dimohon mengisi surat persetujuan.</p>
+    <h3>Study Tour ke Rahmat Zoo &amp; Park</h3>
+    <p class="popup-tgl">24 Agustus 2026</p>
+    <p>Study tour murid kelas I-VI ke Rahmat Zoo &amp; Park Perbaungan dilaksanakan Sabtu, 19 September 2026. Pembayaran paling lambat 11 September 2026 via wali kelas.</p>
     <button type="button" class="btn" onclick="gotoPengumuman()">Lihat Selengkapnya</button>
   </div>
 </div>
