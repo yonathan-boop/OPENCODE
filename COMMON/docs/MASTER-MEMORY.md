@@ -39,6 +39,7 @@ Di-update: 19 Agustus 2026
 - OpenCode: v1.18.3 via Scoop
 - Memory: C:\Users\yonat\OneDrive\Desktop\memory
 - GitHub token: ghp_ (classic, tanpa exp date) dipakai di remote URL — 10 Agustus 2026
+- **Tesseract OCR:** C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.3, via winget, 24 Agustus 2026) + pytesseract/pillow via `py` (Python 3.13) — dipakai OCR surat pengumuman study tour
 
 ### BACKUP METHODIST-11 (REDESIGN 24 Agustus 2026 — SISTEM UPDATE LANGSUNG)
 - **Script:** `PC-06/scripts/backup-methodist.ps1` | **Source:** `\\192.168.136.1\Methodist-11 Document` = DATA UTAMA, HANYA DIBACA — script TANPA /MOV /MOVE /PURGE /MIR (mustahil menghapus source)
@@ -822,6 +823,14 @@ webbrowser.open('https://youtube.com')
 - Absensi 24 Agustus (3 mark): TKa (Carencya I); TKB1 (Kayyvant S, Venedict S)
 - File: Absensi 24 Agustus 2026 Monday 09_01_05.xlsx — validasi ganda lulus (3 mark kolom 27, sel utuh +3)
 - Koreksi mapping kolom: workbook Agustus = 1 blok bulan, tanggal d = kolom 3+d (24/8 = col 27)
+
+### 24 Agustus 2026 - yonat-PC (Session 2):
+- Website: pengumuman BARU "Study Tour ke Rahmat Zoo & Park" — sumber: foto surat di `C:\Users\yonat\OneDrive\Desktop\Opencode\Pengumuman Jalan jalan ke kebun binatang rahmat zoo.jpg` (dibaca via OCR Tesseract, model AI tidak support input gambar)
+- Isi surat: Sabtu 19 September 2026, kelas I-VI, berangkat 07.30 WIB kembali ±14.00, total Rp110.000 (tiket 30rb + bus 50rb + konsumsi 30rb), bayar ke wali kelas maks 11 September via transfer/cash; wajib seragam penjas+sepatu, bawa alat tulis/topi/jaket, boleh bawa HP (risiko sendiri)
+- File website: `pages/pengumuman/study-tour.html` (baru) + kartu pertama & popup beranda index.html + entri pages/pengumuman.html + foto surat jadi assets/images/pengumuman/study-tour.jpg + CSS `.artikel ul/li`
+- Halaman kegiatan **Perayaan Imlek** (warisan sesi sebelumnya, uncommitted: imlek.html + 105 foto + entri kegiatan.html) ikut ter-commit `01dcdac`; study tour commit `1e0ca0d`; push OK
+- Catatan teknis hook: bump-version.ps1 saat pre-commit ikut men-stage SEMUA file modified → pembagian isi antar commit bergeser (commit 2 cuma berisi study-tour.jpg); hasil akhir tetap lengkap
+- Install Tesseract OCR v5.5.3 di yonat-PC (winget) — attempt pertama cancel (UAC), attempt kedua sukses
 
 ## 📋 CARA EDIT DOKUMEN UJIAN (WORD)
 
