@@ -22,26 +22,27 @@ html { font-size: 20px; scroll-behavior: smooth; }
   .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
 
   header { background: var(--surface); box-shadow: 0 1px 3px rgba(0,0,0,.08); position: sticky; top: 0; z-index: 10; }
-  .nav { display: flex; align-items: center; justify-content: space-between; width: 100%; height: auto; min-height: 64px; padding: 8px 16px; }
+  .nav { display: flex; align-items: center; justify-content: space-between; width: 100%; height: auto; min-height: 74px; padding: 10px 16px; }
 .logo { display: flex; align-items: center; gap: 10px; color: var(--biru-tua); text-decoration: none; cursor: pointer; transition: opacity .2s ease; flex-shrink: 0; }
-.logo img { height: 40px; width: auto; flex-shrink: 0; }
+.logo img { height: 46px; width: auto; flex-shrink: 0; }
 .logo-txt { display: flex; flex-direction: column; justify-content: center; white-space: nowrap; line-height: 1.3; min-width: 0; }
-.logo-full { font-size: 14px; font-weight: 700; color: var(--biru-tua); white-space: nowrap; }
-.logo-sub { font-size: 12px; font-weight: 600; color: var(--abu); white-space: nowrap; }
+.logo-full { font-size: 15.5px; font-weight: 700; color: var(--biru-tua); white-space: nowrap; }
+.logo-sub { font-size: 13px; font-weight: 600; color: var(--abu); white-space: nowrap; }
 .logo:hover { opacity: .8; }
 .cursor-pointer { cursor: pointer; }
   nav { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; min-width: 0; }
   .menu-row { display: flex; align-items: center; gap: 2px; }
-  nav a { color: var(--teks); text-decoration: none; font-size: 14px; font-weight: 600; padding: 4px 8px; border-radius: 6px; white-space: nowrap; transition: color .2s ease, background-color .2s ease; }
+  nav a { color: var(--teks); text-decoration: none; font-size: 15px; font-weight: 600; padding: 4px 8px; border-radius: 6px; white-space: nowrap; transition: color .2s ease, background-color .2s ease; }
   nav a:hover { color: var(--nav-hover); background: var(--nav-hover-bg); }
   nav a.e-rapor { color: var(--nav-hover); }
   nav a.e-rapor:hover { background: var(--nav-hover-bg); }
   .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
 
-  .hero { background: linear-gradient(135deg, var(--hero-a), var(--hero-b) 60%, #3b82f6); color: #fff; text-align: center; padding: 80px 20px 90px; }
-  .hero h1 { font-size: clamp(1rem, 5vw, 1.85rem); line-height: 1.25; margin-bottom: 8px; overflow-wrap: break-word; text-wrap: balance; }
-  .hero .tagline { color: #bfdbfe; font-size: 1rem; margin-bottom: 24px; }
-  .hero p { font-size: 1.05rem; opacity: .95; max-width: 620px; margin: 0 auto 28px; }
+  .hero { background: linear-gradient(135deg, var(--hero-a), var(--hero-b) 60%, #3b82f6); color: #fff; text-align: center; padding: 84px 20px 90px; }
+  .hero .hero-yayasan { font-size: 24px; font-weight: 600; line-height: 1.3; margin: 0 0 4px; opacity: .9; }
+  .hero .hero-sekolah { font-size: 48px; font-weight: 800; line-height: 1.2; margin: 0 0 24px; overflow-wrap: break-word; text-wrap: balance; }
+  .hero .tagline { color: #bfdbfe; font-size: 1.05rem; font-weight: 600; line-height: 1.5; max-width: 760px; margin: 0 auto 26px; }
+  .hero p { font-size: .9rem; font-weight: 400; opacity: .92; max-width: 640px; margin: 0 auto 32px; }
   .btn { display: inline-block; background: var(--kuning); color: #1f2937; font-weight: 700; padding: 12px 28px; border-radius: 999px; text-decoration: none; transition: transform .15s; }
   .btn:hover { transform: translateY(-2px); }
   .pengumuman { display: inline-block; background: rgba(255,255,255,.15); border: 1px dashed rgba(255,255,255,.5); border-radius: 999px; padding: 8px 20px; font-size: .9rem; font-weight: 600; margin-bottom: 20px; max-width: 100%; overflow-wrap: break-word; }
@@ -120,17 +121,22 @@ html { font-size: 20px; scroll-behavior: smooth; }
   .footer-meta { margin-top: 10px; font-size: .72rem; color: #94a3b8; text-align: center; }
 
   @media (max-width: 768px) {
-    .nav { min-height: 56px; padding: 8px 12px; }
+    .nav { min-height: 62px; padding: 8px 12px; }
     .logo { gap: 6px; }
-    .logo-full { font-size: 11px; }
-    .logo-sub { font-size: 10px; }
-    .logo img { height: 28px; }
-    nav { display: none; position: absolute; top: 56px; left: 0; right: 0; background: var(--surface); flex-direction: column; align-items: stretch; padding: 12px 20px; box-shadow: 0 4px 10px rgba(0,0,0,.08); }
+    .logo-full { font-size: 12px; }
+    .logo-sub { font-size: 10.5px; }
+    .logo img { height: 32px; }
+    nav { display: none; position: absolute; top: 62px; left: 0; right: 0; background: var(--surface); flex-direction: column; align-items: stretch; padding: 12px 20px; box-shadow: 0 4px 10px rgba(0,0,0,.08); }
     nav.open { display: flex; }
     .menu-row { flex-direction: column; align-items: stretch; width: 100%; }
     nav a { margin: 10px 0; }
     .menu-toggle { display: block; }
     .pengumuman { width: 100%; border-radius: 16px; font-size: .8rem; padding: 10px 16px; }
+    .hero { padding: 68px 20px 74px; }
+    .hero .hero-yayasan { font-size: 18px; }
+    .hero .hero-sekolah { font-size: 32px; }
+    .hero .tagline { font-size: .95rem; }
+    .hero p { font-size: .88rem; }
     .card-grid, .fasilitas-grid, .galeri, .kartu-grid, .foto-grid { grid-template-columns: 1fr; }
     .feature { flex-direction: column; text-align: center; }
     .feature img { width: 100%; }
