@@ -250,6 +250,9 @@ html { font-size: 20px; scroll-behavior: smooth; }
 .modal-close:hover { background: #dc2626; }
 @media (max-width: 768px) { .modal img { height: 200px; } }
 .kartu img, .feature img, .list-item img, .artikel img { cursor: zoom-in; }
+#kegiatan .kartu > a img,
+#pengumuman .kartu > a img,
+.list-item img { cursor: pointer; }
 
 /* Dark mode */
 .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
