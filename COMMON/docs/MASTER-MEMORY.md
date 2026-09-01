@@ -1,6 +1,6 @@
 # MEMORI KOMPREHENSIF - Admin's AI Assistant
 
-Di-update: 19 Agustus 2026
+Di-update: 1 September 2026
 
 ---
 
@@ -824,6 +824,18 @@ webbrowser.open('https://youtube.com')
 - Absensi 24 Agustus (3 mark): TKa (Carencya I); TKB1 (Kayyvant S, Venedict S)
 - File: Absensi 24 Agustus 2026 Monday 09_01_05.xlsx — validasi ganda lulus (3 mark kolom 27, sel utuh +3)
 - Koreksi mapping kolom: workbook Agustus = 1 blok bulan, tanggal d = kolom 3+d (24/8 = col 27)
+
+### 1 September 2026 - yonat-PC (Session 1):
+- File Agustus baru: `Absensi 29 Agustus 2026 Saturday 08_33_12.xlsx` (copy dari 26 Agu, isi 27-31 Agustus)
+- **27 Agu (6 mark):** TKB2 (Joevanca S, Clarissa Lim S, Shelomitha S, Keyla S); TKa (Sharren S, Lionel I)
+- **28 Agu (5 mark):** TKB2 (Shelomitha S, Joevanca S); TKB1 (Garneta Alona Gea I); TKa (Ezequiel S, Sharren S)
+- **29 Agu (6 mark):** TKa (Sharren S); TKB1 (Aldrich S, Corin Falove S, Vinsen I); PG (Leonil S); TKB2 (Keyla S)
+- **31 Agu (11 mark):** PG (Axelle Sean S); TKB2 (Shelomitha S, Devan S); TKB1 (Richelcia S, Corin Falove S); TKa (Hester I, Hestine I, Kaylyn S, Lionel S, Brielle S, Sharren S)
+- **FILE SEPTEMBER BARU (kosong):** `Absensi September 2026 Saturday 08_33_12.xlsx` — duplikat dari Agustus, header r5c4="September", tanggal 1-30 di kolom 4-33, SEMUA mark dikosongkan. Prinsip mapping kolom September = tgl d → kolom 3+d (sama seperti Agustus)
+- **1 September (11 mark):** PG (Dareen S); TKB2 (Shelomitha S); TKB1 (Aldrich S, Richelcia S); TKa (Hester I, Hestine I, Lionel S, Brielle S, Sharren S, Chesa S, Axel I)
+- **FILE_PATH absensi.py →** `Absensi September 2026 Saturday 08_33_12.xlsx`
+- **Name mapping baru:** Defan→Devan Ivander Siahaan (TKB2), Corine→Corin Falove Manurung (TKB1), Brile/Brilie→Brielle Claire Arinauli Pardosi (TKa), Axel→Axel Gevariel Manurung (TKa), Daren→Dareen Chandra (PG)
+- **Teknis buat file September:** kesalahan lama — mengosongkan sel via openpyxl crash pd MergedCell (read-only). Solusi: try/except AttributeError saat clear, lalu set header & angka tanggal manual. Validasi: kedua file mark utuh (Agustus lengkap, September 11 mark)
 
 ### 24 Agustus 2026 - yonat-PC (Session 2):
 - Website: pengumuman BARU "Study Tour ke Rahmat Zoo & Park" — sumber: foto surat di `C:\Users\yonat\OneDrive\Desktop\Opencode\Pengumuman Jalan jalan ke kebun binatang rahmat zoo.jpg` (dibaca via OCR Tesseract, model AI tidak support input gambar)

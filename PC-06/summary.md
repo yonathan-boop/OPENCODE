@@ -1,6 +1,6 @@
 # Memory Summary
 
-Terakhir diupdate: 2026-08-22
+Terakhir diupdate: 2026-09-01
 
 ## User Info
 - **Nama**: Digitalisasi (PC baru)
@@ -53,3 +53,4 @@ Status: Selesai, validasi lulus, live setelah server pull
 - 22 Agustus 2026: Server BARU Linux (root) jadi host website methodist-11.my.id — clone memory ke /root/memory, setup opencode.json instructions auto-load memory, install cloudflared v2026.8.2, web server node serve8090.js port 8090, tunnel BARU 8f8b0f53 (token), DNS CNAME diganti manual di dashboard → 8f8b0f53-....cfargotunnel.com (error 530 hilang setelah DNS diganti). PC Wilianto (21b93a76) tidak dipakai lagi. Recovery kit di linux-server/. Website live HTTP 200
 - 22 Agustus 2026: Absensi 22 Agustus (8 mark) — file: Absensi 22 Agustus 2026 Saturday 10_00_52.xlsx; Hugo Chavez Tarigan (TKa) pertama kali tercatat; "Varencya"→Ferencia Lu; roster disinkronkan ke DAFTAR MURID T.P.2026-2027 lengkap.xlsx — Kayla Hosanna Charissa Sihombing (TKB1) dihapus (tak ada di resmi, tanpa mark); validasi lulus (262=262 sel)
 - 24 Agustus 2026: Redesign backup Methodist-11 (update langsung, tanpa copy per tanggal) + Absensi 24 Agustus (3 mark: Carencya TKa I, Kayyvant & Venedict TKB1 S) — file: Absensi 24 Agustus 2026 Monday 09_01_05.xlsx; koreksi mapping kolom: workbook Agustus 1 blok bulan, tgl d = kolom 3+d; validasi ganda lulus
+- 1 September 2026: Absensi 27-31 Agustus lengkap + buat FILE SEPTEMBER BARU (kosong). File Agustus: Absensi 29 Agustus 2026 Saturday 08_33_12.xlsx (27: 6 mark, 28: 5 mark, 29: 6 mark, 31: 11 mark). File Sept: Absensi September 2026 Saturday 08_33_12.xlsx (1 September: 11 mark — PG Daren S, TKB2 Shelomitha S, TKB1 Aldrich/Richelcia S, TKa Hester/Hestine I, Lionel/Brielle/Sharren/Chesa S, Axel I). Mapping baru: Defan→Devan Ivander Siahaan (TKB2), Corine→Corin Falove Manurung (TKB1), Brile→Brielle Claire Arinauli Pardosi (TKa), Axel→Axel Gevariel Manurung (TKa), Daren→Dareen Chandra (PG). FILE_PATH absensi.py → file September
