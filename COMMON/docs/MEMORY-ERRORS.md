@@ -107,6 +107,38 @@ Web terminal online (ttyd port 7681) langsung exit code 127 tiap buka sesi = com
 
 ### PELAJARAN
 - **Kalau pindah file/script antar folder/repo, WAJIB cek & update semua service yang memanggil path itu**
-- URL quick tunnel terminal BERUBAH tiap restart — cek `/var/log/cloudflared-terminal.log`
+- URL quick tunnel terminal BERUBAH tiap restart �?" cek `/var/log/cloudflared-terminal.log`
 - start-website.sh sekarang print URL terminal terbaru di akhir run
 #terminal #ttyd #server-linux #path-error #exit127
+
+---
+
+## [ERR-20260902-001] Word Lelet Akibat Ghost WINWORD COM
+
+**Tanggal**: 2026-09-02
+**Severity**: medium
+**Status**: fixed
+
+### Summary
+Word terasa lambat/lelet setelah sesi edit soal ujian via Word COM automation (2 September 2026).
+
+### Penyebab
+- Script Word COM yang tidak memanggil `Quit()` atau hang saat dieksekusi meninggalkan instance WINWORD "ghost" tak-berjendela (`MainWindowTitle` kosong, `MainWindowHandle`=0) yang numpuk di memory (~160 MB per instance).
+- Satu instance ghost ditemukan PID 2120 (StartTime 2:02 PM, 158.9 MB) dari sesi edit tadi malam.
+
+### Diagnosis (penyelidikan)
+- `Get-Process winword | Select Id, MainWindowTitle, MainWindowHandle` → instance dengan judul kosong + handle 0 = ghost COM, aman dibunuh. Dokumen asli user selalu punya judul (mis. "SURAT PERNYATAAN...") → JANGAN dibunuh.
+- Registry `HKCU:\Software\Microsoft\Office\16.0\Word\Resiliency\DisabledItems` ada 4 entry (akibat Word crash saat COM) — harmless, bukan penyebab lelet, jangan dihapus.
+- Folder cache web Word (`AppData\Roaming\Microsoft\Word\IPS%203%20...312756...`) total 22 MB — normal, bukan penyebab.
+- `Normal.dotm` bersih (19 KB, bukan bloat). Tidak ada korupsi registry.
+
+### SOLUSI
+1. Pastikan script COM SELALU panggil `$word.Quit()` + `[Marshal]::ReleaseComObject()` di akhir (try/finally).
+2. Setelah setiap sesi otak-atik Word, cek & bersihkan ghost: `Get-Process winword | ? MainWindowHandle -eq 0` → `Stop-Process -Force`.
+3. Verifikasi: `Get-Process winword` → "CLEAN - no WINWORD running"; COM test `Version=16.0` jalan normal & clean exit.
+4. Kembalikan agar tidak semrawut: kosongkan leftover AutoRecovery `.asd` doc yang tak dipakai (opsional, kecil).
+
+### VERIFIKASI
+- Ghost PID 2120 dibunuh → tidak ada WINWORD tersisa. COM test open+quit bersih tanpa ghost baru.
+
+#word #com #ghost #lemot #winword #automation
