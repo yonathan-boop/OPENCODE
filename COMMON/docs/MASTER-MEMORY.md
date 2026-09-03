@@ -876,6 +876,30 @@ webbrowser.open('https://youtube.com')
 - File hasil yang sudah final tetap disimpan
 - Jangan biarkan banyak file berserakan di folder kerja
 
+### WORKFLOW KOP + SOAL (.doc → .docx) — 2 September 2026, yonat-PC
+Contoh sukses: `Cop surat.docx` (kop) + `IPS 3 Jellys OK.doc` (soal) → `IPS 3 Jellys OK.docx`
+1. **Step 1 - Kop:** duplicate `Cop surat.docx` → `Cop surat IPS 3.docx`; ganti teks via Word COM: `<Mapel>` (Seni Musik→IPS), `<Hari, tgl>` (Senin, 14 September 2026→Selasa, 15 September 2026), `<Kelas>` (IIA SD→III SD). Hanya teks, font/layout TIDAK diubah.
+2. **Step 2 - Gabung:** Word COM load kop, ambil paragraf soal .doc dari judul pertama (mis. "Isian CP 1 (50%)") sampai akhir → `Range.PasteAndFormat(1)` (format asli dipertahankan) di akhir dokumen kop → simpan file baru.
+3. **Step 3 - Bersihkan enter kosong:** paragraf/sel kosong yang "memisahkan" kop dan judul soal HAPUS. ⚠️ Banyak yang ternyata **bagian dari tabel kop** (bukan paragraf body):
+   - Paragraf body kosong benar-benar terhapus (isi `\r` saja).
+   - Paragraf dengan karakter `\x07` (end-of-cell) = sel tabel; **tidak bisa** dihapus via `Range.Delete()` (Word selalu menciptakan ulang paragraf kosong di sel). Solusi: hapus **row tabel** (`<w:tr>`) via XML DOM (.NET XmlDocument) — hapus hanya row yang `ties` kosong (`SelectNodes(".//w:t")` count=0), hapus dari bawah regesif.
+4. **Step 4 - Format soal:** dari judul pertama soal sampai akhir: `Left=0`, `Right=0`, `FirstLineIndent=-46.8pt` (= -0.65" hanging), `SpaceBefore=0`, `SpaceAfter=0`, `LineSpacingRule=0` (single).
+5. **Step 5 - Penomoran:** tiap soal diberi `"N.`t"` (`1.` + TAB) via `InsertBefore` pada `Range` paragraf; tambahkan **1 enter kosong** di atas judul bagian kedua (mis. "Esai") via `Range.InsertParagraphBefore()` — panggil di `.Range`, bukan objek Paragraph (COMException `'InsertParagraphBefore'`).
+6. **Validasi wajib:** buka ulang via Word COM → cek transisi NIS/Nama (baris `/`) langsung ke judul tanpa enter kosong, penomoran, format hanging, tidak korup. Lalu hapus file perantara.
+
+### Jebakan teknis Word COM + DOCX (yonat-PC, 2 September 2026)
+- ⚠️ `Stop-Process WINWORD` — JANGAN bunuh proses Word dengan `MainWindowTitle` (dokumen user, mis. "SURAT PERNYATAAN..."), hanya bunuh instance tak-berjendela (`Visible=false`, judul kosong) milik script COM.
+- ⚠️ Loop `$prev=$isian.Previous(); $prev.Range.Delete()` bisa infinite-loop karena objek stale pasca-merge; selalu re-index ulang per iterasi + guard max loop.
+- ⚠️ `Range.Delete()` pada rentang yang memuat banyak paragraph mark sering cuma menghapus 1 char — pakai strategi delete per bagian atau XML.
+- ⚠️ Edit `word/document.xml` via **regex** (StripEmpty/String replace) → `The file appears to be corrupted` meski XML well-formed. Pakai **System.Xml.XmlDocument** (PreserveWhitespace, namespaces `w`) lalu tulis ulang zip (copy seluruh entry, ganti document.xml) — aman & tetap valid dibuka Word.
+- ⚠️ **Word COM HANG saat Word user terbuka (penyebab proses lambat).** Word cuma bisa 1 instance. Kalau user lagi buka dokumen (PID `6260` dll), `Word.Application` `Visible=false` dari script COM **hang menunggu** sampai timeout ~90 dtk berulang kali → bikin proses keliatan lama. Cara cek user buka Word: `Get-Process winword | Select Id,MainWindowTitle` (yang berjudul = user, jangan disentuh; yang judul kosong = COM script, boleh di-kill).
+  - **SOLUSI / best practice:** validasi cukup via XML (baca `document.xml` langsung — instan, tak butuh Word). Word COM hanya untuk cek render final, dan itu **WAJIB Word user ditutup dulu**.
+  - Setelah COM hang, selalu bersihkan instance tak-berjendela sisa (PID tanpa judul) biar tidak numpuk.
+- ⚠️ **OneDrive Desktop sync bikin file tampak "hilang/tak bisa dibuka/permission" sesaat.** Folder kerja (`C:\Users\yonat\OneDrive\Desktop\...`) ada di OneDrive. Saat file di-move keluar lalu balik (atau edit via API langsung), OneDrive sync bikin Explorer menampilkan state stale/kosong sejenak.
+  - Cek file beneran ada & valid: `Test-Path` + `[IO.Compression.ZipFile]::OpenRead` (hitung entry, baca ukuran). Kalau zip valid & entry lengkap → file OK, bukan korup/permission.
+  - Unggahan cepat ke OneDrive (`UploadThrottle`/sync) bisa bikin Explorer menampilkan file belum sync; tunggu tanda panah selesai atau lihat dari disk lokal.
+- Format ukuran indent muncul negatif dari COM (-46.8pt) tapi di Word tampil "hanging 0.65"".
+
 ---
 
 ## 📋 FORMAT DOKUMEN UJIAN (BARU)
