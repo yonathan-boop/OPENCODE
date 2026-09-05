@@ -1,6 +1,6 @@
 # MEMORI KOMPREHENSIF - Admin's AI Assistant
 
-Di-update: 1 September 2026
+Di-update: 5 September 2026
 
 ---
 
@@ -37,6 +37,8 @@ Di-update: 1 September 2026
 - OS: Windows (install ulang)
 - User: yonat
 - OpenCode: v1.18.3 via Scoop
+- **Model AI (KEPUTUSAN PERMANEN, 5 Sept 2026):** `opencode/big-pickle` — user MENEGASKAN model tidak akan pernah diganti, cuma big-pickle aja. JANGAN tawarkan ganti model.
+- **SKILLS TERINSTALL (5 Sept 2026):** 4 skill dokumen resmi Anthropic (dari github.com/anthropics/skills) di `C:\Users\yonat\.config\opencode\skills\`: `docx`, `xlsx`, `pdf`, `pptx` (+ file pendamping scripts/references). Dipakai untuk kerja dokumen Word/Excel/PDF. Update skill: `git pull` di clone temp `C:\Users\yonat\AppData\Local\Temp\opencode\anthropic-skills` lalu re-copy.
 - Memory: C:\Users\yonat\OneDrive\Desktop\memory
 - GitHub token: ghp_ (classic, tanpa exp date) dipakai di remote URL — 10 Agustus 2026
 - **Tesseract OCR:** C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.3, via winget, 24 Agustus 2026) + pytesseract/pillow via `py` (Python 3.13) — dipakai OCR surat pengumuman study tour
@@ -855,6 +857,10 @@ webbrowser.open('https://youtube.com')
 - File baru: `Absensi 5 September 2026 Saturday 13_02_38.xlsx` (copy dari file September, FILE_PATH diarahkan ke sini; tgl1 11 mark utuh, tgl5 3 mark; validasi lulus)
 - **DAREEN CHANDRA (PG) & AXELLE SEAN CHANDRA (PG) KELUAR SEKOLAH** → row dihapus dari roster PG (seperti Kimita). Roster PG sekarang 11 siswa. Jangan cari/mark mereka lagi.
 - OpenClaw Companion terpasang di yonat-PC (gateway di WSL2 distro `OpenClawGateway`, bot Telegram @Methodist-11); pairing owner Telegram 5508090479 di-approve → bot bisa dipakai (sudah bisa dipakai user)
+
+### 5 September 2026 - yonat-PC (Session 2):
+- **Install 4 SKILL DOKUMEN RESMI ANTHROPIC** di `C:\Users\yonat\.config\opencode\skills\`: `docx`, `xlsx`, `pdf`, `pptx` (dari github.com/anthropics/skills, clone ke `AppData\Local\Temp\opencode\anthropic-skills`, shallow). Terverifikasi: frontmatter name cocok folder, ~3.3MB. Dipakai untuk kerja dokumen ujian/Word, absensi/Excel, dan PDF.
+- **KEPUTUSAN MODEL PERMANEN (user menegaskan):** model AI = `opencode/big-pickle`, TIDAK AKAN PERNAH diganti. JANGAN tawarkan ganti model. (juga tercatat di bagian yonat-PC KONFIGURASI)
 
 ### 24 Agustus 2026 - yonat-PC (Session 2):
 - Website: pengumuman BARU "Study Tour ke Rahmat Zoo & Park" — sumber: foto surat di `C:\Users\yonat\OneDrive\Desktop\Opencode\Pengumuman Jalan jalan ke kebun binatang rahmat zoo.jpg` (dibaca via OCR Tesseract, model AI tidak support input gambar)
