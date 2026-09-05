@@ -374,6 +374,19 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - File versi terbaru: Absensi 24 Agustus 2026 Monday 09_01_05.xlsx (3 mark, validasi lulus — verifikasi ganda otak+sub-agent)
 - **KOREKSI MAPPING KOLOM (24/8):** workbook versi Agustus ini SATU blok bulan saja — header `r5c4="Agustus"`, hari 1–31 di kolom 4–34 → tanggal d = kolom 3+d (24/8 = kolom 27). Catatan lama "Juli 1 = col 4 → Agustus 1 = col 35" HANYA berlaku untuk file era Juli (ABSENSI Juli.xlsx). absensi.py resolve via header row 6 jadi tetap akurat; validasi manual harus pakai kolom 3+d.
 
+### Absensi 5 September 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 5/9 | TKB(2) | Willian Geoffrey Utama | S |
+| 5/9 | TKB1 | Azka Andreas | S |
+| 5/9 | PG | Erick Raphael Nasution | S |
+
+- File versi terbaru: Absensi 5 September 2026 Saturday 13_02_38.xlsx (3 mark tgl 5, validasi lulus)
+- Mapping: "Wilian"→Willian Geoffrey Utama (TKB2), "Azka"→Azka Andreas (TKB1)
+- **DARREEN & AXELLE KELUAR SEKOLAH (5 September 2026):** Dareen Chandra (PG) dan Axelle Sean Chandra (PG) resmi keluar → row KEDUANYA dihapus dari roster PG di file versi terbaru (arsip tetap di file versi lama, termasuk mark Dareen tgl 1/9). Jangan cari/mark mereka lagi. Roster PG sekarang 11 siswa.
+- Mapping kolom September (sama seperti Agustus): tgl d → kolom 3+d (5/9 = kolom 8). FILE_PATH absensi.py → file versi 5 September.
+
 ### Kelas: TKa, TKB1, TKB2, PG
 
 ### Alasan: sakit (S), izin (I), alpha (A)
@@ -836,6 +849,12 @@ webbrowser.open('https://youtube.com')
 - **FILE_PATH absensi.py →** `Absensi September 2026 Saturday 08_33_12.xlsx`
 - **Name mapping baru:** Defan→Devan Ivander Siahaan (TKB2), Corine→Corin Falove Manurung (TKB1), Brile/Brilie→Brielle Claire Arinauli Pardosi (TKa), Axel→Axel Gevariel Manurung (TKa), Daren→Dareen Chandra (PG)
 - **Teknis buat file September:** kesalahan lama — mengosongkan sel via openpyxl crash pd MergedCell (read-only). Solusi: try/except AttributeError saat clear, lalu set header & angka tanggal manual. Validasi: kedua file mark utuh (Agustus lengkap, September 11 mark)
+
+### 5 September 2026 - yonat-PC (Session 1):
+- **Absensi 5 September (3 mark):** TKB2 (Willian S); TKB1 (Azka Andreas S); PG (Erick S)
+- File baru: `Absensi 5 September 2026 Saturday 13_02_38.xlsx` (copy dari file September, FILE_PATH diarahkan ke sini; tgl1 11 mark utuh, tgl5 3 mark; validasi lulus)
+- **DAREEN CHANDRA (PG) & AXELLE SEAN CHANDRA (PG) KELUAR SEKOLAH** → row dihapus dari roster PG (seperti Kimita). Roster PG sekarang 11 siswa. Jangan cari/mark mereka lagi.
+- OpenClaw Companion terpasang di yonat-PC (gateway di WSL2 distro `OpenClawGateway`, bot Telegram @Methodist-11); pairing owner Telegram 5508090479 di-approve → bot bisa dipakai (sudah bisa dipakai user)
 
 ### 24 Agustus 2026 - yonat-PC (Session 2):
 - Website: pengumuman BARU "Study Tour ke Rahmat Zoo & Park" — sumber: foto surat di `C:\Users\yonat\OneDrive\Desktop\Opencode\Pengumuman Jalan jalan ke kebun binatang rahmat zoo.jpg` (dibaca via OCR Tesseract, model AI tidak support input gambar)

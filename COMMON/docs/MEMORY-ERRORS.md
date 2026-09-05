@@ -142,3 +142,32 @@ Word terasa lambat/lelet setelah sesi edit soal ujian via Word COM automation (2
 - Ghost PID 2120 dibunuh → tidak ada WINWORD tersisa. COM test open+quit bersih tanpa ghost baru.
 
 #word #com #ghost #lemot #winword #automation
+
+---
+
+## [ERR-20260905-001] Word Lelet di Menu Page Setup/Kolom/Print
+
+**Tanggal**: 2026-09-05
+**Severity**: medium
+**Status**: fixed (menunggu konfirmasi user)
+
+### Summary
+Di yonat-PC, Microsoft Word kadang macet/lelet sampai 10 detik saat buka menu Page Setup, kolom, dan menu Print (kadang ~3x lipat dalam 10 detik). Bukan kata lain, hanya Word.
+
+### Penyelidikan
+- Tidak ada ghost WINWORD COM (hanya 1 instance dokumen user, RAM 300MB, normal) — kasus ERR-20260902-001 sudah beres.
+- RAM aman (60% used), jaringan ke server 192.168.136.1 = 0ms, Defender real-time normal, Spooler running.
+- 2 printer jaringan Point-and-Print dari \\192.168.136.1 (EPSON L3210 + Brother HL-L2360D, keduanya dipakai user) → setiap buka dialog Print Windows query ke spooler remote.
+- File kerja di folder Desktop OneDrive → autosave bisa kena lock sesaat oleh OneDrive+Defender sync.
+- Tidak ada add-in Office pihak ketiga.
+- 25 proses msedgewebview2 (boros tapi umum).
+
+### SOLUSI yang diterapkan
+1. Disable Hardware Graphics Acceleration = 1 (registry `HKCU\Software\Microsoft\Office\16.0\Word\Options\DisableHardwareAcceleration`) → mematikan GPU acceleration di Word, langkah paling umum utk fix lag rendering Page Setup/columns/print. Perlu restart Word biar aktif.
+2. Printer dua-duanya tetap, default tetap Brother (keputusan user).
+
+### Cadangan kalau masih lelet (belum dieksekusi)
+- Exclude Defender utk folder kerja + temp Office.
+- Pindahkan folder kerja ke luar OneDrive.
+
+#word #lelet #gpuacceleration #printer #onedrive #defender
