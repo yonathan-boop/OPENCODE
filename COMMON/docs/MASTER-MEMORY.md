@@ -69,6 +69,22 @@ Di-update: 5 September 2026
 - **Error 502/503:** connector terhubung tapi origin mati → cek web server 8090. **Error 1033/530:** DNS/CNAME salah tunnel atau tunnel tak aktif.
 - **PEMBAGIAN PERAN (update 22/8):** yonat-PC = pembuat & testing website. **Server Linux = server utama** (tunnel 8f8b0f53 → localhost:8090, LIVE 200). PC Wilianto tidak lagi melayani website.
 
+### TELEGRAM BOT OPENCODE (5 SEPTEMBER 2026 — SERVER LINUX)
+- **Fungsi:** streaming/akses opencode penuh dari HP via Telegram (gantikan terminal web ttyd yang susah dipakai di HP — keyboard HP gak ada Ctrl/tanda panah). Tinggal chat kayak biasa.
+- **Bot:** `@Qksusb_bot` (nama "bot01", token dari BotFather) — **owner-only** (whitelist user id, sekaligus whitelist 5508090479).
+- **Folder:** `/root/SERVER-LINUX/telegram-bot/` (masuk repo SERVER-LINUX recovery kit). Berisi: `bot.js`, `package.json`, `.env` (TOKEN + OWNER_ID + OPCODE_WORKDIR + AUTO_APPROVE=1 + TIMEOUT_MS), `sessions.json`, `start-bot.sh`, `stop-bot.sh`, `workspace/`.
+- **Cara kerja:** tiap pesan chat → `opencode run --continue --dir <workspace>/<uid>/<sesi>` → balasan dikirim/edit di chat. Konteks lanjut per sesi.
+- **Manajemen sesi (chat):** `/sesi` (list), `/baru <nama>` (buat+aktif), `/pindah <nama|nomor>` (ganti), `/hapus <nama|nomor>`. State aktif per user disimpan di `sessions.json`. Folder sesi lama hasil migrasi = "default".
+- **TEKNIS PENTING (jebakan yang sudah ketemu):**
+  - spawn via Node HARUS `stdio:['ignore','pipe','pipe']` (stdin), kalau tidak opencode HANG (nunggu input) — hang tanpa output & tanpa exit.
+  - `--session <id>` butuh sesi yang sudah ada → "Session not found". Pakai `--continue` + folder per-sesi gantinya.
+  - Jawaban bisa keluar di stdout ATAU stderr bergantian → gabung dua-duanya + strip ANSI + buang baris header `> build · big-pickle` lalu trim.
+  - opencode non-interaktif dari bot auto-reject semua permission → aktifkan `--auto` (auto-approve). **Tanpa pembatasan** (keputusan user: bot "setara" dengan asisten di sesi server, semua pembatasan jangan ada).
+  - `pkill -f "node bot.js"` MENYERANG shell sendiri (cmdline bash -c mengandung string) → bikin shell hang. Pakai pidfile (`start-bot.sh`/`stop-bot.sh`).
+  - Konfig instruksi memory (`workspace/opencode.json`) dipasang di root workspace bot → tiap sesi auto-load SOUL/USER/MASTER sama seperti asisten server.
+- **Auto-start:** masuk `start-website.sh` langkah [5/5] → ikut nyala saat `bash ~/SERVER-LINUX/scripts/start-website.sh` dijalankan setelah reboot.
+- Log bot: `/var/log/telegram-bot.log`. Start manual: `bash ~/SERVER-LINUX/telegram-bot/start-bot.sh`.
+
 ### PC Wilianto (SERVER WEBSITE - AKTIF, 15 Agustus 2026)
 - Nama: PC Wilianto, user `WILIANTO` (Windows), komputer `WILIANTO-PC`
 - Peran: **server utama website SD Methodist-11** (tunnel 21b93a76 → localhost:8090) — **SELESAI, website live status 200**
