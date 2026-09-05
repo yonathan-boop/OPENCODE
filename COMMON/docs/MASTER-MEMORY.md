@@ -36,7 +36,7 @@ Di-update: 5 September 2026
 - Nama: yonat-PC
 - OS: Windows (install ulang)
 - User: yonat
-- OpenCode: v1.18.3 via Scoop
+- OpenCode: CLI v1.18.3 via Scoop + **DESKTOP GUI v1.18.29 terinstall 5 Sept 2026** (`opencode-desktop-win-x64.exe`, silent /S) — exe di `C:\Users\yonat\AppData\Local\Programs\@opencode-aidesktop\OpenCode.exe`, shortcut Start Menu `OpenCode.lnk`. Installer tersimpan di temp.
 - **Model AI (KEPUTUSAN PERMANEN, 5 Sept 2026):** `opencode/big-pickle` — user MENEGASKAN model tidak akan pernah diganti, cuma big-pickle aja. JANGAN tawarkan ganti model.
 - **SKILLS TERINSTALL (5 Sept 2026):** 4 skill dokumen resmi Anthropic (dari github.com/anthropics/skills) di `C:\Users\yonat\.config\opencode\skills\`: `docx`, `xlsx`, `pdf`, `pptx` (+ file pendamping scripts/references). Dipakai untuk kerja dokumen Word/Excel/PDF. Update skill: `git pull` di clone temp `C:\Users\yonat\AppData\Local\Temp\opencode\anthropic-skills` lalu re-copy.
 - Memory: C:\Users\yonat\OneDrive\Desktop\memory
