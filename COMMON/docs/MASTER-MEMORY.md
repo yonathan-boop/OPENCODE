@@ -42,6 +42,7 @@ Di-update: 5 September 2026
 - Memory: C:\Users\yonat\OneDrive\Desktop\memory
 - GitHub token: ghp_ (classic, tanpa exp date) dipakai di remote URL — 10 Agustus 2026
 - **Tesseract OCR:** C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.3, via winget, 24 Agustus 2026) + pytesseract/pillow via `py` (Python 3.13) — dipakai OCR surat pengumuman study tour
+- **Image Tools MCP (5 Sept 2026):** terpasang di config opencode (opencode.json + opencode.jsonc) sebagai MCP `image_tools` — exe `C:\Users\yonat\OneDrive\Dokumen\image-tools-mcp-v1.2.1-windows-amd64.exe`, TESSERACT_PATH di-set, `type: local`, `command` array. Tools: image_load, image_dimensions, image_sample_color, image_detect_text_regions, image_ocr_full. **Perlu restart opencode** biar aktif (config hanya dibaca saat start). Backup config lama di Temp\opencode\*.bak.
 
 ### BACKUP METHODIST-11 (REDESIGN 24 Agustus 2026 — SISTEM UPDATE LANGSUNG)
 - **Script:** `PC-06/scripts/backup-methodist.ps1` | **Source:** `\\192.168.136.1\Methodist-11 Document` = DATA UTAMA, HANYA DIBACA — script TANPA /MOV /MOVE /PURGE /MIR (mustahil menghapus source)
