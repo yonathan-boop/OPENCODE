@@ -256,3 +256,24 @@ User koreksi desain backup: JANGAN bikin salinan penuh per tanggal (boros memori
 
 ---
 
+
+## [LRN-20260905-001] bot_harus_pesan_biasa_bukan_log
+
+**Tanggal**: 2026-09-05
+**Priority**: high
+**Status**: active
+
+### Summary
+User mengeluh pesan bot Telegram sering terpotong. Sumber: hasil gabungan stdout+stderr opencode 6–10KB lalu `cut()` memotong mentah di 4000 byte. User minta: log kerjaan cukup di file, yang dikirim pesan biasa (jawaban ringkas).
+
+### Details
+- Jawaban model sering keluar di stderr (bukan stdout) — ukuran err bisa jauh lebih besar dari out.
+- `splitMessages()` di bot.js: pecah jawaban utuh jadi beberapa pesan (tiap ≤3800 byte, ngitung batas byte UTF-8, baris super panjang ikut dipecah) — bukan dipotong.
+- Filter garis log ditambah: timestamp `2026-..`, `Error:{`, fragment JSON (`"name":`, `"data":`, `"message":`, `"ref":`), `}`.
+- Log lengkap tetap ke `/var/log/telegram-bot.log`; yang ke Telegram cuma pesan jawaban.
+- Unit test semua kasus (paragraf 9K, 200 baris, emoji, tabel) → tiap chunk ≤3800.
+
+### Action
+- Jangan kirim dump log ke user — ringkas, "pesan biasa".
+- Kalau jawaban panjang, pecah jadi beberapa pesan, jangan dipotong di tengah kalimat.
+- Setelah edit bot.js: `node --check` dulu, restart via `start-bot.sh`/`stop-bot.sh` (pidfile, bukan pkill).
