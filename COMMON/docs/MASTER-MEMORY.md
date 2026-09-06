@@ -82,6 +82,12 @@ Di-update: 5 September 2026
   - opencode non-interaktif dari bot auto-reject semua permission → aktifkan `--auto` (auto-approve). **Tanpa pembatasan** (keputusan user: bot "setara" dengan asisten di sesi server, semua pembatasan jangan ada).
   - `pkill -f "node bot.js"` MENYERANG shell sendiri (cmdline bash -c mengandung string) → bikin shell hang. Pakai pidfile (`start-bot.sh`/`stop-bot.sh`).
   - Konfig instruksi memory (`workspace/opencode.json`) dipasang di root workspace bot → tiap sesi auto-load SOUL/USER/MASTER sama seperti asisten server.
+  - Aturan jawaban `workspace/RULES.md`: jawab ringkas bahasa Indonesia, JANGAN tampilkan dump eksekusi perintah/log ke chat (cukup ringkasan manusiawi), format HP-friendly. Dimuat via instructions opencode.json.
+  - Struktur folder sesi: `workspace/<uid>/<nama-sesi>`; sesi lama hasil migrasi = "default".
+- **FIXES (6 Sept 2026):**
+  - `bot.launch()` di Telegraf kadang "Promise timed out" → diganti **manual long-polling** (`bot.telegram.getUpdates` loop + `bot.handleUpdate`) — andal, restart bersih, log "Bot started, manual polling aktif".
+  - Jawaban bisa terpotong 1 pesan karena handler masih manggil `cut()` (fungsi yang sudah dihapus saat bot01 nambah `splitMessages`) → ReferenceError tiap jawaban. Fix: semua pemicu `cut` dihapus, jawaban panjang dikirim **multi-pesan** via `splitMessages` (≤3800 byte/pesan, pemenggalan aman UTF-8, jeda 350ms antar pesan).
+  - Log bot ganda: `process.stdout` + `fs.appendFileSync` ke `/var/log/telegram-bot.log` (stdout ke file itu buffered → penting biar log realtime).
 - **Auto-start:** masuk `start-website.sh` langkah [5/5] → ikut nyala saat `bash ~/SERVER-LINUX/scripts/start-website.sh` dijalankan setelah reboot.
 - Log bot: `/var/log/telegram-bot.log`. Start manual: `bash ~/SERVER-LINUX/telegram-bot/start-bot.sh`.
 - **FIX PESAN TERPOTONG (5 Sept 2026):** jawaban opencode sering 6–10KB (out kecil + err besar, digabung) lalu `cut()` potong mentah di 4000 byte → pesan terpotong tengah kalimat. Perbaikan di bot.js: (1) filter garis log ditambah — timestamp `^[\[]?YYYY-MM-DD`, `Error:{`, JSON `"name"/"data"/"message"/"ref"`, `}`; (2) fungsi `splitMessages()` — kirim jawaban utuh dipecah jadi beberapa pesan (tiap ≤3800 byte, pemenggalan aman pakai batas byte UTF-8, baris super panjang ikut dipecah); (3) chunk pertama edit status ⏳, sisanya `ctx.reply`, fallback reply kalau edit gagal. Log lengkap tetap hanya ke file. Verifikasi: `node --check` + unit test semua kasus (paragraf 9K, 200 baris, emoji, tabel) → tiap chunk ≤3800.
