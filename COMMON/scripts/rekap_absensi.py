@@ -106,7 +106,11 @@ if __name__ == "__main__":
     ap.add_argument("--folder", default=DEFAULT_FOLDER, help="Folder berisi file absensi (default: relatif ke repo)")
     ap.add_argument("--file", default=None, help="Nama file spesifik (default: file absensi terbaru di folder)")
     args = ap.parse_args()
-    path = args.file if args.file else os.path.join(args.folder, find_latest(args.folder))
+    folder = args.folder
+    if not os.path.isabs(folder):
+        folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", folder)
+        folder = os.path.normpath(folder)
+    path = args.file if args.file else os.path.join(folder, find_latest(folder))
     if not os.path.exists(path):
         sys.exit(f"[ERROR] File tidak ditemukan: {path}")
     rekap(path)

@@ -428,6 +428,8 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - Mapping: "Wilian"→Willian Geoffrey Utama (TKB2), "Azka"→Azka Andreas (TKB1)
 - **DARREEN & AXELLE KELUAR SEKOLAH (5 September 2026):** Dareen Chandra (PG) dan Axelle Sean Chandra (PG) resmi keluar → row KEDUANYA dihapus dari roster PG di file versi terbaru (arsip tetap di file versi lama, termasuk mark Dareen tgl 1/9). Jangan cari/mark mereka lagi. Roster PG sekarang 11 siswa.
 - Mapping kolom September (sama seperti Agustus): tgl d → kolom 3+d (5/9 = kolom 8). FILE_PATH absensi.py → file versi 5 September.
+- **OBSERVASI NIGHT-SHIFT (6 Sept 2026):** file `Absensi September 2026 Saturday 08_33_12.xlsx` & file 5 Sept berisi MARK 2-4 SEPTEMBER yang BELUM pernah dicatat di memory (Dearni F A Parapat 2-S, 3-S; Roderick Yang 2-S, 3-S, 4-S; Ellena 2-S; Giovan O 2-S; Lionel 2-S; Ezequiel 4-S; TKB1 Venedict 2-S; TKB(2) Melviano 2-S, Shane 4-S) — kemungkinan diisi user langsung di PC. Data TIDAK diubah, hanya dicatat.
+- **TOOL REKAP (6 Sept 2026):** `COMMON/scripts/rekap_absensi.py` — rekap bulanan S/I/A otomatis dari file absensi versi terbaru (deteksi file otomatis via parse nama bulan+tanggal, KOMPATIBEL lintas PC; ⚠️ jangan pakai mtime — base file 4ms lebih baru di server walau bukan versi terakhir). Butuh `openpyxl` (terpasang di server Linux, versi 3.1.5). Cara pakai: `python3 COMMON/scripts/rekap_absensi.py [--file "nama file"]`.
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
@@ -1042,6 +1044,12 @@ Contoh sukses: `Cop surat.docx` (kop) + `IPS 3 Jellys OK.doc` (soal) → `IPS 3 
 - **Footer**: `Versi 0.0004 — Transparansi 50%` (teks transparansi diminta user dipasang lagi)
 - Commit terkait: `980a340` (catatan kaki), `b8ae2aa` (setup auto-bump), `3aff9b7` (cache-buster otomatis), `0bfcd7c` (menu kalender), `bb192ea` (navbar 2 baris)
 - **DARK MODE (15 Agustus 2026):** toggle 🌙/☀️ di navbar semua 14 halaman (tombol `.theme-toggle` dalam `.nav-actions`). CSS: hardcoded `#fff` di-refactor → `var(--surface)`; blok `[data-theme="dark"]` + variabel dark ditambahkan di akhir `style.css`. Anti-flash inline script di `<head>` tiap halaman (baca localStorage `m11-theme`, fallback `prefers-color-scheme`). Pilihan persist di localStorage `m11-theme`. Tema dark: latar `#0b1220`, surface `#121a2f`, teks `#e5e7eb`, biru terang `#60a5fa`, hero tetap gradient biru tua (`--hero-a/b` dikunci). Belum di-commit saat ini — cache-buster `?v=16` akan naik otomatis oleh pre-commit hook setelah commit.
+
+### 6 September 2026 — Server Linux (Night-shift otomatis):
+- **TOOL REKAP ABSENSI** `COMMON/scripts/rekap_absensi.py` dibuat (backlog "Absensi summary" → Done): rekap bulanan S/I/A per kelas + daftar murid absen (terbanyak ke bawah) dari file versi terbaru. Deteksi file terbaru via **parse nama** (bulan+tahun+tanggal versi), BUKAN mtime (base file 4ms lebih baru walau bukan versi terakhir → mtime salah pilih file). Terverifikasi: hasil rekapitulasi September cocok 100% dengan pembacaan langsung file. Butuh openpyxl → diinstall di server Linux (versi 3.1.5).
+- **TEMPLATE SESSION REPORT** `COMMON/docs/SESSION-REPORT-TEMPLATE.md` dibuat (backlog "Session report" → Done): template baku laporan akhir sesi + format laporan singkat yang dipakai bot/laporan otomatis.
+- **BACKLOG DIKEMBALIKAN:** "Absensi otomatis lintas kelas (fix name matching)" tetap Backlog (tidak dikerjakan); script `list_all.py` di COMMON/scripts bisa jadi bahan buat name-matching.
+- **OBSERVASI DATA:** file September berisi mark tgl 2-4 (Dearni, Roderick, Ellena, Giovan, Lionel, Ezequiel, Venedict, Melviano, Shane) yang belum tercatat di memory — dicatat, data TIDAK diubah.
 
 ---
 
