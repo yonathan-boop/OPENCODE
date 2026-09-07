@@ -63,6 +63,7 @@ Di-update: 5 September 2026
 - **TERMINAL ONLINE (fix 24 Agu):** ttyd port 7681 (`admin:Xbq17rwIE7DSj63e`) + quick tunnel → URL acak BERUBAH tiap restart, cek `/var/log/cloudflared-terminal.log`. Sesi via tmux (pilih-terminal.sh). start-website.sh sekarang nyalakan 4 layanan: web 8090, tunnel utama, ttyd, tunnel terminal + print URL terminal terakhir. Error lama: exit 127 krn path script masih ke `/root/memory/linux-server/` yang sudah pindah repo
 - **ZEROTIER (24 Agu, mode ON-DEMAND):** terinstall di server, join network `633e31d8a2212ce2` → IP **192.168.195.60**, node `0f4e41072e`. TIDAK jalan terus (user: hemat RAM) — nyalakan manual saat butuh akses Wilianto, matikan setelah selesai. PC Wilianto = 192.168.195.7 (akses SMB akun wilianto, SSH/RDP closed). WAJIB `chmod 666 /dev/net/tun` sebelum start daemon. Detail + cara on/off: /root/SERVER-LINUX/docs/ZEROTIER.md
 - **AUTO-BACKUP MEMORY HARIAN (22/8):** script `/root/SERVER-LINUX/scripts/backup-memory.sh` — backup REPO MEMORY (/root/memory) via git pull --rebase → add -A → commit `auto-backup` (skip kalau kosong) → push. Cron root: `0 21 * * *` tiap hari. Log: /var/log/memory-backup.log. Cron daemon dinyalakan otomatis oleh start-website.sh (tidak auto-start setelah reboot, karena tak ada systemd)
+- **MONITOR SERVER + ALERT TELEGRAM (5/9):** script `/root/SERVER-LINUX/scripts/monitor-server.sh` — cron `*/5 * * * *` cek: website 8090 (HTTP 200), tunnel utama (`cloudflared tunnel run`), ttyd :7681, bot (`node bot.js`), RAM & disk (alert ≥90%). Notifikasi ke Telegram via bot `@Qksusb_bot` (chat=OWNER_ID 5508090479) HANYA saat ada masalah pertama kali (state file `.monitor-state` anti-spam; alert pulih hanya di log). Log: /var/log/monitor-server.log. Script ada di recovery kit SERVER-LINUX. Cron tetap tersimpan di crontab root → ikut aktif lagi setelah cron daemon dinyalakan start-website.sh.
 - **Tunnel LAMA (tidak dipakai):** `21b93a76` (PC Wilianto, 15/8), `pc-06` (ID `34a83caa-06fb-458f-8ea6-86a7731b8fe7`), `Linux HP` (ID `912a22fa-051a-4891-897a-f2ff20f2d5f2`, linux-tablet)
 - **DNS:** `@` CNAME → `8f8b0f53-c70d-4bec-85d9-34e24da3c8ff.cfargotunnel.com` (proxy ON). JANGAN pakai A/AAAA → bikin error 530. Ganti DNS harus manual di dashboard (Zero Trust public hostname TIDAK otomatis menimpa record lama → error 1033 menetap)
 - **Public Hostname tunnel 8f8b0f53:** methodist-11.my.id → http://localhost:8090 (config ter-push otomatis ~30 detik)
@@ -82,8 +83,30 @@ Di-update: 5 September 2026
   - opencode non-interaktif dari bot auto-reject semua permission → aktifkan `--auto` (auto-approve). **Tanpa pembatasan** (keputusan user: bot "setara" dengan asisten di sesi server, semua pembatasan jangan ada).
   - `pkill -f "node bot.js"` MENYERANG shell sendiri (cmdline bash -c mengandung string) → bikin shell hang. Pakai pidfile (`start-bot.sh`/`stop-bot.sh`).
   - Konfig instruksi memory (`workspace/opencode.json`) dipasang di root workspace bot → tiap sesi auto-load SOUL/USER/MASTER sama seperti asisten server.
+  - Aturan jawaban `workspace/RULES.md`: jawab ringkas bahasa Indonesia, JANGAN tampilkan dump eksekusi perintah/log ke chat (cukup ringkasan manusiawi), format HP-friendly. Dimuat via instructions opencode.json.
+  - Struktur folder sesi: `workspace/<uid>/<nama-sesi>`; sesi lama hasil migrasi = "default".
+- **FIXES (6 Sept 2026):**
+  - `bot.launch()` di Telegraf kadang "Promise timed out" → diganti **manual long-polling** (`bot.telegram.getUpdates` loop + `bot.handleUpdate`) — andal, restart bersih, log "Bot started, manual polling aktif".
+  - Jawaban bisa terpotong 1 pesan karena handler masih manggil `cut()` (fungsi yang sudah dihapus saat bot01 nambah `splitMessages`) → ReferenceError tiap jawaban. Fix: semua pemicu `cut` dihapus, jawaban panjang dikirim **multi-pesan** via `splitMessages` (≤3800 byte/pesan, pemenggalan aman UTF-8, jeda 350ms antar pesan).
+  - Log bot ganda: `process.stdout` + `fs.appendFileSync` ke `/var/log/telegram-bot.log` (stdout ke file itu buffered → penting biar log realtime).
 - **Auto-start:** masuk `start-website.sh` langkah [5/5] → ikut nyala saat `bash ~/SERVER-LINUX/scripts/start-website.sh` dijalankan setelah reboot.
 - Log bot: `/var/log/telegram-bot.log`. Start manual: `bash ~/SERVER-LINUX/telegram-bot/start-bot.sh`.
+
+### OPENCODE AUTOPILOT (6 September 2026 — SERVER LINUX, auto tanpa manusia)
+- **Konsep:** server 24/7 + cron + opencode = sistem kerja mandiri. Semua script di `/root/SERVER-LINUX/scripts/`, log di `/var/log/*` & `/root/SERVER-LINUX/logs/`.
+- **Cron aktif (crontab root):**
+  - `6 * * * *` → `auto-pull.sh` (git pull --rebase memory, non-destruktif)
+  - `10 * * * *` → `health-check.sh` (web 200 local+public, disk/RAM %, proses tunnel/web/ttyd/bot → `/var/log/health.json`)
+  - `40 6 * * *` → `morning-report.sh` (laporan pagi: status kesehatan + backlog pending memory → Telegram owner)
+  - `30 0 * * *` → `night-shift.sh` (opencode dijalankan OTOMATIS tiap malam: pull memory → baca FEATURE-REQUESTS/ERRORS → kerjakan 1-3 tugas aman → commit+push → lapor ke Telegram; log `logs/night-shift-<tgl>.md`, timeout 1500s)
+- **notify-telegram.sh** — helper kirim pesan Telegram (baca token dari `.env` bot).
+- **Pembatasan night-shift:** jangan restart service, jangan sentuh token, jangan hapus permanen, jangan ubah absensi tanpa izin.
+- Test: notifikasi tiba ke Telegram (11:01), health OK (web/disk/RAM/tunnel/bot), night-shift uji coba dijalankan manual (6 Sept). Cron daemon otomatis dinyalakan start-website.sh setelah reboot.
+- **FIX PESAN TERPOTONG (5 Sept 2026):** jawaban opencode sering 6–10KB (out kecil + err besar, digabung) lalu `cut()` potong mentah di 4000 byte → pesan terpotong tengah kalimat. Perbaikan di bot.js: (1) filter garis log ditambah — timestamp `^[\[]?YYYY-MM-DD`, `Error:{`, JSON `"name"/"data"/"message"/"ref"`, `}`; (2) fungsi `splitMessages()` — kirim jawaban utuh dipecah jadi beberapa pesan (tiap ≤3800 byte, pemenggalan aman pakai batas byte UTF-8, baris super panjang ikut dipecah); (3) chunk pertama edit status ⏳, sisanya `ctx.reply`, fallback reply kalau edit gagal. Log lengkap tetap hanya ke file. Verifikasi: `node --check` + unit test semua kasus (paragraf 9K, 200 baris, emoji, tabel) → tiap chunk ≤3800.
+- **ARSIP SESI (5 Sept 2026):** `opencode session` CLI cuma punya list/delete (TIDAK ada archive) → arsip reversible via SQLite langsung: set `time_archived` di tabel `session` (`/root/.local/share/opencode/opencode.db`). 12 sesi lama /data/workspace (22–28 Agu) di-archive, 8 sesi aktif tersisa. Sesi arsip tetap tersimpan (tidak hilang).
+- **CEK PEMAKAIAN TOKEN (5 Sept 2026):** query DB `session` (kolom `tokens_input/output/reasoning`, `tokens_cache_read/write`, `cost`) utk token per-sesi; `opencode stats` utk ringkasan semua sesi. big-pickle = context window **200K**, output max 32K, harga $0; **per-step usage TIDAK tersimpan** di DB (None). Batas kuota free model ada di server OpenCode Zen (per anonim/IP/akun) — TIDAK bisa dilihat dari CLI, ketahuan baru pas error "usage exceeded". Server ini anonim (0 credential, `opencode auth list` kosong).
+- **KUOTA ≠ KONTEKS:** sesi baru = ctx obrolan fresh, tapi system prompt memory ±30K tetap dimuat tiap sesi; buka sesi baru TIDAK menambah kuota free model (batas per akun/waktu). User sempat kira "buka sesi baru = unlimited" → perlu diluruskan.
+- Gaya bawaan bot = eksekusi langsung (auto-approve). Kalau user mau mode diskusi/opsi/interogasi, cukup bilang langsung, tidak perlu kata pemicu khusus.
 
 ### PC Wilianto (SERVER WEBSITE - AKTIF, 15 Agustus 2026)
 - Nama: PC Wilianto, user `WILIANTO` (Windows), komputer `WILIANTO-PC`
@@ -405,6 +428,8 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - Mapping: "Wilian"→Willian Geoffrey Utama (TKB2), "Azka"→Azka Andreas (TKB1)
 - **DARREEN & AXELLE KELUAR SEKOLAH (5 September 2026):** Dareen Chandra (PG) dan Axelle Sean Chandra (PG) resmi keluar → row KEDUANYA dihapus dari roster PG di file versi terbaru (arsip tetap di file versi lama, termasuk mark Dareen tgl 1/9). Jangan cari/mark mereka lagi. Roster PG sekarang 11 siswa.
 - Mapping kolom September (sama seperti Agustus): tgl d → kolom 3+d (5/9 = kolom 8). FILE_PATH absensi.py → file versi 5 September.
+- **OBSERVASI NIGHT-SHIFT (6 Sept 2026):** file `Absensi September 2026 Saturday 08_33_12.xlsx` & file 5 Sept berisi MARK 2-4 SEPTEMBER yang BELUM pernah dicatat di memory (Dearni F A Parapat 2-S, 3-S; Roderick Yang 2-S, 3-S, 4-S; Ellena 2-S; Giovan O 2-S; Lionel 2-S; Ezequiel 4-S; TKB1 Venedict 2-S; TKB(2) Melviano 2-S, Shane 4-S) — kemungkinan diisi user langsung di PC. Data TIDAK diubah, hanya dicatat.
+- **TOOL REKAP (6 Sept 2026):** `COMMON/scripts/rekap_absensi.py` — rekap bulanan S/I/A otomatis dari file absensi versi terbaru (deteksi file otomatis via parse nama bulan+tanggal, KOMPATIBEL lintas PC; ⚠️ jangan pakai mtime — base file 4ms lebih baru di server walau bukan versi terakhir). Butuh `openpyxl` (terpasang di server Linux, versi 3.1.5). Cara pakai: `python3 COMMON/scripts/rekap_absensi.py [--file "nama file"]`.
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
@@ -1019,6 +1044,12 @@ Contoh sukses: `Cop surat.docx` (kop) + `IPS 3 Jellys OK.doc` (soal) → `IPS 3 
 - **Footer**: `Versi 0.0004 — Transparansi 50%` (teks transparansi diminta user dipasang lagi)
 - Commit terkait: `980a340` (catatan kaki), `b8ae2aa` (setup auto-bump), `3aff9b7` (cache-buster otomatis), `0bfcd7c` (menu kalender), `bb192ea` (navbar 2 baris)
 - **DARK MODE (15 Agustus 2026):** toggle 🌙/☀️ di navbar semua 14 halaman (tombol `.theme-toggle` dalam `.nav-actions`). CSS: hardcoded `#fff` di-refactor → `var(--surface)`; blok `[data-theme="dark"]` + variabel dark ditambahkan di akhir `style.css`. Anti-flash inline script di `<head>` tiap halaman (baca localStorage `m11-theme`, fallback `prefers-color-scheme`). Pilihan persist di localStorage `m11-theme`. Tema dark: latar `#0b1220`, surface `#121a2f`, teks `#e5e7eb`, biru terang `#60a5fa`, hero tetap gradient biru tua (`--hero-a/b` dikunci). Belum di-commit saat ini — cache-buster `?v=16` akan naik otomatis oleh pre-commit hook setelah commit.
+
+### 6 September 2026 — Server Linux (Night-shift otomatis):
+- **TOOL REKAP ABSENSI** `COMMON/scripts/rekap_absensi.py` dibuat (backlog "Absensi summary" → Done): rekap bulanan S/I/A per kelas + daftar murid absen (terbanyak ke bawah) dari file versi terbaru. Deteksi file terbaru via **parse nama** (bulan+tahun+tanggal versi), BUKAN mtime (base file 4ms lebih baru walau bukan versi terakhir → mtime salah pilih file). Terverifikasi: hasil rekapitulasi September cocok 100% dengan pembacaan langsung file. Butuh openpyxl → diinstall di server Linux (versi 3.1.5).
+- **TEMPLATE SESSION REPORT** `COMMON/docs/SESSION-REPORT-TEMPLATE.md` dibuat (backlog "Session report" → Done): template baku laporan akhir sesi + format laporan singkat yang dipakai bot/laporan otomatis.
+- **BACKLOG DIKEMBALIKAN:** "Absensi otomatis lintas kelas (fix name matching)" tetap Backlog (tidak dikerjakan); script `list_all.py` di COMMON/scripts bisa jadi bahan buat name-matching.
+- **OBSERVASI DATA:** file September berisi mark tgl 2-4 (Dearni, Roderick, Ellena, Giovan, Lionel, Ezequiel, Venedict, Melviano, Shane) yang belum tercatat di memory — dicatat, data TIDAK diubah.
 
 ---
 

@@ -15,10 +15,10 @@
 
 ## Backlog 📋
 - [ ] **Absensi otomatis lintas kelas** — fix Jocelyn-style name matching
-- [ ] **Absensi summary** — rekap bulanan otomatis dari file Excel
+- [x] **Absensi summary** — rekap bulanan otomatis dari file Excel (tool: `COMMON/scripts/rekap_absensi.py`, 6 Sept 2026)
 - [ ] **Multi-PC memory sync** — pastikan memory di PC lain juga sync
 - [ ] **Error auto-logging** — detect error patterns from bash output
-- [ ] **Session report** — template otomatis tiap akhir sesi
+- [x] **Session report** — template otomatis tiap akhir sesi (`COMMON/docs/SESSION-REPORT-TEMPLATE.md`, 6 Sept 2026)
 
 ## Notes
 - Tambahin item baru kalau muncul ide/request

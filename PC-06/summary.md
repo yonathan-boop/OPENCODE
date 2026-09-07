@@ -1,6 +1,6 @@
 # Memory Summary
 
-Terakhir diupdate: 2026-09-01
+Terakhir diupdate: 2026-09-06
 
 ## User Info
 - **Nama**: Digitalisasi (PC baru)
@@ -22,11 +22,11 @@ Terakhir diupdate: 2026-09-01
 3. **Website SD Methodist-11** - methodist-11.my.id (Cloudflare) via tunnel 8f8b0f53 → server Linux (/root/memory) → localhost:8090 (LIVE, 22 Agustus 2026; pindah dari PC Wilianto/tunnel 21b93a76)
 
 ## Session Terakhir
-Tanggal: 2026-08-24 (Session 2)
-Topik: Pengumuman study tour Rahmat Zoo & Park di website (dari foto surat via OCR Tesseract 5.5.3 yang baru diinstall di PC ini) + halaman Imlek warisan sesi lalu ikut ter-commit; push OK
-Status: Selesai, validasi lulus, live setelah server pull
+Tanggal: 2026-09-06 (Night-shift otomatis, server Linux)
+Topik: Dibuat tool rekap absensi bulanan `COMMON/scripts/rekap_absensi.py` (baca file versi terbaru, rekap S/I/A per kelas & per murid; butuh openpyxl 3.1.5 yang diinstall di server) + template session report `COMMON/docs/SESSION-REPORT-TEMPLATE.md`. Backup progress backlog: Absensi summary & Session report → Done.
+Status: Selesai, tool tervalidasi (rekapitulasi September 1-5 cocok dengan pembacaan langsung file).
 
-## Total Sessions: 13
+## Total Sessions: 14
 - 11 April 2026: Setup memory system
 - 16 April 2026: Sinkronisasi dari GitHub
 - 12 Mei 2026: Absensi Mei + Agent Framework
