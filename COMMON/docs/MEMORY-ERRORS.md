@@ -205,4 +205,19 @@ Bot Telegram `@Qksusb_bot` berhenti menjawab ("masih error tidak ada jawaban"). 
 - Kalau bot "error tanpa balasan", CEK DISK DULU (`df -h /`), bukan langsung nuduh logika bot.
 - Cache `/tmp` hasil eksekusi opencode harus dibersihkan berkala (sudah ada cron).
 
+---
+
+### FASE 2 (08-09-2026 ~05:00–12:00 WIB) — disk beres tapi bot TETAP tidak menjawab
+
+**Gejala:** setelah disk dibersihkan & bot di-restart, bot tetap tidak pernah mengirim balasan. Penyebab BUKAN logika bot, tapi **latensi gateway free-anonymous opencode (Zen) melonjak**: first-token dari ~2 detik (04:33) menjadi **~130+ detik** (05:30+), kadang flaky (ujian XDG berbeda sempat exit 0 lalu hang lagi). `opencode run` yang digantung menghasilkan **0 byte output walau `--log-level DEBUG --print-logs`**; log hanya sampai `message=stream providerID=opencode modelID=big-pickle` (request ke model) tanpa data balik. Sesi interactive (koneksi ESTAB via IPv6 Cloudflare) tetap berfungsi.
+
+**Akar:** throttle/antrean di sisi gateway untuk koneksi baru (pemakaian pagi: banyak run konteks 85K token + sesi saya). Bukan error quota keras; respon AKHIRNYA datang (bg run 131s → exit=0 + jawaban benar) → bukan hang mati, tapi LAMBAT.
+
+**SOLUSI bot:**
+1. `TIMEOUT_MS` default 180000 → **600000** (env `TIMEOUT_MS` tetap bisa override) — 180s selalu kepotong sebelum balasan lahir.
+2. **Reset sesi bot**: move dir `workspace/5508090479/default` → `_archive-<ts>`, buat `default` kosong — konteks kecil = first-token lebih cepat (via `newSession`/BOT_TEST, tanpa restart).
+3. `start-bot.sh`: `nohup node bot.js 2>>"$LOG" >/dev/null </dev/null` — hapus baris ganda di log (sebelumnya stdout juga diarahkan ke file yang sama dengan `log()` appendFileSync). Sekarang log ditulis tunggal.
+
+**Hasil:** balasan normal butuh ±130 detik per pesan (sesi kosong); antrean `execQueue` serial → tiap pesan ~2 menit berurutan. Pelajaran: kalau bot "pernah jalan cepat" lalu "selalu timeout", cek LATENSI MODEL bukan hanya kode (ukur `opencode run` manual + `time timeout 200 opencode run --dir /tmp/x --auto "tes"`). Saat latensi tinggi, besar timeout & kecilkan konteks, bukan bunuh proses.
+
 #telegram-bot #disk-full #opencode #temp-cache #server-linux #bot

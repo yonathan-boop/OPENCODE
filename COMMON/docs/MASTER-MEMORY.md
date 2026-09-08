@@ -91,6 +91,7 @@ Di-update: 5 September 2026
   - `bot.launch()` di Telegraf kadang "Promise timed out" → diganti **manual long-polling** (`bot.telegram.getUpdates` loop + `bot.handleUpdate`) — andal, restart bersih, log "Bot started, manual polling aktif".
   - Jawaban bisa terpotong 1 pesan karena handler masih manggil `cut()` (fungsi yang sudah dihapus saat bot01 nambah `splitMessages`) → ReferenceError tiap jawaban. Fix: semua pemicu `cut` dihapus, jawaban panjang dikirim **multi-pesan** via `splitMessages` (≤3800 byte/pesan, pemenggalan aman UTF-8, jeda 350ms antar pesan).
   - Log bot ganda: `process.stdout` + `fs.appendFileSync` ke `/var/log/telegram-bot.log` (stdout ke file itu buffered → penting biar log realtime).
+- **FIXES LAGI (8 Sept 2026):** (1) `log()` sekarang HANYA `appendFileSync` + `start-bot.sh` redirect stdout ke `/dev/null`, stderr ke log → baris log tidak ganda lagi. (2) `TIMEOUT_MS` default **600000** (10 mnt) — gateway free anonymous bisa first-token ~130s saat dipakai ramai; 180s terlalu pendek. (3) Reset sesi bot = pindah `workspace/<uid>/default` → `_archive-<ts>` & bikin default kosong (konteks kecil = balasan lebih cepat).
 - **Auto-start:** masuk `start-website.sh` langkah [5/5] → ikut nyala saat `bash ~/SERVER-LINUX/scripts/start-website.sh` dijalankan setelah reboot.
 - Log bot: `/var/log/telegram-bot.log`. Start manual: `bash ~/SERVER-LINUX/telegram-bot/start-bot.sh`.
 

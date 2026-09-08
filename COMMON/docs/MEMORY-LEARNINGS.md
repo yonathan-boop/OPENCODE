@@ -133,6 +133,29 @@ Waktu spawn sub-agent untuk git commit/push, WAJIB specify exact working directo
 
 ---
 
+## [LRN-20260908-002] bot_timeout_vs_latensi_model
+
+**Tanggal**: 2026-09-08
+**Priority**: high
+**Status**: active
+
+### Summary
+Bot Telegram tampak "tidak menjawab" padahal bukan rusak: latensi first-token model free `opencode/big-pickle` lewat gateway anonymous melonjak dari ~2s menjadi ~130s setelah pemakaian pagi yang intensif. Timeout 180s di bot selalu kepotong sebelum balasan lahir → 0 balasan terkirim.
+
+### Details
+- `opencode run` yang "gantung" kadang hanya LAMBAT, bukan hang mati — respon datang belakangan (uji bg: exit=0 dalam 131s, jawaban valid). 0 byte output + `--log-level DEBUG` pun bisa kosong pada fase awal; tanda request sampai model hanya dari `log/opencode.log`: `message=stream providerID=opencode modelID=big-pickle`.
+- Sesi interactive yang sudah ESTAB (koneksi IPv6 ke Cloudflare) tetap responsif walau koneksi baru di-throttle.
+- Verifikasi latensi: `time timeout 200 opencode run --dir /tmp/x --auto "tes"` — kalau >90s tapi akhirnya exit 0 → throttling, bukan error.
+
+### Action
+- Jangan bunuh/restart bot saat "tidak balas" tanpa ukur latensi model dulu.
+- Timeout bot jangan lebih kecil dari ~3x first-token normal; sekarang default `TIMEOUT_MS=600000`.
+- Konteks kecil = first-token lebih cepat → biasakan `/sesibaru` atau reset sesi kalau konteks sudah membengkak (ribuan part).
+- Sinyal konteks bocor: footer bot "Context: X token · Y%" menunjukkan kapan sesi perlu di-reset.
+- Kalau mau balasan instan saat gateway lagi lemot, opsi turunan: pindah ke gateway berbayar/akun dengan transport baru (belum diterapkan).
+
+---
+
 ## [LRN-20260512-001] wajib_pakai_todowrite_di_setiap_sesi
 
 **Tanggal**: 2026-05-12
