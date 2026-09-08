@@ -194,7 +194,8 @@ Bot Telegram `@Qksusb_bot` berhenti menjawab ("masih error tidak ada jawaban"). 
 2. `rm /tmp/chrome.deb` (141MB) + `npm cache clean --force` (1.3GB).
 3. Disk: 100% → 85% (1.2GB avail). Cron pembersih: `55 23 * * * find /tmp /var/tmp -maxdepth 1 -type f -name '*00000000*' -mtime +1 -delete`.
 4. Restart bot via `bash start-bot.sh` (pakai pidfile, jangan `pkill -f "node bot.js"`).
-5. Hardening `bot.js`: tambah `proc.on('error')` di `runOpencode` (kalau spawn gagal promise tidak hang selamanya) + dedupe `update_id` di pollLoop (Telegram bisa kirim 1 update 2x dalam 1 batch).
+5. Hardening `bot.js` (2 lapis keamanan): (a) `proc.on('error')` di `runOpencode` + flag `done` biar timeout SIGKILL dan event close tidak dobel-settle; (b) dedupe `update_id` pakai **global `processedUpdates` Set** (bounded 1000) + **offset disimpan SEBELUM eksekusi**, dan polling **TIDAK boleh `await` eksekusi opencode** — eksekusi dilempar ke `execQueue` (rantai promise serial, satu opencode pada satu waktu). Ini mencegah loop spam: kalau opencode hang 180s dan di-kill paksa, loop polling tetap maju & Telegram tidak mengirim ulang pesan lama.
+6. Flush backlog (kalau antrean nyangkut): matikan bot lalu `curl -s "https://api.telegram.org/bot<TOKEN>/getUpdates?offset=-1"` → set `poll-offset.txt` ke update_id terakhir+1. Verifikasi antrean bersih: `getUpdates?offset=<tersimpan>` harus `pending: 0` (sudah dicek saat perbaikan: bersih).
 
 ### VERIFIKASI
 - Tiap pesan user → `exit=0` + balasan normal.
