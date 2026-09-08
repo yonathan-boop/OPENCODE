@@ -171,3 +171,37 @@ Di yonat-PC, Microsoft Word kadang macet/lelet sampai 10 detik saat buka menu Pa
 - Pindahkan folder kerja ke luar OneDrive.
 
 #word #lelet #gpuacceleration #printer #onedrive #defender
+
+---
+
+## [ERR-20260908-001] Bot Telegram Gagal Jawab Akibat Disk Penuh 100%
+
+**Tanggal**: 2026-09-08
+**Device**: Server Linux (/root)
+**Severity**: high
+**Status**: fixed
+
+### Summary
+Bot Telegram `@Qksusb_bot` berhenti menjawab ("masih error tidak ada jawaban"). Penyebab utamanya bukan logika bot, tapi **disk `/` (overlay fly-upper-layer) penuh 100%** → opencode keluar `exit=1 err=92` tiap dipanggil, lalu proses bot mati (monitor: "Telegram bot masih down").
+
+### Akar penyebab (ini bikin disk 100%)
+- Setiap eksekusi `opencode` bikin **file cache V8 di /tmp** (pola `.9adb...-00000000.so` ~13.7MB & `.node`), namanya beda tiap run → tidak pernah tertimpa, menumpuk tanpa batas.
+- Ditemukan **794 file × ~4.3GB** di `/tmp` sejak 22 Agustus + `chrome.deb` 141MB + npm cache 1.3GB di `/root/.npm/_cacache`.
+- `du -x /` dari root menipu (hanya 78M): upper layer overlay (`/.fly-upper-layer`, mount /dev/vdb) tidak terlihat — pakai `du -x -d1 /.fly-upper-layer` atau `find` untuk ukuran sebenarnya.
+
+### SOLUSI
+1. `find /.fly-upper-layer/tmp -maxdepth 1 -type f -name '*00000000*' -delete` → bebaskan 4.3GB.
+2. `rm /tmp/chrome.deb` (141MB) + `npm cache clean --force` (1.3GB).
+3. Disk: 100% → 85% (1.2GB avail). Cron pembersih: `55 23 * * * find /tmp /var/tmp -maxdepth 1 -type f -name '*00000000*' -mtime +1 -delete`.
+4. Restart bot via `bash start-bot.sh` (pakai pidfile, jangan `pkill -f "node bot.js"`).
+5. Hardening `bot.js`: tambah `proc.on('error')` di `runOpencode` (kalau spawn gagal promise tidak hang selamanya) + dedupe `update_id` di pollLoop (Telegram bisa kirim 1 update 2x dalam 1 batch).
+
+### VERIFIKASI
+- Tiap pesan user → `exit=0` + balasan normal.
+- Log tiap pesan tercatat 1x (duplikat di terminal = artifact buffering tail, cek via `grep MESSAGE | sort -u`).
+
+### PELAJARAN
+- Kalau bot "error tanpa balasan", CEK DISK DULU (`df -h /`), bukan langsung nuduh logika bot.
+- Cache `/tmp` hasil eksekusi opencode harus dibersihkan berkala (sudah ada cron).
+
+#telegram-bot #disk-full #opencode #temp-cache #server-linux #bot
