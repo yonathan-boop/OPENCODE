@@ -277,3 +277,36 @@ User mengeluh pesan bot Telegram sering terpotong. Sumber: hasil gabungan stdout
 - Jangan kirim dump log ke user — ringkas, "pesan biasa".
 - Kalau jawaban panjang, pecah jadi beberapa pesan, jangan dipotong di tengah kalimat.
 - Setelah edit bot.js: `node --check` dulu, restart via `start-bot.sh`/`stop-bot.sh` (pidfile, bukan pkill).
+
+---
+
+## [LRN-20260908-001] hapus_printer_jaringan_epson
+
+**Tanggal**: 2026-09-08
+**Priority**: high
+**Status**: active
+
+### Summary
+Cara benar menghapus total printer jaringan EPSON L3210 (\\192.168.136.1) dari yonat-PC. Dipakai saat printer bermasalah — hapus tuntas lalu connect ulang. User akan coba connect sendiri; kalau gagal baru minta bantuan.
+
+### Details
+- Printer network dari server: `\\192.168.136.1\EPSON L3210 Series` (port shared USB006). Server bisa **auto re-add** printer kalau koneksi tersambung → bisa muncul lagi setelah dihapus; hapus ulang kalau itu terjadi.
+- JANGAN stop Print Spooler untuk hapus driver — `Remove-PrinterDriver` butuh spooler jalan ("spooler service is not reachable"). Yang benar: hapus printer & driver dengan spooler jalan, kalau masih "in use" → **restart spooler** (`Restart-Service Spooler -Force`) biar cache bersih, driver otomatis hilang.
+- Butuh admin: sesi bash opencode non-elevated → pakai script `.ps1` sementara + `Start-Process powershell -Verb RunAs ... -Wait` (user klik UAC "Ya"), tulis hasil ke file temp lalu baca.
+
+### Action (urutan lengkap, PowerShell)
+1. Cek: `Get-Printer | ? {$_.Name -like "*Epson*" -or $_.Name -like "*L3210*"}`
+2. Hapus printer: `Remove-Printer -Name "\\192.168.136.1\EPSON L3210 Series"`
+3. Cek port: `Get-PrinterPort | ? {$_.Name -like "*192.168*" -or $_.Name -like "*USB006*"}` (biasanya sudah hilang)
+4. Hapus driver: `Remove-PrinterDriver -Name "EPSON L3210 Series" -PrinterEnvironment "Windows x64"` → bisa error **"driver is in use by one or more printers"** walau printer sudah tidak ada (cache spoolsv / printer sempat re-add)
+5. Kalau "in use": cek registry & file driver sudah bersih dulu:
+   - `Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Control\Print\Printers"`
+   - `Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Control\Print\Environments\Windows x64\Drivers\Version-3"`
+   - `Get-ChildItem "C:\Windows\System32\spool\drivers\x64\3"` (folder Epson biasanya sudah tidak ada)
+6. Kalau registry/file bersih tapi driver masih muncul di `Get-PrinterDriver` → tinggal cache → **restart spooler elevated** (`Restart-Service Spooler -Force`, script + UAC) → verifikasi `Get-PrinterDriver` bersih
+7. Verifikasi akhir: `Get-Printer` & `Get-PrinterDriver` tidak ada lagi EPSON/L3210. Brother (`\\192.168.136.1\Brother HL-L2360D series`) JANGAN disentuh.
+8. Kalau printer muncul lagi karena auto re-add, ulangi dari langkah 2.
+
+### Referensi
+- Catatan singkat di MASTER-MEMORY.md "8 September 2026 — yonat-PC"
+- #printer #epson #l3210 #network-printer #driver #spooler
