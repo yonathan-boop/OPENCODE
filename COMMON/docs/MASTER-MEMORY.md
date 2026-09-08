@@ -43,6 +43,7 @@ Di-update: 5 September 2026
 - GitHub token: ghp_ (classic, tanpa exp date) dipakai di remote URL — 10 Agustus 2026
 - **Tesseract OCR:** C:\Program Files\Tesseract-OCR\tesseract.exe (v5.5.3, via winget, 24 Agustus 2026) + pytesseract/pillow via `py` (Python 3.13) — dipakai OCR surat pengumuman study tour
 - **Image Tools MCP (5 Sept 2026):** terpasang di config opencode (opencode.json + opencode.jsonc) sebagai MCP `image_tools` — exe `C:\Users\yonat\OneDrive\Dokumen\image-tools-mcp-v1.2.1-windows-amd64.exe`, TESSERACT_PATH di-set, `type: local`, `command` array. Tools: image_load, image_dimensions, image_sample_color, image_detect_text_regions, image_ocr_full. **Perlu restart opencode** biar aktif (config hanya dibaca saat start). Backup config lama di Temp\opencode\*.bak.
+- **OPENCLAW DIMATIKAN TOTAL (7 Sept 2026):** user belum mau pakai, komplain aktif terus + notif berisik. Yang dimatikan (BOLEH dihidupkan lagi nanti kalau mau pakai): (1) tray app `OpenClaw.Tray.WinUI.exe` (`%LOCALAPPDATA%\OpenClawTray\`) di-kill & entri `OpenClawTray` dihapus dari `HKCU\...\Run`; (2) gateway WSL2 distro `OpenClawGateway` — systemd user service `openclaw-gateway.service` di-stop + `systemctl --user disable`, distro di-terminate; (3) `%APPDATA%\OpenClawTray\settings.json` diubah: AutoStart=false, ShowNotifications=false, semua Notify*=false, NotificationSound=None, GlobalHotkeyEnabled=false, EnableNodeMode=false. Cara hidupkan lagi: jalankan `C:\Users\yonat\AppData\Local\OpenClawTray\OpenClaw.Tray.WinUI.exe` manual + `systemctl --user enable --now openclaw-gateway.service` di distro. Telegram bot @Methodist-11 ikut mati (gateway-nya off).
 
 ### BACKUP METHODIST-11 (REDESIGN 24 Agustus 2026 — SISTEM UPDATE LANGSUNG)
 - **Script:** `PC-06/scripts/backup-methodist.ps1` | **Source:** `\\192.168.136.1\Methodist-11 Document` = DATA UTAMA, HANYA DIBACA — script TANPA /MOV /MOVE /PURGE /MIR (mustahil menghapus source)
@@ -50,6 +51,7 @@ Di-update: 5 September 2026
   - `Harian\Methodist-11 Document\` ← 1 folder tetap, sinkron update langsung (robocopy /E /XO). File terhapus di source DIPERTAHANKAN (keputusan user)
   - `Semester\<Ganjil|Genap> <TA>\` ← full copy seutuhnya, MANUAL via `.\backup-methodist.ps1 -Semester` (skip kalau folder sudah ada)
 - **Task Scheduler:** `Backup Methodist Harian` — tiap hari **11:35**, StartWhenAvailable (PC mati → jalan saat nyala), State Ready
+- **SYNC KE GOOGLE DRIVE OTOMATIS (7 Sept 2026):** tiap backup harian selesai ke E:\Back Up\Harian, script robocopy LAGI dari `E:\Back Up\Harian\Methodist-11 Document` → `G:\Other computers\My Computer\CO(PARA)DE\Methodist-11 Document` (update langsung /E /XO, log `robocopy-gdrive-<tgl>.log`, flag `/XA:SH` skip desktop.ini agar tidak EXIT 1 palsu). Jika G: (Google Drive Desktop) tidak terdeteksi → SKIP & lanjut. Berlaku untuk kedua task (11:35 & 14:50).
 - **Desain LAMA DIBATALKAN:** jangan pernah bikin copy per tanggal lagi (boros memori) — koreksi user 24/8
 - Seed pertama 24/8 dari "Back up 20 Juni 2026" ("Copy 20 Agustus" sudah dihapus user krn tak lengkap) → hasil: 108.714 file / 33.56 GB
 - **Quirk ERROR 112:** docx kecil bisa gagal "disk full palsu" (metadata SMB korup saat pre-allocation robocopy) padahal disk bebas → retry sync biasanya beres; kalau masih gagal pakai Copy-Item manual
@@ -1050,6 +1052,12 @@ Contoh sukses: `Cop surat.docx` (kop) + `IPS 3 Jellys OK.doc` (soal) → `IPS 3 
 - **TEMPLATE SESSION REPORT** `COMMON/docs/SESSION-REPORT-TEMPLATE.md` dibuat (backlog "Session report" → Done): template baku laporan akhir sesi + format laporan singkat yang dipakai bot/laporan otomatis.
 - **BACKLOG DIKEMBALIKAN:** "Absensi otomatis lintas kelas (fix name matching)" tetap Backlog (tidak dikerjakan); script `list_all.py` di COMMON/scripts bisa jadi bahan buat name-matching.
 - **OBSERVASI DATA:** file September berisi mark tgl 2-4 (Dearni, Roderick, Ellena, Giovan, Lionel, Ezequiel, Venedict, Melviano, Shane) yang belum tercatat di memory — dicatat, data TIDAK diubah.
+
+### 7 September 2026 — yonat-PC
+- **TrafficMonitor terinstall** (7 September 2026): aplikasi monitoring kecepatan internet real-time (download/upload) yang tampil di taskbar. Install via winget: `zhongyang219.TrafficMonitor.Full` v1.86. Lokasi: `C:\Users\yonat\AppData\Local\Microsoft\WinGet\Packages\zhongyang219.TrafficMonitor.Full_Microsoft.Winget.Source_8wekyb3d8bbwe\TrafficMonitor\TrafficMonitor.exe`. **AUTO-START DI-SET** via shortcut `TrafficMonitor.lnk` di Startup folder user (`C:\Users\yonat\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\TrafficMonitor.lnk`) → tiap restart otomatis jalan. Catatan penting: interface jaringan harus dipilih yang benar (default salah pilih = angka nol/nggak jalan); kalau keliatannya error, cek interface di settings aplikasi. Script custom `netspeed.py` sempat dibuat (ping + speed, tkinter) tapi DIBATALKAN atas permintaan user & dihapus.
+
+### 8 September 2026 — yonat-PC
+- **Printer EPSON L3210 (\\192.168.136.1) DIHAPUS TOTAL** (permintaan user, printer bermasalah): printer, port USB006, driver `EPSON L3210 Series` (Windows x64), registry & file driver semua dibersihkan. Catatan teknis: (1) printer bisa otomatis re-add dari server → hapus ulang + langsung hapus driver; (2) `Remove-PrinterDriver` gagal "driver in use" walau printer & registry udah bersih → tinggal cache spoolsv; (3) driver TIDAK bisa dihapus saat spooler di-stop (`spooler service is not reachable`); SOLUSI: restart spooler (elevated) → cache kebersihan → driver otomatis hilang (verifikasi `Get-PrinterDriver` bersih). Printer & port Epson tak ada lagi. **BROTHER HL-L2360D (\\192.168.136.1) tetap, tidak disentuh.**
 
 ---
 
