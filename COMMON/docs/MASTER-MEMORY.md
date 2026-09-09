@@ -95,7 +95,7 @@ Di-update: 5 September 2026
 - **AUTO-START:** masuk `start-website.sh` langkah [5/5] → ikut nyala saat `bash ~/SERVER-LINUX/scripts/start-website.sh` dijalankan setelah reboot.
 - Log bot: `/var/log/telegram-bot.log`. Start manual: `bash ~/SERVER-LINUX/telegram-bot/start-bot.sh`.
 - **✅ CHECKPOINT STABIL (8 Sept 2026):** bot dalam kondisi BAIK & andal — semua fix sudah jalan mulus (queue serial, dedupe update_id, timeout 600s, ACK instan). Halaman/panel bot dianggap SEHAT dan tidak perlu diutak-atik lagi kecuali ada error baru.
-- **⚠️ AKSI YANG MENGANGGU (8 Sept 2026):** membuka opencode extra di terminal online (ttyd) saat bot dipakai → 2 instance opencode berebut CPU/RAM (769 MB + 13% tiap proses) → terminal & bot macet. **ATURAN: hanya boleh 1 instance opencode aktif (selain bot). Kalau terminal online mau dipakai, tutup dulu sesi bot/switching ke sesi bot, jangan dibuka bersamaan.** cara cek: `ps aux | grep opencode`. cara matikan yang lain: `kill <PID>` (selain PID bot workspace telegram-bot).
+- **⚠️ KOREKSI ATURAN (8 Sept 2026, user):** terminal online & sesi bot **BOLEH berjalan bersamaan** (tidak masalah). Yang boleh dimatikan: opencode terminal kalau **sudah >12 jam tidak dipakai**, atau **kapan pun user minta matikan**. Sementara yang WAJIB dipertahankan: proses sesi bot (`opencode run --continue --dir ...telegram-bot/workspace...`), `node bot.js`, dan `cloudflared tunnel`. cara cek: `ps aux | grep opencode`. cara matikan opencode lain: `kill <PID>`.
 
 ### OPENCODE AUTOPILOT (6 September 2026 — SERVER LINUX, auto tanpa manusia)
 - **Konsep:** server 24/7 + cron + opencode = sistem kerja mandiri. Semua script di `/root/SERVER-LINUX/scripts/`, log di `/var/log/*` & `/root/SERVER-LINUX/logs/`.
