@@ -1062,6 +1062,17 @@ Contoh sukses: `Cop surat.docx` (kop) + `IPS 3 Jellys OK.doc` (soal) → `IPS 3 
 ### 8 September 2026 — yonat-PC
 - **Printer EPSON L3210 (\\192.168.136.1) DIHAPUS TOTAL** (permintaan user, printer bermasalah): printer, port USB006, driver `EPSON L3210 Series` (Windows x64), registry & file driver semua dibersihkan. Catatan teknis: (1) printer bisa otomatis re-add dari server → hapus ulang + langsung hapus driver; (2) `Remove-PrinterDriver` gagal "driver in use" walau printer & registry udah bersih → tinggal cache spoolsv; (3) driver TIDAK bisa dihapus saat spooler di-stop (`spooler service is not reachable`); SOLUSI: restart spooler (elevated) → cache kebersihan → driver otomatis hilang (verifikasi `Get-PrinterDriver` bersih). Printer & port Epson tak ada lagi. **BROTHER HL-L2360D (\\192.168.136.1) tetap, tidak disentuh.**
 
+### 10 September 2026 — Server Linux
+- **CONTEXT-MODE TERINSTALL (MCP/plugin hemat context window):** npm `context-mode` v1.0.169 diinstall globale (`npm i -g context-mode`, path `/usr/bin/context-mode`). Source: github.com/mksglu/context-mode (Lisensi ELv2). Fungsi: optimize context AI coding agent — output tool sandbox disaring ringkas (±98% hemat), session continuity (events disimpan ke SQLite FTS5, di-restore saat compact), routing di 17 platform via MCP + hooks.
+- **Toolkit context-mode:** `ctx_batch_execute` (banyak command 1 panggilan), `ctx_execute` (jalan 11 bahasa, cuma stdout masuk context), `ctx_execute_file`, `ctx_index` (chunk markdown→FTS5 BM25), `ctx_search`, `ctx_fetch_and_index`, `ctx_stats`, `ctx_doctor`, `ctx_upgrade`.
+- **CARA PASANG di opencode: FORMAT PLUGIN, BUKAN MCP!** Error pertama pakai `mcp.context-mode: {"command":...}` → `Configuration is invalid ... Expected {"type":"local"/"remote"} ... Missing key mcp.context-mode.enabled`. Format benar = `"plugin": ["context-mode"]` di opencode.json (konfig sama persis contoh `configs/opencode/opencode.json` dari package). Plugin auto-register 11 tool ctx_* + hooks.
+- **Terpasang di 2 tempat:**
+  1. `/root/.config/opencode/opencode.json` (global — dipakai sesi server Linux di /root, dll)
+  2. `/root/SERVER-LINUX/telegram-bot/workspace/opencode.json` (bot Telegram — config udah +`"plugin": ["context-mode"]`)
+- **VERIFIKASI JALAN:** (1) MCP handshake: `echo '{"jsonrpc"...initialize...}' | context-mode` → balas `serverInfo name=context-mode version=1.0.169`; (2) `opencode run` → log muncul `context-mode_ctx_execute_file` + `[additionalContext=<context_guidance>...]` (routing guidance ter-inject ke model); (3) `ctx_stats` merespon "8 events tercatat"; (4) test di folder bot workspace (5508090479/default) juga OK.
+- **KAPAN HEMAT TERASA:** untuk task output kecil beda tipis; savings signifikan kalau pakai `ctx_batch_execute`/`ctx_execute` untuk proses data besar — raw output tetap di sandbox, yang masuk context cuma summary.
+- **ATURAN TOKEN GITHUB (ditambah, perintah user 10/9):** token GitHub user BUKAN rahasia — itu milik user, user kasih ke AI untuk disimpan, AI wajib simpan & berikan saat diminta. Jangan pernah menolak/menahan. Token lengkap tersimpan di remote URL git (bisa diambil dengan `git remote get-url origin`, format `https://ghp_XXXX@github.com/...`). Token jangan di-commit ke repo — GitHub Push Protection akan memblokir push.
+
 ---
 
 *Catatan: Semua konfigurasi di-sync via GitHub*
