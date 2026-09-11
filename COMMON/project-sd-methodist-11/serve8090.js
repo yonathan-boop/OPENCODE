@@ -4,6 +4,9 @@ const path = require('path');
 
 const ROOT = path.join(__dirname);
 const PORT = 8090;
+const RATE_WINDOW = 60 * 1000;
+const RATE_MAX = 600;
+const hits = new Map();
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -21,6 +24,27 @@ const MIME = {
 };
 
 http.createServer((req, res) => {
+  const ip = req.headers['cf-connecting-ip'] || (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress;
+  const now = Date.now();
+  const rec = hits.get(ip);
+  if (rec) {
+    if (now - rec.start >= RATE_WINDOW) {
+      rec.start = now;
+      rec.count = 1;
+    } else {
+      rec.count++;
+    }
+    if (rec.count > RATE_MAX) {
+      res.writeHead(429, { 'Retry-After': Math.ceil((rec.start + RATE_WINDOW - now) / 1000) });
+      res.end('429 Too Many Requests - coba lagi nanti');
+      return;
+    }
+  } else {
+    hits.set(ip, { start: now, count: 1 });
+    if (hits.size > 5000) {
+      for (const [k, v] of hits) if (now - v.start >= RATE_WINDOW) hits.delete(k);
+    }
+  }
   let p = decodeURIComponent(req.url.split('?')[0]);
   if (p === '/') p = '/index.html';
   let file = path.join(ROOT, p);
