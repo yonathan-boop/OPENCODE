@@ -4,6 +4,21 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260911-002] jangan_sebut_agama
+
+**Tanggal**: 2026-09-11
+**Priority**: high
+**Status**: active
+
+### Summary
+User meminta JANGAN pernah membawa-bawa kata/ucapan agama (misal "Alhamdulillah", "syukur", dsb) dalam komunikasi. Tetap netral.
+
+### Action
+- Hindari ucapan/istilah keagamaan di semua respons.
+- #komunikasi #agama #netral
+
+---
+
 ## [LRN-20260911-001] word_copy_equation_hang_solusi
 
 **Tanggal**: 2026-09-11
