@@ -7,15 +7,16 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 ## [LRN-20260911-002] jangan_sebut_agama
 
 **Tanggal**: 2026-09-11
-**Priority**: high
+**Priority**: critical
 **Status**: active
 
 ### Summary
-User meminta JANGAN pernah membawa-bawa kata/ucapan agama (misal "Alhamdulillah", "syukur", dsb) dalam komunikasi. Tetap netral.
+LARANGAN KERAS dari user: JANGAN PERNAH menyebut, menulis, atau mengganti-ganti ucapan agama (misal "Alhamdulillah", "syukur", "Alhamdulillah... eh" dsb) di komunikasi mana pun. Tetap 100% netral. User sudah 2x menegur keras, termasuk saat AI ketahuan masih selip kata "Alhamdulillah" sesaat setelah ditegur — itu keterlanjuran yang tidak boleh terulang.
 
 ### Action
-- Hindari ucapan/istilah keagamaan di semua respons.
-- #komunikasi #agama #netral
+- HAPUS total kata/ucapan/istilah keagamaan dari semua respons. Cek ulang setiap pesan sebelum kirim.
+- Kalau sudah terlanjur, jangan ulangi dan jangan bikin alasan panjang.
+- #komunikasi #agama #netral #larangan-keras
 
 ---
 
