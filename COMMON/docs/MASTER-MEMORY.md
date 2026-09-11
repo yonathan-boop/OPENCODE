@@ -1,6 +1,6 @@
 # MEMORI KOMPREHENSIF - Admin's AI Assistant
 
-Di-update: 5 September 2026
+Di-update: 11 September 2026
 
 ---
 
@@ -441,6 +441,58 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - Mapping kolom September (sama seperti Agustus): tgl d → kolom 3+d (5/9 = kolom 8). FILE_PATH absensi.py → file versi 5 September.
 - **OBSERVASI NIGHT-SHIFT (6 Sept 2026):** file `Absensi September 2026 Saturday 08_33_12.xlsx` & file 5 Sept berisi MARK 2-4 SEPTEMBER yang BELUM pernah dicatat di memory (Dearni F A Parapat 2-S, 3-S; Roderick Yang 2-S, 3-S, 4-S; Ellena 2-S; Giovan O 2-S; Lionel 2-S; Ezequiel 4-S; TKB1 Venedict 2-S; TKB(2) Melviano 2-S, Shane 4-S) — kemungkinan diisi user langsung di PC. Data TIDAK diubah, hanya dicatat.
 - **TOOL REKAP (6 Sept 2026):** `COMMON/scripts/rekap_absensi.py` — rekap bulanan S/I/A otomatis dari file absensi versi terbaru (deteksi file otomatis via parse nama bulan+tanggal, KOMPATIBEL lintas PC; ⚠️ jangan pakai mtime — base file 4ms lebih baru di server walau bukan versi terakhir). Butuh `openpyxl` (terpasang di server Linux, versi 3.1.5). Cara pakai: `python3 COMMON/scripts/rekap_absensi.py [--file "nama file"]`.
+
+### Absensi 7-11 September 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 7/9 | PG | Erick Raphael Nasution | S |
+| 7/9 | TKa | Lionel Oscar Hu | S |
+| 7/9 | TKB(2) | Celine Grace Zhang | S |
+| 7/9 | TKB(2) | Queenly Nathaniela | S |
+| 7/9 | TKB(2) | Melviano Arentino Wijaya | S |
+| 7/9 | TKB(2) | Jayoti Marnida Haulian Kaur | I |
+| 7/9 | TKB(2) | Shane Michael Lienardie | S |
+| 7/9 | TKB(2) | Jemia Zhevano Yamresa Kembaren | S |
+| 8/9 | PG | Erick Raphael Nasution | S |
+| 8/9 | TKa | Dearni Felixa Alexandria Parapat | S |
+| 8/9 | TKa | Ellena Clarissa Toh | S |
+| 8/9 | TKB1 | Elsa Harianja | S |
+| 8/9 | TKB(2) | Celine Grace Zhang | S |
+| 9/9 | PG | Erick Raphael Nasution | S |
+| 9/9 | TKB(2) | Celine Grace Zhang | S |
+| 9/9 | TKB(2) | Joevanca Chesa Athalia | S |
+| 9/9 | TKB1 | Corin Falove Manurung | S |
+| 9/9 | TKB1 | Elsa Harianja | S |
+| 10/9 | PG | Jayden Kingwell Zhang | S |
+| 10/9 | PG | Erick Raphael Nasution | S |
+| 10/9 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 10/9 | TKa | Mikaylo Zionathan Girsang | S |
+| 10/9 | TKa | Sharren Eliana Simanjuntak | S |
+| 10/9 | TKa | Lionel Oscar Hu | S |
+| 10/9 | TKa | Evano Ryu Tanzil | S |
+| 10/9 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 10/9 | TKB1 | Corin Falove Manurung | S |
+| 10/9 | TKB(2) | Shelomitha Eliora Simanjuntak | S |
+| 10/9 | TKB(2) | Joevanca Chesa Athalia | S |
+| 10/9 | TKB(2) | Rui Reynara Shen | S |
+| 11/9 | PG | Erick Raphael Nasution | S |
+| 11/9 | TKa | Hester Kholyn | I |
+| 11/9 | TKa | Hestine Kholyn | I |
+| 11/9 | TKa | Lionel Oscar Hu | S |
+| 11/9 | TKa | Ellena Clarissa Toh | S |
+| 11/9 | TKa | Matthew Batara Hamonangan Nainggolan | S |
+| 11/9 | TKa | Ruby Reynara Shen | S |
+| 11/9 | TKa | Evano Ryu Tanzil | S |
+| 11/9 | TKB(2) | Joevanca Chesa Athalia | S |
+| 11/9 | TKB(2) | Rui Reynara Shen | S |
+| 11/9 | TKB1 | Generation Michael Abdiel Gea | S |
+| 11/9 | TKB1 | Brenden Maxwell Angkasa | I |
+
+- File versi terbaru: Absensi 11 September 2026 Friday 09_00_00.xlsx (42 mark tgl 7-11, validasi lulus)
+- **GENERATION MICHAEL ABIDEL GEA — MURID BARU TKB1:** ditambahkan ke roster TKB1 di file versi ini. Jangan lupa include di absensi berikutnya.
+- Mapping: "Shallen"→Sharren Eliana Simanjuntak (TKa), "Dierni"→Dearni Felixa Alexandria Parapat (TKa), "Elena"→Ellena Clarissa Toh (TKa), "Evano"→Evano Ryu Tanzil (TKa), "Ryui"→Rui Reynara Shen (TKB2), "Quenly"→Queenly Nathaniela (TKB2), "Generation"→Generation Michael Abdiel Gea (TKB1)
+- Catatan: user input "tkb1" untuk data tgl 7 Quenly/Melviano/Jayoti/Celine/Shane/Jemia — semua nama ada di roster TKB(2), dimasukkan ke TKB(2)
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
