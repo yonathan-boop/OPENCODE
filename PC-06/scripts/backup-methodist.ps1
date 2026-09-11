@@ -94,4 +94,18 @@ else {
 
     Show-Stats -Dest $dest -LogPath $logFile -StartedAt $startTime
     Write-Log $logFile "Log detail robocopy: $rcLog"
+
+    # ===== Sinkron lanjutan ke Google Drive (mode harian) =====
+    $gdriveDest = "G:\Other computers\My Computer\CO(PARA)DE\Methodist-11 Document"
+    if (Test-Path -LiteralPath $gdriveDest) {
+        Write-Log $logFile "Mencopy ke Google Drive (G:) - update langsung"
+        $rcGDrive = Join-Path $logDir ("robocopy-gdrive-{0}.log" -f $today.ToString("yyyy-MM-dd-HHmmss"))
+        # /XA:SH = skip file hidden+system (desktop.ini) agar tidak memicu EXIT 1 palsu
+        & robocopy $dest $gdriveDest /E /XO /COPY:DAT /DCOPY:T /R:3 /W:5 /NP /NDL /NJH /NJS /LOG+:$rcGDrive /XF "*.tmp" "~`$*" /XA:SH
+        $gcode = $LASTEXITCODE
+        Write-Log $logFile "Sinkron Google Drive selesai (exit: $gcode)"
+        if ($gcode -ge 8) { Write-Log $logFile "WARNING: ada error robocopy G: - cek detail: $rcGDrive" }
+    } else {
+        Write-Log $logFile "Google Drive (G:) tidak terdeteksi - SKIP sinkron ke cloud."
+    }
 }

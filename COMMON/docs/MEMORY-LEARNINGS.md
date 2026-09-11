@@ -4,6 +4,31 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260911-001] word_copy_equation_hang_solusi
+
+**Tanggal**: 2026-09-11
+**Priority**: high
+**Status**: active
+
+### Summary
+Word di yonat-PC hang/lelet tiap copy equation (rumus matematika). Akar masalah gabungan: Windows Clipboard History aktif + Office Clipboard tracking + hardware acceleration Word dimatikan. Solved dengan mematikan ketiganya.
+
+### Details
+- Gejala: copy equation macet/lelet (bisa >detik), tapi paste lancar. Kopi 1 halaman penuh equation sekalipun tetap lambat.
+- Klue penting user: pas dokumen masih Protected View (belum "Enable Editing") copy LANCAR; setelah Enable Editing baru lelet — karena fitur analisis Word (spell/grammar/tracking) baru aktif setelah editing diaktifkan.
+- **Akar 1 — Clipboard History Windows:** tiap copy equation disimpan penuh ke history → Word + Windows berat. Ini dikonfirmasi resmi oleh Microsoft Answers (Word hang setelah copy dokumen ber-equation = clipboard history aktif). Tetap matikan: `HKCU\Software\Microsoft\Clipboard` → `EnableClipboardHistory=0`.
+- **Akar 2 — Office Clipboard pane:** begitu panel Clipboard (klik tanda panah di grup Home → Clipboard) SEMPAT dibuka sekali, tracking item nyala dan TIDAK berhenti walau panel ditutup → lelet balik. Satu-satunya pembasmi bersih = restart Word total. Permanen = buka panel → Options → hilangkan centang: "Show Office Clipboard Automatically", "Show Office Clipboard When Ctrl+C Pressed Twice", "Collect Without Showing Office Clipboard".
+- **Akar 3 — hardware acceleration Word mati:** `DisableHardwareAcceleration=1` (di-set 5/9 utk fix menu lelet) bikin rendering equation via CPU saja → copy yang butuh bitmap preview jadi lambat. Hidupkan lagi (hapus key tsb).
+- Pendukung: `ShowPasteOptions=0` (matikan tombol Paste Options).
+
+### Action
+- Kalau Word user lapor lelet copy equation → cek 3 hal di atas dulu.
+- JANGAN buka panel Clipboard Office (panah di Home → Clipboard) kalau tidak perlu.
+- Kalau panel pernah kebuka → restart Word + pastikan 3 centang Options di Clipboard dimatiin.
+- #word #clipboard #equation #lelet #hang #office
+
+---
+
 ## [LRN-20260509-003] jangan_jalankan_ollama
 
 **Tanggal**: 2026-05-09
