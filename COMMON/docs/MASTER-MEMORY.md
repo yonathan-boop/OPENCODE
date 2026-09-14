@@ -237,7 +237,7 @@ Di-update: 11 September 2026
 ### Script
 - File: absensi.py
 - Lokasi: C:/Users/yonat/OneDrive/Desktop/memory/COMMON/scripts/absensi.py
-- FILE_PATH saat ini: ABSENSI Agustus.xlsx
+- FILE_PATH saat ini: Absensi 14 September 2026 Monday 09_09_04.xlsx
 
 ### Struktur Excel Absensi (Format Baru)
 - Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
@@ -490,10 +490,40 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | 11/9 | TKB1 | Generation Michael Abdiel Gea | S |
 | 11/9 | TKB1 | Brenden Maxwell Angkasa | I |
 
-- File versi terbaru: Absensi 11 September 2026 Friday 09_00_00.xlsx (42 mark tgl 7-11, validasi lulus)
+- File versi tgl 7-11: Absensi 11 September 2026 Friday 09_00_00.xlsx (42 mark tgl 7-11, validasi lulus)
+- File versi tgl 12: Absensi 12 September 2026 Saturday 09_46_38.xlsx (5 mark tgl 12: Ruby/Lionel/Valerie/Evano/Carencya TKa = S)
 - **GENERATION MICHAEL ABIDEL GEA — MURID BARU TKB1:** ditambahkan ke roster TKB1 di file versi ini. Jangan lupa include di absensi berikutnya.
 - Mapping: "Shallen"→Sharren Eliana Simanjuntak (TKa), "Dierni"→Dearni Felixa Alexandria Parapat (TKa), "Elena"→Ellena Clarissa Toh (TKa), "Evano"→Evano Ryu Tanzil (TKa), "Ryui"→Rui Reynara Shen (TKB2), "Quenly"→Queenly Nathaniela (TKB2), "Generation"→Generation Michael Abdiel Gea (TKB1)
 - Catatan: user input "tkb1" untuk data tgl 7 Quenly/Melviano/Jayoti/Celine/Shane/Jemia — semua nama ada di roster TKB(2), dimasukkan ke TKB(2)
+
+### Absensi 12 & 14 September 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 12/9 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 12/9 | TKB(2) | Jemia Zhevano Yamresa Kembaren | S |
+| 12/9 | TKB(2) | Rui Reynara Shen | S |
+| 12/9 | TKB(2) | Joevanca Chesa Athalia | S |
+| 12/9 | TKB(2) | Celine Grace Zhang | S |
+| 12/9 | TKB(2) | Brilliant | S |
+| 12/9 | PG | Amelia Arthanauli Nainggolan | S |
+| 12/9 | PG | Erick Raphael Nasution | S |
+| 12/9 | PG | Eireen Lorenzo | S |
+| 12/9 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 14/9 | TKB1 | Richelcia Wijaya | I |
+| 14/9 | TKa | Ruby Reynara Shen | S |
+| 14/9 | TKa | Valerie Sharon Nainggolan | S |
+| 14/9 | TKa | Evano Ryu Tanzil | S |
+| 14/9 | TKa | Lionel Oscar Hu | S |
+| 14/9 | TKB(2) | Rui Reynara Shen | S |
+| 14/9 | TKB(2) | Celine Grace Zhang | S |
+| 14/9 | TKB(2) | Brilliant | S |
+| 14/9 | TKB(2) | Lishaalini Krisna Naidu | S |
+| 14/9 | PG | Erick Raphael Nasution | I |
+
+- File versi terbaru: Absensi 14 September 2026 Monday 09_09_04.xlsx (20 mark tgl 12&14, validasi lulus)
+- **BRILLIANT — MURID BARU TKB(2):** ditambahkan ke roster TKB(2) di file versi ini (row 32, kolom C, setelah Jayoti). Nama tanpa nama keluarga (diberi user apa adanya). Jangan lupa include di absensi berikutnya.
+- Sebelumnya: file versi tgl 12 punya 5 mark TKa (Ruby/Lionel/Valerie/Evano/Carencya = S) yang sudah ada di file Absensi 12 September (dicatat di sesi sebelumnya).
 
 ### Kelas: TKa, TKB1, TKB2, PG
 
