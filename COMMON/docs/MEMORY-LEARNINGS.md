@@ -1,376 +1,53 @@
 # Memory Learnings
 
-Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkembang lintas sesi.
+Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkembang lintas sesi. Versi PADAT (15/9): detail historis dipadatkan, aksi & referensi tetap.
 
 ---
 
-## [LRN-20260911-002] jangan_sebut_agama
+## [LRN-20260911-002] jangan_sebut_agama — priority: critical
+LARANGAN KERAS user: JANGAN PERNAH menyebut/menulis/ganti ucapan agama (misal "Alhamdulillah", "syukur") di komunikasi mana pun. 100% netral. Sudah 2x ditegur keras. Cek ulang tiap pesan sebelum kirim. #komunikasi #agama #netral
 
-**Tanggal**: 2026-09-11
-**Priority**: critical
-**Status**: active
+## [LRN-20260911-001] word_copy_equation_hang_solusi — priority: high
+Word yonat-PC hang/lelet tiap copy equation. Akar gabungan: (1) Clipboard History Windows (`HKCU\Software\Microsoft\Clipboard\EnableClipboardHistory=0`), (2) Panel Clipboard Office — begitu kebuka sekali, tracking nyala permanen → satu-satunya bersih = restart Word, lalu matikan 3 centang Options Clipboard; (3) `DisableHardwareAcceleration=1` bikin rendering equation CPU-only → hapus key. Pendukung `ShowPasteOptions=0`. #word #clipboard #equation #lelet
 
-### Summary
-LARANGAN KERAS dari user: JANGAN PERNAH menyebut, menulis, atau mengganti-ganti ucapan agama (misal "Alhamdulillah", "syukur", "Alhamdulillah... eh" dsb) di komunikasi mana pun. Tetap 100% netral. User sudah 2x menegur keras, termasuk saat AI ketahuan masih selip kata "Alhamdulillah" sesaat setelah ditegur — itu keterlanjuran yang tidak boleh terulang.
-
-### Action
-- HAPUS total kata/ucapan/istilah keagamaan dari semua respons. Cek ulang setiap pesan sebelum kirim.
-- Kalau sudah terlanjur, jangan ulangi dan jangan bikin alasan panjang.
-- #komunikasi #agama #netral #larangan-keras
-
----
-
-## [LRN-20260911-001] word_copy_equation_hang_solusi
-
-**Tanggal**: 2026-09-11
-**Priority**: high
-**Status**: active
-
-### Summary
-Word di yonat-PC hang/lelet tiap copy equation (rumus matematika). Akar masalah gabungan: Windows Clipboard History aktif + Office Clipboard tracking + hardware acceleration Word dimatikan. Solved dengan mematikan ketiganya.
-
-### Details
-- Gejala: copy equation macet/lelet (bisa >detik), tapi paste lancar. Kopi 1 halaman penuh equation sekalipun tetap lambat.
-- Klue penting user: pas dokumen masih Protected View (belum "Enable Editing") copy LANCAR; setelah Enable Editing baru lelet — karena fitur analisis Word (spell/grammar/tracking) baru aktif setelah editing diaktifkan.
-- **Akar 1 — Clipboard History Windows:** tiap copy equation disimpan penuh ke history → Word + Windows berat. Ini dikonfirmasi resmi oleh Microsoft Answers (Word hang setelah copy dokumen ber-equation = clipboard history aktif). Tetap matikan: `HKCU\Software\Microsoft\Clipboard` → `EnableClipboardHistory=0`.
-- **Akar 2 — Office Clipboard pane:** begitu panel Clipboard (klik tanda panah di grup Home → Clipboard) SEMPAT dibuka sekali, tracking item nyala dan TIDAK berhenti walau panel ditutup → lelet balik. Satu-satunya pembasmi bersih = restart Word total. Permanen = buka panel → Options → hilangkan centang: "Show Office Clipboard Automatically", "Show Office Clipboard When Ctrl+C Pressed Twice", "Collect Without Showing Office Clipboard".
-- **Akar 3 — hardware acceleration Word mati:** `DisableHardwareAcceleration=1` (di-set 5/9 utk fix menu lelet) bikin rendering equation via CPU saja → copy yang butuh bitmap preview jadi lambat. Hidupkan lagi (hapus key tsb).
-- Pendukung: `ShowPasteOptions=0` (matikan tombol Paste Options).
-
-### Action
-- Kalau Word user lapor lelet copy equation → cek 3 hal di atas dulu.
-- JANGAN buka panel Clipboard Office (panah di Home → Clipboard) kalau tidak perlu.
-- Kalau panel pernah kebuka → restart Word + pastikan 3 centang Options di Clipboard dimatiin.
-- #word #clipboard #equation #lelet #hang #office
-
----
-
-## [LRN-20260509-003] jangan_jalankan_ollama
-
-**Tanggal**: 2026-05-09
-**Priority**: high
-**Status**: active
-
-### Summary
-Jangan pernah menjalankan Ollama. User melarang keras.
-
-### Details
-- Ollama consume resource berat
-- User tidak mau Ollama jalan di PC-nya
-- Cari alternatif lain untuk vision/image processing
-
-### Action
-- JANGAN install, jalankan, atau restart Ollama
-- Untuk vision: cari API gratis atau tool lain (Tesseract OCR, free vision API)
-- Kalau butuh vision model, tanya dulu sebelum install apa pun
-
----
+## [LRN-20260509-003] jangan_jalankan_ollama — priority: high
+Jangan pernah jalankan Ollama (boros resource). Untuk vision pakai Tesseract OCR / API gratis. Kalau butuh vision model, tanya dulu sebelum install. #ollama #larangan
 
 ## [LRN-20260422-001] inference_from_short_prompts
+Pahami instruksi singkat/implisit; gunakan konteks + memory. Bila ada contoh hasil → jadikan acuan kualitas/struktur, bukan salin mentah. #short-prompts
 
-**Tanggal**: 2026-04-22
-**Priority**: high
-**Status**: active
-
-### Summary
-User ingin asisten yang bisa memahami instruksi singkat, contoh hasil, dan referensi tanpa perlu dijelaskan panjang berulang-ulang.
-
-### Details
-- Jangan menunggu prompt super detail jika arah umum sudah jelas
-- Gunakan konteks percakapan dan memory aktif untuk mengambil keputusan terbaik
-- Saat ada contoh hasil, gunakan itu sebagai acuan utama untuk style, vibe, dan kualitas output
-
-### Action
-- Selalu cek memory sebelum kerja besar
-- Saat user memberi contoh, cocokkan keputusan desain / struktur, bukan sekadar menyalin tampilan luar
-- Saat instruksi pendek muncul, tafsirkan dengan percaya diri lalu kerjakan
-
----
-
-## [LRN-20260428-002] Launch GUI Apps di XFCE VNC
-
-**Tanggal**: 2026-04-28
-**Priority**: high
-**Status**: active
-
-### Summary
-Untuk launch GUI app di desktop XFCE yang berjalan di VNC display :1, perlu set variabel environment yang benar.
-
-### Details
-- Display: `:1` (port 5901)
-- XAuthority: `/data/data/com.termux/files/home/.Xauthority`
-- Command: `export DISPLAY=:1 && export XAUTHORITY=/data/data/com.termux/files/home/.Xauthority && remmina &`
-
-### Action
-- Selalu pakai export DISPLAY dan XAUTHORITY sebelum launch GUI apps di VNC
-
----
+## [LRN-20260428-002] Launch GUI Apps di XFCE VNC — priority: high
+Untuk launch GUI di VNC display :1 (linux-tablet): export DISPLAY=:1 dan XAUTHORITY=/data/data/com.termux/files/home/.Xauthority sebelum command. #vnc #xfce
 
 ## [LRN-20260422-002] save_and_read_memory_diligently
+Pola `load -> kerja -> catat -> save`. Memory = konteks kerja utama, bukan arsip pasif. Pola berulang → promosikan ke MASTER. #memory
 
-**Tanggal**: 2026-04-22
-**Priority**: high
-**Status**: active
+## [LRN-20260509-004] wajib_pakai_sub_agent_untuk_eksekusi — priority: high
+Semua task eksekusi WAJIB sub-agent (task tool): bikin/edit file, run command, commit/push, scraping, batch edit. Otak (main session) hanya: baca memori, catat memori, planning, strategi, komunikasi. Sub-agent dikasih instruksi spesifik, tak perlu konteks penuh. #sub-agent #protocol
 
-### Summary
-Asisten harus rajin membaca memory di awal sesi dan rajin menyimpan hal penting di akhir atau saat ada pembelajaran baru.
+## [LRN-20260509-005] sub_agent_path_specification — priority: high
+Waktu spawn sub-agent (git/commit/push) WAJIB set `workdir` path exact — jangan biarkan menebak (pernah stage ribuan file sampah dari root). Jangan `git add -A` sebelum ls. #sub-agent #path #git
 
-### Details
-- User sudah menegaskan bahwa AI tidak kuat langsung menangani hal besar tanpa bantuan memory yang disiplin
-- Karena itu memory harus diperlakukan sebagai konteks kerja utama, bukan arsip pasif
-
-### Action
-- Jalankan pola `load -> kerja -> catat -> save`
-- Promosikan pola yang berulang ke `MASTER-MEMORY.md`
-
----
-
-## [LRN-20260509-004] wajib_pakai_sub_agent_untuk_eksekusi
-
-**Tanggal**: 2026-05-09
-**Priority**: high
-**Status**: active
-
-### Summary
-User menegaskan bahwa semua task eksekusi WAJIB via sub-agent (`task` tool). Otak (main session) hanya boleh planning, strategi, dan catat memory.
-
-### Details
-- User protes karena commit/push dilakukan langsung, bukan via sub-agent
-- Sub-agent protocol sudah ditetapkan di MASTER-MEMORY.md
-- Otak = perencana, sub-agent = eksekutor
-- **Yang termasuk tugas otak (boleh langsung):** baca memory, catat memory, planning, strategi, komunikasi dengan user
-- **Yang WAJIB sub-agent:** bikin/edit file, run command, commit/push, scraping, batch edit
-
-### Action
-- Baca & catat memory → OTAK langsung (butuh full context, gak bisa diringkas)
-- Planning → spawn sub-agent → sub-agent eksekusi → otak verifikasi + catat
-- Git commit/push → sub-agent
-- Coding/file creation → sub-agent
-- Sub-agent dikasih instruksi spesifik, gak perlu paham konteks penuh
-
----
-
-## [LRN-20260509-005] sub_agent_path_specification
-
-**Tanggal**: 2026-05-09
-**Priority**: high
-**Status**: active
-
-### Summary
-Waktu spawn sub-agent untuk git commit/push, WAJIB specify exact working directory. Jangan biarkan sub-agent nebak path.
-
-### Details
-- Sub-agent init repo di `C:\Users\Advan\` (root) instead of `C:\Users\Advan\memory\`
-- `git add -A` di root nyaris stage ribuan file sampah dari Recycle Bin, AppData, dll
-- Untung gak sempat commit, cuma staging — bisa di-clean
-
-### Action
-- Selalu set `workdir` parameter dengan path exact
-- Untuk push, dua repo wajib:
-  - `C:\Users\Advan\Desktop\memory` (shared, remote: GitHub)
-  - `C:\Users\Advan\memory` (local daily notes)
-- Kalau ragu, spawn sub-agent dedicated khusus push dengan instruksi path lengkap
-- Jangan `git add -A` sebelum ls dulu
-
----
-
-## [LRN-20260908-002] bot_timeout_vs_latensi_model
-
-**Tanggal**: 2026-09-08
-**Priority**: high
-**Status**: active
-
-### Summary
-Bot Telegram tampak "tidak menjawab" padahal bukan rusak: latensi first-token model free `opencode/big-pickle` lewat gateway anonymous melonjak dari ~2s menjadi ~130s setelah pemakaian pagi yang intensif. Timeout 180s di bot selalu kepotong sebelum balasan lahir → 0 balasan terkirim.
-
-### Details
-- `opencode run` yang "gantung" kadang hanya LAMBAT, bukan hang mati — respon datang belakangan (uji bg: exit=0 dalam 131s, jawaban valid). 0 byte output + `--log-level DEBUG` pun bisa kosong pada fase awal; tanda request sampai model hanya dari `log/opencode.log`: `message=stream providerID=opencode modelID=big-pickle`.
-- Sesi interactive yang sudah ESTAB (koneksi IPv6 ke Cloudflare) tetap responsif walau koneksi baru di-throttle.
-- Verifikasi latensi: `time timeout 200 opencode run --dir /tmp/x --auto "tes"` — kalau >90s tapi akhirnya exit 0 → throttling, bukan error.
-
-### Action
-- Jangan bunuh/restart bot saat "tidak balas" tanpa ukur latensi model dulu.
-- Timeout bot jangan lebih kecil dari ~3x first-token normal; sekarang default `TIMEOUT_MS=600000`.
-- Konteks kecil = first-token lebih cepat → biasakan `/sesibaru` atau reset sesi kalau konteks sudah membengkak (ribuan part).
-- Sinyal konteks bocor: footer bot "Context: X token · Y%" menunjukkan kapan sesi perlu di-reset.
-- Kalau mau balasan instan saat gateway lagi lemot, opsi turunan: pindah ke gateway berbayar/akun dengan transport baru (belum diterapkan).
-
----
+## [LRN-20260908-002] bot_timeout_vs_latensi_model — priority: high
+Bot tampak "tidak menjawab" ≠ rusak: bisa jadi latensi first-token gateway ~130s (pemakaian pagi intens). Jangan bunuh/restart tanpa ukur dulu: `time timeout 200 opencode run --dir /tmp/x --auto "tes"`. Timeout ≥3x first-token normal (TIMEOUT_MS=600000). Konteks kecil = first-token cepat → reset sesi kalau membengkak. #telegram #latency #timeout
 
 ## [LRN-20260512-001] wajib_pakai_todowrite_di_setiap_sesi
+TodoWrite tiap sesi (3 bagian GAGAL/BERHENTI · LAGI DIKERJAIN · BERHASIL), update real-time. BACKLOG.md saja tidak cukup. #todo
 
-**Tanggal**: 2026-05-12
-**Priority**: high
-**Status**: active
+## [LRN-20260730-001] simpan_masalah_dengan_tags — priority: high
+Setiap masalah+solusi dicatat ke file .txt relevan di COMMON/docs/ dengan format `#tag` di baris atas biar bisa di-grep (#eraport #tunnel #cloudflare dst). Template: MASALAH/Gejala/Penyebab/Lokasi/SOLUSI. #tags #dokumentasi
 
-### Summary
-User ingin todo list selalu kelihatan di samping (via TodoWrite tool), bukan cuma di file backlog.
+## [LRN-20260725-001] wajib_validasi_sebelum_lapor — priority: high
+WAJIB `execute → verify → report`: baca ulang hasil (Excel: cek sel & tanggal terisi, nama & kelas benar) sebelum lapor selesai. Berlaku semua task beroutput file. #validasi
 
-### Details
-- TodoWrite menampilkan task list di UI — user bisa lihat progres langsung
-- User bilang ini sudah pernah dibahas sebelumnya
-- BACKLOG.md saja tidak cukup — harus ada todo visible di sesi
+## [LRN-20260819-002] absensi_sistem_versi_wajib — priority: CRITICAL
+SETIAP update absensi: copy versi terbaru → file BARU → update FILE_PATH → isi → validasi. DILARANG edit file lama langsung (in-place) — liat MASTER bagian SISTEM VERSI. #absensi #versi
 
-### Action
-- Setiap sesi, pasang TodoWrite di awal: isi dengan task yang akan dikerjakan
-- Update status real-time: pending → in_progress → completed
-- Pastikan user bisa lihat: apa yang sudah selesai, apa yang sedang dikerjakan, apa yang akan datang
-- Jangan lupa update TodoWrite setelah tiap task selesai
+## [LRN-20260824-001] backup_harian_tanpa_duplikasi — priority: high
+Backup harian = robocopy /E /XO ke 1 folder tetap (tanpa purge; file terhapus di source DIPERTAHANKAN). Full copy hanya backup semester (manual, flag -Semester). Sebelum bikin sistem duplikasi tanya soal kebutuhan memori. #backup #robocopy
 
----
+## [LRN-20260905-001] bot_harus_pesan_biasa_bukan_log — priority: high
+Ke Telegram kirim jawaban ringkas, bukan dump log. Pecah jawaban ≥3800 byte via splitMessages (jangan potong tengah kalimat). Setelah edit bot.js: `node --check`, restart via start-bot.sh/stop-bot.sh (pidfile). #telegram #bot
 
-## [LRN-20260730-001] simpan_masalah_dengan_tags
-
-**Tanggal**: 2026-07-30
-**Priority**: high
-**Status**: active
-
-### Summary
-User minta setiap masalah + solusi yang kita kerjakan dicatat di memory/GitHub dengan hashtag biar gampang dicari.
-
-### Details
-- Contoh tag: #tunnel #cloudflare #eraport #dapodik #baseurl #litmode #css #https #apache
-- File CATATAN-TUNNEL.txt pake format tag di baris pertama
-- User ingin bisa `grep "#eraport"` atau cari via keyword apapun
-
-### Action
-- Setiap ada masalah+solusi, catat ke file .txt relevan di `COMMON/docs/`
-- Pakai format: `#tag` di atas/bawah setiap entry
-- Commit + push biar bisa diakses dari PC manapun
-- Template:
-  ==========================
-  #tag1 #tag2
-  ==========================
-  MASALAH: ...
-    Gejala: ...
-    Penyebab: ...
-    Lokasi: ...
-    SOLUSI: ...
-
----
-
-## [LRN-20260725-001] wajib_validasi_sebelum_lapor
-
-**Tanggal**: 2026-07-25
-**Priority**: high
-**Status**: active
-
-### Summary
-Seringkali tanggal absensi tidak terisi / salah. User minta sistem validasi — cek ulang hasil sebelum lapor selesai.
-
-### Details
-- Masalah: tanggal absensi sering tidak terisi di Excel
-- User ingin AI memvalidasi hasil kerja sebelum memberitahu user kalau sudah selesai
-- "ibaratnya kamu cek lagi sebelum bilang ke saya kalau kamu sudah selesai"
-
-### Action
-- **VALIDASI WAJIB** untuk semua task absensi:
-  1. Setelah script jalan, **baca ulang file Excel** yang dihasilkan
-  2. Cek kolom tanggal sudah terisi dengan benar (bukan kosong/blank)
-  3. Cek nama & kelas sesuai input
-  4. Kalau ada yang salah → fix dulu, baru lapor selesai
-- Pola: `execute → verify → report`
-- JANGAN lapor "sudah selesai" sebelum validasi passing
-- Berlaku umum untuk semua task yang menghasilkan file output
-
----
-
-## [LRN-20260819-002] absensi_sistem_versi_wajib
-
-**Tanggal**: 2026-08-19
-**Priority**: critical
-**Status**: active
-
-### Summary
-User marah besar karena AI langsung edit file absensi tanpa bikin versi baru. Ini sudah aturan sejak 4 Agustus 2026 tapi AI masih melanggar.
-
-### Details
-- Sistem versi absensi: SETIAP update harus copy versi terbaru → file baru → isi data di file baru
-- JANGAN PERNAH edit file yang sudah ada langsung (in-place)
-- File lama = arsip, tidak boleh diubah
-- Format nama versi: `Absensi <tgl> <bulan> <tahun> <hari> <jam>_<menit>_<detik>.xlsx`
-
-### Action
-- WAJIB follow prosedur: copy → file baru → update FILE_PATH → isi → validasi
-- Kalau ragu, baca dulu MASTER-MEMORY.md bagian "SISTEM VERSI"
-- Jangan pernah anggap "edit in-place" sebagai cara cepat
-
----
-
-## [LRN-20260824-001] backup_harian_tanpa_duplikasi
-
-**Tanggal**: 2026-08-24
-**Priority**: high
-**Status**: active
-
-### Summary
-User koreksi desain backup: JANGAN bikin salinan penuh per tanggal (boros memori). Backup harian = update langsung ke 1 folder tetap. Full copy hanya untuk backup semester (manual, 1 folder per semester).
-
-### Details
-- Desain lama: tiap run copy backup terakhir → folder baru + robocopy → data terduplikasi tiap hari
-- User: "ngapain copy local lagi dan buat file jadi berganda ganda... sistem update data langsung"
-- File terhapus di source DIPERTAHANKAN di backup harian (tanpa purge) — user pilih aman
-- Source `\\192.168.136.1\Methodist-11 Document` = file utama sangat penting — COPY saja, jangan cut/move/purge/mirror
-
-### Action
-- Backup harian: robocopy /E /XO ke 1 folder tetap (`Harian\`), tanpa purge
-- Backup semester: full copy manual via flag `-Semester`, skip kalau folder sudah ada
-- Prinsip umum: sebelum bikin sistem duplikasi, tanya user soal kebutuhan memori
-- Detail lengkap: MASTER-MEMORY.md bagian "BACKUP METHODIST-11"
-
----
-
-
-## [LRN-20260905-001] bot_harus_pesan_biasa_bukan_log
-
-**Tanggal**: 2026-09-05
-**Priority**: high
-**Status**: active
-
-### Summary
-User mengeluh pesan bot Telegram sering terpotong. Sumber: hasil gabungan stdout+stderr opencode 6–10KB lalu `cut()` memotong mentah di 4000 byte. User minta: log kerjaan cukup di file, yang dikirim pesan biasa (jawaban ringkas).
-
-### Details
-- Jawaban model sering keluar di stderr (bukan stdout) — ukuran err bisa jauh lebih besar dari out.
-- `splitMessages()` di bot.js: pecah jawaban utuh jadi beberapa pesan (tiap ≤3800 byte, ngitung batas byte UTF-8, baris super panjang ikut dipecah) — bukan dipotong.
-- Filter garis log ditambah: timestamp `2026-..`, `Error:{`, fragment JSON (`"name":`, `"data":`, `"message":`, `"ref":`), `}`.
-- Log lengkap tetap ke `/var/log/telegram-bot.log`; yang ke Telegram cuma pesan jawaban.
-- Unit test semua kasus (paragraf 9K, 200 baris, emoji, tabel) → tiap chunk ≤3800.
-
-### Action
-- Jangan kirim dump log ke user — ringkas, "pesan biasa".
-- Kalau jawaban panjang, pecah jadi beberapa pesan, jangan dipotong di tengah kalimat.
-- Setelah edit bot.js: `node --check` dulu, restart via `start-bot.sh`/`stop-bot.sh` (pidfile, bukan pkill).
-
----
-
-## [LRN-20260908-001] hapus_printer_jaringan_epson
-
-**Tanggal**: 2026-09-08
-**Priority**: high
-**Status**: active
-
-### Summary
-Cara benar menghapus total printer jaringan EPSON L3210 (\\192.168.136.1) dari yonat-PC. Dipakai saat printer bermasalah — hapus tuntas lalu connect ulang. User akan coba connect sendiri; kalau gagal baru minta bantuan.
-
-### Details
-- Printer network dari server: `\\192.168.136.1\EPSON L3210 Series` (port shared USB006). Server bisa **auto re-add** printer kalau koneksi tersambung → bisa muncul lagi setelah dihapus; hapus ulang kalau itu terjadi.
-- JANGAN stop Print Spooler untuk hapus driver — `Remove-PrinterDriver` butuh spooler jalan ("spooler service is not reachable"). Yang benar: hapus printer & driver dengan spooler jalan, kalau masih "in use" → **restart spooler** (`Restart-Service Spooler -Force`) biar cache bersih, driver otomatis hilang.
-- Butuh admin: sesi bash opencode non-elevated → pakai script `.ps1` sementara + `Start-Process powershell -Verb RunAs ... -Wait` (user klik UAC "Ya"), tulis hasil ke file temp lalu baca.
-
-### Action (urutan lengkap, PowerShell)
-1. Cek: `Get-Printer | ? {$_.Name -like "*Epson*" -or $_.Name -like "*L3210*"}`
-2. Hapus printer: `Remove-Printer -Name "\\192.168.136.1\EPSON L3210 Series"`
-3. Cek port: `Get-PrinterPort | ? {$_.Name -like "*192.168*" -or $_.Name -like "*USB006*"}` (biasanya sudah hilang)
-4. Hapus driver: `Remove-PrinterDriver -Name "EPSON L3210 Series" -PrinterEnvironment "Windows x64"` → bisa error **"driver is in use by one or more printers"** walau printer sudah tidak ada (cache spoolsv / printer sempat re-add)
-5. Kalau "in use": cek registry & file driver sudah bersih dulu:
-   - `Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Control\Print\Printers"`
-   - `Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Control\Print\Environments\Windows x64\Drivers\Version-3"`
-   - `Get-ChildItem "C:\Windows\System32\spool\drivers\x64\3"` (folder Epson biasanya sudah tidak ada)
-6. Kalau registry/file bersih tapi driver masih muncul di `Get-PrinterDriver` → tinggal cache → **restart spooler elevated** (`Restart-Service Spooler -Force`, script + UAC) → verifikasi `Get-PrinterDriver` bersih
-7. Verifikasi akhir: `Get-Printer` & `Get-PrinterDriver` tidak ada lagi EPSON/L3210. Brother (`\\192.168.136.1\Brother HL-L2360D series`) JANGAN disentuh.
-8. Kalau printer muncul lagi karena auto re-add, ulangi dari langkah 2.
-
-### Referensi
-- Catatan singkat di MASTER-MEMORY.md "8 September 2026 — yonat-PC"
-- #printer #epson #l3210 #network-printer #driver #spooler
+## [LRN-20260908-001] hapus_printer_jaringan_epson — priority: high
+Hapus total printer jaringan EPSON L3210 (\\192.168.136.1, shared USB006; bisa auto re-add dari server → hapus ulang kalau muncul). JANGAN stop spooler utk hapus driver. Urutan: Remove-Printer → cek port → Remove-PrinterDriver → kalau "in use": cek registry (HKLM\...\Print) & file drv → kalau bersih tinggal cache → `Restart-Service Spooler -Force` (elevated). Butuh admin → script .ps1 + `Start-Process powershell -Verb RunAs -Wait`. Brother JANGAN disentuh. #printer #epson #spooler
