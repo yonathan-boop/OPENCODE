@@ -611,6 +611,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 ## 📋 RECENT ACTIVITY (ringkas)
 
 - **15/9 (konsolidasi memori):** MASTER-MEMORY 81→36KB (absensi 462 baris DLL disimpan full-fidelity, sisanya dirangkum/di-dedup; detail historis → ARSIP-ABSENSI-2026.md / git history) · LEARNINGS/ERRORS/summary 34→11KB · SEMUA 22 ID aturan tetap · context startup turun 45K(23%)→38K(19%)/200K · commit ce34369, d75ff35, 745d863.
+- **15/9 (yonat-PC):** GENERATOR-RPP.html (`OneDrive\Dokumen\`) diadaptasi ke SD Swasta Methodist-11 Medan: data guru per Mapel×Kelas dari `C:\RaporServer\JADWAL PELAJARAN\Edit11 (1).xlsx` (wali kelas I–VI, 18 mapel), kepsek dropdown (Dra. Linda Mahadjana / Dra. Elly Rosana M.), sekolah dropdown (SD/SMP), medan tgl "Medan,", logo "Kurikulum Merdeka·Deep Learning" dihapus, fitur AI diganti ke Gemini API (gemini-3.6-flash), tombol Simpan Data (localStorage) dipisah dari Cetak. Detail: COMMON/docs/GENERATOR-RPP-METHODIST.md. ⚠️ API key Gemini tertanam di file HTML.
 - **13-14/9 (server):** backup DB opencode → Google Drive `opencode-db/` (8.3MB); sesi lama dihapus permanen (arsip sempat dibuat). Absensi 14/9: file 09_09_04 (20 mark), murid baru Brilliant TKB(2).
 - **11/9:** Telegram bot & notif dihapus total → log-only. Auto-update website dari Google Drive teruji (test → revert). Disk dipangkas (87→79%). Backup gdrive tar.gz efektif (13.75 MB/s). Hapus sesi opencode lama permanen.
 - **10/9:** context-mode v1.0.169 terinstall (plugin, bukan MCP), rate limiter website 600 req/min.
