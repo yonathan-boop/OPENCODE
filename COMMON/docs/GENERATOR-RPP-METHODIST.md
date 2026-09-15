@@ -6,7 +6,7 @@ Di-update: 15 September 2026 (yonat-PC)
 
 ## Ringkasan
 
-File `GENERATOR-RPP.html` (di `C:\Users\yonat\OneDrive\Dokumen\`) semula template untuk SDN Payudan Nangger/Sumenep, diadaptasi penuh untuk penggunaannya di yonat-PC:
+File `GENERATOR-RPP.html` (di `C:\Users\yonat\OneDrive\Dokumen\`) semula template untuk SDN Payudan Nangger/Sumenep, diadaptasi penuh untuk penggunaannya di yonat-PC. **Backup di repo memory:** `COMMON/project-generator-rpp/` (file kerja + backup sebelum customisasi, di-commit & push 15/9):
 
 - **Nama sekolah** → dropdown: SD Swasta Methodist-11 Medan (default) / SMP Swasta Methodist-11 Medan.
 - **Kepala Sekolah** → dropdown: Dra. Linda Mahadjana (default) / Dra. Elly Rosana M. NIP keduanya `-` (belum tersedia).
