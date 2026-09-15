@@ -4,6 +4,9 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260915-001] konsolidasi_memori_hemat_context — priority: high
+Ketika file ini (dan MASTER) membesar, konsolidasi berkala wajib: dedup + ringkas detail historis → sub-file/arsip; MASTER tetap jadi indeks tipis. **PENJAGAAN:** bagian yang menyentuh data Excel/absensi (mapping kolom, sistem versi, daftar murid, kasus khusus) WAJIB full-fidelity/disalin persis — jangan diparafrase (skor test 2 sub-agen baru dianggap lolos kalau 100% match buat bagian data). Verifikasi `diff == 0` sebelum commit. Hasil 15/9: context startup 45K→38K. #memory #context #optimasi #absensi
+
 ## [LRN-20260911-002] jangan_sebut_agama — priority: critical
 LARANGAN KERAS user: JANGAN PERNAH menyebut/menulis/ganti ucapan agama (misal "Alhamdulillah", "syukur") di komunikasi mana pun. 100% netral. Sudah 2x ditegur keras. Cek ulang tiap pesan sebelum kirim. #komunikasi #agama #netral
 
