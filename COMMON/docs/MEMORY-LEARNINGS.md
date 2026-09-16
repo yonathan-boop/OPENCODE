@@ -4,6 +4,9 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260916-001] pack_boss_otak_bersih — priority: high
+Untuk komputer orang lain (boss): buat REPO private terpisah (`OPENCODE-BOSS`) berisi versi bersih memory — aman dibawa ke mesin lain. Sanitasi: buang konfigurasi PC pribadi, username, kredensial (ttyd password, API key → kosongkan placeholder), daftar perangkat; absensi ditarik karena itu kerjaan user sendiri; profiling boss pakai USER.md template. Aturan yang wajib dimasukkan ke AGENTS pack: **auto-commit tiap ±3 chat** diam-diam (penerima gak paham git) + setelah task tanya "sudah pas?" lalu simpan kasus terselesaikan ke MEMORY-LEARNINGS (format MASALAH/SOLUSI/Kapan dipakai lagi). Catatan setup (token+link+langkah) ditaruh di TXT lokal Desktop — JANGAN pernah commit file bertoken (Push Protection). #boss #pack #privasi #auto-commit
+
 ## [LRN-20260915-001] konsolidasi_memori_hemat_context — priority: high
 Ketika file ini (dan MASTER) membesar, konsolidasi berkala wajib: dedup + ringkas detail historis → sub-file/arsip; MASTER tetap jadi indeks tipis. **PENJAGAAN:** bagian yang menyentuh data Excel/absensi (mapping kolom, sistem versi, daftar murid, kasus khusus) WAJIB full-fidelity/disalin persis — jangan diparafrase (skor test 2 sub-agen baru dianggap lolos kalau 100% match buat bagian data). Verifikasi `diff == 0` sebelum commit. Hasil 15/9: context startup 45K→38K. #memory #context #optimasi #absensi
 
