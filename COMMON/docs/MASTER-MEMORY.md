@@ -397,6 +397,32 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - **BRILLIANT — MURID BARU TKB(2):** ditambahkan ke roster TKB(2) di file versi ini (row 32, kolom C, setelah Jayoti). Nama tanpa nama keluarga (diberi user apa adanya). Jangan lupa include di absensi berikutnya.
 - Sebelumnya: file versi tgl 12 punya 5 mark TKa (Ruby/Lionel/Valerie/Evano/Carencya = S) yang sudah ada di file Absensi 12 September (dicatat di sesi sebelumnya).
 
+### Absensi 15-16 September 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 15/9 | TKB1 | Elsa Harianja | S |
+| 16/9 | TKB1 | Elsa Harianja | S |
+| 15/9 | TKB1 | Richelcia Wijaya | S |
+| 16/9 | TKB1 | Richelcia Wijaya | S |
+| 15/9 | TKa | Valerie Sharon Nainggolan | S |
+| 16/9 | TKa | Valerie Sharon Nainggolan | S |
+| 16/9 | TKa | Hester Kholyn | S |
+| 16/9 | TKa | Hestine Kholyn | S |
+| 16/9 | TKa | Rachellyn Gracia Chindra | S |
+| 15/9 | TKB(2) | Celine Grace Zhang | S |
+| 16/9 | TKB(2) | Celine Grace Zhang | S |
+| 15/9 | TKB(2) | Willian Geoffrey Utama | S |
+| 16/9 | TKB(2) | Willian Geoffrey Utama | S |
+| 15/9 | TKB(2) | Jemia Zhevano Yamresa Kembaren | S |
+| 16/9 | TKB(2) | Jemia Zhevano Yamresa Kembaren | S |
+| 15/9 | TKB(2) | Liora Eliana Panjaitan | S |
+| 15/9 | PG | Erick Raphael Nasution | S |
+
+- File versi terbaru: Absensi 16 September 2026 Wednesday 11_51_44.xlsx (17 mark tgl 15&16, validasi lulus)
+- Mapping: "Richlewijaya"→Richelcia Wijaya (TKB1), "wiliam"→Willian Geoffrey Utama (TKB2), "jemia"→Jemia Zhevano Yamresa Kembaren (TKB2), "Raceline"→Rachellyn Gracia Chindra (TKa, konfirmasi user — 2 nama mirip Rachel- di TKa)
+- FILE_PATH absensi.py → file versi 16 September.
+
 ### Kelas: TKa, TKB1, TKB2, PG
 
 ### Alasan: sakit (S), izin (I), alpha (A)
