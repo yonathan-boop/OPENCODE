@@ -4,6 +4,14 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260917-002] gemini_vision_penyemak_visual — priority: high
+User minta AI lain jadi "mata" untuk cek hasil render dokumen (karena hasil edit docx kadang nggak sesuai & nanti dilihat mata manusia). Setup yang jalan: **LibreOffice headless render docx→PDF → PyMuPDF (pymupdf) PDF→PNG → `check_visual.py` kirim gambar ke Gemini vision (gemini-3.6-flash) → AI baca hasil & perbaiki.** Word nggak pernah dibuka → nggak bikin Word lelet. Tool: soffice.exe (winget TheDocumentFoundation.LibreOffice, v26.8), `py -m pip install pymupdf`, script `COMMON/scripts/check_visual.py` (retry otomatis utk 429/500/503). API key dibaca dari `~/.config/opencode/secrets/gemini.env` (JANGAN di-commit). #vision #gemini #libreoffice #validasi
+
+## [LRN-20260917-001] key_gemini_bocor_di_git — priority: HIGH
+API key Gemini lama (`AIzaSy...ZiLc`, dipakai GENERATOR-RPP.html) **diblokir Google (403 "leaked")** karena pernah masuk commit git (2x: backup proyek 15/9 & pasang di website /rpp). Pelajaran: API key TIDAK BOLEH pernah masuk repo — termasuk file HTML proyek yang ikut di-backup. Key baru user (`AQ.Ab8...`) disimpan di `~/.config/opencode/secrets/gemini.env` (di luar git). Kalau bikin script pakai Gemini, SELALU baca key dari env file, bukan hardcode. #secrets #git #gemini #api-key
+
+---
+
 ## [LRN-20260916-001] pack_otak_bersih — priority: high
 Untuk komputer orang lain (kepala sekolah): buat REPO private terpisah (`OPENCODE-SEKOLAH`) berisi versi bersih memory — aman dibawa ke mesin lain. Sanitasi: buang konfigurasi PC pribadi, username, kredensial (ttyd password, API key → kosongkan placeholder), daftar perangkat; absensi ditarik karena itu kerjaan user sendiri; profiling user komputer tujuan pakai USER.md template; istilah internal (contoh label dari sesi ini) dihapus dari pack — pakai istilah netral "user". Aturan yang wajib dimasukkan ke AGENTS pack: **auto-commit tiap ±3 chat** diam-diam (penerima gak paham git) + setelah task tanya "sudah pas?" lalu simpan kasus terselesaikan ke MEMORY-LEARNINGS (format MASALAH/SOLUSI/Kapan dipakai lagi) + di awal sesi baca sesi percakapan opencode sebelumnya sebagai acuan preferensi. Catatan setup (token+link+langkah) ditaruh di TXT lokal Desktop — JANGAN pernah commit file bertoken (Push Protection). #pack #privasi #auto-commit
 
