@@ -15,7 +15,7 @@ Aturan:
 - [x] Mail merge & narasi rapor di Word: batch dari Excel, masalah umum & solusinya (selesai 2026-09-17, catatan: mail-merge-narasi-rapor-di-word-batch-dari-excel-masalah-umum-solusinya.md)
 - [x] Cloudflare Tunnel: zero-trust Access untuk halaman admin, beda cloudflared config vs quick tunnel (selesai 2026-09-17, catatan: cloudflare-tunnel-zero-trust-access-untuk-halaman-admin-beda-cloudflared-config-vs-quick-tunnel.md)
 - [x] Backup 3-2-1 untuk data sekolah: strategi murah, efektif, dan cara tes restore (selesai 2026-09-17, catatan: backup-3-2-1-untuk-data-sekolah-strategi-murah-efektif-dan-cara-tes-restore.md)
-- [ ] OCR untuk pekerjaan guru: dokumen scan → teks/Excel rapi (Tesseract & alternatif gratis)
+- [s] OCR untuk pekerjaan guru: dokumen scan → teks/Excel rapi (Tesseract & alternatif gratis) [klaim 2026-09-17 16:07 SERVER]
 - [ ] Gemini API: kuota, harga, rate limit, best practice untuk GENERATOR-RPP
 - [ ] Google Workspace for Education: fitur admin yang berguna untuk sekolah kecil
 - [ ] Keamanan server Linux kecil (single VPS): hardening dasar, update, monitoring
