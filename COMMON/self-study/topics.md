@@ -14,7 +14,7 @@ Aturan:
 - [x] Otomatisasi laporan sekolah dengan Excel/Python (openpyxl): pola aman, hemat memori, validasi sebelum lapor (catatan: notes/excel-automation-openpyxl.md, 17/9 PC)
 - [x] Mail merge & narasi rapor di Word: batch dari Excel, masalah umum & solusinya (selesai 2026-09-17, catatan: mail-merge-narasi-rapor-di-word-batch-dari-excel-masalah-umum-solusinya.md)
 - [x] Cloudflare Tunnel: zero-trust Access untuk halaman admin, beda cloudflared config vs quick tunnel (selesai 2026-09-17, catatan: cloudflare-tunnel-zero-trust-access-untuk-halaman-admin-beda-cloudflared-config-vs-quick-tunnel.md)
-- [ ] Backup 3-2-1 untuk data sekolah: strategi murah, efektif, dan cara tes restore
+- [s] Backup 3-2-1 untuk data sekolah: strategi murah, efektif, dan cara tes restore [klaim 2026-09-17 15:50 SERVER]
 - [ ] OCR untuk pekerjaan guru: dokumen scan → teks/Excel rapi (Tesseract & alternatif gratis)
 - [ ] Gemini API: kuota, harga, rate limit, best practice untuk GENERATOR-RPP
 - [ ] Google Workspace for Education: fitur admin yang berguna untuk sekolah kecil
