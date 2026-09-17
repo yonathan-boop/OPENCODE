@@ -18,4 +18,4 @@ Aturan:
 - [x] OCR untuk pekerjaan guru: dokumen scan → teks/Excel rapi (Tesseract & alternatif gratis) (selesai 2026-09-17, catatan: ocr-untuk-pekerjaan-guru-dokumen-scan-teks-excel-rapi-tesseract-alternatif-gratis.md)
 - [x] Gemini API: kuota, harga, rate limit, best practice untuk GENERATOR-RPP (selesai 2026-09-17, catatan: gemini-api-kuota-harga-rate-limit-best-practice-untuk-generator-rpp.md)
 - [x] Google Workspace for Education: fitur admin yang berguna untuk sekolah kecil (selesai 2026-09-17, catatan: google-workspace-for-education-fitur-admin-yang-berguna-untuk-sekolah-kecil.md)
-- [ ] Keamanan server Linux kecil (single VPS): hardening dasar, update, monitoring
+- [s] Keamanan server Linux kecil (single VPS): hardening dasar, update, monitoring [klaim 2026-09-17 17:02 SERVER]
