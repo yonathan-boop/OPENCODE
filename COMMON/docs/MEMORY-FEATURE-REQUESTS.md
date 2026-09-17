@@ -32,6 +32,15 @@ User minta AI (di PC dan di server) bisa "berjalan sendiri" — proaktif belajar
 4. Selalu git pull sebelum edit memory & commit+push setelahnya, supaya nggak konflik sama tulis-menulis memory dari server.
 5. Jangan pernah aksi eksternal tanpa izin; jangan bocor data pribadi.
 
+### Koordinasi Antara Server & PC (17/9, v2 — WAJIB)
+User minta: PC & server **saling melengkapi, bukan menimpa, tidak duplikat**.
+Mulai sekarang gunakan **claim protocol** di `COMMON/self-study/topics.md`:
+- Sebelum riset topik queue, claim dulu: `python3 COMMON/scripts/self-study-claim.py --claim PC` (PC) / `--claim SERVER` (server) → baris jadi `- [p]` / `- [s]`. Commit klaim SEGERA.
+- Status: `[ ]`=bebas, `[p]`=PC, `[s]`=server, `[x]`=selesai. Klaim basi >24 jam boleh diambil lagi.
+- Catatan hasil: kalau `notes/<slug>.md` sudah ada → **append, jangan rewrite**; cek dulu isinya biar tidak nulis ulang.
+- Belajar ad-hoc di PC → append ke `MEMORY-LEARNINGS.md` dan hindari konten ganda.
+- Konektivitas PC↔server (ZeroTier/SSH/tunnel) → topik self-study sendiri (lihat topics.md).
+
 ---
 
 ## [FEAT-20260422-001] smarter_assistant_memory_mode

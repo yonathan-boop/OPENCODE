@@ -25,6 +25,17 @@ bash /root/SERVER-LINUX/scripts/self-study-daemon.sh   # mulai daemon
 ```
 File di `notes/` ikut ke-sync lewat repo memory ke semua PC.
 
+## Koordinasi PC ↔ Server (anti duplikat, saling melengkapi)
+Server (24/7) & PC lokal (yonat-PC, mode mandiri saat idle/izin) BERDUA bisa belajar —
+aturan wajib:
+1. **Klaim dulu, baru kerja.** Pakai `python3 COMMON/scripts/self-study-claim.py --claim SERVER` (server) atau `--claim PC` (lokal). Commit klaim SEGERA biar mesin lain tidak ambil topik itu.
+   - Status baris topics.md: `[ ]` bebas · `[p]` dikerjakan PC · `[s]` dikerjakan server · `[x]` selesai.
+   - Klaim basi (>24 jam, misal PC mati) otomatis bisa diambil lagi (re-klaim).
+   - `--status` untuk lihat semua.
+2. **Before menulis catatan:** `git pull`, cek `notes/<slug>.md` sudah ada atau belum → kalau ada, **append saja** (jangan rewrite). Grep `notes/` dan `MEMORY-LEARNINGS.md` untuk hindari ulang.
+3. **Belajar ad-hoc (bukan topik queue)** di PC → simpan ke `MEMORY-LEARNINGS.md` (append, jangan rewrite file) & pastikan belum ada isi yang sama.
+4. **Sinkron selalu:** git pull sebelum edit, commit+push setelah. Jangan timpa punya mesin lain.
+
 ## "Mata" — Gemini Vision
 Saat kerja mandiri, AI kadang perlu LIhat (screenshot/gambar) — pakai tool:
 ```bash
