@@ -17,5 +17,5 @@ Aturan:
 - [x] Backup 3-2-1 untuk data sekolah: strategi murah, efektif, dan cara tes restore (selesai 2026-09-17, catatan: backup-3-2-1-untuk-data-sekolah-strategi-murah-efektif-dan-cara-tes-restore.md)
 - [x] OCR untuk pekerjaan guru: dokumen scan → teks/Excel rapi (Tesseract & alternatif gratis) (selesai 2026-09-17, catatan: ocr-untuk-pekerjaan-guru-dokumen-scan-teks-excel-rapi-tesseract-alternatif-gratis.md)
 - [x] Gemini API: kuota, harga, rate limit, best practice untuk GENERATOR-RPP (selesai 2026-09-17, catatan: gemini-api-kuota-harga-rate-limit-best-practice-untuk-generator-rpp.md)
-- [ ] Google Workspace for Education: fitur admin yang berguna untuk sekolah kecil
+- [s] Google Workspace for Education: fitur admin yang berguna untuk sekolah kecil [klaim 2026-09-17 16:44 SERVER]
 - [ ] Keamanan server Linux kecil (single VPS): hardening dasar, update, monitoring
