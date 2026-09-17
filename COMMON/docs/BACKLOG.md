@@ -20,7 +20,7 @@
 - [ ] **Error auto-logging** — detect error patterns from bash output
 - [x] **Session report** — template otomatis tiap akhir sesi (`COMMON/docs/SESSION-REPORT-TEMPLATE.md`, 6 Sept 2026)
 - [ ] **rclone gdrive client_id** — shared client_id bakal di-retire 2026 → ikuti `COMMON/docs/RCLONE-CLIENT-ID.md` (butuh aksi user sekali, ~10 mnt) (17/9)
-- [x] **Self-study system** — AI belajar mandiri mingguan (`COMMON/self-study/` + cron Senin 03:00) (17/9)
+- [x] **Self-study system** — AI belajar mandiri **24/7** via daemon (`SERVER-LINUX/scripts/self-study-daemon.sh`, cron `*/15`+`@reboot`, guard RAM/disk, heartbeat), hasil di `COMMON/self-study/notes/` + "mata" Gemini (`COMMON/scripts/gemini_vision.py`) (17/9)
 
 ## Notes
 - Tambahin item baru kalau muncul ide/request
