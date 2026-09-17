@@ -4,6 +4,9 @@ Catatan error penting, tool failure, atau kegagalan workflow agar tidak terulang
 
 ---
 
+## [ERR-20260917-002] Self-Study Claim Script Crash di Windows (cp1252) — medium, fixed
+`python3 COMMON/scripts/self-study-claim.py --status` dari PC Windows crash `UnicodeEncodeError: 'charmap' codec can't encode '\u2192'` di baris print (topics.md berisi `→`; console default cp1252 menolak encode). **Fix:** tambahkan `sys.stdout.reconfigure(errors="replace")` di awal `main()` (try/except AttributeError untuk Python lama); script jadi lintas-OS. Pel: script shared lintas mesin (server Linux + PC Windows) harus encoding-safe — jangan print karakter non-ASCII tanpa guard. #self-study #windows #encoding #cross-platform
+
 ## [ERR-20260428-001] Kill VNC Server Saat Remote Session — high
 Pakai `pkill -9 Xvnc` saat VNC sedang dipakai remote = membunuh sesi sendiri. JANGAN kill proses Xvnc/XFCE yang aktif; start di display lain atau tanya user. VNC user restore sendiri; symlink /root/Desktop→~/Desktop + desktop files sudah dibuat. #vnc
 

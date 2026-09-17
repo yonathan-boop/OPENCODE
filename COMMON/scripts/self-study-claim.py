@@ -45,6 +45,10 @@ def parse_claim(line):
 
 
 def main():
+    try:
+        sys.stdout.reconfigure(errors="replace")
+    except (AttributeError, ValueError):
+        pass
     args = sys.argv[1:]
     if not args or args[0] not in ('--claim', '--status'):
         print("Usage: self-study-claim.py --claim PC|SERVER | --status")
