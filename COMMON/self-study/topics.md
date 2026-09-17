@@ -9,7 +9,7 @@ Aturan:
 - Tambah topik baru kapan saja — langsung diproses giliran berikutnya.
 
 - [x] Dapodik & E-Rapor: jadwal sinkronisasi 2026, masalah umum (server down, NSM/NPSN, pdsp) dan solusinya (catatan: notes/dapodik-erapor-2026.md, 17/9)
-- [ ] Menghubungkan PC lokal (yonat-PC) dengan server Linux (ZeroTier/SSH/tunnel): cara aman, biar bisa saling akses web/terminal/transfer file
+- [s] Menghubungkan PC lokal (yonat-PC) dengan server Linux (ZeroTier/SSH/tunnel): cara aman, biar bisa saling akses web/terminal/transfer file [klaim 2026-09-17 14:33 SERVER]
 - [ ] Kurikulum Deep Learning 2026: apa perubahannya dari Kurikulum Merdeka, istilah kunci, implikasi ke RPP & admin sekolah
 - [ ] Otomatisasi laporan sekolah dengan Excel/Python (openpyxl): pola aman, hemat memori, validasi sebelum lapor
 - [ ] Mail merge & narasi rapor di Word: batch dari Excel, masalah umum & solusinya
