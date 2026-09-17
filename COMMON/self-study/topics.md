@@ -16,6 +16,6 @@ Aturan:
 - [x] Cloudflare Tunnel: zero-trust Access untuk halaman admin, beda cloudflared config vs quick tunnel (selesai 2026-09-17, catatan: cloudflare-tunnel-zero-trust-access-untuk-halaman-admin-beda-cloudflared-config-vs-quick-tunnel.md)
 - [x] Backup 3-2-1 untuk data sekolah: strategi murah, efektif, dan cara tes restore (selesai 2026-09-17, catatan: backup-3-2-1-untuk-data-sekolah-strategi-murah-efektif-dan-cara-tes-restore.md)
 - [x] OCR untuk pekerjaan guru: dokumen scan → teks/Excel rapi (Tesseract & alternatif gratis) (selesai 2026-09-17, catatan: ocr-untuk-pekerjaan-guru-dokumen-scan-teks-excel-rapi-tesseract-alternatif-gratis.md)
-- [ ] Gemini API: kuota, harga, rate limit, best practice untuk GENERATOR-RPP
+- [s] Gemini API: kuota, harga, rate limit, best practice untuk GENERATOR-RPP [klaim 2026-09-17 16:25 SERVER]
 - [ ] Google Workspace for Education: fitur admin yang berguna untuk sekolah kecil
 - [ ] Keamanan server Linux kecil (single VPS): hardening dasar, update, monitoring
