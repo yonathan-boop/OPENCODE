@@ -5,10 +5,16 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 ---
 
 ## [LRN-20260917-002] gemini_vision_penyemak_visual — priority: high
-User minta AI lain jadi "mata" untuk cek hasil render dokumen (karena hasil edit docx kadang nggak sesuai & nanti dilihat mata manusia). Setup yang jalan: **LibreOffice headless render docx→PDF → PyMuPDF (pymupdf) PDF→PNG → `check_visual.py` kirim gambar ke Gemini vision (gemini-3.6-flash) → AI baca hasil & perbaiki.** Word nggak pernah dibuka → nggak bikin Word lelet. Tool: soffice.exe (winget TheDocumentFoundation.LibreOffice, v26.8), `py -m pip install pymupdf`, script `COMMON/scripts/check_visual.py` (retry otomatis utk 429/500/503). API key dibaca dari `~/.config/opencode/secrets/gemini.env` (JANGAN di-commit). #vision #gemini #libreoffice #validasi
+User minta AI lain jadi "mata" untuk cek hasil render dokumen (karena hasil edit docx kadang nggak sesuai & nanti dilihat mata manusia). Setup di yonat-PC yang jalan: **LibreOffice headless render docx→PDF → PyMuPDF (pymupdf) PDF→PNG → `check_visual.py` kirim gambar ke Gemini vision (gemini-3.6-flash) → AI baca hasil & perbaiki.** Word nggak pernah dibuka → nggak bikin Word lelet. Tool: soffice.exe (winget TheDocumentFoundation.LibreOffice, v26.8), `py -m pip install pymupdf`, script `COMMON/scripts/check_visual.py` (retry otomatis utk 429/500/503). API key dibaca dari `~/.config/opencode/secrets/gemini.env` (JANGAN di-commit). Variasi di server: `COMMON/scripts/gemini_vision.py` (key `/root/.config/gemini-api-key`). #vision #gemini #libreoffice #validasi
+
+## [LRN-20260917-003] self_study_system — priority: high
+User mengizinkan AI bekerja&belajar mandiri (token gratis → manfaatkan) — **server Linux** (24/7) jadi domain utama: `COMMON/self-study/` (queue `topics.md` + hasil `notes/`) + daemon `self-study-daemon.sh` (cron `*/15`+`@reboot` guardian, singleton, guard RAM/disk). Mode belajar PC = pelengkap: saling melengkapi, JANGAN timpa/rewrite punya server. #self-study #autonomous #cron
 
 ## [LRN-20260917-001] key_gemini_bocor_di_git — priority: HIGH
-API key Gemini lama (`AIzaSy...ZiLc`, dipakai GENERATOR-RPP.html) **diblokir Google (403 "leaked")** karena pernah masuk commit git (2x: backup proyek 15/9 & pasang di website /rpp). Pelajaran: API key TIDAK BOLEH pernah masuk repo — termasuk file HTML proyek yang ikut di-backup. Key baru user (`AQ.Ab8...`) disimpan di `~/.config/opencode/secrets/gemini.env` (di luar git). Kalau bikin script pakai Gemini, SELALU baca key dari env file, bukan hardcode. #secrets #git #gemini #api-key
+API key Gemini lama (`AIzaSy...ZiLc`, dipakai GENERATOR-RPP.html) **diblokir Google (403 "leaked")** karena pernah masuk commit git (2x: backup proyek 15/9 & pasang di website /rpp). Pelajaran: API key TIDAK BOLEH pernah masuk repo — termasuk file HTML proyek yang ikut di-backup. Key baru user (`AQ.Ab8...`) disimpan di `~/.config/opencode/secrets/gemini.env` (di luar git; server pakai `/root/.config/gemini-api-key`). Kalau bikin script pakai Gemini, SELALU baca key dari env file, bukan hardcode. #secrets #git #gemini #api-key
+
+## [LRN-20260917-004] fuzzy_name_matching_token_based — priority: high
+Pencocokan nama murid yang benar: cocokkan input ke **setiap token (kata) nama**, bukan nama penuh & bukan string tanpa spasi. Pendekatan terbukti (24/24 kasus): normalisasi (lowercase, buang non-a-z, kolaps huruf dobel) → exact → substring → levenshtein per-token (ambang max(2, min(3,len//2))) + SequenceMatcher ratio ≥0.70. **PENTING:** kalau ada ≥2 kandidat nama berbeda dalam jarak 0.05 → JANGAN simpan, warn + skip (menghindari salah tulis data; contoh nyata "richele" bisa salah ke Brielle vs Richelcia). Terapkan ke absensi.py. #absensi #fuzzy #matching #validasi
 
 ---
 
