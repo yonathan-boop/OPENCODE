@@ -4,6 +4,12 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260917-002] self_study_system — priority: high
+User mengizinkan AI bekerja&belajar mandiri ("kamu bisa lihat histori, problem solving sendiri, spawn untuk selalu belajar; token gratis → manfaatkan"). Dibangun `COMMON/self-study/` (queue `topics.md` + hasil `notes/`) + `SERVER-LINUX/scripts/self-study.sh` via cron **Senin 03:00** (pola meniru night-shift.sh, timeout 1500, opencode run --auto, commit sendiri). Potensi yang sama: kelola & rapikan backlog agar bisa dikerjakan malam hari. #self-study #autonomous #cron
+
+## [LRN-20260917-001] fuzzy_name_matching_token_based — priority: high
+Pencocokan nama murid yang benar: cocokkan input ke **setiap token (kata) nama**, bukan nama penuh & bukan string tanpa spasi. Pendekatan terbukti (24/24 kasus): normalisasi (lowercase, buang non-a-z, kolaps huruf dobel) → exact → substring → levenshtein per-token (ambang max(2, min(3,len//2))) + SequenceMatcher ratio ≥0.70. **PENTING:** kalau ada ≥2 kandidat nama berbeda dalam jarak 0.05 → JANGAN simpan, warn + skip (menghindari salah tulis data; contoh nyata "richele" bisa salah ke Brielle vs Richelcia). Terapkan ke absensi.py. #absensi #fuzzy #matching #validasi
+
 ## [LRN-20260916-001] pack_otak_bersih — priority: high
 Untuk komputer orang lain (kepala sekolah): buat REPO private terpisah (`OPENCODE-SEKOLAH`) berisi versi bersih memory — aman dibawa ke mesin lain. Sanitasi: buang konfigurasi PC pribadi, username, kredensial (ttyd password, API key → kosongkan placeholder), daftar perangkat; absensi ditarik karena itu kerjaan user sendiri; profiling user komputer tujuan pakai USER.md template; istilah internal (contoh label dari sesi ini) dihapus dari pack — pakai istilah netral "user". Aturan yang wajib dimasukkan ke AGENTS pack: **auto-commit tiap ±3 chat** diam-diam (penerima gak paham git) + setelah task tanya "sudah pas?" lalu simpan kasus terselesaikan ke MEMORY-LEARNINGS (format MASALAH/SOLUSI/Kapan dipakai lagi) + di awal sesi baca sesi percakapan opencode sebelumnya sebagai acuan preferensi. Catatan setup (token+link+langkah) ditaruh di TXT lokal Desktop — JANGAN pernah commit file bertoken (Push Protection). #pack #privasi #auto-commit
 
