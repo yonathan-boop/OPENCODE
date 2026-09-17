@@ -13,7 +13,7 @@ Aturan:
 - [x] Kurikulum Deep Learning 2026: apa perubahannya dari Kurikulum Merdeka, istilah kunci, implikasi ke RPP & admin sekolah (selesai 2026-09-17, catatan: kurikulum-deep-learning-2026-apa-perubahannya-dari-kurikulum-merdeka-istilah-kunci-implikasi-ke-rpp-admin-sekolah.md)
 - [x] Otomatisasi laporan sekolah dengan Excel/Python (openpyxl): pola aman, hemat memori, validasi sebelum lapor (catatan: notes/excel-automation-openpyxl.md, 17/9 PC)
 - [x] Mail merge & narasi rapor di Word: batch dari Excel, masalah umum & solusinya (selesai 2026-09-17, catatan: mail-merge-narasi-rapor-di-word-batch-dari-excel-masalah-umum-solusinya.md)
-- [ ] Cloudflare Tunnel: zero-trust Access untuk halaman admin, beda cloudflared config vs quick tunnel
+- [s] Cloudflare Tunnel: zero-trust Access untuk halaman admin, beda cloudflared config vs quick tunnel [klaim 2026-09-17 15:34 SERVER]
 - [ ] Backup 3-2-1 untuk data sekolah: strategi murah, efektif, dan cara tes restore
 - [ ] OCR untuk pekerjaan guru: dokumen scan → teks/Excel rapi (Tesseract & alternatif gratis)
 - [ ] Gemini API: kuota, harga, rate limit, best practice untuk GENERATOR-RPP
