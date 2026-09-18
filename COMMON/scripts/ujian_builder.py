@@ -413,6 +413,7 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
     n = 0          # nomor berjalan dalam section
     section_open = False
     prev_was_header = False
+    block_no = 0  # urutan blok judul (1 = judul pertama: tanpa jarak, seperti contoh)
 
     def new_section():
         nonlocal n, section_open
@@ -439,8 +440,15 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
                 was_hdr = prev_was_header
                 prev_was_header = True
                 new_section()
-                el = clone_runs(doc, el, label=None, before=(60 if was_hdr else HDR_BEFORE),
-                                after=HDR_AFTER, indent=None, page_break_before=page_break,
+                if was_hdr:
+                    before = 0 if block_no == 1 else 60
+                    after = 0 if block_no == 1 else HDR_AFTER
+                else:
+                    block_no += 1
+                    before = 0 if block_no == 1 else HDR_BEFORE
+                    after = 0 if block_no == 1 else HDR_AFTER
+                el = clone_runs(doc, el, label=None, before=before, after=after,
+                                indent=None, page_break_before=page_break,
                                 keep_with_next=True)
                 remap_images(doc, src_doc, el)
                 continue
@@ -478,9 +486,15 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
             was_hdr = prev_was_header
             prev_was_header = True
             new_section()
-            add_par(doc, text.strip(), bold=True, before=(60 if was_hdr else HDR_BEFORE),
-                    after=HDR_AFTER, indent=None, page_break_before=page_break,
-                    keep_with_next=True)
+            if was_hdr:
+                before = 0 if block_no == 1 else 60
+                after = 0 if block_no == 1 else HDR_AFTER
+            else:
+                block_no += 1
+                before = 0 if block_no == 1 else HDR_BEFORE
+                after = 0 if block_no == 1 else HDR_AFTER
+            add_par(doc, text.strip(), bold=True, before=before, after=after,
+                    indent=None, page_break_before=page_break, keep_with_next=True)
             continue
         prev_was_header = False
         if cls == "q" or (cls == "plain" and (has_num or BLANK_RE.search(text))):
