@@ -22,5 +22,5 @@ Aturan:
 
 ## Topik baru (ditambah 18/9)
 - [x] Format soal Pilihan Ganda (a-d) & isian/essay di Word dari sumber campuran (.doc/.docx/.txt): indentasi-tab konsisten, gambar/equation di dalam soal, batas python-docx vs Word COM (terkait ujian_builder.py; selesai 2026-09-18, catatan: notes/format-soal-ujian-word-ujian-builder.md)
-- [p] Dokumen ujian multi-halaman: kop berulang tiap halaman, section breaks, header/footer berbeda, keep-with-next agar soal+opsi tidak terpisah halaman [klaim 2026-09-18 13:09 PC]
+- [x] Dokumen ujian multi-halaman: kop berulang tiap halaman, section breaks, header/footer berbeda, keep-with-next agar soal+opsi tidak terpisah halaman (selesai 2026-09-18, PC; catatan: notes/kop-berulang-tiap-halaman-keep-with-next.md + LRN-20260918-009)
 - [ ] Batch proses puluhan mapel ujian per UTS: penamaan konsisten "... OK Edit P", tracking selesai/backlog dari @backup guru, cek list putus di tengah jalan

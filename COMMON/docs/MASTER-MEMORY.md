@@ -636,6 +636,10 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **18/9 (yonat-PC, self-learn):** selesai topik self-study "dokumen ujian multi-halaman" → kop berulang tiap halaman lewat SECTION HEADER (`header.add_table(rows,cols,width)`) + `keep_with_next` (soal+semua opsi kecuali opsi terakhir → tiap halaman berakhir persis di opsi `d`) + section break dengan header/footer independen; semua terverifikasi render LibreOffice→PDF 5 halaman (LRN-20260918-009). Implikasi: `ujian_builder.py` tinggal tambah `--kop-header` utk menutup gap LRN-20260918-006.
+
+- **18/9 (yonat-PC):** **Automasi file macro rapor LHB `2026.xlsm`** (Desktop\Opencode\Test edit) — makro `Module3.SavePDF` export PDF rapor per murid. Alur aman: buka workbook read-only via Excel COM → activate sheet (A/B/C) → set `F2` (kelas, format `XX SD` mis. IB SD/IVA SD/VA SD) + `H7` awal & `H8` akhir → loop H1→ExportAsFixedFormat (0.2–0.3s/PDF, TANPA MsgBox — jebakan & detail: LRN-20260918-007). **Mapping sheet:** kelas 1/2 (I,II) → sheet A; 3/4 (III,IV) → B; 5/6 (V,VI) → C. **Preferensi user:** sebut kelas saja (mis. "5B") → langsung 1 PDF gabungan `"<Kelas> SD.pdf"` (file per murid = sementara, auto-cleanup). **Tool permanen:** `COMMON/scripts/rapor_pdf.py` (`py rapor_pdf.py "VB SD"`). Teruji: IB SD 1-5, IVA SD 20-30, VA SD 1-25, VB SD 1-25 (seluruh kelas) + gabungan `VA SD.pdf` & `VB SD.pdf` 25 hal.
+
 - **18/9 (yonat-PC):** benchmark 10 tes × 6 model free OpenCode Zen → skor: Big Pickle/Ling/Muse1.2 = 9.5, Muse1.3 = 9.0, Nemotron Ultra/Lightning = 10.0 (JSON presisi) tapi lemot (±14dtk). Rekomendasi: obrolan= Ling 3.0 Flash Fin, executor= Big Pickle, Nemotron Ultra utk JSON ketat. Detail: COMMON/self-study/notes/benchmark-model-free-zen-20260918.md.
 
 - **18/9 (yonat-PC):** user beralih model sesi dari Big Pickle ke Muse Spark (gratis, contributor-free) untuk dicoba di mode live voice — evaluasi berjalan; putusan permanen Big Pickle (5/9) sedang ditinjau ulang oleh user sendiri.
