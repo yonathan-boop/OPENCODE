@@ -4,6 +4,12 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260918-001] render_libreoffice_fidelity_terhadap_word — priority: high
+Keandalan penyemak visual (LRN-20260917-002) tergantung seberapa mirip render LibreOffice dengan Word. Fakta kunci (teruji live di yonat-PC 18/9, LO 26.8.0.3): **di Windows LO memakai font MS asli** — docx ber-font Times New Roman dirender sebagai `TimesNewRomanPSMT` @ 11pt persis (bukan substitute). Berbeda dengan **server Linux** yang TIDAK punya font proprietary (lisensi), jadi LO mengganti dgn klon metric-compatible: Liberation Serif≈TNR, Sans≈Arial, Mono≈Courier (atau Tinos/Carlito/Caladea/Arimo bila di-install). Karena metric-compatible (advance width sama), **line-break & tata letak halus ~sama, tapi bentuk huruf/kerning beda & kelihatan** → render di server jangan dianggap identik dengan Word.
+- **Cara verifikasi font asli vs substitute:** render docx→PDF, buka dgn pymupdf, baca nama pada `page.get_text("dict")` span `font`. Real TNR = `TimesNewRomanPSMT`; kalau keluar `Liberation Serif`/`Tinos` → font hilang & di-substitute.
+- **Batas render LO bahkan di Windows:** engine layout LO ≠ Word (line-breaking/kerning/hyphenation/tabel sendiri; equation OMML beda tampilan). Page-break bisa geser 1 baris → utk posisi yang print-critical, ground truth tetap render Word (COM) / lihat user. LO render = quick sanity check, bukan hasil akhir.
+- **PNG utk Gemini:** DPI default pymupdf 72 terlalu rendah/lembut → pakai `page.get_pixmap(dpi=150)`; jangan kirim banyak halaman sekaligus (base64 membengkak). #libreoffice #fidelity #font #validasi #pymupdf
+
 ## [LRN-20260917-002] gemini_vision_penyemak_visual — priority: high
 User minta AI lain jadi "mata" untuk cek hasil render dokumen (karena hasil edit docx kadang nggak sesuai & nanti dilihat mata manusia). Setup di yonat-PC yang jalan: **LibreOffice headless render docx→PDF → PyMuPDF (pymupdf) PDF→PNG → `check_visual.py` kirim gambar ke Gemini vision (gemini-3.6-flash) → AI baca hasil & perbaiki.** Word nggak pernah dibuka → nggak bikin Word lelet. Tool: soffice.exe (winget TheDocumentFoundation.LibreOffice, v26.8), `py -m pip install pymupdf`, script `COMMON/scripts/check_visual.py` (retry otomatis utk 429/500/503). API key dibaca dari `~/.config/opencode/secrets/gemini.env` (JANGAN di-commit). Variasi di server: `COMMON/scripts/gemini_vision.py` (key `/root/.config/gemini-api-key`). #vision #gemini #libreoffice #validasi
 
