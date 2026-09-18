@@ -233,13 +233,27 @@ def fill_kop_field(tbl, label, value):
             return
 
 
+def apply_kop_unit(tbl, unit):
+    """Ganti 'SD SWASTA' -> '<unit> SWASTA' di semua sel kop (utk SMP dsb)."""
+    from docx.table import Table
+    if not unit or unit.strip().lower() in ("sd", ""):
+        return
+    t = Table(tbl, None)
+    for row in t.rows:
+        for cell in row.cells:
+            for p in cell.paragraphs:
+                for r in p.runs:
+                    if "SD SWASTA" in r.text:
+                        r.text = r.text.replace("SD SWASTA", unit.strip() + " SWASTA")
+
+
 def get_kop_table(path):
     doc = Document(path)
     tbl = doc.tables[0]._tbl
     return copy.deepcopy(tbl)
 
 
-def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None,
+def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
           renum=True, margin=(0.20, 0.24, 0.39, 0.39)):
     doc = Document()
     sec = doc.sections[0]
@@ -261,6 +275,7 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None,
     fill_kop_field(kop_tbl, "Mata Pelajaran", mapel)
     fill_kop_field(kop_tbl, "Hari/Tgl", hari)
     fill_kop_field(kop_tbl, "Kelas", kelas)
+    apply_kop_unit(kop_tbl, unit)
 
     body = doc.element.body
     sectPr = body.find(qn("w:sectPr"))
@@ -399,6 +414,8 @@ def main():
     ap.add_argument("--mapel", default=None)
     ap.add_argument("--kelas", default=None)
     ap.add_argument("--hari", default=None)
+    ap.add_argument("--unit", default="SD",
+                    help="unit sekolah utk kop: SD/SMP (mengganti teks 'SD SWASTA')")
     ap.add_argument("--out", default=None)
     ap.add_argument("--no-renum", action="store_true",
                     help="pertahankan nomor literal dari sumber, jangan renomer")
@@ -417,7 +434,7 @@ def main():
         args.out = "%s %s OK Edit P.docx" % (safe(mapel), safe(kelas))
 
     stats = build(args.out, kop_tbl, items, mapel=mapel, kelas=kelas, hari=hari,
-                  renum=not args.no_renum)
+                  unit=args.unit, renum=not args.no_renum)
 
     print("SAVED:", os.path.abspath(args.out))
     print("SEKSI:", stats["sections"], "SOAL:", stats["questions"])

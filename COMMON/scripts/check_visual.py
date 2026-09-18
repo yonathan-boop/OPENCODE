@@ -70,6 +70,11 @@ def ask_vision(key, image_path, prompt, model="gemini-3.6-flash"):
         return None, "Format respons tidak dikenal: %s" % json.dumps(data)[:300]
 
 def main():
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except AttributeError:
+        pass  # Python lama tanpa reconfigure
     key = load_key()
     if not key:
         print("ERROR: GEMINI_API_KEY tidak ditemukan. Isi dulu ~/.config/opencode/secrets/gemini.env")

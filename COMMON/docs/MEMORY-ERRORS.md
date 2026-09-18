@@ -4,6 +4,9 @@ Catatan error penting, tool failure, atau kegagalan workflow agar tidak terulang
 
 ---
 
+## [ERR-20260918-003] check_visual.py Crash cp1252 di Emoji Gemini — medium, fixed
+Saat Gemini balas pakai emoji (mis. ✅/💡 dalam saran perbaikan), `check_visual.py` (Windows) crash `UnicodeEncodeError: 'charmap' ... u2705` ketika `print(ans)`. Render & validasi sebenarnya sukses — hanya print balasan yang gagal. **Fix:** `sys.stdout/stderr.reconfigure(encoding="utf-8", errors="replace")` di awal `main()` (pola sama ERR-20260917-002). Pel: SEMUA script PC yang memanggil Gemini/LM harus encoding-safe terhadap emoji. #encoding #windows #gemini #check_visual
+
 ## [ERR-20260917-002] Self-Study Claim Script Crash di Windows (cp1252) — medium, fixed
 `python3 COMMON/scripts/self-study-claim.py --status` dari PC Windows crash `UnicodeEncodeError: 'charmap' codec can't encode '\u2192'` di baris print (topics.md berisi `→`; console default cp1252 menolak encode). **Fix:** tambahkan `sys.stdout.reconfigure(errors="replace")` di awal `main()` (try/except AttributeError untuk Python lama); script jadi lintas-OS. Pel: script shared lintas mesin (server Linux + PC Windows) harus encoding-safe — jangan print karakter non-ASCII tanpa guard. #self-study #windows #encoding #cross-platform
 

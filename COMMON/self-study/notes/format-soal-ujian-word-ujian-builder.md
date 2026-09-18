@@ -44,6 +44,20 @@
 2. Untuk sumber `.doc` yang isinya gambar/equation banyak: pesan ke user — minta dokumen dalam .docx (atau biarkan Word COM untuk merge).
 3. Kalau kelak dipakai guru di komputer lain (tanpa Python/LibreOffice): bungkus exe (PyInstaller) — baru setelah workflow stabil di PC.
 
+## Benchmark vs file jadi sekolah (riset lanjutan 18/9)
+
+Proses 6 bahan mentah asli dari `@backup` dan bandingkan dengan file jadi "… OK Edit P" sekolah:
+
+- **Terbukti handle:** PKn 3 (2 seksi/20 soal), Seni Musik 3 (2/20), Matematika 4 (4/40), E. Math 6 (10 seksi/11 soal), Matematika 3, IPA 3, IPS 3 (2/20), Mandarin 8 (3/20) & 9 (3/15). Total 5 draft "… 3 DRAFT.docx" validasi Gemini = **siap cetak**.
+- **Struktur file jadi sekolah yang TIDAK ditiru builder (belum):**
+  1. **Kop diulang per halaman** (tbl=2–3 pada file jadi) — builder cuma 1 kop di awal. Diperlukan opsi `--kop-each-page` / section break per seksi.
+  2. **Nomor via AutoNumbering** (`ListParagraph`, w:numPr) — teks tak memuat angka; builder pakai nomor literal `"N.\t"` (identik visual, beda mekanisme; saat guru edit di Word penomoran jadi tetap/sinkron dengan gaya list).
+  3. Label seksi sekolah memakai bobot: `Isian CP 2 (50%)`, `Esai (50%)`, `CP 1 Bilangan Cacah (100%)` dst — builder menyalin label sumber apa adanya.
+  4. **Nomor di dalam sel TIDAK ikut di-renum** — tabel data disalin apa adanya (Mandarin 8: seksi II bertahan 11–15 padahal seharusnya 6–10). Batas yang disadari.
+- **Gap kelas yang belum dibuat sekolah (raw ada, draft dibuat hari ini):** Matematika 3, IPA 3, IPS 3, B. Mandarin 8–9 (SMP; perlu `--unit SMP`), B. Inggris 7–9 (file besar ber-gambar → lebih aman Word COM / periksa manual). IPA-IPS juga kena gap kelas 3.
+- **Fitur baru:** `--unit SD|SMP` untuk ganti kop "SD SWASTA METHODIST-11" → "SMP SWASTA METHODIST-11" (default SD).
+- **Bug fix:** check_visual.py crash `UnicodeEncodeError cp1252` saat Gemini balas pakai emoji (✅) → `sys.stdout.reconfigure(errors="replace")` (pola ERR-20260917-002).
+
 ## Referensi
 
 - Tool: `COMMON/scripts/ujian_builder.py` · kop: `COMMON/scripts/kop-methodist.docx` · verifier: `COMMON/scripts/check_visual.py`
