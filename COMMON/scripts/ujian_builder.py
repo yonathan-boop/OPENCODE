@@ -54,9 +54,11 @@ HDR_AFTER = 60      # pt/20 -> 3pt
 
 HEADER_WORDS = ("isian", "isi", "essay", "uraian", "urian", "pilihan ganda",
                 "pilgan", "pg", "menjodohkan", "bacaan", "isilah", "jawablah",
-                "berilah", "kerjakan", "bagian", "cp")
+                "berilah", "kerjakan", "cp")
 NUM_RE = re.compile(r"^\s*(\d{1,3})[\.\)]\s*(.*)$")
 OPT_RE = re.compile(r"^\s*([a-d])[\.\)]\s*(.*)$")
+HDR_BAGIAN_RE = re.compile(r"^[Bb]agian\s+([A-Za-z]|\d|[IVX])[\.\)]?\s")
+BLANK_RE = re.compile(r"[_\.]{2,}\s*$")  # baris isian berujung kosong (________)
 
 
 def is_header(text):
@@ -67,7 +69,11 @@ def is_header(text):
         return False
     if OPT_RE.match(t):          # opsi a-d -> bukan header
         return False
+    if HDR_BAGIAN_RE.match(t):   # "Bagian A/B/I/1" -> header seksi
+        return True
     low = t.lower()
+    if low.startswith(("bagian ", "bagian\t")):   # kalimat "Bagian luar mata..." BUKAN header
+        return False
     if low.startswith(HEADER_WORDS):
         return True
     if re.match(r"^[A-C][\.\)\s]", t) or re.match(r"^[IVX]+[\.\)\s]", t):
@@ -248,14 +254,27 @@ def apply_kop_unit(tbl, unit):
 
 
 def get_kop_table(path):
-    doc = Document(path)
-    tbl = doc.tables[0]._tbl
-    return copy.deepcopy(tbl)
+    tpl = Document(path)
+    tbl = copy.deepcopy(tpl.tables[0]._tbl)
+    return tbl, tpl
+
+
+def remap_kop_images(doc, tpl, tbl):
+    """Salin part gambar kop dari file template ke dokumen hasil (fix logo rusak)."""
+    from docx.opc.constants import RELATIONSHIP_TYPE as RT
+    for blip in tbl.iter(qn("a:blip")):
+        embed = blip.get(qn("r:embed"))
+        if embed and embed in tpl.part.related_parts:
+            part = tpl.part.related_parts[embed]
+            new_id = doc.part.relate_to(part, RT.IMAGE)
+            blip.set(qn("r:embed"), new_id)
 
 
 def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
-          renum=True, margin=(0.20, 0.24, 0.39, 0.39)):
+          renum=True, margin=(0.20, 0.24, 0.39, 0.39), kop_tpl=None):
     doc = Document()
+    if kop_tpl is not None:
+        remap_kop_images(doc, kop_tpl, kop_tbl)
     sec = doc.sections[0]
     sec.page_width = Twips(8.5 * 1440)
     sec.page_height = Twips(13.0 * 1440)
@@ -315,7 +334,7 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
             add_par(doc, text.strip(), bold=True, before=HDR_BEFORE, after=HDR_AFTER,
                     indent=None, page_break_before=page_break, keep_with_next=True)
             continue
-        if cls == "q" or (cls == "plain" and has_num):
+        if cls == "q" or (cls == "plain" and (has_num or BLANK_RE.search(text))):
             raw = strip_num(text)
             if renum:
                 n += 1
@@ -423,18 +442,20 @@ def main():
                     help="setelah jadi: render PDF, hitung halaman, cek visual via Gemini")
     args = ap.parse_args()
 
-    kop_tbl = get_kop_table(args.kop)
+    kop_tbl, kop_tpl = get_kop_table(args.kop)
     _, items = load_source(args.soal)
 
     mapel = args.mapel
     kelas = args.kelas
     hari = args.hari
     if not args.out:
-        safe = lambda s: re.sub(r"[\\/:*?\"<>|]", "_", (s or "Ujian").strip())
-        args.out = "%s %s OK Edit P.docx" % (safe(mapel), safe(kelas))
+        # Konvensi sekolah: tambahkan status " Edit" saja (OK=diperiksa, Edit=diedit, P=di-print)
+        base = os.path.splitext(os.path.basename(args.soal))[0]
+        src_dir = os.path.dirname(os.path.abspath(args.soal))
+        args.out = os.path.join(src_dir, base + " Edit.docx")
 
     stats = build(args.out, kop_tbl, items, mapel=mapel, kelas=kelas, hari=hari,
-                  unit=args.unit, renum=not args.no_renum)
+                  unit=args.unit, renum=not args.no_renum, kop_tpl=kop_tpl)
 
     print("SAVED:", os.path.abspath(args.out))
     print("SEKSI:", stats["sections"], "SOAL:", stats["questions"])

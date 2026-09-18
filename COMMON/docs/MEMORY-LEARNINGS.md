@@ -4,6 +4,13 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260918-010] ujian_builder_bug_nomor_reset_dan_logo — priority: CRITICAL
+User temukan 2 bug nyata di output ujian_builder (18/9) → sudah di-fix & diverifikasi:
+- **Nomor soal "kacau" (reset 1,2,1,2 + banyak baris tanpa nomor):** (1) `is_header()` memuat kata "bagian" → kalimat soal *"Bagian luar mata terdapat ____"* salah dikira header seksi → `new_section()` me-`n=0` → muncul nomor dobel. Fix: `bagian` dikeluarkan dari `HEADER_WORDS`; header "Bagian" hanya valid bila `HDR_BAGIAN_RE` (diikuti A-Z/I-X/angka) — kalimat "Bagian ..." biasa diexclude eksplisit sebelum startswith. (2) Baris isian tanpa nomor (`... ________`) tidak diberi nomor → `BLANK_RE` (`[_\.]{2,}\s*$`) mempromosikan baris plain berujung kosong menjadi soal → di-renum. Teruji IPA 3 (1–10 per seksi, tanpa reset) & IPS 3.
+- **Logo kop "error/gambar rusak" di Word:** `copy.deepcopy` tabel kop menyalin XML (termasuk `a:blip r:embed`) TAPI tidak memindahkan part gambar + relationship ke dokumen hasil → dangling rId. Fix `remap_kop_images()`: panggil `doc.part.relate_to(image_part, RT.IMAGE)` utk tiap blip yang ada di part template, set `r:embed` ke rId baru. Terverifikasi: `word/media/image1.png` tertanam + rel ✓ + render PDF menampilkan logo (pixel merah emblem).
+- **KONVENSI NAMA FILE (penting, jangan salah lagi):** "OK Edit P" = CATATAN STATUS kerja sekolah (OK=diperiksa, Edit=diedit, P=di-print). File yang baru diedit → namanya cukup **base + " Edit"** (contoh: `IPA 3 Jellys Edit.docx`). JANGAN langsung tulis "OK Edit P". Default `--out` = folder sumber + basename + " Edit.docx".
+- Konvensi "Bagian" vs "bagian": header seksi selalu "Bagian A/B/I/1", kalimat biasa "bagian ..." lowercase tetap soal. #ujian #bugfix #header #renum #logo #kop #namafile
+
 ## [LRN-20260918-009] kop_berulang_per_halaman_header_table — priority: high
 Cara membuat kop letterhead muncul di TIAP halaman + soal/opsi tidak terpisah halaman + section berbeda — menutup gap ujian_builder (LRN-20260918-006: "kop DIULANG per halaman"). **Teruji live di yonat-PC 18/9** (python-docx 1.2.0, render LibreOffice headless → PDF, verifikasi pymupdf 5 halaman). Catatan: `COMMON/self-study/notes/kop-berulang-tiap-halaman-keep-with-next.md`.
 - **Kop berulang = taruh di SECTION HEADER, bukan salin tabel body per halaman.** `sec.header.add_table(rows, cols)` + argumen `width` WAJIB diberikan (TypeError bila kosong). Header otomatis diulang di tiap halaman section itu. Kop dari template body → header bisa via XML `copy.deepcopy(tbl._tbl)`.
