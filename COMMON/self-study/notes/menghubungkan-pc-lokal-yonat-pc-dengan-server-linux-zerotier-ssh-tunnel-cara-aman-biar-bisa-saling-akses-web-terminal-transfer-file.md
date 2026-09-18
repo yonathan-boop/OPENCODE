@@ -88,6 +88,17 @@ untuk yang perlu diakses orang luar (website publik), JANGAN buka port SSH langs
 - **Konsistensi memory lintas mesin**: cara paling andal untuk sinkron file memory tetap
   **git pull/push** (bukan SMB/FTP) — sudah jadi standar kerja.
 
+## Hasil di yonat-PC (18/9) — KONEK
+- ZeroTier di yonat-PC: service Running, node `230f8f42a4`, **joined** network `633e31d8a2212ce2`
+  (via `zerotier-cli join`, butuh admin/UAC; jalur `C:\Program Files (x86)\ZeroTier\One\zerotier-cli.bat`,
+  jangan pakai `$env:ProgramFiles(x86)` di PS — salah parse jadi `C:\Program Files(x86)` [tanpa spasi]!).
+- IP managed otomatis: **192.168.195.150/24** (persis saran awal, sudah authorized di Central).
+- Verifikasi hidup: `ping 192.168.195.60` ~18ms · ttyd `http://192.168.195.60:7681/` → 401 (auth wall) ·
+  SSH `192.168.195.60:2222` → banner `SSH-2.0-OpenSSH_8.9p1 Ubuntu-3ubuntu0.14`.
+- Server side sudah ALWAYS-ON (start-zerotier.sh + cron @reboot + guardian 15 mnt, 17/9).
+- Calatan: sebelum server di-bikin permanen, peer server `0f4e41072e` muncul tanpa path (paths kosong)
+  → gejala khas daemon ZT server mati/offline; cek ulang setelah server nyalakan/tidak on-demand.
+
 ## Sumber
 
 - ZeroTier Docs — Getting Started & Create a Network: https://docs.zerotier.com/start/
