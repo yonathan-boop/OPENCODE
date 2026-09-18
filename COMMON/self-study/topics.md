@@ -19,3 +19,8 @@ Aturan:
 - [x] Gemini API: kuota, harga, rate limit, best practice untuk GENERATOR-RPP (selesai 2026-09-17, catatan: gemini-api-kuota-harga-rate-limit-best-practice-untuk-generator-rpp.md)
 - [x] Google Workspace for Education: fitur admin yang berguna untuk sekolah kecil (selesai 2026-09-17, catatan: google-workspace-for-education-fitur-admin-yang-berguna-untuk-sekolah-kecil.md)
 - [x] Keamanan server Linux kecil (single VPS): hardening dasar, update, monitoring (selesai 2026-09-17, catatan: keamanan-server-linux-kecil-single-vps-hardening-dasar-update-monitoring.md)
+
+## Topik baru (ditambah 18/9)
+- [x] Format soal Pilihan Ganda (a-d) & isian/essay di Word dari sumber campuran (.doc/.docx/.txt): indentasi-tab konsisten, gambar/equation di dalam soal, batas python-docx vs Word COM (terkait ujian_builder.py; selesai 2026-09-18, catatan: notes/format-soal-ujian-word-ujian-builder.md)
+- [ ] Dokumen ujian multi-halaman: kop berulang tiap halaman, section breaks, header/footer berbeda, keep-with-next agar soal+opsi tidak terpisah halaman
+- [ ] Batch proses puluhan mapel ujian per UTS: penamaan konsisten "... OK Edit P", tracking selesai/backlog dari @backup guru, cek list putus di tengah jalan

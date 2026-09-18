@@ -4,6 +4,12 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260918-005] ujian_builder_python_docx — priority: high
+Workflow edit soal ujian di PC yang terbukti (teruji 18/9): tool `COMMON/scripts/ujian_builder.py` + `COMMON/scripts/kop-methodist.docx` menghasilkan dokumen ujian rapi dari sumber campuran (`.docx`/`.doc` via LibreOffice headless/`.txt`), format Folio TNR 11 + kop form 6×7, cocok dengan contoh "OK Edit P" yang disetujui user. Validasi via penyemak visual (LRN-20260917-002) = "siap cetak".
+- **Format soal PG yang benar di Word:** nomor `"N.\t<teks>"` + tab; opsi a-d indent 2× di paragraf sendiri dengan huruf label dipertahankan; `keep_with_next` pada header→soal→opsi agar tidak terpisah halaman.
+- **Bug nyata yang ditemukan:** (1) `strip` pakai `text[m.end():]` gagal karena regex punya `(.*)$` → gunakan `m.group(2)`; (2) header "A. Pilihan Ganda" tertelan regex opsi (case-insensitive + `\b` gagal setelah ".") → pakai `is_header()` eksplisit: tolak baris bernomor/ber-opsi dulu, lalu cek kata kunci + huruf besar `[A-C]`/romawi case-sensitive.
+- **Batas:** equation/OMML & gambar tidak terbaca python-docx (`p.text` kosong) & konversi `.doc`→docx via LO merusak equation (jadinya gambar); kalau soal banyak equation/gambar → tetap Word COM / minta .docx dari guru. Tabel kop mentah dibuang via substring KOP_LABELS+"SD SWASTA"; sisip kop sebelum `w:sectPr` pakai `sectPr.addprevious` (bukan body.append). #ujian #docx #python-docx #pilihan-ganda #word
+
 ## [LRN-20260918-004] docx_otomasi_python_docx — priority: high
 Otomasi dokumen Word (surat, dokumen ujian, rapor) dgn `python-docx` (pure-Py, MIT, utk .docx/.dotx; TIDAK bisa .doc lama & tanpa render PDF). **SUDAH terpasang di yonat-PC v1.2.0** (`python-docx 1.2.0` terverifikasi via pip list). Riset + uji live 18/9 di PC:
 - **Keunggulan utama vs Word COM:** tanpa buka instance Word → bebas ghost WINWORD (ERR-20260902-001), tanpa hang COM sementara dokumen user terbuka, & tanpa kunci OneDrive. Untuk dokumen ringan (isi teks, set format) python-docx jadi pilihan lebih aman; COM masih dipakai kalau butuh kop+soal gabungan (workflow 2/9 ada di MASTER). Kompatibel lintas OS (jalan juga di server Linux).

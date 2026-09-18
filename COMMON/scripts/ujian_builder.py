@@ -52,13 +52,49 @@ IND_H = 284         # hanging twips
 HDR_BEFORE = 360    # pt/20 -> 18pt
 HDR_AFTER = 60      # pt/20 -> 3pt
 
-HEADER_RE = re.compile(
-    r"^\s*(?:(?:Isian|Isi\s+|Essay|Uraian|Urian|Pilihan\s+Ganda|Pilgan|PG|Menjodohkan|"
-    r"Bacaan|Isilah|Jawablah|Berilah|Kerjakan|Bagian|A\.|B\.|C\.|I\.|II\.|III\.)\b.*|CP\s*\d.*)$",
-    re.I,
-)
+HEADER_WORDS = ("isian", "isi", "essay", "uraian", "urian", "pilihan ganda",
+                "pilgan", "pg", "menjodohkan", "bacaan", "isilah", "jawablah",
+                "berilah", "kerjakan", "bagian", "cp")
 NUM_RE = re.compile(r"^\s*(\d{1,3})[\.\)]\s*(.*)$")
-OPT_RE = re.compile(r"^\s*([A-Da-d])[\.\)]\s*(.*)$")
+OPT_RE = re.compile(r"^\s*([a-d])[\.\)]\s*(.*)$")
+
+
+def is_header(text):
+    t = text.strip()
+    if not t:
+        return False
+    if NUM_RE.match(t):          # bernomor -> soal, bukan header
+        return False
+    if OPT_RE.match(t):          # opsi a-d -> bukan header
+        return False
+    low = t.lower()
+    if low.startswith(HEADER_WORDS):
+        return True
+    if re.match(r"^[A-C][\.\)\s]", t) or re.match(r"^[IVX]+[\.\)\s]", t):
+        return True
+    return False
+
+
+def classify(text):
+    if is_header(text):
+        return "header"
+    if NUM_RE.match(text):
+        return "q"
+    if OPT_RE.match(text):
+        return "opt"
+    return "plain"
+
+
+def strip_num(text):
+    m = NUM_RE.match(text)
+    return m.group(2).strip() if m else text
+
+
+def strip_opt(text):
+    m = OPT_RE.match(text)
+    return m.group(2).strip() if m else text
+
+
 KOP_LABELS = ("Mata Pelajaran", "Hari", "Kelas", "Nomor", "Nama", "NIS", "Nilai")
 
 
@@ -125,26 +161,6 @@ def is_kop_table(tbl):
     return any(lbl in xml for lbl in KOP_LABELS)
 
 
-def classify(text):
-    if HEADER_RE.match(text):
-        return "header"
-    if NUM_RE.match(text):
-        return "q"
-    if OPT_RE.match(text):
-        return "opt"
-    return "plain"
-
-
-def strip_num(text):
-    m = NUM_RE.match(text)
-    return text[m.end():].strip() if m else text
-
-
-def strip_opt(text):
-    m = OPT_RE.match(text)
-    return text[m.end():].strip() if m else text
-
-
 def set_run(run, size=SIZE):
     run.font.name = FONT
     run.font.size = size
@@ -158,7 +174,7 @@ def set_run(run, size=SIZE):
 
 
 def add_par(doc, text="", bold=False, before=0, after=60, indent=(IND_L, IND_H),
-            page_break_before=False):
+            page_break_before=False, keep_with_next=False):
     p = doc.add_paragraph()
     fmt = p.paragraph_format
     fmt.line_spacing = LINE / 240.0  # 276 twips line -> 1.15
@@ -169,6 +185,8 @@ def add_par(doc, text="", bold=False, before=0, after=60, indent=(IND_L, IND_H),
         fmt.first_line_indent = Twips(-indent[1])
     if page_break_before:
         fmt.page_break_before = True
+    if keep_with_next:
+        fmt.keep_with_next = True
     if text:
         r = p.add_run(text)
         r.bold = bold
@@ -280,7 +298,7 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None,
             total_hdrs += 1
             new_section()
             add_par(doc, text.strip(), bold=True, before=HDR_BEFORE, after=HDR_AFTER,
-                    indent=None, page_break_before=page_break)
+                    indent=None, page_break_before=page_break, keep_with_next=True)
             continue
         if cls == "q" or (cls == "plain" and has_num):
             raw = strip_num(text)
@@ -293,10 +311,15 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None,
                 m = NUM_RE.match(text)
                 label = (m.group(1) + ".") if m else (str(n + 1) + ".")
             total_q += 1
-            add_par(doc, label + "\t" + raw, bold=False, page_break_before=page_break)
+            add_par(doc, label + "\t" + raw, bold=False, page_break_before=page_break,
+                    keep_with_next=True)
             continue
         if cls == "opt":
-            add_par(doc, strip_opt(text), bold=False, indent=(IND_L * 2, IND_H))
+            m = OPT_RE.match(text)
+            letter = m.group(1) if m else ""
+            rest = strip_opt(text)
+            add_par(doc, "%s.\t%s" % (letter, rest), bold=False,
+                    indent=(IND_L * 2, IND_H), keep_with_next=True)
             continue
         # plain: instruksi/teks pengantar
         add_par(doc, text.strip(), bold=False, page_break_before=page_break)
@@ -344,44 +367,29 @@ def do_check(docx_path):
     render_pdf(pdf_path, docx_path, tmp)
     pages = count_pages(pdf_path)
     print("PAGES:", pages)
-    # render halaman 1 ke PNG lalu minta Gemini menilai
     try:
         import pymupdf
     except ImportError:
         import fitz as pymupdf
-    import base64
-    png1 = os.path.join(tmp, "page1.png")
-    png2 = os.path.join(tmp, "page2.png") if pages > 1 else None
-    with pymupdf.open(pdf_path) as d:
-        p1 = d[0].get_pixmap(dpi=150)
-        p1.save(png1)
-        if png2:
-            d[1].get_pixmap(dpi=150).save(png2)
-        d.close()
-    if png2:
-        # gabung vertikal agar sekali kirim
-        from pymupdf import Pixmap
-        i1 = pymupdf.open(png1)
-        i2 = pymupdf.open(png2)
-        r = pymupdf.open()  # baru dari PDF
-        page1 = i1[0]
-        page2 = i2[0]
-        w = max(page1.rect.width, page2.rect.width)
-        h = page1.rect.height + page2.rect.height
-        p = r.new_page(width=w, height=h)
-        p.show_pdf_page(pymupdf.Rect(0, 0, page1.rect.width, page1.rect.height),
-                        i1, 0)
-        p.show_pdf_page(pymupdf.Rect(0, page1.rect.height,
-                                     page1.rect.width, page1.rect.height + page2.rect.height),
-                        i2, 0)
-        r.save(png2)
-        png1 = png2
-        os.remove(png2)
+    pngdir = os.path.join(tmp, "png")
+    os.makedirs(pngdir, exist_ok=True)
+    d = pymupdf.open(pdf_path)
+    n = min(pages, 2)  # cukup 1-2 halaman pertama
+    for i in range(n):
+        d[i].get_pixmap(dpi=150).save(os.path.join(pngdir, "page%d.png" % (i + 1)))
+    d.close()
     script = os.path.join(SCRIPT_DIR, "check_visual.py")
-    sys.exit(subprocess.run([sys.executable, script, png1,
-                             "Periksa dokumen ujian ini: apakah kop form di atas lengkap, "
-                             "nomor soal urut, teks tidak terpotong/bertabrakan, layout rapi?"],
-                            capture_output=False).returncode)
+    pngs = sorted(os.listdir(pngdir))
+    if len(pngs) == 1:
+        target = os.path.join(pngdir, pngs[0])
+        args = [sys.executable, script, target,
+                "Periksa dokumen ujian ini: apakah kop form di atas lengkap, "
+                "nomor soal urut, teks tidak terpotong/bertabrakan, layout rapi?"]
+    else:
+        args = [sys.executable, script, "--dir", pngdir,
+                "Periksa dokumen ujian ini: apakah kop form di atas lengkap, "
+                "nomor soal urut, teks tidak terpotong/bertabrakan, layout rapi?"]
+    sys.exit(subprocess.run(args, capture_output=False).returncode)
 
 
 def main():
