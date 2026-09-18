@@ -128,14 +128,16 @@ def convert_doc(path, tmpdir):
 
 
 def load_source(path):
-    """Kembalikan (ext, list_items). items: ('p', text, page_break, has_num) | ('tbl', elem)."""
+    """Kembalikan (ext, list_items, srcdoc).
+    items: ('p', text, page_break, has_num, element) | ('tbl', elem).
+    srcdoc: Document sumber (utk remap gambar), None bila .txt."""
     ext = os.path.splitext(path)[1].lower()
     items = []
     if ext == ".txt":
         with open(path, "r", encoding="utf-8", errors="replace") as f:
             for line in f:
-                items.append(("p", line.rstrip("\n").rstrip("\r"), False, False))
-        return ext, items
+                items.append(("p", line.rstrip("\n").rstrip("\r"), False, False, None))
+        return ext, items, None
     tmpdir = tempfile.mkdtemp(prefix="ujian_builder_")
     work = path
     if ext == ".doc":
@@ -155,8 +157,8 @@ def load_source(path):
             )
             ppr = child.find(qn("w:pPr"))
             has_num = ppr is not None and ppr.find(qn("w:numPr")) is not None
-            items.append(("p", text, page_break, has_num))
-    return ext, items
+            items.append(("p", text, page_break, has_num, child))
+    return ext, items, doc
 
 
 def is_kop_table(tbl):
@@ -259,19 +261,98 @@ def get_kop_table(path):
     return tbl, tpl
 
 
-def remap_kop_images(doc, tpl, tbl):
-    """Salin part gambar kop dari file template ke dokumen hasil (fix logo rusak)."""
-    from docx.opc.constants import RELATIONSHIP_TYPE as RT
-    for blip in tbl.iter(qn("a:blip")):
+def _relink_blips(doc, element, relmap):
+    """Sambungkan ulang tiap gambar (blip) ke part baru di dokumen hasil."""
+    import io
+    for blip in element.iter(qn("a:blip")):
         embed = blip.get(qn("r:embed"))
-        if embed and embed in tpl.part.related_parts:
-            part = tpl.part.related_parts[embed]
-            new_id = doc.part.relate_to(part, RT.IMAGE)
+        if embed and embed in relmap:
+            part = relmap[embed]
+            try:
+                new_id, _ = doc.part.get_or_add_image(io.BytesIO(part.blob))
+            except Exception:
+                continue
             blip.set(qn("r:embed"), new_id)
 
 
+def remap_kop_images(doc, tpl, tbl):
+    """Salin part gambar kop dari file template ke dokumen hasil (fix logo rusak)."""
+    relmap = {rid: p for rid, p in tpl.part.related_parts.items()
+              if p.partname is not None and "media" in str(p.partname)}
+    _relink_blips(doc, tbl, relmap)
+
+
+def remap_images(doc, src_doc, element):
+    """Remap SEMUA gambar dalam element ke dokumen hasil (fix rId menggantung)."""
+    if src_doc is None:
+        return
+    relmap = {rid: p for rid, p in src_doc.part.related_parts.items()
+              if p.partname is not None and "media" in str(p.partname)}
+    _relink_blips(doc, element, relmap)
+
+
+def _strip_leading_number(el):
+    """Hapus nomor literal lama di awal paragraf (mis. '1. ' / 'a) ') agar bisa di-renum."""
+    for r in el.findall(qn("w:r")):
+        ts = r.findall(qn("w:t"))
+        if not ts:
+            continue
+        joined = "".join(t.text or "" for t in ts)
+        if joined.strip() == "":
+            continue
+        m = NUM_RE.match(joined)
+        if m is None:
+            m = OPT_RE.match(joined)
+        if m is not None:
+            new_text = m.group(2).strip()
+            ts[0].text = new_text
+            for extra in ts[1:]:
+                r.remove(extra)
+        return
+
+
+def clone_runs(doc, p_el, label=None, indent=(IND_L, IND_H), bold=False,
+               page_break_before=False, keep_with_next=False, before=0, after=60):
+    """Salin paragraf SUMBER apa adanya (teks+gambar+rumus), rapikan nomornya."""
+    from docx.text.paragraph import Paragraph
+    el = copy.deepcopy(p_el)
+    oldppr = el.find(qn("w:pPr"))
+    if oldppr is not None:
+        el.remove(oldppr)
+    # buang leading number & tab/space kosong di depan, sisipkan label baru
+    if label is not None:
+        _strip_leading_number(el)
+        while len(el) and el[0].tag == qn("w:r"):
+            joined = "".join(t.text or "" for t in el[0].findall(qn("w:t")))
+            if joined.strip() == "":
+                el.remove(el[0])
+            else:
+                break
+        r = el.makeelement(qn("w:r"), {})
+        t = el.makeelement(qn("w:t"), {})
+        t.text = label
+        r.append(t)
+        el.insert(0, r)
+    p = Paragraph(el, doc)
+    fmt = p.paragraph_format
+    fmt.line_spacing = LINE / 240.0
+    fmt.space_before = Twips(before)
+    fmt.space_after = Twips(after)
+    if indent:
+        fmt.left_indent = Twips(indent[0])
+        fmt.first_line_indent = Twips(-indent[1])
+    if page_break_before:
+        fmt.page_break_before = True
+    if keep_with_next:
+        fmt.keep_with_next = True
+    body = doc.element.body
+    sectPr = body.find(qn("w:sectPr"))
+    sectPr.addprevious(el)
+    return el
+
+
 def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
-          renum=True, margin=(0.20, 0.24, 0.39, 0.39), kop_tpl=None):
+          renum=True, margin=(0.20, 0.24, 0.39, 0.39), kop_tpl=None, src_doc=None):
     doc = Document()
     if kop_tpl is not None:
         remap_kop_images(doc, kop_tpl, kop_tbl)
@@ -322,9 +403,47 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
             if is_kop_table(item[1]):
                 continue  # kop mentah, ganti standar
             section_open = True
-            sectPr.addprevious(copy.deepcopy(item[1]))
+            tbl_el = copy.deepcopy(item[1])
+            remap_images(doc, src_doc, tbl_el)
+            sectPr.addprevious(tbl_el)
             continue
-        text, page_break, has_num = item[1], item[2], item[3]
+        text, page_break, has_num, el = item[1], item[2], item[3], item[4]
+        has_image = el is not None and next(el.iter(qn("w:drawing")), None) is not None
+        if has_image:
+            # paragraf berisi gambar -> salin apa adanya (gambar terjaga), rapikan nomor
+            cls = classify(text) if text.strip() else ("q" if has_num else "plain")
+            if cls == "header":
+                total_hdrs += 1
+                new_section()
+                el = clone_runs(doc, el, label=None, before=HDR_BEFORE, after=HDR_AFTER,
+                                indent=None, page_break_before=page_break, keep_with_next=True)
+                remap_images(doc, src_doc, el)
+                continue
+            if cls == "q" or (cls == "plain" and (has_num or BLANK_RE.search(text))):
+                if renum:
+                    n += 1
+                    if has_num and not text.strip():
+                        label = "%d." % n
+                        warn("soal berisi gambar (tanpa teks) di nomor %d" % n)
+                    else:
+                        label = "%d." % n
+                else:
+                    m = NUM_RE.match(text)
+                    label = (m.group(1) + ".") if m else (str(n + 1) + ".")
+                total_q += 1
+                el = clone_runs(doc, el, label=label + "\t" if not text.strip() else label,
+                                page_break_before=page_break, keep_with_next=True)
+                remap_images(doc, src_doc, el)
+                continue
+            if cls == "opt":
+                letter = (OPT_RE.match(text).group(1) if text.strip() else "")
+                el = clone_runs(doc, el, label=("%s." % letter) + "\t", indent=(IND_L * 2, IND_H),
+                                keep_with_next=True)
+                remap_images(doc, src_doc, el)
+                continue
+            el = clone_runs(doc, el, label=None, page_break_before=page_break)
+            remap_images(doc, src_doc, el)
+            continue
         if not text.strip():
             continue
         cls = classify(text)
@@ -443,7 +562,7 @@ def main():
     args = ap.parse_args()
 
     kop_tbl, kop_tpl = get_kop_table(args.kop)
-    _, items = load_source(args.soal)
+    _, items, src_doc = load_source(args.soal)
 
     mapel = args.mapel
     kelas = args.kelas
@@ -455,7 +574,7 @@ def main():
         args.out = os.path.join(src_dir, base + " Edit.docx")
 
     stats = build(args.out, kop_tbl, items, mapel=mapel, kelas=kelas, hari=hari,
-                  unit=args.unit, renum=not args.no_renum, kop_tpl=kop_tpl)
+                  unit=args.unit, renum=not args.no_renum, kop_tpl=kop_tpl, src_doc=src_doc)
 
     print("SAVED:", os.path.abspath(args.out))
     print("SEKSI:", stats["sections"], "SOAL:", stats["questions"])

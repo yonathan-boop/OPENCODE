@@ -4,6 +4,13 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260918-011] ujian_builder_dukungan_gambar — priority: high
+Builder soal ujian kini MEMPERTAHANKAN gambar di dalam soal (sebelumnya DROP senyap — temuan probe `B. Inggris 7 Linda edit.docx`: 2 drawing paragraf hilang, tabel drawing rId menggantung). Teruji live 18/9: output 3 media (`image1/2/3.png`), 2 drawing paragraf terpasang di posisi benar di render PDF, regresi teks IPA/IPS 3 tetap 2 seksi × 1–10 tanpa reset.
+- **Deteksi gambar:** `next(el.iter(qn("w:drawing")), None)` REKURSIF — gambar inline `p>r>drawing`; `el.find()` direct-child pasti miss. Jangan `any(el.iter(...))` → FutureWarning lxml (truth-test elemen).
+- **Clone paragraf:** deepcopy `w:p` sumber (teks+gambar+rumus utuh) → buang `pPr` lama → hapus nomor lama dari run ber-teks → insert run label `"N.\t"` → terapkan indent/hanging/tab di klon → sisip `sectPr.addprevious(el)` (bukan `body.append`: korup).
+- **Remap gambar WAJIB via blob:** `doc.part.relate_to(part, RT.IMAGE)` dari part sumber → **Duplicate name 'word/media/image1.png'** (partname kolisi dgn logo kop). Benar: `doc.part.get_or_add_image(io.BytesIO(part.blob))` → `(rId, image)`, nama di-unik-kan per paket. relmap dari `related_parts.items()` filter `'media' in str(p.partname)`; set `r:embed`.
+- **Gambar = persis kunci:** tabel kop (remap_kop_images) & tabel konten & tiap paragraf hasil clone semua harus di-remap via fungsi ini. #ujian #gambar #docx #remap #media #clone
+
 ## [LRN-20260918-010] ujian_builder_bug_nomor_reset_dan_logo — priority: CRITICAL
 User temukan 2 bug nyata di output ujian_builder (18/9) → sudah di-fix & diverifikasi:
 - **Nomor soal "kacau" (reset 1,2,1,2 + banyak baris tanpa nomor):** (1) `is_header()` memuat kata "bagian" → kalimat soal *"Bagian luar mata terdapat ____"* salah dikira header seksi → `new_section()` me-`n=0` → muncul nomor dobel. Fix: `bagian` dikeluarkan dari `HEADER_WORDS`; header "Bagian" hanya valid bila `HDR_BAGIAN_RE` (diikuti A-Z/I-X/angka) — kalimat "Bagian ..." biasa diexclude eksplisit sebelum startswith. (2) Baris isian tanpa nomor (`... ________`) tidak diberi nomor → `BLANK_RE` (`[_\.]{2,}\s*$`) mempromosikan baris plain berujung kosong menjadi soal → di-renum. Teruji IPA 3 (1–10 per seksi, tanpa reset) & IPS 3.

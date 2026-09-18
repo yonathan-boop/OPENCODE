@@ -38,6 +38,15 @@
   - Gambar `inline` paling portabel (floating anchor bisa loncat posisi).
 - **Verifikasi layout:** loop penyemak visual (LRN-20260917-002): LibreOffice headless → PDF → pymupdf PNG (dpi≥150) → Gemini vision. Ingat: render LO ≠ Word persis (LRN-20260918-001), jadinya quick-check.
 
+## DUKUNGAN GAMBAR DALAM SOAL (implementasi 18/9, teruji live)
+
+Builder kini MEMPERTAHANKAN gambar di dalam soal (sebelumnya DROP senyap).
+- **Deteksi:** paragraf dianggap ber-gambar jika `next(el.iter(qn("w:drawing")), None)` — cari REKURSIF (gambar inline `p>r>drawing`; jangan `el.find` direct-child → pasti miss). Catat: `any(el.iter(...))` memicu FutureWarning lxml (truth-test elemen) → pakai `next(..., None) is not None`.
+- **Clone paragraf:** sumber `.docx` di-`deepcopy` per elemen `w:p` (teks+gambar+rumus utuh), `pPr` lama dibuang, nomor lama dihapus dari run pertama ber-teks, label `"N.\t"` di-insert run baru di depan, format indent/hanging/tab diterapkan di klon. Fungsi `clone_runs()` mengembalikan elemen hasil → remap gambar.
+- **Remap gambar = rahasia utama:** `doc.part.relate_to(part, RT.IMAGE)` langsung DARI part sumber → **Duplicate name 'word/media/image1.png'** karena part sumber & kop punya partname sama → zipfile peringatan + gambar kacau. Fix: baca `part.blob` → `doc.part.get_or_add_image(io.BytesIO(blob))` (kembali `(rId, image)`; spek namanya unik per paket). Terapkan ke BLIP dgn `relmap = {rid: p for rid,p in part.related_parts.items() if 'media' in str(p.partname)}` + `set(qn("r:embed"), new_id)`. `remap_images(doc, src_doc, element)` dipanggil utk tiap elemen yang disalin.
+- **Hasil teruji:** `B. Inggris 7 Linda edit.docx` (2 drawing paragraf, 1 di tabel, 3 part gambar, → …) → output 3 media (`image1/2/3.png`), 2 drawing paragraf + 2 di tabel, render PDF: gambar terpasang di posisi benar, kop SMP benar, nomor 1–20 mulus. Regresi IPA & IPS 3 (jalur teks) masih 2 seksi × 1–10 tanpa reset.
+- **Batasan:** gambar di paragraf **kosong** (diagram berdiri sendiri) tetap disalin tapi TIDAK diberi nomor (plain); gambar dalam tabel berisi ikut di-remap.
+
 ## Rekomendasi ke depan
 
 1. Perluas `--check` agar membandingkan output vs contoh "OK Edit P" (pixel/teks) otomatis untuk KPU (kop lengkap, nomor urut, tidak ada teks potong).
