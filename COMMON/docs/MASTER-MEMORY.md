@@ -636,6 +636,8 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **18/9 (yonat-PC):** user beralih model sesi dari Big Pickle ke Muse Spark (gratis, contributor-free) untuk dicoba di mode live voice — evaluasi berjalan; putusan permanen Big Pickle (5/9) sedang ditinjau ulang oleh user sendiri.
+
 - **18/9 (yonat-PC):** **Workflow edit soal ujian selesai** — `COMMON/scripts/ujian_builder.py` + `COMMON/scripts/kop-methodist.docx`: dari soal mentah guru (.docx/.doc via LibreOffice/.txt) jadi dokumen ujian rapi (Folio TNR 11, kop form 6×7, nomor ulang per bagian, opsi a-d indent) cocok contoh "OK Edit P". Fix 2 bug nyata (regex `(.*)$` bikin strip kosong; "A. Pilihan Ganda" termakan regex opsi a-d → `is_header()` eksplisit). Validasi Gemini vision: PG + uraian "siap cetak". Batas: equation/gambar tidak terbaca python-docx & .doc→docx via LO merusak equation → kalau banyak equation pakai Word COM. Catatan: `COMMON/self-study/notes/format-soal-ujian-word-ujian-builder.md` (LRN-20260918-005). Self-study topik baru ditambah; topik #1 (format PG) selesai 18/9.
 
 - **18/9 (yonat-PC, self-learn):** Riset+uji live **otomasi Word dgn python-docx** → LRN-20260918-004 (sudah terpasang v1.2.0; alternatif aman pengganti Word COM utk dokumen ringan — tanpa ghost WINWORD/OneDrive lock; pola terbukti: ukuran/margin via sections, font via styles['Normal'], hanging indent = first_line_indent negatif; jebakan doc.paragraphs tak menyentuh tabel/header, placeholder pindah-runs, copy antar dokumen tanpa API resmi).
