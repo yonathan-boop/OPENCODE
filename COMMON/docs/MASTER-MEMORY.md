@@ -636,6 +636,8 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **18/9 (yonat-PC):** benchmark 10 tes × 6 model free OpenCode Zen → skor: Big Pickle/Ling/Muse1.2 = 9.5, Muse1.3 = 9.0, Nemotron Ultra/Lightning = 10.0 (JSON presisi) tapi lemot (±14dtk). Rekomendasi: obrolan= Ling 3.0 Flash Fin, executor= Big Pickle, Nemotron Ultra utk JSON ketat. Detail: COMMON/self-study/notes/benchmark-model-free-zen-20260918.md.
+
 - **18/9 (yonat-PC):** user beralih model sesi dari Big Pickle ke Muse Spark (gratis, contributor-free) untuk dicoba di mode live voice — evaluasi berjalan; putusan permanen Big Pickle (5/9) sedang ditinjau ulang oleh user sendiri.
 
 - **18/9 (yonat-PC):** **Workflow edit soal ujian selesai** — `COMMON/scripts/ujian_builder.py` + `COMMON/scripts/kop-methodist.docx`: dari soal mentah guru (.docx/.doc via LibreOffice/.txt) jadi dokumen ujian rapi (Folio TNR 11, kop form 6×7, nomor ulang per bagian, opsi a-d indent) cocok contoh "OK Edit P". Fix 2 bug nyata (regex `(.*)$` bikin strip kosong; "A. Pilihan Ganda" termakan regex opsi a-d → `is_header()` eksplisit). Validasi Gemini vision: PG + uraian "siap cetak". Batas: equation/gambar tidak terbaca python-docx & .doc→docx via LO merusak equation → kalau banyak equation pakai Word COM. Catatan: `COMMON/self-study/notes/format-soal-ujian-word-ujian-builder.md` (LRN-20260918-005). Self-study topik baru ditambah; topik #1 (format PG) selesai 18/9.
