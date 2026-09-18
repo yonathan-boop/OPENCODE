@@ -99,6 +99,19 @@ untuk yang perlu diakses orang luar (website publik), JANGAN buka port SSH langs
 - Calatan: sebelum server di-bikin permanen, peer server `0f4e41072e` muncul tanpa path (paths kosong)
   → gejala khas daemon ZT server mati/offline; cek ulang setelah server nyalakan/tidak on-demand.
 
+## Verifikasi akhir 18/9 (dari yonat-PC, live) — SEMUA ONLINE
+Konfirmasi akhir setelah ttyd dibuat tanpa password & sesi shared terminal di server:
+- ZeroTier adapter `192.168.195.150` aktif; service `ZeroTierOneService` Running.
+- Ping server zero `192.168.195.60` → 16–23 ms · **ttyd 7681 → HTTP 200** (sebelumnya 401 auth wall,
+  sekarang tanpa password, akses private via ZeroTier) · **SSH 2222** dan **web 8090** → TCP connect OK.
+- Website publik https://methodist-11.my.id → HTTP 200.
+- Server sudah punya menu `pilih-terminal.sh` (terminal web 7681): ada sesi **"shared"** (bash murni,
+  terpisah dari opencode) → akses: buka 7681 → menu → pilih shared. AI server bisa ikut mengetik
+  via `tmux send-keys`. Sesi main opencode Methodist-11 tidak diganggu.
+- Rekap masa error sesi 18/9 pagi: sesi interaktif gagal di akhir karena `AI_APICallError`
+  ("OpenCode's free tier can only be used from within OpenCode") saat compaction — bukan kegagalan
+  kerja ZeroTier; hasil sudah ter-commit (`2809f4f`).
+
 ## Sumber
 
 - ZeroTier Docs — Getting Started & Create a Network: https://docs.zerotier.com/start/
