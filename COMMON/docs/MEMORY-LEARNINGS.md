@@ -4,6 +4,17 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260918-003] pptx_otomasi_python_pptx — priority: high
+Otomasi presentasi (materi ajar/rapat/laporan) dengan `python-pptx` (pure-py, MIT, utk .pptx/.potx; SKIP .ppt/.pptm lama). **Belum terpasang di yonat-PC** (`pip install python-pptx Pillow`). Fakta inti & jebakan (riset 18/9):
+- **SELALU mulai dari template ber-brand** `Presentation('template.pptx')`, jangan dari kosong — font/warna/footer/logo diwarisi dari master→layout→slide. Pilih layout via `slide_layouts.get_by_name("...")`, **bukan indeks angka** (indeks cuma konvensi, beda-beda tiap template). Utamakan placeholder layout; textbox bebas (add_textbox) hanya untuk yang memang custom — shape bebas MENGUBAH aturan tema.
+- **Jebakan run-splitting:** teks kontigu bisa terpecah jadi beberapa XML run oleh PowerPoint → string-replace pada `text_frame.text` gagal senyap & placeholder ikut terkirim. Solusi: target placeholder **by name** (Selection Pane) atau iterasi per-run; ganti di level paragraph/text-frame bisa merusak formatting run (bold/highlight/link). Format penting → utamakan run-level.
+- **Chart native terbatas** (no waterfall/treemap/sunburst; combo guard-nya bisa korup). Lebih aman: generate chart di matplotlib/plotly → `savefig(dpi≥150, 200 utk cetak, figsize (10,4.5) utk full-width di slide 13.33×7.5")` → sisip via `add_picture(left,top,width,height)` dgn `Inches()`.
+- **Gambar:** di PowerPoint picture placeholder di-crop/zoom otomatis, python-pptx tidak — gambar masuk ukuran native, WAJIB sizing/eksplisit. Crop roundtrip rawan hilang. File membengkak krn media asli (Retina 3x) + font embed → kompres dulu (Pillow thumbnail ≤1920px + JPEG q82, atau edit blob langsung via `shape.image._blob`; font `ppt/fonts/` bisa dipangkas).
+- **Animasi/transisi TIDAK didukung API** (issue sejak 2018): kalau template sudah ada animasi, JANGAN modif shape itu (bisa drop timing) — animasi ditaruh di template/editor, python-pptx cuma isi konten.
+- **Duplikat slide tidak didukung** — pola aman: taruh bagian statis di layout, bagian dinamis di-generate per slide.
+- **TIDAK bisa render ke gambar/PDF** — hasil wajib diverifikasi: LibreOffice headless `--convert-to pdf` → pymupdf → PNG → Gemini vision (loop yang sama dgn penyemak visual LRN-20260917-002). python-pptx juga tanpa geometry/overflow check (shape keluar kanvas diam-diam terpotong) & tanpa solusi autofit → cek render selalu. Validasi struktural: save → reopen → hitung slide.
+- **Kinerja:** pegang seluruh deck di RAM (lxml) — 50 slide ~50MB OK, di atas ~500 slide berat & save makin lambat. Simpan template di git; update template = regression test. #pptx #presentasi #python-pptx #otomasi #materi-ajar
+
 ## [LRN-20260918-002] pdf_automation_pymupdf_vs_pypdf — priority: high
 PDF untuk administrasi/dokumen ujian (gabung, pecah, watermark/logo, isi form, kompres) — 2 library utama dengan peran beda:
 - **pypdf** (pure-Python, BSD-3): rajanya manipulasi struktur — merge (`PdfWriter.append`/`.merge(position=...)`), split/ekstrak halaman, rotate, crop, enkripsi/decrypt, isi form AcroForm. Ringan (~1MB), tanpa dependency C, aman lisensi. **Belum terpasang di yonat-PC** (`pip install pypdf`).
