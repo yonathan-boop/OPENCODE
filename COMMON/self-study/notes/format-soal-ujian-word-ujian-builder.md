@@ -67,6 +67,8 @@ Proses 6 bahan mentah asli dari `@backup` dan bandingkan dengan file jadi "… O
 - **Fitur baru:** `--unit SD|SMP` untuk ganti kop "SD SWASTA METHODIST-11" → "SMP SWASTA METHODIST-11" (default SD).
 - **Bug fix:** check_visual.py crash `UnicodeEncodeError cp1252` saat Gemini balas pakai emoji (✅) → `sys.stdout.reconfigure(errors="replace")` (pola ERR-20260917-002).
 
+- **Deteksi kop dobel (bug nyata):** string teks kop bisa TERPECAH antar `<w:t>` run (mis. "SMP" / " " / "SWASTA") → cek `xml` mentah (substring "SD SWASTA") MISS terhadap kop sumber SMP. `is_kop_table()` wajib membaca teks gabungan per sel via `Table(tbl, None)` + regex `(SD|SMP)\s+SWASTA` + label KOP_LABELS. Sebelum fix, output 2 tabel kop (standar + sumber); terverifikasi B.Inggris 7 (SMP) & IPA/IPS 3 (SD) = 1 kop.
+
 ## Referensi
 
 - Tool: `COMMON/scripts/ujian_builder.py` · kop: `COMMON/scripts/kop-methodist.docx` · verifier: `COMMON/scripts/check_visual.py`

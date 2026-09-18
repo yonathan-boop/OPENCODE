@@ -163,10 +163,12 @@ def load_source(path):
 
 def is_kop_table(tbl):
     """Tabel berisi form identitas (label khas kop) -> dibuang dari konten."""
-    xml = tbl.xml
-    if "SD SWASTA" not in xml:
+    from docx.table import Table
+    t = Table(tbl, None)
+    text = " ".join(c.text for row in t.rows for c in row.cells)
+    if not re.search(r"(SD|SMP)\s+SWASTA", text):
         return False
-    return any(lbl in xml for lbl in KOP_LABELS)
+    return any(lbl in text for lbl in KOP_LABELS)
 
 
 def set_run(run, size=SIZE):
