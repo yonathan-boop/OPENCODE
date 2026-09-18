@@ -59,6 +59,12 @@ NUM_RE = re.compile(r"^\s*(\d{1,3})[\.\)]\s*(.*)$")
 OPT_RE = re.compile(r"^\s*([a-d])[\.\)]\s*(.*)$")
 HDR_BAGIAN_RE = re.compile(r"^[Bb]agian\s+([A-Za-z]|\d|[IVX])[\.\)]?\s")
 BLANK_RE = re.compile(r"[_\.]{2,}\s*$")  # baris isian berujung kosong (________)
+KD_RE = re.compile(r"^\s*KD\s*\d+(?:\.\d+)?", re.I)          # "KD 3.1" / "KD 3.2"
+PCT_RE = re.compile(r"\(\s*\d{1,3}\s*%\)")                    # "(50%)"
+INSTRUCT_RE = re.compile(
+    r"^(complete|read|choose|match|fill|answer|write|tick|listen|look|put|supply|"
+    r"arrange|translate|study|use|cross|give|underline|state|identify|describe|"
+    r"explain|retell|draw|count|color|colour|circle)\b", re.I)
 
 
 def is_header(text):
@@ -89,6 +95,19 @@ def classify(text):
     if OPT_RE.match(text):
         return "opt"
     return "plain"
+
+
+def is_title_line(text, after_header):
+    """Judul seksi bergaya sekolah: 'KD 3.1 ...', instruksi Inggris 'Complete ... (50%)'.
+    Tidak menerima baris bernomor/ber-opsi (itu soal)."""
+    t = text.strip()
+    if not t or NUM_RE.match(t) or OPT_RE.match(t):
+        return False
+    if KD_RE.match(t):
+        return True
+    if INSTRUCT_RE.match(t):
+        return PCT_RE.search(t) is not None or after_header
+    return False
 
 
 def strip_num(text):
@@ -393,6 +412,7 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
     total_hdrs = 0
     n = 0          # nomor berjalan dalam section
     section_open = False
+    prev_was_header = False
 
     def new_section():
         nonlocal n, section_open
@@ -414,13 +434,17 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
         if has_image:
             # paragraf berisi gambar -> salin apa adanya (gambar terjaga), rapikan nomor
             cls = classify(text) if text.strip() else ("q" if has_num else "plain")
-            if cls == "header":
+            if cls == "header" or is_title_line(text, prev_was_header):
                 total_hdrs += 1
+                was_hdr = prev_was_header
+                prev_was_header = True
                 new_section()
-                el = clone_runs(doc, el, label=None, before=HDR_BEFORE, after=HDR_AFTER,
-                                indent=None, page_break_before=page_break, keep_with_next=True)
+                el = clone_runs(doc, el, label=None, before=(60 if was_hdr else HDR_BEFORE),
+                                after=HDR_AFTER, indent=None, page_break_before=page_break,
+                                keep_with_next=True)
                 remap_images(doc, src_doc, el)
                 continue
+            prev_was_header = False
             if cls == "q" or (cls == "plain" and (has_num or BLANK_RE.search(text))):
                 if renum:
                     n += 1
@@ -449,12 +473,16 @@ def build(out, kop_tbl, items, mapel=None, kelas=None, hari=None, unit="SD",
         if not text.strip():
             continue
         cls = classify(text)
-        if cls == "header":
+        if cls == "header" or is_title_line(text, prev_was_header):
             total_hdrs += 1
+            was_hdr = prev_was_header
+            prev_was_header = True
             new_section()
-            add_par(doc, text.strip(), bold=True, before=HDR_BEFORE, after=HDR_AFTER,
-                    indent=None, page_break_before=page_break, keep_with_next=True)
+            add_par(doc, text.strip(), bold=True, before=(60 if was_hdr else HDR_BEFORE),
+                    after=HDR_AFTER, indent=None, page_break_before=page_break,
+                    keep_with_next=True)
             continue
+        prev_was_header = False
         if cls == "q" or (cls == "plain" and (has_num or BLANK_RE.search(text))):
             raw = strip_num(text)
             if renum:
