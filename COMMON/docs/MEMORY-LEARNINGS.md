@@ -4,6 +4,20 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260918-004] docx_otomasi_python_docx — priority: high
+Otomasi dokumen Word (surat, dokumen ujian, rapor) dgn `python-docx` (pure-Py, MIT, utk .docx/.dotx; TIDAK bisa .doc lama & tanpa render PDF). **SUDAH terpasang di yonat-PC v1.2.0** (`python-docx 1.2.0` terverifikasi via pip list). Riset + uji live 18/9 di PC:
+- **Keunggulan utama vs Word COM:** tanpa buka instance Word → bebas ghost WINWORD (ERR-20260902-001), tanpa hang COM sementara dokumen user terbuka, & tanpa kunci OneDrive. Untuk dokumen ringan (isi teks, set format) python-docx jadi pilihan lebih aman; COM masih dipakai kalau butuh kop+soal gabungan (workflow 2/9 ada di MASTER). Kompatibel lintas OS (jalan juga di server Linux).
+- **Pola aplikasi:** ukuran halaman & margin via `doc.sections[0].page_width/page_height = Inches(...)`, `top_margin/bottom_margin/left_margin/right_margin`; orientasi `WD_ORIENT.PORTRAIT/LANDSCAPE`. Konversi Emu→inch: `Inches(1)` = 914400 EMU. Font default: set `doc.styles['Normal'].font` (TNR 11 teruji tersimpan sbg `w:rFonts ascii/hAnsi`). Soal/opsi: `first_line_indent = Inches(-0.65)` = hanging indent, `left_indent` utk opsi; spacing via `paragraph_format.line_spacing = 1` (multiple), `space_before/space_after = Pt(0)`. Semua teruji apply & terbaca ulang.
+- **Jebakan:**
+  - `doc.paragraphs` HANYA paragraf body level-1 — teks di tabel/header/footer/textbox TIDAK masuk. Iterasi `doc.tables` dan `doc.sections[i].header/.footer` utk itu (sama pola python-pptx).
+  - Word memecah teks jadi banyak XML run → `p.text` utuh tapi `run.text` terpecah; replace placeholder yg nyebar: set `p.runs[0].text = ...` lalu kosongkan run sisanya (meruntuhkan format ke run pertama — cukup utk placeholder polos).
+  - Merge cell: `cell = table.cell(r,c); cell.merge(table.cell(r2,c2))` (wajib region rectangular, harus menutup cell yg sdh merge sebelumnya).
+  - Copy elemen antar dokumen (mis. tabel/kop dari template) tidak punya API resmi — pola umum: `dest_paragraph._p.addnext(src_table._tbl)` atau `copy.deepcopy(elm)`; awas, styles sumber tidak ikut (lebih aman: mulai dari `Document('template.docx')` biar style ada).
+  - List bullet/angka: jangan ketik `•`/`1.` literal — pakai style `List Bullet`/`List Number` yg ADA di template (KeyError kalau tak ada); tiap baris visual = `add_paragraph` sendiri, jangan `\n`.
+  - Header/footer: `sec.header.paragraphs[0].text`, tab `\t` utk zona tengah/kanan; `is_linked_to_previous=True` menghapus header (mewarisi sebelumnya). Page number field tidak ada di API → injeksi field XML manual ke run.
+  - Page-break/equation ketat = ground truth tetap Word COM (lihat LRN-20260918-001 render LO ≠ Word utk page-break/tabel/equation).
+- **Verifikasi hasil:** tidak ada opsi render → pakai loop penyemak visual: LibreOffice headless → pymupdf → PNG → Gemini vision (LRN-20260917-002), plus save→reopen→baca ulang setelan utk validasi struktural. #docx #python-docx #word #otomasi #dokumen-ujian
+
 ## [LRN-20260918-003] pptx_otomasi_python_pptx — priority: high
 Otomasi presentasi (materi ajar/rapat/laporan) dengan `python-pptx` (pure-py, MIT, utk .pptx/.potx; SKIP .ppt/.pptm lama). **Belum terpasang di yonat-PC** (`pip install python-pptx Pillow`). Fakta inti & jebakan (riset 18/9):
 - **SELALU mulai dari template ber-brand** `Presentation('template.pptx')`, jangan dari kosong — font/warna/footer/logo diwarisi dari master→layout→slide. Pilih layout via `slide_layouts.get_by_name("...")`, **bukan indeks angka** (indeks cuma konvensi, beda-beda tiap template). Utamakan placeholder layout; textbox bebas (add_textbox) hanya untuk yang memang custom — shape bebas MENGUBAH aturan tema.
