@@ -7,7 +7,7 @@ import difflib
 
 FILE_PATH = os.environ.get(
     "ABSENSI_FILE",
-    "C:/Users/yonat/OneDrive/Desktop/memory/PC-06/docs/Absensi T.P 2026-2027/Absensi 16 September 2026 Wednesday 11_51_44.xlsx",
+    "C:/Users/yonat/OneDrive/Desktop/memory/PC-06/docs/Absensi T.P 2026-2027/Absensi 18 September 2026 Friday 09_45_34.xlsx",
 )
 
 KELAS_MAP = {
