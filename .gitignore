@@ -3,3 +3,4 @@ VS&OPENCODE/.ticker/
 *.log
 __pycache__/
 *.pyc
+COMMON/handoff.md
