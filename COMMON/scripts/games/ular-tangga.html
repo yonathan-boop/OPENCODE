@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ular Tangga vs AI</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #e8f4f8;
+  }
+  .game {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 980px;
+    width: 100%;
+  }
+  .board-wrap { flex: 0 0 auto; }
+  .board {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    grid-template-rows: repeat(10, minmax(0, 1fr));
+    width: min(600px, 78vw);
+    aspect-ratio: 1;
+    gap: 2px;
+    background: #1a2f3a;
+    padding: 6px;
+    border-radius: 14px;
+    box-shadow: 0 18px 40px rgba(0,0,0,.45);
+  }
+  .cell {
+    position: relative;
+    background: #24495a;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: #9fc4d3;
+    user-select: none;
+  }
+  .cell.ladder { background: #3d5a3f; color: #d7f0c8; }
+  .cell.snake { background: #5a3434; color: #f0c8c8; }
+  .cell .start { font-size: 13px; }
+  .token {
+    position: absolute;
+    width: 26%;
+    height: 26%;
+    border-radius: 50%;
+    z-index: 5;
+    transition: none;
+    box-shadow: 0 3px 6px rgba(0,0,0,.5);
+    border: 2px solid rgba(255,255,255,.7);
+  }
+  .token.p1 { background: #4fc3f7; left: 8%; top: 10%; }
+  .token.p2 { background: #ff7043; left: 62%; top: 62%; }
+  .side {
+    flex: 1 1 280px;
+    max-width: 320px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  h1 { font-size: 20px; letter-spacing: .5px; }
+  .players { display: flex; flex-direction: column; gap: 8px; }
+  .player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(0,0,0,.25);
+    border: 2px solid transparent;
+    transition: border-color .2s;
+  }
+  .player.active { border-color: #ffd54f; background: rgba(255,213,79,.08); }
+  .dot { width: 14px; height: 14px; border-radius: 50%; flex: 0 0 auto; }
+  .dot.p1 { background: #4fc3f7; }
+  .dot.p2 { background: #ff7043; }
+  .player .name { font-weight: 600; flex: 1; }
+  .player .pos { color: #9fc4d3; font-weight: 600; }
+  .dice-area { text-align: center; padding: 6px 0 2px; }
+  .dice {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 10px;
+    background: #fff;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    font-size: 40px;
+    font-weight: 700;
+    color: #1a2f3a;
+    box-shadow: 0 10px 24px rgba(0,0,0,.4);
+    transition: transform .12s;
+  }
+  .dice.rolling { animation: shake .5s infinite; }
+  @keyframes shake {
+    0% { transform: rotate(0) scale(1); }
+    25% { transform: rotate(-14deg) scale(1.08); }
+    50% { transform: rotate(0) scale(1); }
+    75% { transform: rotate(14deg) scale(1.08); }
+    100% { transform: rotate(0) scale(1); }
+  }
+  .btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 13px 18px;
+    border-radius: 10px;
+    color: #0f2027;
+    background: linear-gradient(180deg, #ffd54f, #ffb300);
+    box-shadow: 0 6px 14px rgba(0,0,0,.35);
+    transition: transform .1s, opacity .2s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn:disabled { opacity: .45; cursor: not-allowed; transform: none; }
+  .btn.secondary {
+    background: rgba(255,255,255,.14);
+    color: #e8f4f8;
+    border: 1px solid rgba(255,255,255,.2);
+  }
+  .status {
+    font-size: 14px;
+    min-height: 42px;
+    line-height: 1.5;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(0,0,0,.3);
+    color: #dbeef5;
+  }
+  .win-banner {
+    display: none;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 12px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ffd54f, #ffb300);
+    color: #0f2027;
+  }
+  .win-banner.show { display: block; }
+  .log {
+    font-size: 12.5px;
+    max-height: 110px;
+    overflow: auto;
+    padding: 8px 10px;
+    background: rgba(0,0,0,.25);
+    border-radius: 10px;
+    color: #9fc4d3;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="game">
+  <div class="board-wrap"><div class="board" id="board"></div></div>
+
+  <div class="side">
+    <h1>🎲 Ular Tangga vs AI</h1>
+
+    <div class="players">
+      <div class="player active" id="pl1">
+        <div class="dot p1"></div>
+        <div class="name">Kamu</div>
+        <div class="pos">Posisi: 0</div>
+      </div>
+      <div class="player" id="pl2">
+        <div class="dot p2"></div>
+        <div class="name">AI Komputer</div>
+        <div class="pos">Posisi: 0</div>
+      </div>
+    </div>
+
+    <div class="dice-area">
+      <div class="dice" id="dice">?</div>
+      <button class="btn" id="rollBtn" onclick="playerTurn()">Lempar Dadu</button>
+    </div>
+
+    <div class="status" id="status">Giliran Kamu. Klik "Lempar Dadu" untuk mulai.</div>
+    <div class="win-banner" id="winBanner"></div>
+
+    <div class="log" id="log"></div>
+    <button class="btn secondary" onclick="resetGame()">🔄 Mulai Ulang</button>
+  </div>
+</div>
+
+<script>
+// ====== Papan: ular & tangga (dari = posisi dasar, ke = posisi tujuan) ======
+const LADDERS = { 2:38, 8:31, 15:26, 21:42, 28:84, 36:44, 51:67, 71:91, 78:98 };
+const SNAKES  = { 16:6, 47:26, 49:11, 62:19, 64:60, 87:24, 93:73, 95:75 };
+
+const BOARD_SIZE = 100;
+const state = {
+  p1: 0, p2: 0,          // posisi pemain
+  turn: 1,               // 1 = kamu, 2 = AI
+  rolling: false,
+  winner: null,
+};
+
+const boardEl = document.getElementById('board');
+const diceEl = document.getElementById('dice');
+const statusEl = document.getElementById('status');
+const winBanner = document.getElementById('winBanner');
+const logEl = document.getElementById('log');
+
+// ====== Render papan: 100 di kanan atas, 1 di kiri bawah (zig-zag) ======
+function cellRC(n) {
+  const row = Math.floor((n - 1) / 10);          // 0 = baris paling bawah
+  const even = row % 2 === 0;
+  const col = even ? (n - 1) % 10 : 9 - ((n - 1) % 10);
+  return { row, col };
+}
+
+function buildBoard() {
+  boardEl.innerHTML = '';
+  // urutan penempatan: baris bawah dulu, tapi CSS grid baris atas = index 0
+  for (let row = 9; row >= 0; row--) {
+    for (let col = 0; col < 10; col++) {
+      let n;
+      const even = row % 2 === 0;
+      n = row * 10 + (even ? col + 1 : 10 - col);
+      const cls = [];
+      if (LADDERS[n]) cls.push('ladder');
+      if (SNAKES[n]) cls.push('snake');
+      const cell = document.createElement('div');
+      cell.className = 'cell ' + cls.join(' ');
+      cell.id = 'cell-' + n;
+      const span = document.createElement('span');
+      span.className = 'start';
+      span.textContent = n;
+      cell.appendChild(span);
+      const t1 = document.createElement('div');
+      t1.className = 'token p1';
+      t1.id = 'tok1';
+      const t2 = document.createElement('div');
+      t2.className = 'token p2';
+      t2.id = 'tok2';
+      cell.appendChild(t1);
+      cell.appendChild(t2);
+      boardEl.appendChild(cell);
+    }
+  }
+  placeTokens();
+}
+
+function placeTokens() {
+  [1, 2].forEach(p => {
+    const tok = document.getElementById('tok' + p);
+    const pos = p === 1 ? state.p1 : state.p2;
+    const target = document.getElementById('cell-' + Math.max(pos, 1));
+    if (target) target.appendChild(tok);
+  });
+}
+
+// ====== Log & status ======
+function log(msg) {
+  logEl.innerHTML = '<div>' + msg + '</div>' + logEl.innerHTML;
+  if (logEl.children.length > 60) logEl.innerHTML = logEl.innerHTML.slice(0, 3000);
+}
+
+function setStatus(msg) {
+  statusEl.textContent = msg;
+}
+
+function updateUI() {
+  document.getElementById('pl1').querySelector('.pos').textContent = 'Posisi: ' + state.p1;
+  document.getElementById('pl2').querySelector('.pos').textContent = 'Posisi: ' + state.p2;
+  document.getElementById('pl1').classList.toggle('active', state.turn === 1 && !state.winner);
+  document.getElementById('pl2').classList.toggle('active', state.turn === 2 && !state.winner);
+}
+
+// ====== Dadu ======
+function rollDice() {
+  return 1 + Math.floor(Math.random() * 6);
+}
+
+function animateDice(callback) {
+  state.rolling = true;
+  diceEl.classList.add('rolling');
+  const timer = setInterval(() => {
+    diceEl.textContent = 1 + Math.floor(Math.random() * 6);
+  }, 90);
+  setTimeout(() => {
+    clearInterval(timer);
+    const value = rollDice();
+    diceEl.textContent = value;
+    diceEl.classList.remove('rolling');
+    state.rolling = false;
+    callback(value);
+  }, 750);
+}
+
+// ====== Gerak token langkah demi langkah ======
+function moveToken(player, targetPos, onDone) {
+  const tok = document.getElementById(player === 1 ? 'tok1' : 'tok2');
+  const step = state[player === 1 ? 'p1' : 'p2'] < targetPos ? 1 : -1;
+  let cur = state[player === 1 ? 'p1' : 'p2'];
+
+  const interval = setInterval(() => {
+    cur += step;
+    state[player === 1 ? 'p1' : 'p2'] = cur;
+    const cell = document.getElementById('cell-' + cur);
+    if (cell) cell.appendChild(tok);
+    updateUI();
+    if (cur === targetPos) {
+      clearInterval(interval);
+      onDone();
+    }
+  }, 150);
+}
+
+function resolveLanding(player) {
+  const pos = player === 1 ? state.p1 : state.p2;
+  const name = player === 1 ? 'Kamu' : 'AI';
+  if (LADDERS[pos]) {
+    log('⬆️ ' + name + ' naik tangga: ' + pos + ' → ' + LADDERS[pos]);
+    state[player === 1 ? 'p1' : 'p2'] = LADDERS[pos];
+    placeTokens();
+  } else if (SNAKES[pos]) {
+    log('🐍 ' + name + ' digigit ular: ' + pos + ' → ' + SNAKES[pos]);
+    state[player === 1 ? 'p1' : 'p2'] = SNAKES[pos];
+    placeTokens();
+  }
+  updateUI();
+  checkWin(player);
+}
+
+function checkWin(player) {
+  const pos = player === 1 ? state.p1 : state.p2;
+  if (pos === BOARD_SIZE) {
+    state.winner = player;
+    const name = player === 1 ? 'Kamu' : 'AI Komputer';
+    winBanner.textContent = '🏆 ' + name + ' menang!';
+    winBanner.classList.add('show');
+    setStatus(name + ' berhasil mencapai 100! 🎉');
+    document.getElementById('rollBtn').disabled = true;
+    log('🏆 ' + name + ' MENANG!');
+    return;
+  }
+}
+
+// ====== Giliran ======
+function playerTurn() {
+  if (state.winner || state.rolling || state.turn !== 1) return;
+  const btn = document.getElementById('rollBtn');
+  btn.disabled = true;
+  setStatus('Kamu melempar dadu…');
+  log('🎲 Kamu melempar dadu.');
+  animateDice(value => {
+    const start = state.p1;
+    const target = Math.min(start + value, BOARD_SIZE);
+    if (start + value > BOARD_SIZE) {
+      setStatus('Poin ' + value + ' melebihi target (butuh ' + (100 - start) + '). Giliran AI.');
+      log('Kamu butuh tepat ' + (BOARD_SIZE - state.p1) + ' tapi dapat ' + value + '.');
+      switchTurn(2);
+      return;
+    }
+    log('Dadu ' + value + ' → dari ' + start + ' ke ' + (start + value));
+    setStatus('Kamu jalan ke kotak ' + target + '…');
+    moveToken(1, target, () => {
+      resolveLanding(1);
+      if (!state.winner) switchTurn(2);
+    });
+  });
+}
+
+function aiTurn() {
+  if (state.winner || state.rolling || state.turn !== 2) return;
+  setStatus('AI sedang berpikir… melempar dadu.');
+  log('🤖 AI melempar dadu.');
+  setTimeout(() => {
+    animateDice(value => {
+      const start = state.p2;
+      const target = Math.min(start + value, BOARD_SIZE);
+      if (start + value > BOARD_SIZE) {
+        setStatus('AI dapat ' + value + ' (butuh ' + (100 - start) + '). Giliran Kamu.');
+        log('AI butuh tepat ' + (BOARD_SIZE - state.p2) + ' tapi dapat ' + value + '.');
+        switchTurn(1);
+        return;
+      }
+      log('🤖 Dadu ' + value + ' → AI jalan ke ' + (start + value));
+      setStatus('AI jalan ke kotak ' + target + '…');
+      moveToken(2, target, () => {
+        resolveLanding(2);
+        if (!state.winner) switchTurn(1);
+      });
+    });
+  }, 600);
+}
+
+function switchTurn(next) {
+  state.turn = next;
+  updateUI();
+  const btn = document.getElementById('rollBtn');
+  if (next === 1 && !state.winner) {
+    btn.disabled = false;
+    setStatus('Giliran Kamu. Tekan "Lempar Dadu".');
+  } else if (next === 2 && !state.winner) {
+    btn.disabled = true;
+    aiTurn();
+  }
+}
+
+// ====== Reset ======
+function resetGame() {
+  state.p1 = 0;
+  state.p2 = 0;
+  state.turn = 1;
+  state.winner = null;
+  state.rolling = false;
+  winBanner.classList.remove('show');
+  winBanner.textContent = '';
+  logEl.innerHTML = '';
+  diceEl.textContent = '?';
+  setStatus('Giliran Kamu. Klik "Lempar Dadu" untuk mulai.');
+  placeTokens();
+  updateUI();
+  const btn = document.getElementById('rollBtn');
+  btn.disabled = false;
+}
+
+// ====== Init ======
+buildBoard();
+updateUI();
+</script>
+</body>
+</html>
