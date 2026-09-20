@@ -4,6 +4,9 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260920-001] semua_installasi_wajib_pushed_ke_repo — priority: CRITICAL
+Koreksi user (20/9): **SEMUA hal penting yang dipelajari/di-install WAJIB masuk repo memory & di-push via GitHub** — supaya di PC mana pun user pakai, hasilnya sama. Jangan taruh hanya di `~/.config/opencode/skills/` (foldernya memang aktif otomatis, tapi LOKAL — tidak sync lintas PC). Pola benar: salin ke `COMMON/skills/<nama>/` di repo → push → tiap PC pull → copy manual ke `~/.config/opencode/skills/`. Berlaku untuk skill, script, game, tool, konfigurasi. GitHub itu gunanya justru penyimpanan terpusat — jangan tanya "boleh push?" kalau jelas-jelas menyangkut hal yang harus ada di semua PC. #sync #github #skills #kebiasaan
+
 ## [LRN-20260918-011] ujian_builder_dukungan_gambar — priority: high
 Builder soal ujian kini MEMPERTAHANKAN gambar di dalam soal (sebelumnya DROP senyap — temuan probe `B. Inggris 7 Linda edit.docx`: 2 drawing paragraf hilang, tabel drawing rId menggantung). Teruji live 18/9: output 3 media (`image1/2/3.png`), 2 drawing paragraf terpasang di posisi benar di render PDF, regresi teks IPA/IPS 3 tetap 2 seksi × 1–10 tanpa reset.
 - **Deteksi gambar:** `next(el.iter(qn("w:drawing")), None)` REKURSIF — gambar inline `p>r>drawing`; `el.find()` direct-child pasti miss. Jangan `any(el.iter(...))` → FutureWarning lxml (truth-test elemen).
