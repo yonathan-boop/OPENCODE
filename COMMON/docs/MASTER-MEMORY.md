@@ -75,7 +75,7 @@ Versi: PADAT (hasil konsolidasi; detail historis dipindah ke ARSIP-ABSENSI-2026.
 - **Semua notifikasi = LOG-ONLY** sejak 11/9 (Telegram dihapus total).
 - **Zerotier (ALWAYS-ON sejak 17/9):** join `633e31d8a2212ce2` → IP 192.168.195.60, node 0f4e41072e. WAJIB `chmod 666 /dev/net/tun` sebelum start. **17/9: otomatis selalu online** via `SERVER-LINUX/scripts/start-zerotier.sh` (cron @reboot + guardian 15 mnt). PC yonat-PC akses terminal (7681)/SSH (2222)/web (8090) via ZeroTier. Detail: /root/SERVER-LINUX/docs/ZEROTIER.md.
 - **⚠️ apt rusak (11/9):** `/usr/lib/apt/methods` Stale file handle → apt-get gagal ("method driver http tidak ditemukan"). Sembuh sendiri setelah reboot. Jangan utak-atik; install via npm/copy binary. RAM/disk dipangkas (Chrome, noVNC, snapd dihapus).
-- **Skill prompt-master (20/9):** `~/config/opencode/skills/prompt-master/` (idem repo nidhinjs/prompt-master v1.8.0, references/ ikut, tanpa .git). Skill opencode utk menulis/optimasi prompt AI tool (LLM/IDE/image/video/3D) — aktif saat user minta prompt utk tool tertentu saja. Auto-detect global, perlu restart opencode.
+- **Skill prompt-master (20/9):** `~/.config/opencode/skills/prompt-master/` (idem repo nidhinjs/prompt-master v1.8.0, references/ ikut, tanpa .git). Skill opencode utk menulis/optimasi prompt AI tool (LLM/IDE/image/video/3D) — aktif saat user minta prompt utk tool tertentu saja. Auto-detect global, perlu restart opencode.
 - **Supermemory (19/9):** memory API self-hosted port 6767 — lihat RECENT ACTIVITY 19/9 + LRN-20260919-001.
 
 ### TELEGRAM BOT OPENCODE ❌ DIHAPUS TOTAL 11/9 (arsip)
