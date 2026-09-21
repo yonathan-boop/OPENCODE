@@ -15,6 +15,33 @@ Sumber: analisis kalender resmi 2011–2027 + folder Methodist-11 Document (back
 
 ---
 
+## LIST KEGIATAN & TUGAS SEKRETARIS (pola tahun-tahun sebelumnya)
+
+> Acuan: SEMUA kegiatan & tugas yang biasanya perlu diurus tiap bulan (dari notulen, pengumuman, kalender, surat keluar, kwitansi di arsip).
+
+### Rutin Tiap Bulan
+- Terbit & arsip **surat keluar** (SURAT KELUAR\SD & SMP, bernomor: No. X/YPKMT/SD-SMP/METH-11/…/YYYY)
+- Rekap **uang sekolah** tiap bulan (Rekapitulasi US\Agustus 2025 dst — tenggat pelunasan sebelum ujian)
+- **Notulen & daftar hadir rapat guru bulanan** (RAPAT GURU\T.P.2026-2027\ 01, 02, 03, 04…)
+- **Doa pagi** tiap Senin (Daftar Doa Pagi 2026-2027) + **kebaktian siswa** kelas I-III (Senin), IV-VI (Rabu), VII-IX (Jumat)
+- Absensi harian murid + rekap absensi bulanan (Rekapitulasi Absensi 2026-2027)
+
+### Per Bulan (tugas khas sekretaris)
+- **JULI:** daftar hadir & notulen rapat awal TP; MPLS (agenda & presensi panitia); jadwal pelajaran baru; cover/daftar kelas; form data diri + tata tertib + ekstrakurikuler; update buku induk & Buku Setoran; perangkat pembelajaran (20/7)
+- **AGUSTUS:** pengumuman + protokol & petugas upacara 17/8; koperasi buka jual topi/dasi; nilai bulanan 1 (26→28→31/8); imunisasi awal
+- **SEPTEMBER:** jadwal & pengawas UTS 1; penyerahan nilai UTS 1 (22→24→26/9); pasfoto; study tour; surat undangan & pembicara kegiatan (natal/retreat mulai disiapkan 2/9)
+- **OKTOBER:** PMKK 5-7/10; deadline soal US 1 → Bu Juita 20/10; nilai bulanan 2 (26→28→31/10)
+- **NOVEMBER:** nilai bulanan 2 (17→19→21/11); jadwal latihan Natal (satu les/hari jadi latihan); surat undangan Natal & pembicara
+- **DESEMBER:** US 1 (30/11-5/12); susunan acara, panitia, guru pengawas, koordinator musik/foto/Pembawa Acara perayaan Natal; kupon/souvenir/makanan; pembagian rapor & nilai merah; surat libur semester/Natal/Tahun Baru
+- **JANUARI:** pengumuman retreat + surat izin ortwa + data peserta; kwitansi & pembagian dana; masuk sem 2; tabulasi nilai sem 1; libur Imlek
+- **FEBRUARI:** nilai bulanan 1 sem 2 (24→26/2→1/3); penyerahan daftar penilaian
+- **MARET:** jadwal & pengawas UTS 2; penyerahan nilai UTS 2 (23→25→27/3); surat libur Idul Fitri/Paskah
+- **APRIL:** protokol & pengumuman Hardiknas; lomba Hardiknas (mewarnai TK, dsb); SPTJM/berkas administrasi TPG
+- **MEI:** Hardiknas 2/5; US 2 kelas VI/IX; nilai bulanan 2 (18→20→22/5); ANBK persiapan; daftar hadir rapat kenaikan kelas
+- **JUNI:** US 2 (31/5-7/6); rapat kenaikan kelas + notulen; pembagian rapor (19/6); proposal perpisahan kelas VI/IX; surat libur akhir TP; tabulasi akhir tahun
+
+---
+
 ## JADWAL KERJA 2026-2027 (TANGGAL PASTI — dari kalender resmi & surat)
 
 ### Juli 2026
@@ -52,6 +79,7 @@ Sumber: analisis kalender resmi 2011–2027 + folder Methodist-11 Document (back
 - 18/12 : **SD IV-VI** (kalender resmi)
 - 19/12 : **Guru** (kalender resmi); **SD 1-3** (notulen 8/9)
 - **⚠️ Versi notulen 8/9:** PG/TK & SD 1-3 = 19/12, SD 4-6 & SMP = 21/12, Guru = 22/12 → **PERLU konfirmasi tanggal final**
+- **Pembicara Natal 2026 (surat No.746/747/506/507):** SD Besar = Pdt. Yudhistira · SD Kecil = Pdt. Lindawaty · SMP = (No.506) · Guru = (No.507, Aula 10.00 WIB). Tempat umum: Aula Methodist-11. Undangan Yayasan No.744 (2/9/2026) — tanggal masih blank di surat.
 - 19/12 : **Tanggal Rapor** (kalender resmi: pembagian rapor 17–18/12)
 - 21–31/12 : Libur Semester 1
 - 25/12 : Hari Raya Natal
