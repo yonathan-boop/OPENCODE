@@ -29,7 +29,7 @@ Bersumber dari memory bersama: `C:\Users\Advan\Desktop\memory\`
 - **Memory folder:** C:\Users\Advan\Desktop\memory
 
 ### 3. linux-tablet
-- **Device:** Red Magic Tab Astra 3 Pro
+- **Device:** Poco X7 Pro (HP Xiaomi) — sebelumnya salah tercatat "Red Magic Tab Astra 3 Pro"
 - **OS:** Android 15 → Ubuntu (via Termux proot-distro)
 - **RAM:** 12 GB
 - **Akses:** VNC localhost:5905 (Xtigervnc :5)

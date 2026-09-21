@@ -6,7 +6,7 @@ Di-update: 28 April 2026
 
 ## 📋 Identitas
 
-- **Device:** Red Magic Tab Astra 3 Pro
+- **Device:** Poco X7 Pro (HP Xiaomi) — sebelumnya salah tercatat "Red Magic Tab Astra 3 Pro"
 - **OS:** Android 15 (via Termux)
 - **RAM:** 12 GB
 - **Path:** /data/data/com.termux/files/home/Desktop/New Folder/memory
