@@ -4,6 +4,14 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260921-004] evaluasi_repo_asisten_ai_untuk_sistem_sekretaris — priority: medium
+User minta cek repo AI assistant di GitHub sbg referensi upgrade sistem sekretaris (21/9). Evaluasi singkat 2 repo inti:
+- **kaymen99/personal-ai-assistant** (178★, Python/LangGraph-LangChain): manager agent + sub-agents (email/calendar/notion/slack/research), chat via Telegram/Slack/WhatsApp. Konsep "manager→sub-agent" SUDAH kita punya (otak=manager, task tool=sub-agent, server self-study 24/7=research). Repo ini butuh banyak API key eksternal (Google/Notion/Tavily/Twilio) — overkill & mahal utk kebutuhan sekolah. Notion/Google Calendar API TIDAK diperlukan (data kita di repo memory).
+- **mhss1/MyBrain** (2.2k★, Android Kotlin): productivity lokal & privat — task dgn prioritas+sub-task+due+reminder, notes markdown, calendar, mood tracker, AI chat. Yang kita bisa tiru: **task ber-prioritas + reminder dingin** + sentuhan "dashboard" ringkasan hari.
+- Repo lain (meeting-mistro, example-schedule-reminder-py): reminder otomatis via email/langsung — overkill.
+- **Hambatan kita:** Telegram/Slack/WhatsApp bot sudah DIHAPUS total (11/9, keputusan user, notif=log-only). Reminder yang masuk akal = daemon di server baca `CATATAN-AGENDA-SEKOLAH.md` → log harian ringkasan deadline (pola self-study daemon, tanpa API eksternal). Belum diputuskan user.
+- **Aksi:** BELUM eksekusi daemon reminder (butuh izin aksi server); insight dicatat utk referensi upgrade. #asisten #reminder #referensi #github #sekretaris #server
+
 ## [LRN-20260921-003] rclone_gdrive_shared_client_id_retire_2026_migrasi_resmi — priority: high
 Riset 21/9 (forum rclone 6/7/2026 + issue #9580 + docs rclone.org/drive) — menindaklanjuti panduan `COMMON/docs/RCLONE-CLIENT-ID.md` (server belum migrasi; log gdrive-website-check tetap spam NOTICE shared client_id). Fakta & cara yang sebenarnya:
 - **Timeline resmi:** Google mulai MENAGIH API request utk shared client_id rclone (drive+photos) → rclone RETIRE total "later in 2026, setelah 90 hari notice". Per Sep 2026 notice 90 hari BELUM mulai → masih ada waktu, tapi WAJIB migrasi sebelum itu, atau **auto-update website (cron 15 mnt) + backup gdrive MATI**. rclone terbaru v1.75.1 (4/9/2026) tetap mengingatkan lewat NOTICE + wizard config sekarang default "No" utk lanjut pakai shared.
