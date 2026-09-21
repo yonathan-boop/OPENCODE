@@ -9,9 +9,31 @@
 
 TERM_TOTAL=2      # max terminal baru yang bisa dibuka
 SESSION_PREFIX="web"
+TTL_SECONDS=43200    # 12 jam: session lebih tua dari ini & gak aktif = dibersihkan otomatis
 
 list_sessions() {
   tmux ls 2>/dev/null | grep -E "^$SESSION_PREFIX-" | awk -F: '{print $1}'
+}
+
+# Bersihkan session yang sudah basi (umur > TTL) & tidak sedang dipakai tab mana pun.
+# Nama dibuat dari epoch: web-<created_epoch>, jadi umurnya bisa dihitung dari nama.
+cleanup_stale_sessions() {
+  NOW=$(date +%s)
+  for s in $(list_sessions); do
+    # session yang lagi di-attach oleh tab web = dipakai, jangan disentuh
+    tmux has-session -t "$s" 2>/dev/null || continue
+    if tmux ls 2>/dev/null | grep "^$s:" | grep -q "(attached)"; then
+      continue
+    fi
+    EPOCH="${s#$SESSION_PREFIX-}"
+    if [ -n "$EPOCH" ] && [ "$EPOCH" -eq "$EPOCH" ] 2>/dev/null; then
+      AGE=$(( NOW - EPOCH ))
+      if [ "$AGE" -gt "$TTL_SECONDS" ]; then
+        tmux kill-session -t "$s" 2>/dev/null
+        echo "  [bersih] session $s sudah $((AGE/3600)) jam; dihapus otomatis."
+      fi
+    fi
+  done
 }
 
 ask_continue() {
@@ -41,6 +63,8 @@ clear
 echo "=========================================="
 echo "   TERMINAL ONLINE  SD METHODIST-11"
 echo "=========================================="
+
+cleanup_stale_sessions
 
 SESSIONS=$(list_sessions)
 COUNT=$(echo -n "$SESSIONS" | grep -c .)
@@ -112,6 +136,22 @@ case "$N" in
   ''|*[!0-9]*) echo "Bukan angka. Ulangi."; sleep 1; exec "$0" ;;
 esac
 [ "$N" -gt "$TERM_TOTAL" ] && N=$TERM_TOTAL
+
+# Guard opencode tunggal: kalau user masih buka opencode di session lain,
+# buka terminal baru = 2 instance sekaligus → HP lelet. Kasih peringatan.
+OC=$(pgrep -f "\.local/share/core-termux-data/opencode/opencode" 2>/dev/null | wc -l)
+if [ "$OC" -gt 0 ]; then
+  echo ""
+  echo "PERHATIAN: ada $OC opencode yang masih jalan di tempat lain."
+  echo "Membuka terminal baru = tambah 1 instance → HP jadi lelet."
+  echo ""
+  printf "Tetap lanjut buka terminal baru? (y/n) [n]: "
+  read -r OK
+  case "$OK" in
+    y|Y) ;;
+    *) echo "Dibatalkan. Tutup halaman ini, atau pilih LANJUT ke session yang ada."; sleep 2; exit 0 ;;
+  esac
+fi
 
 # buat session tmux unik per pembukaan
 SESSION="$SESSION_PREFIX-$(date +%s)"
