@@ -49,6 +49,28 @@ Tab web terminal ditutup tidak sengaja → session tmux tetap hidup. `pilih-term
 - Related Files: OPENCODE/linux-tablet/scripts/pilih-terminal.sh
 - Tags: gotty, tmux, terminal, session, resume
 
+## [LRN-20260921-003] termux_wakelock_runit
+
+**Logged**: 2026-09-21
+**Priority**: high
+**Status**: active
+**Area**: website-infra
+
+### Summary
+Termux harus tetap hidup di latar belakang (server gotty/nginx/cloudflared). Ditambahkan `termux-wake-lock` agar CPU tidak tidur saat app di-minimize.
+
+### Details
+- Service runit `wakelock` sudah ada tapi run-nya cuma `sleep 86400` (tidak memegang wakelock).
+- Diubah run script jadi `termux-wake-lock; exec sleep 86400` — wake-lock di-aquire tiap service start.
+- `termux-wake-lock` itu command one-shot (bukan daemon) → aman dipanggil berulang, Android pegang wakelock selama dipanggil.
+- **Batasan Android:** swipe/close dari recent apps tetap matikan proses. Minimize (tombol Home) + wake-lock = jalan terus di background.
+- Disarankan juga nonaktifkan battery optimization untuk Termux di pengaturan Android.
+
+### Metadata
+- Source: user_feedback
+- Related Files: /data/data/com.termux/files/usr/var/service/wakelock/run
+- Tags: termux, wakelock, runit, android, background
+
 ---
 **Logged**: 2026-08-11
 **Priority**: high
