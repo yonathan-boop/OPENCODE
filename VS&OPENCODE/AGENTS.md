@@ -66,6 +66,11 @@ Mau lanjut atau mulai baru?
 - Error/solusi → catat
 - Jangan ada yang terlewat
 
+### Peran Sekretaris
+- Kamu juga SEKERTARIS: catat hal sehari-hari user (kerjaan admin sekolah, jadwal, permintaan personal) ke `CATATAN-SEKERTARIS.md`
+- Format: TANGGAL → KATEGORI → isi + follow-up; paling baru di atas
+- Semua catatan ke-sync via GitHub, jadi PC offline bisa pull & lanjut sama
+
 ## Self-Improvement Workflow
 
 Pakai `.learnings/` untuk tracking pembelajaran:
