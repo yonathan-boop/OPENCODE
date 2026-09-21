@@ -4,6 +4,14 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260921-002] batch_proses_mapel_ujian_filaname_sebagai_state — priority: high
+Pola batch memproses puluhan mapel ujian per UTS (gabungan catatan server `self-study/notes/batch-proses-...md` 20/9 + konteks "OK Edit P" LRN-20260918-010) — utk jalan aman & bisa di-resume tanpa mulai ulang:
+- **Nama file = database status (durable state):** sufiks status di nama (`base`, `base ... Edit`, `... OK`, `... P`) adalah kebenaran yang tahan restart. Loop batch: `glob` folder @backup guru → skip yang sudah mengandung status selesai → proses sisanya → rename sesuai tahap tercapai. Backlog = hasil scan folder, jangan hardcode daftar mapel (otomatis menangkap mapel baru). Tidak butuh DB terpisah.
+- **Batch harus bisa di-resume:** simpan kemajuan per file (bukan 1 loncatan). Kalau putus di mapel ke-23/40 → laporan "1–22 selesai, 23 gagal(sebab), 24–40 pending", bukan "gagal". **Error dipisahkan dari alur:** file gagal dicatat (nama+error) dan batch tetap lanjut; file gagal diproses ulang terpisah.
+- **Idempoten output:** output = file baru (`--out` default `base + " Edit.docx"` LRN-20260918-010), memproses ulang menghasilkan file sama, tidak korup. **Urutan checkpoint harus benar:** tulis output sukses DULU, baru tandai selesai ("write-then-acknowledge") — jangan tandai "selesai" sebelum file tersimpan.
+- **Jebakan:** status dobel/ambigu di nama (`final_finalOK_...`) — hanya flag yang disepakati; kata "OK"/"final" ≠ selesai — verifikasi isi dulu (validasi visual wajib, LRN-20260725-001); JANGAN edit dokumen sumber sekolah in-place (simpan arsip, kerja di salinan — sama dgn aturan sistem versi absensi); jangan stop di error pertama (satu file rusak menghentikan semua); jangan proses file tanpa sanitasi nama (karakter ilegal Windows `< > : " / \ | ? *`).
+- **Alur siklus mapel:** build (ujian_builder.py) → validasi render/visual → update status di nama. Batas: mapel banyak equation/gambar tetap butuh Word COM, bukan batch penuh (LRN-20260918-005). #batch #ujian #tracking #idempotent #ok-edit-p #workflow
+
 ## [LRN-20260921-001] batch_docx_ke_pdf_libreoffice_headless — priority: high
 Konversi batch dokumen ujian (`OK Edit P`) DOCX→PDF siap cetak di yonat-PC, teruji live 21/9 (LO 26.8, soffice di `C:\Program Files\LibreOffice\program\soffice.exe`, TIDAK di PATH). Persis tahap "P" alur kerja UTS — mensahkan rencana dari batch-proses note 20/9.
 - **Perintah dasar:** `soffice --headless --norestore --convert-to pdf --outdir out src\file.docx`. Nama output = nama input (renama manual). **Exit code BOHONG** — gagal masih bisa exit 0, sukses pun bisa tampil `Error: source file could not be loaded`; WAJIB verifikasi output ada + bukan 0 byte + page count (pymupdf). "Could not find platform independent libraries" = berisik Java, abaikan.
