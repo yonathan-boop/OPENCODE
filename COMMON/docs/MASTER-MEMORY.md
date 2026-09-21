@@ -426,6 +426,24 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - Mapping: "Richlewijaya"→Richelcia Wijaya (TKB1), "wiliam"→Willian Geoffrey Utama (TKB2), "jemia"→Jemia Zhevano Yamresa Kembaren (TKB2), "Raceline"→Rachellyn Gracia Chindra (TKa, konfirmasi user — 2 nama mirip Rachel- di TKa)
 - FILE_PATH absensi.py → file versi 16 September.
 
+### Absensi 21 September 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 21/9 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 21/9 | PG | Stefano Benedict Imanuel | S |
+| 21/9 | TKB(2) | Keyla Toshiro | S |
+| 21/9 | TKB1 | Kenzo Ichigo Susantio | S |
+| 21/9 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+| 21/9 | TKa | Shon Elzxen Ng | S |
+| 21/9 | TKa | Giovan Otniel Laurentius | S |
+| 21/9 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 21/9 | TKa | Falisha Nataly Br Bangun | S |
+
+- File versi terbaru: Absensi 21 September 2026 Monday 09_45_34.xlsx (9 mark tgl 21, validasi lulus)
+- Mapping: "Stevano"→Stefano Benedict Imanuel (PG), "Keyyvat"→Kayyvant Boido Bona Sinaga (TKB1), "Falisa"→Falisha Nataly Br Bangun (TKa)
+- FILE_PATH absensi.py → file versi 21 September.
+
 ### Kelas: TKa, TKB1, TKB2, PG
 
 ### Alasan: sakit (S), izin (I), alpha (A)
