@@ -42,15 +42,20 @@ rclone config
 ```
 
 ### Langkah 3 — Re-autorisasi token (client baru butuh token baru)
-Server ini tidak punya browser. Dua opsi:
-- **Opsi A (paling gampang):** jalankan dari PC yang ada browser (yonat-PC):
+- **Opsi A — CARA RESMI (terbaru, paling gampang, TANPA copy-paste JSON):** setelah client_id/
+  secret tersimpan di config, langsung di server (tanpa browser):
+  ```bash
+  rclone config reconnect gdrive:
+  # saat ditanya "Already have a token - refresh?" → jawab "Y" (yes)
+  ```
+  rclone akan memunculkan link OAuth → buka di browser PC mana pun, login akun Google yang
+  punya akses ke Drive tujuan → token baru dibuat otomatis untuk client_id milik sendiri.
+- **Opsi B (fallback manual):** kalau `reconnect` bermasalah, jalankan dari PC yang ada browser:
   ```
   rclone authorize "drive" --drive-client-id=<CLIENT_ID> --drive-client-secret=<CLIENT_SECRET>
   ```
-  → buka link, login akun Google (yang punya akses ke Drive tujuan / pakai akun yang sama
-  dengan yang biasa), copy JSON token yang keluar.
-- **Opsi B:** di server, `rclone config` → gdrive → `Auto config? n` → paste token JSON manual
-  (token didapat dari opsi A).
+  → buka link, login akun Google, copy JSON token → di server `rclone config` → gdrive →
+  `Auto config? n` → paste JSON token manual.
 
 ### Langkah 4 — Verifikasi
 ```bash

@@ -4,6 +4,14 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260921-003] rclone_gdrive_shared_client_id_retire_2026_migrasi_resmi — priority: high
+Riset 21/9 (forum rclone 6/7/2026 + issue #9580 + docs rclone.org/drive) — menindaklanjuti panduan `COMMON/docs/RCLONE-CLIENT-ID.md` (server belum migrasi; log gdrive-website-check tetap spam NOTICE shared client_id). Fakta & cara yang sebenarnya:
+- **Timeline resmi:** Google mulai MENAGIH API request utk shared client_id rclone (drive+photos) → rclone RETIRE total "later in 2026, setelah 90 hari notice". Per Sep 2026 notice 90 hari BELUM mulai → masih ada waktu, tapi WAJIB migrasi sebelum itu, atau **auto-update website (cron 15 mnt) + backup gdrive MATI**. rclone terbaru v1.75.1 (4/9/2026) tetap mengingatkan lewat NOTICE + wizard config sekarang default "No" utk lanjut pakai shared.
+- **Cara migrasi RESMI (lebih sederhana drpd panduan lama copy-paste JSON):** (1) edit remote `rclone config` → isi `client_id`+`client_secret` sendiri; (2) jalankan `rclone config reconnect gdrive:`; (3) jawab **"Y" utk "Already have a token - refresh?"** → rclone bikin token baru pakai client milik sendiri. Tidak perlu `rclone authorize` + paste token manual. Flow manual copy-paste JSON tetap jadi fallback bila reconnect bermasalah.
+- **Service account TIDAK terdampak** & jadi alternatif bersih — tapi butuh Google Workspace (akun konsumen @gmail biasa TIDAK bisa bikin SA, dan SA tidak bisa lihat Shared-with-me tanpa share manual tiap folder) → bukan jalur untuk server ini.
+- **Jebakan:** akun Advanced Protection Program (APP) Google tidak bisa pakai client_id sendiri (allowlist per-client-id, bahkan Apps Script CLI ikut kena) → habis masa grace rclone shared mati total utk kelas user itu; bukan kasus user sekolah ini. Scope di wizard bisa beda tampilan (isu forum: terkadang pemilihan scope tak muncul — jangan panik, default rclone `drive` sudah memadai utk operasi saat ini). Client_id/secret & token masuk `~/.config/rclone/rclone.conf` — JANGAN commit.
+- **Verifikasi selesai:** NOTICE shared client_id hilang dari log + `rclone lsd gdrive:` & `bash /root/SERVER-LINUX/scripts/gdrive-website-check.sh` sukses. #rclone #gdrive #oauth #migrasi #server-linux #urgent
+
 ## [LRN-20260921-002] batch_proses_mapel_ujian_filaname_sebagai_state — priority: high
 Pola batch memproses puluhan mapel ujian per UTS (gabungan catatan server `self-study/notes/batch-proses-...md` 20/9 + konteks "OK Edit P" LRN-20260918-010) — utk jalan aman & bisa di-resume tanpa mulai ulang:
 - **Nama file = database status (durable state):** sufiks status di nama (`base`, `base ... Edit`, `... OK`, `... P`) adalah kebenaran yang tahan restart. Loop batch: `glob` folder @backup guru → skip yang sudah mengandung status selesai → proses sisanya → rename sesuai tahap tercapai. Backlog = hasil scan folder, jangan hardcode daftar mapel (otomatis menangkap mapel baru). Tidak butuh DB terpisah.
