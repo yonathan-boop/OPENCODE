@@ -1,11 +1,16 @@
 # TODO-STATE.md — Persistent Todo Panel State
 
-Di-update: 15 September 2026
+Di-update: 21 September 2026
 
 ## ≡≡≡ GAGAL / BERHENTI ≡≡≡
 - (kosong)
 
 ## ≡≡≡ LAGI DIKERJAIN ≡≡≡
+- (kosong)
+
+## ≡≡≡ BERHASIL ≡≡≡
+- **Terminal online multi-pilih (21/9):** `linux-tablet/scripts/pilih-terminal.sh` — buka methodist-11.my.id/opencode → menu pilih jumlah terminal (1/2/dst, tmux window) → bisa tambah lagi (Ctrl-b + c). gotty service + start-website.sh sudah pakai script ini; nginx & cloudflared jadi service runit (file `down` dihapus, auto-restart boot)
+- **Website balik live (21/9):** methodist-11.my.id → 200 setelah service cloudflared & nginx yang state `down` dihidupkan via runit
 - **Self-study daemon 24/7 aktif** (server): belajar mandiri terus-menerus, proses terpisah, guard RAM/disk. Topik berikutnya dari queue (Kurikulum Deep Learning 2026). Monitor: `/var/log/self-study-daemon.log` + beat `/var/log/self-study-beat`.
 - GENERATOR-RPP Methodist-11: file HTML aktif di `OneDrive\Dokumen\`, backup di repo memory. API key Gemini tertanam. User mungkin mau verifikasi NIP/NUPTK guru → belum ada data.
 - **rclone gdrive shared client_id akan di-retire 2026** → user perlu buat client_id sendiri (panduan: `COMMON/docs/RCLONE-CLIENT-ID.md`). Urgent karena auto-update website & backup gdrive bergantung ke sana.

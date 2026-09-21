@@ -15,6 +15,13 @@ methodist-11.my.id/terminal  → localhost:7681 (ttyd)
 methodist-11.my.id/opencode  → localhost:7681 (ttyd, alias)
 ```
 
+### UPDATE 21 September 2026 (hidup di tablet Termux, bukan linux-hp lagi)
+- Tunnel Cloudflare → **nginx:8081** (Termux Android TIDAK bisa bind port 81).
+- `methodist-11.my.id` → `/` → `http.server:8090`; `/opencode` → `ttyd -p 7681 -b /opencode bash -l` (base-path, TANPA password).
+- Config nginx: `$PREFIX/etc/nginx/conf.d/reverse-proxy.conf` (listen 8081), include di `nginx.conf` via `include conf.d/*.conf;`.
+- Start semua: `bash OPENCODE/linux-tablet/scripts/start-website.sh`.
+- `/terminal` TIDAK dipasang (cuma `/opencode`).
+
 ## Ports
 | Service | Port | Fungsi |
 |---------|------|--------|

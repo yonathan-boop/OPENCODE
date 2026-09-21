@@ -6,8 +6,50 @@ Corrections, insights, and knowledge gaps captured during development.
 
 ---
 
-## [LRN-20260811-001] cloudflare_named_tunnel_website
+## [LRN-20260921-001] gotty_menu_pilih_terminal_tmux
 
+**Logged**: 2026-09-21
+**Priority**: high
+**Status**: active
+**Area**: website-infra
+
+### Summary
+Terminal online methodist-11.my.id/opencode sekarang buka menu `pilih-terminal.sh` — user pilih mau berapa terminal (1/2/dst), dibuat via tmux windows, dan bisa tambah lagi belakangan (Ctrl-b lalu c).
+
+### Details
+- gotty service jalankan: `gotty -w -p 7681 -m /opencode <path>/pilih-terminal.sh` (bukan `bash -l` langsung).
+- Script: `OPENCODE/linux-tablet/scripts/pilih-terminal.sh` (tmux 3.7c Termux OK — session unik per bukaan `web-<epoch>`, max 6 window, validasi input, `Ctrl-b` = prefix: `c`=tambah terminal, `<n>`=pindah, `w`=daftar, `exit`=tutup satu).
+- Service runit lebih stabil untuk layanan yang harus selalu hidup: gotty/nginx/cloudflared. File `down` di service dir harus dihapus biar auto-start saat boot.
+- **Jebakan:** `start-website.sh` lama spawn gotty lewat `setsid` → bentrok 2 instance dengan runit. Sekarang start script pakai `sv up`.
+
+### Metadata
+- Source: user_feedback
+- Related Files: OPENCODE/linux-tablet/scripts/pilih-terminal.sh, /data/data/com.termux/files/usr/var/service/gotty/run
+- Tags: gotty, tmux, terminal, methodist-11
+
+## [LRN-20260921-002] gotty_resume_session_lama
+
+**Logged**: 2026-09-21
+**Priority**: high
+**Status**: active
+**Area**: website-infra
+
+### Summary
+Tab web terminal ditutup tidak sengaja → session tmux tetap hidup. `pilih-terminal.sh` diubah: buka lagi → daftar session lama muncul, tinggal pilih nomor buat LANJUT (bukan buka dari awal).
+
+### Details
+- Masalah lama: script selalu `tmux new-session -s web-$(date +%s)` → tiap buka halaman = session baru, riwayat hilang.
+- Fix: di awal script cek `tmux ls | grep -E '^web-'`. Kalau ada session lama → tampilkan daftar + jumlah window, user ketik nomor untuk `tmux attach-session`. Ketik `b` untuk buat baru, `0` keluar.
+- Max terminal baru dikurangi 6 → **2** (`TERM_TOTAL=2`).
+- Lambat di tablet bukan karena tablet, tapi karena 2 instance opencode jalan bersamaan (CPU 80% + 23%). Opencode = proses berat (Bun runtime).
+- Session yang masih hidup bisa numpuk → cek & kill dengan `tmux kill-session -t web-<epoch>`.
+
+### Metadata
+- Source: user_feedback
+- Related Files: OPENCODE/linux-tablet/scripts/pilih-terminal.sh
+- Tags: gotty, tmux, terminal, session, resume
+
+---
 **Logged**: 2026-08-11
 **Priority**: high
 **Status**: active

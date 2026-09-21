@@ -1,12 +1,18 @@
 # WEBSITE SD METHODIST-11 + CLOUDFLARE TUNNEL (linux-tablet)
 
-Di-update: 12 Agustus 2026 (r4: judul hero rapi, gambar kartu bisa diklik)
+Di-update: 21 September 2026 (migrasi host dari linux-hp → tablet Termux; TUNNEL PERLU DIBUAT ULANG)
 
-## Status: AKTIF & LIVE
+## Status: AKTIF & LIVE (21 Sep 2026)
 
-- **URL publik:** https://methodist-11.my.id
-- **Web server lokal:** http://localhost:8090
-- **Tunnel:** Cloudflare Tunnel named "Linux HP" (token-based, BUKAN quick tunnel acak)
+- **URL publik:** https://methodist-11.my.id → HTTP 200 ✅ | /opencode → gotty terminal (TANPA password) ✅
+- **Host:** tablet Termux (linux-tablet-tiny)
+- **Arsitektur (baru):** Cloudflare tunnel → **nginx:8081** (reverse proxy) → `/` → website **:8090**, `/opencode` → **gotty:7681**
+- **Tunnel:** named tunnel BARU id `28d14255-d321-4d55-aa3e-92c68ed9e7d1`, hostname service `methodist-11.my.id` → `http://localhost:8081`
+- **Komponen:** `python3 -m http.server 8090` (website), **gotty** `~/go/bin/gotty -w -p 7681 -m /opencode bash -l` (terminal; `-m`=base path, `-w`=writable), nginx port 8081 (config `$PREFIX/etc/nginx/conf.d/reverse-proxy.conf`), `cloudflared tunnel run --token $TOKEN`
+- **PENTING (21/9):** ttyd build Termux CACAT — nggak pernah spawn shell (raw WS cuma kasih ping, bungkam). Ganti ke **gotty** (`go install github.com/sorenisanerd/gotty@latest`). Opsi beda dari ttyd: base path `-P`→`-m`, writable `-W`→`-w`. Protocol gotty pakai JSON envelope — test mentah teks WS hasil kosong, browser yang handle.
+- **DNS:** CNAME flattened otomatis oleh dashboard (root apex) — proxied
+- **Start semua:** `bash OPENCODE/linux-tablet/scripts/start-website.sh` (istilah user: "hidupkan website")
+- **Catatan fix (ERR-20260921-001):** tunnel lama "Linux HP" (`912a22fa-...`) sudah terhapus & tidak dikenali. Buat tunnel baru → token baru di `start-website.sh` → Public Hostname `methodist-11.my.id` (subdomain kosong) → error "record already exists" = hapus A record lama → dashboard tidak auto-bikin record = tambah manual CNAME target `<tunnel-id>.cfargotunnel.com`. **PENTING:** pakai port ≥1024 di Termux Android (81 tidak bisa, `bind permission denied`) → nginx di **8081**.
 
 ## Komponen
 
