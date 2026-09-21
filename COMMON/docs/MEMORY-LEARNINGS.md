@@ -4,6 +4,16 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260921-005] batch_print_pdf_command_line_sumatrapdf — priority: high
+Cara cetak batch PDF (tahap "P" UTS, puluhan mapel) langsung dari CLI tanpa dialog — riset+verifikasi 21/9, murid: printer Brother `\\192.168.136.1\Brother HL-L2360D series`. Opsi terbaik = **SumatraPDF** (gratis/GPL-3, ringan, CLI lengkap) — bukan Ghostscript (`mswinpr2` lambat render-raster, urusan tray default sering meleset saat silent, duplex `mswinpr2` jebakan numcopies), bukan Adobe (tidak ada batch silent legal).
+- **Instal:** `winget install -e --id SumatraPDF.SumatraPDF` (exe per-user → biasanya `%LOCALAPPDATA%\SumatraPDF\SumatraPDF.exe`, tidak selalu di PATH; script harus cek beberapa path).
+- **Perintah dasar:** `SumatraPDF.exe -print-to "<printer>" -print-settings "<opsi>" -silent file1.pdf file2.pdf ...` — multi-file 1 invokasi, bisa langsung semua; setting berlaku untuk semua file. `-print-to-default` = printer default (hindari salah nama), `-print-to` butuh nama PERSIS dari `Get-Printer`/Settings (bisa cek via `SumatraPDF.exe -list-printers`).
+- **Opsi `-print-settings` (komma, urutan bebas):** halaman `5`/`2-6`/`10-8`/`-3--1`/`last`, `odd`/`even`, `portrait`/`landscape`, `noscale`/`shrink`(default)/`fit`/`stretch`, `center`, `color`/`monochrome`, `collate`/`nocollate`, `duplex`/`duplexshort`/`duplexlong`/`simplex`, `bin=auto`/`bin=N`, `paper=A4`/`paper=auto`/`paperkind=N` (nama per driver), `ignore-pdf-print-settings`, `3x` (jumlah salinan). Contoh utk soal folio: `"fit,monochrome"`; necis: `"fit,monochrome,duplexlong"`.
+- **Verifikasi = exit code (JANGAN percaya diam-diam):** 0=sukses, 2=file tak terbaca, 3=PDF larang print, 4=printer tak ditemukan, 5=driver/device gagal, 6=terkena policy print. Multi-file → exit code hanya kategori kegagalan PERTAMA; kalau butuh granular per-file, loop per file (pola checkpoint LRN-20260921-002). Gagal di luar spooler (habis kertas/offline) TIDAK ketahuan via exit code → cek antrian print bila ragu.
+- **PDF viewerPreferences ikut dipakai** sebagai default (PrintScaling/NumCopies/Duplex/PickTrayByPDFSize) — tambah `ignore-pdf-print-settings` kalau mau paksa setingan sendiri.
+- **Batasan:** Sum dan rotasi otomatis; `disable-auto-rotation`/`rotate=NNN` utk memperbaiki orientasi; tray `paperkind` kalau nama kertas `paper=` tak cocok driver.
+- Tool: `COMMON/scripts/cetak_ujian.ps1` (loop per-file + summary sukses/gagal). #print #pdf #cetak #batch #sumatrapdf #uts #printer
+
 ## [LRN-20260921-004] evaluasi_repo_asisten_ai_untuk_sistem_sekretaris — priority: medium
 User minta cek repo AI assistant di GitHub sbg referensi upgrade sistem sekretaris (21/9). Evaluasi singkat 2 repo inti:
 - **kaymen99/personal-ai-assistant** (178★, Python/LangGraph-LangChain): manager agent + sub-agents (email/calendar/notion/slack/research), chat via Telegram/Slack/WhatsApp. Konsep "manager→sub-agent" SUDAH kita punya (otak=manager, task tool=sub-agent, server self-study 24/7=research). Repo ini butuh banyak API key eksternal (Google/Notion/Tavily/Twilio) — overkill & mahal utk kebutuhan sekolah. Notion/Google Calendar API TIDAK diperlukan (data kita di repo memory).
