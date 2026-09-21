@@ -9,6 +9,9 @@ Di-update: 21 September 2026
 - (kosong)
 
 ## ≡≡≡ BERHASIL ≡≡≡
+- **Resume session terminal online (21/9):** `linux-tablet/scripts/pilih-terminal.sh` sekarang deteksi session tmux lama (`web-*`) → tawarkan LANJUT (pilih nomor) atau buka baru (`b`). Max terminal 6 → **2**. Auto-cleanup session basi (>12 jam, gak dipakai) + guard opencode tunggal (warning kalau masih ada opencode jalan)
+- **Wakelock Termux (21/9):** service runit `/usr/var/service/wakelock/run` diubah jadi `termux-wake-lock; exec sleep 86400` — CPU tetap hidup saat app di-minimize. Battery optimization Termux sudah dimatikan user di HP
+- **Koreksi device (21/9):** linux-tablet = **Poco X7 Pro** (HP Xiaomi), bukan "Red Magic Tab Astra 3 Pro". Diperbaiki di MASTER-MEMORY + setup.md
 - **Terminal online multi-pilih (21/9):** `linux-tablet/scripts/pilih-terminal.sh` — buka methodist-11.my.id/opencode → menu pilih jumlah terminal (1/2/dst, tmux window) → bisa tambah lagi (Ctrl-b + c). gotty service + start-website.sh sudah pakai script ini; nginx & cloudflared jadi service runit (file `down` dihapus, auto-restart boot)
 - **Website balik live (21/9):** methodist-11.my.id → 200 setelah service cloudflared & nginx yang state `down` dihidupkan via runit
 - **Self-study daemon 24/7 aktif** (server): belajar mandiri terus-menerus, proses terpisah, guard RAM/disk. Topik berikutnya dari queue (Kurikulum Deep Learning 2026). Monitor: `/var/log/self-study-daemon.log` + beat `/var/log/self-study-beat`.

@@ -68,7 +68,35 @@ Domain methodist-11.my.id kembali HTTP 530 walaupun nginx/server 8090 jalan (200
 
 ---
 
-## [ERR-20260509-001] vs_code_instance_scope
+## [ERR-20260921-003] gotty_no_auth_terminal_terbuka
+
+**Logged**: 2026-09-21
+**Priority**: high
+**Status**: open
+**Area**: website-infra
+
+### Summary
+Terminal online `methodist-11.my.id/opencode` jalan dengan `gotty -w` TANPA auth. Siapa pun di internet yang tahu path-nya bisa membuka terminal penuh (nulis command) di perangkat ini.
+
+### Error
+- Run script: `gotty -w -p 7681 -m /opencode <pilih-terminal.sh>` — flag `-w` = permit write, tanpa `-c user:pass` = Basic Auth disabled.
+- `--help` menegaskan: `--credential, -c <user:pass> — default disabled`.
+
+### Context
+- User sadar risiko ini dan **memilih skip dulu** (tidak dipasang password).
+- Perangkat yang terbuka dari internet ini = Poco X7 Pro (server website + terminal).
+
+### Suggested Fix (saat user siap)
+1. `gotty -w -c user:password -p 7681 ...`
+2. Atau wrapper nginx basic auth di 8090/7681.
+3. Setelah aktif, cek: mengunjungi `/opencode` tanpa kredensial tidak boleh masuk.
+
+### Metadata
+- Reproducible: yes
+- Related Files: /data/data/com.termux/files/usr/var/service/gotty/run
+- Tags: gotty, security, auth, terminal, methodist-11
+
+---
 
 **Logged**: 2026-05-09
 **Priority**: high

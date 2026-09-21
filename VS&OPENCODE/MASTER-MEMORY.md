@@ -122,7 +122,16 @@ Lihat file terpisah di COMMON/docs/:
 3. Dua repo wajib: `C:\Users\Advan\Desktop\memory` (shared) + `C:\Users\Advan\memory` (local)
 4. Kalau ragu → spawn sub-agent khusus push dengan instruksi path lengkap
 
---- 
+---
+
+### 21 September 2026 — linux-tablet (Poco X7 Pro)
+- **Website live** (methodist-11.my.id → 200) via nginx 8090 + cloudflared tunnel runit. Service state `down` dihapus, auto-restart boot
+- **Terminal online gotty** (`/opencode`, port 7681): `pilih-terminal.sh` — pilih jumlah terminal (max 2), session tmux `web-<epoch>`, bisa resume session lama kalau tab tertutup, auto-cleanup session basi (>12 jam), guard opencode tunggal biar gak 2 instance bareng
+- **Wake-lock aktif**: service runit `/usr/var/service/wakelock/run` = `termux-wake-lock; exec sleep 86400`. Battery optimization Termux dimatikan user
+- **Device dikoreksi**: linux-tablet = Poco X7 Pro (HP Xiaomi 12GB), BUKAN Red Magic Tab Astra
+- **Struktur service runit** (Poco X7 / Termux): gotty, cloudflared, nginx, wakelock, sshd, ttyd, cupsd, website
+- **Known issue (belum ditutup):** gotty jalan `-w` tanpa auth/password → siapa pun bisa buka terminal. User pilih skip dulu
+- **Penting:** `openclaw` di setup ini = opencode; folder shared memory `OPENCODE/` di termux
 
 ### 9 Mei 2026 — PC-Advan
 - Install VS Code v1.116.0
