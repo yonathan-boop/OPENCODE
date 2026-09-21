@@ -24,5 +24,7 @@ Sync via GitHub → bisa dibuka dari PC manapun (PC-06, Advan, HP).
 - **Keputusan user:** terminal online TIDAK dipasang password dulu (risiko siapa pun bisa buka dari internet) — dicatat sebagai known issue
 - **Device:** Poco X7 Pro (HP Xiaomi), RAM 12GB, storage bebas 193GB, uptime 31 hari tanpa restart
 - **Pola kerja:** aku = sekretaris — catat semua kerjaan, keputusan, instruksi, bisa dilanjut dari PC manapun termasuk PC offline
+- **Analisis DATA METHODIST-11 selesai** (arsip Methodist-11 Document + website): pola kegiatan tahunan (Juli–Juni) → **CATATAN-AGENDA-SEKOLAH.md** (jadwal 2026-2027 tanggal pasti + pola per bulan) · pola kerja 12 kegiatan → **CATATAN-KERJAAN-SEKOLAH.md** · sumber: kalender resmi 2011–2027, SURAT KELUAR, KWITANSI, RAPAT GURU, JADWAL UJIAN, MPLS, PENGUMUMAN
+- **Catatan penting:** tanggal Perayaan Natal 2026 belum final — kalender resmi (PG/TK 17/12, SD 4-6 18/12, Guru 19/12) vs notulen rapat 8/9 (19–22/12). Pembicara sudah ditetapkan (No.746/747/506/507). Diminta konfirmasi & update.
 
 ---
