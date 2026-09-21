@@ -4,6 +4,15 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260921-006] autonumbering_docx_w_numpr_restart_per_seksi — priority: high
+Cara bikin penomoran soal otomatis (matching struktur file jadi sekolah di benchmark LRN-20260918-006: pakai AutoNumbering `w:numPr`/ListParagraph, bukan literal `"N.\t"`) via python-docx 1.2.0 — riset + teruji live di yonat-PC 21/9 (render LibreOffice→PDF terverifikasi). Gap ini langkah berikutnya ujian_builder.py.
+- **Numbering part SUDAH ADA di template default python-docx** (9 abstractNum + 9 num = 18 child di `doc.part.numbering_part.element`). JANGAN anggap kosong — pakai ID unik sendiri (ambil `max` dari numId yang ada, mis. 100) supaya tidak bentrok dengan instance bawaan (numId 1-9 dipakai style List Bullet/Number).
+- **Injeksi definisi:** bungkus XML `w:abstractNum` + `w:num` (parse_xml, namespace WordprocessingML) → `root.append(elm)`. Format level utk soal PG (sesuai format ujian): `w:lvlText="%1."`, `numFmt=decimal`, start 1, `w:ind left=936 hanging=720` sama seperti indent/hanging opsi 0.65"/2 kata di liter. Boleh level 2 (`%2.`) utk sub-soal.
+- **Terapkan ke paragraf:** `pPr = p._p.get_or_add_pPr()` → `numPr = pPr.get_or_add_numPr()` (ORDER-AMAN, sisip posisi benar sesuai skema — jangan `pPr.append(numPr)` manual yang menaruh di akhir dan bisa di luar urutan). Lalu `numPr.append(ilvl=0)` + `numPr.append(numId=<id>)`.
+- **Restart per seksi (persis kebutuhan "renumber per Bagian"):** buat `w:num` KEDUA yang merefer abstractNum yang SAMA tapi dengan `<w:lvlOverride ilvl="0"><w:startOverride val="1"/></w:lvlOverride>` → paragraf yang pakai num instance pertama lanjut angka (`1,2,3`), yang pakai instance restart → mulai lagi `1,2`. Terverifikasi render: bagian A `1,2,3` → bagian B `1,2`. Tiap Bagian baru = 1 num instance baru.
+- **Jebakan baca:** `paragraph.text` TIDAK memuat angka otomatis (num dibalik nama di numbering.xml) — cek via render PDF atau inspeksi `numbering.xml` (`<w:numPr>` di document.xml + `startOverride` di numbering). Angka muncul sebagai span terpisah dari teks di `page.get_text()`. Angka lanjut = semua paragraf satu instans `w:num` yang sama.
+- **Keuntungan vs literal `"N.\t"`:** revisi/penyisipan soal tengah tidak bikin salah urut, konsisten dgn file jadi sekolah (ListParagraph w:numPr), dan nomor tetap rapi walau indent berubah. #docx #autonumber #numpr #penomoran #ujian #python-docx #renumber
+
 ## [LRN-20260921-005] batch_print_pdf_command_line_sumatrapdf — priority: high
 Cara cetak batch PDF (tahap "P" UTS, puluhan mapel) langsung dari CLI tanpa dialog — riset+verifikasi 21/9, murid: printer Brother `\\192.168.136.1\Brother HL-L2360D series`. Opsi terbaik = **SumatraPDF** (gratis/GPL-3, ringan, CLI lengkap) — bukan Ghostscript (`mswinpr2` lambat render-raster, urusan tray default sering meleset saat silent, duplex `mswinpr2` jebakan numcopies), bukan Adobe (tidak ada batch silent legal).
 - **Instal:** `winget install -e --id SumatraPDF.SumatraPDF` (exe per-user → biasanya `%LOCALAPPDATA%\SumatraPDF\SumatraPDF.exe`, tidak selalu di PATH; script harus cek beberapa path).
