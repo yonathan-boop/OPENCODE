@@ -125,6 +125,7 @@ Lihat file terpisah di COMMON/docs/:
 ---
 
 ### 21 September 2026 — linux-tablet (Poco X7 Pro)
+- **SEO + GSC prep website Methodist-11** (lihat `linux-tablet/docs/SEO-METHODIST11.md`): sitemap.xml (17 URL) + robots.txt (blokir `/rpp/`) live 200, title dirapikan + meta description, canonical, Open Graph, Twitter card, JSON-LD School schema di index.html dan 16 halaman pages/. GSC belum diverifikasi — butuh login Google user.
 - **Website live** (methodist-11.my.id → 200) via nginx 8090 + cloudflared tunnel runit. Service state `down` dihapus, auto-restart boot
 - **Terminal online gotty** (`/opencode`, port 7681): `pilih-terminal.sh` — pilih jumlah terminal (max 2), session tmux `web-<epoch>`, bisa resume session lama kalau tab tertutup, auto-cleanup session basi (>12 jam), guard opencode tunggal biar gak 2 instance bareng
 - **Wake-lock aktif**: service runit `/usr/var/service/wakelock/run` = `termux-wake-lock; exec sleep 86400`. Battery optimization Termux dimatikan user
