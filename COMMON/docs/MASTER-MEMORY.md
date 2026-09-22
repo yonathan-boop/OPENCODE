@@ -29,6 +29,7 @@ Versi: PADAT (hasil konsolidasi; detail historis dipindah ke ARSIP-ABSENSI-2026.
 - TrafficMonitor (7/9): monitoring net di taskbar, auto-start via Startup shortcut.
 - OPENCLAW DIMATIKAN TOTAL (7/9): tray `OpenClaw.Tray.WinUI.exe` di-kill+Run entry hapus; gateway WSL2 `OpenClawGateway` systemd user service di-disable; settings.json AutoStart=false + semua notif false. Hidupkan lagi = jalankan exe manual + `systemctl --user enable --now openclaw-gateway.service`. Bot Telegram @Methodist-11 ikut mati (BELUM dihapus total — kalau hapus lakukan di sini).
 - Printer: Brother HL-L2360D (\\192.168.136.1) dipakai. EPSON L3210 sudah DIHAPUS TOTAL (8/9) — bisa auto re-add dari server, hapus ulang + restart spooler kalau muncul.
+- Antigravity Permission (22/9): `autoExecutionPolicy` diset ke `CASCADE_COMMANDS_AUTO_EXECUTION_AUTO` di `C:\Users\yonat\.gemini\config\config.json` agar eksekusi perintah terminal berjalan langsung (Always Allow) tanpa popup konfirmasi berulang.
 - Word COM tips & jebakan (yonat-PC): lihat MASTER lama (git) / rumus cepat:
   - Hanya bunuh instance WINWORD tanpa `MainWindowTitle` (ghost COM), jangan sentuh dokumen user.
   - Edit `word/document.xml` pakai **XmlDocument**, jangan regex ([ERR-20260902-001]).
