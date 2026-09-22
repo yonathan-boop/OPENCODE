@@ -453,9 +453,10 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 | 22/9 | TKB(2) | Jemia Zhevano Yamresa Kembaren | I |
 | 22/9 | TKa | Shon Elzxen Ng | S |
 | 22/9 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 22/9 | TKa | Giovan Otniel Laurentius | S |
 | 22/9 | TKB1 | Kayyvant Boido Bona Sinaga | S |
 
-- File versi terbaru: Absensi 22 September 2026 Tuesday 09_18_00.xlsx (6 mark tgl 22, validasi lulus)
+- File versi terbaru: Absensi 22 September 2026 Tuesday 09_18_00.xlsx (7 mark tgl 22, validasi lulus)
 - Mapping: "Hans"→Hans Lukas Mangara Datta Tampubolon (PG), "Stevano"→Stefano Benedict Imanuel (PG), "Jemia"→Jemia Zhevano Yamresa Kembaren (TKB2), "Shon"→Shon Elzxen Ng (TKa), "Chesa"→Chesa Efrata Ronatio Tampubolon (TKa), "Keyvant"→Kayyvant Boido Bona Sinaga (TKB1)
 - FILE_PATH absensi.py → file versi 22 September.
 
