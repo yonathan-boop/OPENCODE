@@ -9,6 +9,7 @@ Di-update: 21 September 2026
 - (kosong)
 
 ## ≡≡≡ BERHASIL ≡≡≡
+- **KSP 2026/2027 SD Swasta Methodist-11 (22/9):** Mulai pengisian Dokumen I KSP TP 2026/2027 di `C:\RaporServer\KOSP KURMER\Edit pc\`. Telah selesai penataan & pengisian data Halaman 1 (Cover + Logo resmi sekolah + alamat/email) dan Halaman 2 (Identitas Sekolah lengkap: NPSN, SK Pendirian, SK Izin Operasional). Format presisi 1 halaman per komponen, diselaraskan dengan instrumen validasi KSP Disdikbud Medan. File aktif: `TEMPLATE KSP 2026 2027 REVISI BPMP.docx` & `SD KSP 26-27 - DOKUMEN 1.docx`.
 - **Resume session terminal online (21/9):** `linux-tablet/scripts/pilih-terminal.sh` sekarang deteksi session tmux lama (`web-*`) → tawarkan LANJUT (pilih nomor) atau buka baru (`b`). Max terminal 6 → **2**. Auto-cleanup session basi (>12 jam, gak dipakai) + guard opencode tunggal (warning kalau masih ada opencode jalan)
 - **Wakelock Termux (21/9):** service runit `/usr/var/service/wakelock/run` diubah jadi `termux-wake-lock; exec sleep 86400` — CPU tetap hidup saat app di-minimize. Battery optimization Termux sudah dimatikan user di HP
 - **Koreksi device (21/9):** linux-tablet = **Poco X7 Pro** (HP Xiaomi), bukan "Red Magic Tab Astra 3 Pro". Diperbaiki di MASTER-MEMORY + setup.md
