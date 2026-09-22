@@ -681,6 +681,8 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **23/9 (yonat-PC, self-learn):** konsolidasi 2 catatan server yang belum terwakili ke MEMORY-LEARNINGS → **LRN-20260923-001** (OCR Tesseract utk dokumen scan guru → teks/PDF searchable/Excel via pytesseract `image_to_data` — Tesseract 5.5.3 sudah terpasang di PC) & **LRN-20260923-002** (koneksi PC↔server: ZeroTier/SSH/SFTP/tunnel — sudah live di PC, jebakan & hardening SSH dicatat). Tidak ada entri learning baru di luar konsolidasi (insight server sudah terwakili sisanya).
+
 - **22/9 (yonat-PC, self-learn):** konsolidasi 3 catatan server ke MEMORY-LEARNINGS + verifikasi fakta via web → **LRN-20260922-002** (mail merge narasi rapor Word+Excel), **LRN-20260922-003** (backup 3-2-1-1-0 — gap Methodist: belum air-gapped & belum tes restore), **LRN-20260922-004** (pembelajaran mendalam 2026 BUKAN kurikulum baru, verifikasi siaran pers resmi — istilah KSP/Profil Lulusan 8 dim/kokurikuler utk dokumen KSP user).
 
 - **22/9 (PC Wilianto, website):** website SD Methodist-11 PINDAH host ke PC Wilianto (gantikan server Linux 8f8b0f53). Token tunnel baru → tunnel `a8a6ab5a-69b8-4c43-a518-aeaa6ede5c27`, DNS `@` CNAME diganti user (22/9). Auto-start: cloudflared service Automatic + task `StartMethodist11Website` AtStartup → `start-website.ps1` (skip kalau port 8090 listen). Publik verified 200 (root/sitemap/pengumuman/rpp). Jebakan: leftover EventLog key blokir reinstall service.
