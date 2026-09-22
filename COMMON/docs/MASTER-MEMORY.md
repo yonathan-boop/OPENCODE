@@ -60,17 +60,21 @@ Versi: PADAT (hasil konsolidasi; detail historis dipindah ke ARSIP-ABSENSI-2026.
 - Trigger: `cd ~/OPENCODE && git pull` | Save: git add . && commit "update" && push.
 - Web lokal: python http.server 8090 (~/OPENCODE/linux-hp/web). Game: 8089.
 
-### PC Wilianto (server website LAMA - tidak dipakai lagi)
-- Tunnel 21b93a76 & PC Wilianto tidak lagi melayani website (22/8). Node 24, cloudflared 2026.8.2 service.
+### PC Wilianto (**HOST WEBSITE SEKARANG** — aktif kembali 22/9)
+- **Server website lagi sejak 22/9** (gantikan server Linux 8f8b0f53). Node 24, cloudflared 2026.8.2 service. Website hidup: `https://methodist-11.my.id` → `http://localhost:8090`.
+- **Tunnel baru (22/9):** service Cloudflared (Automatic) pakai token baru file `C:\ProgramData\cloudflared\token`, tunnel **`a8a6ab5a-69b8-4c43-a518-aeaa6ede5c27`**. CNAME `@` → `a8a6ab5a-69b8-4c43-a518-aeaa6ede5c27.cfargotunnel.com` (diganti user 22/9). **Tunnel lama 21b93a76 & server Linux 8f8b0f53 TIDAK dipakai lagi.** `www` TIDAK punya record (belum resolve).
+- **Auto-start website (22/9):** task `StartMethodist11Website` (scheduled, AtStartup, user WILIANTO, skip kalau port 8090 sudah listen) → jalankan `COMMON\project-sd-methodist-11\start-website.ps1` (idempoten; log `%TEMP%\opencode\serve8090-autostart.log`). Node server `serve8090.js` root = folder memory project.
+- **Jebakan reinstall service cloudflared (22/9):** leftover key EventLog `HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\Cloudflared` bikin `cloudflared service install` gagal (EXIT=1, service 1060) — hapus key dulu, baru install ulang (pakai `--token-file C:\ProgramData\cloudflared\token`).
 
 ---
 
-## 📋 WEBSITE SD METHODIST-11 + SERVER LINUX (host sekarang)
+## 📋 WEBSITE SD METHODIST-11 + HOST WINDOWS (PC Wilianto — host sekarang mulai 22/9)
 
-- **Domain:** methodist-11.my.id (Cloudflare, proxied). DNS `@` CNAME → `8f8b0f53-c70d-4bec-85d9-34e24da3c8ff.cfargotunnel.com`. JANGAN pakai A/AAAA. Ganti DNS manual di dashboard.
-- **Host = SERVER LINUX** (root, /root/memory, online >5 bulan). Recovery kit repo **`SERVER-LINUX`** di /root/SERVER-LINUX (docs/SERVER-SETUP.md + scripts/start-website.sh — token tunnel di variabel TOKEN).
-- **Layanan (setelah reboot jalan `bash ~/SERVER-LINUX/scripts/start-website.sh`):** web `serve8090.js` port 8090 (serve /root/memory/COMMON/project-sd-methodist-11), tunnel utama 8f8b0f53, ttyd port 7681 (**tanpa password sejak 17/9 — akses private via ZeroTier; tunnel publik terminal quick dicabut**), tunnel terminal quick TIDAK dipakai lagi. TIDAK ada systemd → setsid double-fork.
-- **Error guidance:** 502/503 = origin 8090 mati. 1033/530 = DNS/tunnel salah.
+- **Domain:** methodist-11.my.id (Cloudflare, proxied). DNS `@` CNAME → `a8a6ab5a-69b8-4c43-a518-aeaa6ede5c27.cfargotunnel.com` (sejak 22/9; CNAME lama `8f8b0f53-c70d-4bec-85d9-34e24da3c8ff.cfargotunnel.com` untuk server Linux TIDAK dipakai lagi). JANGAN pakai A/AAAA. Ganti DNS manual di dashboard. `www` belum punya record.
+- **Host = PC Wilianto (Windows, user WILIANTO)** mulai 22/9. Node server `serve8090.js` port 8090 serve `C:\Users\WILIANTO\memory\COMMON\project-sd-methodist-11`. Tunnel cloudflared service `Cloudflared` (Automatic, token file `C:\ProgramData\cloudflared\token`, ingress remote: `methodist-11.my.id → http://localhost:8090`).
+- **Auto-start (22/9):** cloudflared service Automatic + task `StartMethodist11Website` (AtStartup) → `COMMON\project-sd-methodist-11\start-website.ps1` (idempoten: skip kalau port 8090 sudah listen; log `%TEMP%\opencode\serve8090-autostart.log`).
+- **Server Linux (root, /root/memory) = TIDAK dipakai sebagai host web lagi** (masih online untuk hal lain: self-study, supermemory, backup gdrive; recovery kit `SERVER-LINUX` masih valid untuk layanan non-web).
+- **PC Wilianto (layanan website):** `serve8090.js` port 8090 serve folder memory project + tunnel cloudflared service `Cloudflared` (Automatic, token a8a6ab5a). Error guidance: 502/503 = origin 8090 mati. 1033/530 = DNS/tunnel salah (CNAME harus pas ke ID tunnel).
 - **Rate limiter (10/9):** 600 req/menit per IP di serve8090.js (header CF-Connecting-IP). Restart: `kill <PID>` + `setsid nohup node serve8090.js`.
 - **Auto-update website dari Google Drive (11/9):** rclone `gdrive` (5TB/49GB). Struktur: `Server Linux Backup/{Memory, SERVER-LINUX, Update website Kegiatan dan Pengumuman, opencode-db}`. Cron tiap 15 mnt: `gdrive-website-check.sh` pull staging → deteksi file baru (state hash) → `opencode run --auto` update halaman → commit+push. Log /var/log/gdrive-website-check.log.
 - **Cron (root, server):** 6* pull memory (auto-pull.sh) · 10* health-check.sh (log/health.json) · 40 6 morning-report.sh (log only) · 30 0 night-shift.sh (opencode otomatis kerjakan backlog, timeout 1500s) · `0 21` backup memory git · `30 21` backup gdrive mirror (backup-gdrive.sh) · `*/5` monitor-server.sh (state .monitor-state anti-spam) · `55 23` bersihkan cache /tmp `*00000000*`.
@@ -676,6 +680,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **22/9 (PC Wilianto, website):** website SD Methodist-11 PINDAH host ke PC Wilianto (gantikan server Linux 8f8b0f53). Token tunnel baru → tunnel `a8a6ab5a-69b8-4c43-a518-aeaa6ede5c27`, DNS `@` CNAME diganti user (22/9). Auto-start: cloudflared service Automatic + task `StartMethodist11Website` AtStartup → `start-website.ps1` (skip kalau port 8090 listen). Publik verified 200 (root/sitemap/pengumuman/rpp). Jebakan: leftover EventLog key blokir reinstall service.
 - **22/9 (yonat-PC, self-learn):** riset pengolahan nilai rapor/DKN Kurikulum Merdeka (formatif vs sumatif, rumus nilai akhir, predikat KKTP, deskripsi otomatis) → **LRN-20260922-001** — melengkapi catatan kurikulum server; relevan utk workflow "DKN/B5 UTS1" rapor_pdf_bulanan.py & deadline nilai UTS1 (22–26/9).
 - **21/9 (yonat-PC, self-learn):** riset+uji live **AutoNumbering dokumen ujian via w:numPr** → **LRN-20260921-006**: penomoran soal otomatis dengan numbering part python-docx (inject abstractNum+num, `get_or_add_numPr`, dan `lvlOverride startOverride` untuk restart per "Bagian" — render LO terverifikasi bagian A `1,2,3` → B `1,2`). Menutup gap LRN-20260918-006 (file jadi sekolah pakai ListParagraph w:numPr, bukan literal "N.\t"); siap diterapkan ke ujian_builder.py.
 - **21/9 (yonat-PC, self-learn):** riset **batch print PDF siap cetak via command line** (tahap "P" UTS) → **LRN-20260921-005**: opsi terbaik SumatraPDF (gratis/GPL-3, silent, multi-file, `-print-settings` lengkap: fit/monochrome/duplexlong/paper/dll, verifikasi via exit code 0-6) — bukan Ghostscript mswinpr2 (lambat), bukan Adobe (tak ada batch silent legal). **SumatraPDF belum terpasang** di PC → `winget install -e --id SumatraPDF.SumatraPDF`. Tool baru: `COMMON/scripts/cetak_ujian.ps1` (loop per-file + ringkasan sukses/gagal). Catatan: `Get-Printer` masih memunculkan **EPSON L3210** (auto-re-add dari server — hapus ulang + restart spooler kalau mau dibersihkan lagi).
