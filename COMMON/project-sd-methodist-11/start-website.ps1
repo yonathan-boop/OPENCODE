@@ -11,10 +11,17 @@ function Write-Log($msg) {
     Write-Output $line
 }
 
+$terminalScript = Join-Path $siteDir 'start-terminal.ps1'
+
 $portOpen = Get-NetTCPConnection -LocalPort 8090 -State Listen -ErrorAction SilentlyContinue
 
 if ($portOpen) {
     Write-Log "PELUANGAN_PORT_8090: sudah ada listener (PID $($portOpen.OwningProcess)), skip start."
+    try {
+        if (Test-Path -LiteralPath $terminalScript) { & $terminalScript } else { Write-Log "WARN: start-terminal.ps1 tidak ditemukan" }
+    } catch {
+        Write-Log "WARN start-terminal: $($_.Exception.Message)"
+    }
     exit 0
 }
 
@@ -46,6 +53,11 @@ for ($i = 0; $i -lt 10; $i++) {
 }
 if ($ok) {
     Write-Log "VERIFIKASI_PORT_8090: OK, listener aktif."
+    try {
+        if (Test-Path -LiteralPath $terminalScript) { & $terminalScript } else { Write-Log "WARN: start-terminal.ps1 tidak ditemukan" }
+    } catch {
+        Write-Log "WARN start-terminal: $($_.Exception.Message)"
+    }
     exit 0
 } else {
     Write-Log "VERIFIKASI_PORT_8090: GAGAL - port 8090 tidak mendengarkan setelah 10 detik."
