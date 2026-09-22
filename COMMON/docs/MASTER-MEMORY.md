@@ -681,6 +681,8 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **22/9 (yonat-PC, self-learn):** konsolidasi 3 catatan server ke MEMORY-LEARNINGS + verifikasi fakta via web → **LRN-20260922-002** (mail merge narasi rapor Word+Excel), **LRN-20260922-003** (backup 3-2-1-1-0 — gap Methodist: belum air-gapped & belum tes restore), **LRN-20260922-004** (pembelajaran mendalam 2026 BUKAN kurikulum baru, verifikasi siaran pers resmi — istilah KSP/Profil Lulusan 8 dim/kokurikuler utk dokumen KSP user).
+
 - **22/9 (PC Wilianto, website):** website SD Methodist-11 PINDAH host ke PC Wilianto (gantikan server Linux 8f8b0f53). Token tunnel baru → tunnel `a8a6ab5a-69b8-4c43-a518-aeaa6ede5c27`, DNS `@` CNAME diganti user (22/9). Auto-start: cloudflared service Automatic + task `StartMethodist11Website` AtStartup → `start-website.ps1` (skip kalau port 8090 listen). Publik verified 200 (root/sitemap/pengumuman/rpp). Jebakan: leftover EventLog key blokir reinstall service.
 - **22/9 (yonat-PC, self-learn):** riset pengolahan nilai rapor/DKN Kurikulum Merdeka (formatif vs sumatif, rumus nilai akhir, predikat KKTP, deskripsi otomatis) → **LRN-20260922-001** — melengkapi catatan kurikulum server; relevan utk workflow "DKN/B5 UTS1" rapor_pdf_bulanan.py & deadline nilai UTS1 (22–26/9).
 - **21/9 (yonat-PC, self-learn):** riset+uji live **AutoNumbering dokumen ujian via w:numPr** → **LRN-20260921-006**: penomoran soal otomatis dengan numbering part python-docx (inject abstractNum+num, `get_or_add_numPr`, dan `lvlOverride startOverride` untuk restart per "Bagian" — render LO terverifikasi bagian A `1,2,3` → B `1,2`). Menutup gap LRN-20260918-006 (file jadi sekolah pakai ListParagraph w:numPr, bukan literal "N.\t"); siap diterapkan ke ujian_builder.py.
