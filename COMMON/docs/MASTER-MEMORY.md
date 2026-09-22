@@ -112,7 +112,7 @@ Bot streaming opencode via Telegram pernah ada (`@Qksusb_bot`, owner 5508090479,
 ### Script
 - File: absensi.py
 - Lokasi: C:/Users/yonat/OneDrive/Desktop/memory/COMMON/scripts/absensi.py
-- FILE_PATH saat ini: Absensi 14 September 2026 Monday 09_09_04.xlsx
+- FILE_PATH saat ini: Absensi 22 September 2026 Tuesday 09_18_00.xlsx
 
 ### Struktur Excel Absensi (Format Baru)
 - Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
@@ -443,6 +443,22 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - File versi terbaru: Absensi 21 September 2026 Monday 09_45_34.xlsx (9 mark tgl 21, validasi lulus)
 - Mapping: "Stevano"→Stefano Benedict Imanuel (PG), "Keyyvat"→Kayyvant Boido Bona Sinaga (TKB1), "Falisa"→Falisha Nataly Br Bangun (TKa)
 - FILE_PATH absensi.py → file versi 21 September.
+
+### Absensi 22 September 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 22/9 | PG | Hans Lukas Mangara Datta Tampubolon | I |
+| 22/9 | PG | Stefano Benedict Imanuel | S |
+| 22/9 | TKB(2) | Jemia Zhevano Yamresa Kembaren | I |
+| 22/9 | TKa | Shon Elzxen Ng | S |
+| 22/9 | TKa | Chesa Efrata Ronatio Tampubolon | S |
+| 22/9 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+
+- File versi terbaru: Absensi 22 September 2026 Tuesday 09_18_00.xlsx (6 mark tgl 22, validasi lulus)
+- Mapping: "Hans"→Hans Lukas Mangara Datta Tampubolon (PG), "Stevano"→Stefano Benedict Imanuel (PG), "Jemia"→Jemia Zhevano Yamresa Kembaren (TKB2), "Shon"→Shon Elzxen Ng (TKa), "Chesa"→Chesa Efrata Ronatio Tampubolon (TKa), "Keyvant"→Kayyvant Boido Bona Sinaga (TKB1)
+- FILE_PATH absensi.py → file versi 22 September.
+
 
 ### Kelas: TKa, TKB1, TKB2, PG
 

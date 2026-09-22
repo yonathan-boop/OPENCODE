@@ -1,6 +1,6 @@
 # Memory Summary (PC-06)
 
-Terakhir diupdate: 15 September 2026 (versi PADAT — detail sesi historis di-ringkas; MASTER & ARSIP-ABSENSI pegang detail)
+Terakhir diupdate: 22 September 2026 (versi PADAT — detail sesi historis di-ringkas; MASTER & ARSIP-ABSENSI pegang detail)
 
 ## User Info
 - **Nama**: Digitalisasi (PC baru) / Advan (pc-rumah) / Admin (pc-06 kantor, lama) / yonat-PC (PC utama sekarang)
@@ -19,7 +19,7 @@ Terakhir diupdate: 15 September 2026 (versi PADAT — detail sesi historis di-ri
 - **11/7** migrasi absensi ke TA 2026-2027 (folder `Absensi T.P 2026-2027`, master `ABSENSI Juli.xlsx`, roster dari DAFTAR MURID T.P.2026-2027 lengkap).
 - **18/7** restore memory Windows.old + setup agent system · **25/7** sistem VALIDASI WAJIB (tanggal sering tak terisi).
 - **Agu** sistem versi file absensi (wajib 1 file/hari, update FILE_PATH; ERR-20260819-001); game nama mapping; murid keluar/baru (Kimita 10/8; **21/8** murid baru Shane/Damian/Coryn/Erick; **22/8** roster disinkronkan, Kayla dihapus; website pindah ke server Linux; **24/8** redesign backup Methodist + mapping kolom Agustus).
-- **Septa:** file September kosong (1/9); murid keluar Dareen & Axelle Sean (5/9); Generation (TKB1, 11/9) & Brilliant (TKB(2), 14/9) murid baru; tool rekap `rekap_absensi.py` (6/9); Telegram bot dihapus total → log-only (11/9).
+- **Septa:** file September kosong (1/9); murid keluar Dareen & Axelle Sean (5/9); Generation (TKB1, 11/9) & Brilliant (TKB(2), 14/9) murid baru; tool rekap `rekap_absensi.py` (6/9); Telegram bot dihapus total → log-only (11/9); absensi 21/9 (9 mark) & 22/9 (6 mark: Hans/Stevano PG, Jemia TKB2, Shon/Chesa TKa, Keyvant TKB1).
 
 ## Total Sessions: 14 (Apr–Sep 2026)
 Detail kronologi sesi lengkap ada di git history repo ini. Sesi terakhir terekam di MASTER-MEMORY / ARSIP-ABSENSI-2026.
