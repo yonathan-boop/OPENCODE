@@ -681,6 +681,8 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **23/9 (yonat-PC, self-learn):** konsolidasi 2 catatan yang belum terwakili → **LRN-20260923-004** (pola aman otomasi Excel openpyxl: read_only/write_only hemat memori, template isi-jangan-timpa, DataValidation dropdown, jebakan data_only — relevan utk absensi/rekap/rapor) & **LRN-20260923-003** (Cloudflare Zero Trust Access utk panel/ttyd: Email OTP gratis ≤50 user, urutan Bypass→catch-all utk webhook, defense-in-depth audTag — menutup gap keamanan terminal `methodist-11.my.id/opencode` yang tanpa auth). Tidak ada duplikasi dgn LRN sebelumnya.
+
 - **23/9 (yonat-PC, self-learn):** konsolidasi 2 catatan server yang belum terwakili ke MEMORY-LEARNINGS → **LRN-20260923-001** (OCR Tesseract utk dokumen scan guru → teks/PDF searchable/Excel via pytesseract `image_to_data` — Tesseract 5.5.3 sudah terpasang di PC) & **LRN-20260923-002** (koneksi PC↔server: ZeroTier/SSH/SFTP/tunnel — sudah live di PC, jebakan & hardening SSH dicatat). Tidak ada entri learning baru di luar konsolidasi (insight server sudah terwakili sisanya).
 
 - **22/9 (yonat-PC, self-learn):** konsolidasi 3 catatan server ke MEMORY-LEARNINGS + verifikasi fakta via web → **LRN-20260922-002** (mail merge narasi rapor Word+Excel), **LRN-20260922-003** (backup 3-2-1-1-0 — gap Methodist: belum air-gapped & belum tes restore), **LRN-20260922-004** (pembelajaran mendalam 2026 BUKAN kurikulum baru, verifikasi siaran pers resmi — istilah KSP/Profil Lulusan 8 dim/kokurikuler utk dokumen KSP user).
