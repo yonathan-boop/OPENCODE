@@ -1,5 +1,7 @@
 $ErrorActionPreference = 'Stop'
 $ttydExe = Join-Path $env:LOCALAPPDATA 'opencode\tools\ttyd\ttyd.exe'
+$siteDir = 'C:\Users\WILIANTO\memory\COMMON\project-sd-methodist-11'
+$menuScript = Join-Path $siteDir 'pilih-terminal.ps1'
 $logDir  = Join-Path $env:LOCALAPPDATA 'Temp\opencode'
 $logFile = Join-Path $logDir 'ttyd-autostart.log'
 
@@ -20,11 +22,18 @@ if (-not (Test-Path -LiteralPath $ttydExe)) {
     exit 1
 }
 
+if (-not (Test-Path -LiteralPath $menuScript)) {
+    Write-Log "ERROR: pilih-terminal.ps1 tidak ditemukan di $menuScript"
+    exit 1
+}
+
 try {
     $logOut = Join-Path $logDir 'ttyd.out.log'
     $logErr = Join-Path $logDir 'ttyd.err.log'
-    $p = Start-Process -FilePath $ttydExe -ArgumentList '-p','7681','-W','-b','/opencode','cmd.exe' -WorkingDirectory $env:USERPROFILE -WindowStyle Hidden -RedirectStandardOutput $logOut -RedirectStandardError $logErr -PassThru
-    Write-Log "SUKSES_LAUNCH: ttyd PID=$($p.Id) port 7681 path /opencode"
+    $psPath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
+    $argList = "-stateless", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$menuScript`""
+    $p = Start-Process -FilePath $ttydExe -ArgumentList @('-p','7681','-W','-b','/opencode',$psPath,($argList -join ' ')) -WorkingDirectory $env:USERPROFILE -WindowStyle Hidden -RedirectStandardOutput $logOut -RedirectStandardError $logErr -PassThru
+    Write-Log "SUKSES_LAUNCH: ttyd PID=$($p.Id) port 7681 path /opencode (menu pilih-terminal)"
 } catch {
     Write-Log "ERROR_LAUNCH: $($_.Exception.Message)"
     exit 1
