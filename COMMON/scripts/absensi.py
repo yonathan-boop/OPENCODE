@@ -7,7 +7,7 @@ import difflib
 
 FILE_PATH = os.environ.get(
     "ABSENSI_FILE",
-    "C:/Users/yonat/OneDrive/Desktop/memory/PC-06/docs/Absensi T.P 2026-2027/Absensi 22 September 2026 Tuesday 09_18_00.xlsx",
+    "C:/Users/yonat/OneDrive/Desktop/memory/PC-06/docs/Absensi T.P 2026-2027/Absensi 23 September 2026 Wednesday 10_15_00.xlsx",
 )
 
 KELAS_MAP = {
@@ -83,6 +83,7 @@ def build_tanggal_map(ws):
 def cari_murid(ws, nama):
     nc = norm(nama)
     raw_low = nama.lower()
+    q_words = [norm(w) for w in nama.split() if norm(w)]
     kandidat = []  # (skor, row, nama)
     for row in range(7, 100):
         nama_murid = ws.cell(row, 3).value
@@ -95,6 +96,22 @@ def cari_murid(ws, nama):
             return row, nm, 0
         if nc in nmn or nmn in nc or raw_low in nm_low or nm_low in raw_low:
             return row, nm, 1
+        if len(q_words) > 1:
+            nm_tokens = nm.split()
+            word_matches = []
+            for qw in q_words:
+                best_w_skor = None
+                for t in nm_tokens:
+                    s = skor_kemiripan(qw, t)
+                    if s is not None and s <= SIM_THRESHOLD:
+                        if best_w_skor is None or s < best_w_skor:
+                            best_w_skor = s
+                if best_w_skor is not None:
+                    word_matches.append(best_w_skor)
+            if len(word_matches) == len(q_words):
+                avg_skor = sum(word_matches) / len(word_matches)
+                kandidat.append((round(avg_skor, 3), row, nm))
+                continue
         skor = skor_kemiripan(nc, nm)
         if skor is not None and skor <= SIM_THRESHOLD:
             kandidat.append((round(skor, 3), row, nm))

@@ -120,7 +120,7 @@ Bot streaming opencode via Telegram pernah ada (`@Qksusb_bot`, owner 5508090479,
 ### Script
 - File: absensi.py
 - Lokasi: C:/Users/yonat/OneDrive/Desktop/memory/COMMON/scripts/absensi.py
-- FILE_PATH saat ini: Absensi 22 September 2026 Tuesday 09_18_00.xlsx
+- FILE_PATH saat ini: Absensi 23 September 2026 Wednesday 10_15_00.xlsx
 
 ### Struktur Excel Absensi (Format Baru)
 - Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
@@ -467,6 +467,20 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - File versi terbaru: Absensi 22 September 2026 Tuesday 09_18_00.xlsx (7 mark tgl 22, validasi lulus)
 - Mapping: "Hans"→Hans Lukas Mangara Datta Tampubolon (PG), "Stevano"→Stefano Benedict Imanuel (PG), "Jemia"→Jemia Zhevano Yamresa Kembaren (TKB2), "Shon"→Shon Elzxen Ng (TKa), "Chesa"→Chesa Efrata Ronatio Tampubolon (TKa), "Keyvant"→Kayyvant Boido Bona Sinaga (TKB1)
 - FILE_PATH absensi.py → file versi 22 September.
+
+### Absensi 23 September 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 23/9 | TKB(2) | Clarissa Jovanka Sugiharto | S |
+| 23/9 | TKa | Giovan Otniel Laurentius | S |
+| 23/9 | TKa | Shon Elzxen Ng | S |
+| 23/9 | TKB1 | Kayyvant Boido Bona Sinaga | S |
+| 23/9 | TKB1 | Lucas Helsinki Sijabat | I |
+
+- File versi terbaru: Absensi 23 September 2026 Wednesday 10_15_00.xlsx (5 mark tgl 23, validasi lulus)
+- Mapping: "Clarisa joevanca"→Clarissa Jovanka Sugiharto (TKB2), "Geovan"→Giovan Otniel Laurentius (TKa), "Shon"→Shon Elzxen Ng (TKa), "Kayvan"→Kayyvant Boido Bona Sinaga (TKB1), "Lukas"→Lucas Helsinki Sijabat (TKB1)
+- FILE_PATH absensi.py → file versi 23 September.
 
 
 ### Kelas: TKa, TKB1, TKB2, PG
