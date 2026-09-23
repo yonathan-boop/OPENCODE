@@ -4,6 +4,12 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260923-005] docx_compare_track_changes_word_wps_com_audit — priority: high
+Sistem perbandingan dokumen Word (.docx) standar resmi untuk memvalidasi editan AI vs template asli sekolah (KSP, dokumen ujian, kurikulum):
+- **Engine Word/WPS COM:** `Application.CompareDocuments(OriginalDocument, RevisedDocument, Destination=2, Granularity=1, CompareFormatting=False, AddToMru=False)`. Menghasilkan file Track Changes resmi: teks lama yang diganti dicoret merah/ungu (`<w:del>`), teks baru hasil revisi AI diberi garis bawah/warna (`<w:ins>`).
+- **Penanganan Dokumen Multi-Part:** Jika dokumen besar dipecah AI (misal Cover, Bagian Depan, Bab I-V), gabungkan via COM `rng.InsertFile()` sebelum perbandingan penuh, atau bandingkan per bagian yang sesuai secara simetris.
+- **Audit Sisa Placeholder:** Otomasi pemindaian sisa placeholder regex (`\.{3,}`, `…+`, `UPT SD`, `SDN / SDS`, `\(.*uraikan.*\)`, `\(.*tambahkan.*\)`) pada paragraf dan tabel sebelum dokumen diserahkan. Script: `C:\Users\yonat\.gemini\config\skills\docx\scripts\compare.py` & `COMMON/scripts/compare_docx.py`. #docx #compare #track-changes #redline #audit #ksp #admin-sekolah
+
 ## [LRN-20260923-004] excel_otomasi_openpyxl_pola_aman — priority: high
 Pola aman otomasi Excel dgn openpyxl utk rekap absensi, daftar nilai, laporan bulanan (konsolidasi catatan PC `self-study/notes/excel-automation-openpyxl.md`, di-claim PC 17/9; openpyxl sudah terpasang di server Linux v3.1.5 & dipakai `rekap_absensi.py`). Cek juga skill `xlsx` opencode utk langkah langsung.
 - **Hemat memori:** openpyxl boros ~50× ukuran file (tiap sel = objek Py). `load_workbook(read_only=True)` + `iter_rows(values_only=True)` = alir per baris, memori hampir konstan; `data_only=True` utk nilai cache hasil kalkulasi Excel. **WAJIB `wb.close()` di `finally`** (file zip tetap terbuka → "Too many open files"). `max_row` read_only sering salah (dimensi deklaratif) → hitung sambil iterasi. Scan+edit file sama → 2 handle terpisah. Menulis massal dari nol → `Workbook(write_only=True)` cuma `ws.append` (≤10MB walau jutaan baris).
