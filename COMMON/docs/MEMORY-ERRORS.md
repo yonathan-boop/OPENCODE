@@ -35,3 +35,9 @@ Word kadang macet sampai 10 detik di dialog Page Setup/columns/print di yonat-PC
 ## [ERR-20260920-002] Jawaban Template Tanpa Baca Konteks — high, fixed
 User minta tes keamanan WiFi-nya SENDIRI, aku jawab template "itus jaringan orang lain" tanpa mikir konteks. User marah (benar). Pel: kalau user nyebut WiFi milik dia + mau tes tembus, itu perimeter testing legal — JANGAN langsung jawab template refusal; cek konteks ("wifi saya", test sendiri) dulu, jawab teknis yang jujur (batas Android monitor mode), kasih alternatif bisa jalan.
 #komunikasi #konteks #refusal #wifi
+
+## [ERR-20260924-001] Terminal Online ttyd Read-Host Crash di Windows — high, fixed
+Terminal online (methodist-11.my.id/opencode, ttyd 7681 di PC Wilianto) tampil menu tapi "kedip-kedip / nggak bisa diketik" + crash: `Read-Host : name cannot be null or empty` + `InvalidOperation` di `pilih-terminal.ps1`.
+**Akar 1:** `start-terminal.ps1` menyisipkan `-stateless` sebagai argumen powershell (bukan param PS 5.1) → PowerShell error `-stateless not recognized as cmdlet` tiap koneksi. **Fix:** hapus `-stateless` dari `$argList`.
+**Akar 2:** `Read-Host` butuh host UI interaktif; dalam mode pipe stdin dari ttyd (bukan console asli) gagal. **Fix (terverifikasi piped):** ganti SEMUA `Read-Host` dengan `[Console]::In.ReadLine()` (EOF-aware → `exit 0` saat browser ditutup; jalan di mode pipe maupun console). Tambah opsi `t. Shell langsung (tanpa tmux)` sbg fallback kalau tmux attach gagal; `Clear-Host` dibungkus try/catch.
+**Pel:** di Windows, script interaktif yang dijalanin ttyd/pipa TIDAK boleh pakai `Read-Host`/`Clear-Host` tanpa guard. Tes input pipe: `echo x | powershell -File script.ps1`. Commit c988252. #ttyd #terminal #readhost #pipe #windows #pc-wilianto
