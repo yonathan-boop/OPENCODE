@@ -30,3 +30,4 @@ Detail kronologi sesi lengkap ada di git history repo ini. Sesi terakhir terekam
 - PC-Advan: Windows, Git Portable, PyAutoGUI; Ollama DILARANG.
 - yonat-PC (utama): lihat MASTER-MEMORY (model permanen big-pickle, 4 skill dokumen, Word COM tips).
 ; **Penyusunan Program Adiwiyata 2026/2027 (24/9):** dokumen program Adiwiyata SD Swasta Methodist-11 selesai disusun tuntas di FIX\\TEMPLATE PROGRAM ADIWIYATA.docx dan disinkronkan ke KSP26-27 SD\\: 0 placeholder tersisa, tabel susunan tim Adiwiyata lengkap (Ketua Juita Ria Sitorus, Sekretaris Yonathan, Bendahara Leny Marlina, 5 Pokja operasional), matriks rencana aksi 1 tahun (Juli 2026 - Juni 2027), teks SK Kepala Sekolah No. 731, dan 4 dokumentasi foto kegiatan riil siswa.
+; **Aturan Folder Kerja:** KSP26-27 SD/ adalah folder template/data master asli (TIDAK BOLEH diedit/disentuh). Semua pekerjaan edit dan hasil dokumen program KSP HANYA dilakukan di C:\\RaporServer\\KOSP KURMER\\Edit pc\\FIX\\.
