@@ -698,6 +698,7 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **24/9 (yonat-PC, self-learn):** topik baru **Excel siap cetak/PDF via openpyxl** → **LRN-20260924-003** (print_area dinamis, fitToWidth + jebakan `pageSetUpPr(fitToPage=True)`, repeat header `print_title_rows`, page break manual per region, margin inch, footer &P/&N; melengkapi LRN-20260923-004). Siap dipasang sebagai `configure_printing(ws)` ke `rekap_absensi.py`/DKN (deadline UTS1 22–26/9) & jadwal.
 - **24/9 (yonat-PC, self-learn):** topik baru **Google Forms kuis utk asesmen sekolah** → **LRN-20260924-002** (setup kuis + kunci jawaban auto-grade, anti-mencontek bawaan: acak soal/opsi, limit 1 respons, kumpulkan email, mode terkunci Chromebook; rilis nilai segera/manual; ekspor ke Sheets utk rekap/analisis butir; impor nilai ke Classroom dgn syaratnya; jebakan murid <13 th & tanpa akun). Melengkapi LRN penilaian DKN (22/9) & Workspace (23/9).
 - **24/9 (yonat-PC, self-learn):** topik baru **variasi soal ujian anti-mencontek** → **LRN-20260924-001** (shuffle opsi per soal + shuffle urutan soal per seksi dari master `.docx`, kunci jawaban otomatis per versi; 2 jalur deteksi opsi: label literal vs AutoNumbering `w:numPr`; strategi text-based vs node-based utk blok ber-equation/gambar; reproducible via seed). Siap diterapkan ke ujian_builder bila guru mau versi A/B/C utk UTS/ASAS.
 
