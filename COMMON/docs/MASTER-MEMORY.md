@@ -697,6 +697,8 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 
 ## 📋 RECENT ACTIVITY (ringkas)
 
+- **24/9 (yonat-PC, self-learn):** topik baru **variasi soal ujian anti-mencontek** → **LRN-20260924-001** (shuffle opsi per soal + shuffle urutan soal per seksi dari master `.docx`, kunci jawaban otomatis per versi; 2 jalur deteksi opsi: label literal vs AutoNumbering `w:numPr`; strategi text-based vs node-based utk blok ber-equation/gambar; reproducible via seed). Siap diterapkan ke ujian_builder bila guru mau versi A/B/C utk UTS/ASAS.
+
 - **23/9 (yonat-PC, self-learn):** topik baru **Daftar Isi/Tabel/Gambar otomatis di Word** → **LRN-20260923-010** (field code TOC via python-docx + `updateFields`/`w:dirty` di settings.xml + update massal & deteksi referensi rusak via Word/WPS COM) — menutup celahkerja manual sinkron Daftar Isi & Daftar Tabel KSP 26-27 (22-23/9).
 - **23/9 (yonat-PC, self-learn):** konsolidasi 4 catatan server yang masih belum terwakili → **LRN-20260923-006** (keamanan server Linux/VPS hardening menyeluruh: urutan UFW, drop-in sshd, Docker-USER, probe eksternal — melengkapi SSH note), **LRN-20260923-007** (Google Workspace for Education utk sekolah kecil: Fundamentals gratis, CSV massal, OU, wajib SPF/DKIM/DMARC), **LRN-20260923-008** (kuota/harga/rate-limit Gemini API: scope per-proyek, naik harga 1/1/2027, Batch API, 429 backoff — berlaku utk GENERATOR-RPP & skrip vision), **LRN-20260923-009** (Dapodik/E-Rapor: alur sinkron 2x/TA, Dapodik 2027 + patch, sinkron malam, Verval PD/PTK, fix error E-Rapor). Semua topik baru & relevan pekerjaan user (Digitalisasi-PC & KSP).
 
