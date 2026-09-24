@@ -31,7 +31,7 @@ try {
     $logOut = Join-Path $logDir 'ttyd.out.log'
     $logErr = Join-Path $logDir 'ttyd.err.log'
     $psPath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
-    $argList = "-stateless", "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$menuScript`""
+    $argList = "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$menuScript`""
     $p = Start-Process -FilePath $ttydExe -ArgumentList @('-p','7681','-W','-b','/opencode',$psPath,($argList -join ' ')) -WorkingDirectory $env:USERPROFILE -WindowStyle Hidden -RedirectStandardOutput $logOut -RedirectStandardError $logErr -PassThru
     Write-Log "SUKSES_LAUNCH: ttyd PID=$($p.Id) port 7681 path /opencode (menu pilih-terminal)"
 } catch {

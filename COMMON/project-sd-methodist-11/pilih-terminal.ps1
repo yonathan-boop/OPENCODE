@@ -1,6 +1,14 @@
-$PREFIX   = 'web-'
-$MAXNEW   = 2
-$tmuxExe  = 'C:\Users\WILIANTO\AppData\Local\Microsoft\WinGet\Packages\arndawg.tmux-windows_Microsoft.Winget.Source_8wekyb3d8bbwe\tmux.exe'
+$PREFIX  = 'web-'
+$MAXNEW  = 2
+$tmuxExe = 'C:\Users\WILIANTO\AppData\Local\Microsoft\WinGet\Packages\arndawg.tmux-windows_Microsoft.Winget.Source_8wekyb3d8bbwe\tmux.exe'
+$psBase  = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
+
+function Get-Input {
+    # Baca 1 baris dari stdin. Aman dipakai di mode pipe (ttyd) maupun console asli.
+    $line = [Console]::In.ReadLine()
+    if ($null -eq $line) { Write-Host '  [EOF] Sampai jumpa!' -ForegroundColor Gray; exit 0 }
+    return $line.Trim()
+}
 
 function Get-Sessions {
     $list = & $tmuxExe ls -F '#{session_name}' 2>$null
@@ -14,7 +22,7 @@ function Get-WinCount($name) {
 }
 
 function Show-Menu($sessions) {
-    cls
+    try { Clear-Host } catch {}
     Write-Host '============================================' -ForegroundColor Cyan
     Write-Host '  TERMINAL ONLINE SD METHODIST-11' -ForegroundColor Cyan
     Write-Host '============================================' -ForegroundColor Cyan
@@ -31,43 +39,54 @@ function Show-Menu($sessions) {
     }
     Write-Host ''
     Write-Host '  b. Buka terminal BARU' -ForegroundColor Green
+    Write-Host '  t. Shell langsung (tanpa tmux)' -ForegroundColor Green
     Write-Host '  0. Keluar' -ForegroundColor Gray
 }
 
 function New-Session {
     param([string]$name)
     & $tmuxExe new-session -d -s $name -x 200 -y 50 2>$null | Out-Null
-    if ($LASTEXITCODE -eq 0) { return $true }
-    return $false
+    return ($LASTEXITCODE -eq 0)
+}
+
+function Attach-Session {
+    param([string]$name)
+    try {
+        & $tmuxExe attach-session -t $name
+    } catch {
+        Write-Host '  tmux attach gagal - beralih ke shell langsung.' -ForegroundColor Red
+        & $psBase -NoLogo -NoProfile
+    }
 }
 
 while ($true) {
     $sessions = Get-Sessions
     Show-Menu $sessions
-    $choice = Read-Host ''
-    switch ($choice.Trim().ToLower()) {
+    $choice = Get-Input
+    switch ($choice.ToLower()) {
         '0' { Write-Host 'Sampai jumpa!' -ForegroundColor Gray; exit 0 }
+        't' { & $psBase -NoLogo -NoProfile }
         'b' {
             if ($sessions.Count -ge $MAXNEW) {
                 Write-Host "  Max $MAXNEW sesi tercapai ($($sessions.Count) aktif)." -ForegroundColor Red
-                Read-Host 'Tekan enter untuk lanjut'
+                [void](Get-Input)
                 continue
             }
             $name = "$PREFIX" + ([DateTimeOffset]::Now.ToUnixTimeSeconds())
             if (New-Session $name) {
-                & $tmuxExe attach-session -t $name
+                Attach-Session $name
             } else {
                 Write-Host '  Gagal membuat sesi baru.' -ForegroundColor Red
-                Read-Host 'Tekan enter untuk lanjut'
+                [void](Get-Input)
             }
         }
         default {
             $n = 0
-            if ([int]::TryParse($choice.Trim(), [ref]$n) -and $n -ge 1 -and $n -le $sessions.Count) {
-                & $tmuxExe attach-session -t $sessions[$n - 1]
+            if ([int]::TryParse($choice, [ref]$n) -and $n -ge 1 -and $n -le $sessions.Count) {
+                Attach-Session $sessions[$n - 1]
             } else {
                 Write-Host '  Pilihan tidak valid.' -ForegroundColor Red
-                Read-Host 'Tekan enter untuk lanjut'
+                [void](Get-Input)
             }
         }
     }
