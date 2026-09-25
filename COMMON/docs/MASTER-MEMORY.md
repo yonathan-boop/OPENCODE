@@ -122,7 +122,7 @@ Bot streaming opencode via Telegram pernah ada (`@Qksusb_bot`, owner 5508090479,
 ### Script
 - File: absensi.py
 - Lokasi: C:/Users/yonat/OneDrive/Desktop/memory/COMMON/scripts/absensi.py
-- FILE_PATH saat ini: Absensi 23 September 2026 Wednesday 10_15_00.xlsx
+- FILE_PATH saat ini: Absensi 25 September 2026 Friday 10_37_00.xlsx
 
 ### Struktur Excel Absensi (Format Baru)
 - Setiap sheet = satu kelas (TKa, TKB1, TKB(2), Absen PG)
@@ -483,6 +483,19 @@ py absensi.py <nama> <kelas> <tanggal> <alasan>
 - File versi terbaru: Absensi 23 September 2026 Wednesday 10_15_00.xlsx (5 mark tgl 23, validasi lulus)
 - Mapping: "Clarisa joevanca"→Clarissa Jovanka Sugiharto (TKB2), "Geovan"→Giovan Otniel Laurentius (TKa), "Shon"→Shon Elzxen Ng (TKa), "Kayvan"→Kayyvant Boido Bona Sinaga (TKB1), "Lukas"→Lucas Helsinki Sijabat (TKB1)
 - FILE_PATH absensi.py → file versi 23 September.
+
+### Absensi 25 September 2026
+
+| Tanggal | Kelas | Nama | Alasan |
+|---------|-------|------|--------|
+| 25/9 | PG | Leonil Albert Toh | S |
+| 25/9 | PG | Amelia Arthanauli Nainggolan | I |
+| 25/9 | TKB1 | Generation Michael Abdiel Gea | I |
+| 25/9 | TKB(2) | Clarissa Jovanka Sugiharto | S |
+
+- File versi terbaru: Absensi 25 September 2026 Friday 10_37_00.xlsx (4 mark tgl 25, validasi lulus)
+- Mapping: "Lionel"→Leonil Albert Toh (PG), "Amelia"→Amelia Arthanauli Nainggolan (PG), "Generation"→Generation Michael Abdiel Gea (TKB1), "Clarisa joevanca"→Clarissa Jovanka Sugiharto (TKB2)
+- FILE_PATH absensi.py → file versi 25 September.
 
 
 ### Kelas: TKa, TKB1, TKB2, PG

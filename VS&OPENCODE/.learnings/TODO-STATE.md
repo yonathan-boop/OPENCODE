@@ -1,6 +1,6 @@
 # TODO-STATE.md — Persistent Todo Panel State
 
-Di-update: 23 September 2026
+Di-update: 25 September 2026
 
 ## ≡≡≡ GAGAL / BERHENTI ≡≡≡
 - (kosong)
@@ -9,6 +9,7 @@ Di-update: 23 September 2026
 - (kosong)
 
 ## ≡≡≡ BERHASIL ≡≡≡
+- **Absensi 25 September 2026:** SELESAI rekap absensi harian (4 murid: Leonil S & Amelia I Absen PG, Generation I TKB1, Clarissa Jovanka S TKB2) di file versi baru `Absensi 25 September 2026 Friday 10_37_00.xlsx`. Validasi 4 mark tgl 25 lulus, `absensi.py` diperbarui dengan `ALIAS_MAP` ("lionel"→"leonil") dan default FILE_PATH 25 September.
 - **Penomoran & Keterangan Tabel KSP Bab I-V (23/9):** SELESAI memasang keterangan tabel standar resmi kedinasan pas di bawah setiap tabel (align center, Arial 11pt bold) di `FIX\Bab I-V.docx`. Mengikuti aturan resmi penomoran per-bab riil dokumen: BAB I (Tabel 1.1 s.d. 1.3), BAB III (Tabel 3.1 s.d. 3.19), BAB V (Tabel 5.1 s.d. 5.4). Halaman Daftar Tabel di `SD KSP 26-27 - DOKUMEN 1.docx` dan `SD KSP 26-27 - DAFTAR TABEL.docx` disinkronkan 100%.
 - **Absensi 23 September 2026:** SELESAI rekap absensi harian (5 murid: Clarissa Jovanka TKB2, Giovan & Shon TKa, Kayyvant & Lucas TKB1) di file versi baru `Absensi 23 September 2026 Wednesday 10_15_00.xlsx`. Validasi 5 mark tgl 23 lulus, `absensi.py` diperbarui dengan dukungan multi-token matching dan default FILE_PATH terkini.
 - **KSP 2026/2027 SD Swasta Methodist-11 (22/9 — Penomoran Halaman, Daftar Isi & File Mandiri Daftar Tabel):** SELESAI penataan dokumen terpisah di `C:\RaporServer\KOSP KURMER\Edit pc\`: (1) `SD KSP 26-27 - DOKUMEN 1.docx`: Nomor halaman Romawi kecil (`i` s.d. `viii`) di posisi bawah tengah, Cover tanpa nomor halaman (Different First Page), perbaikan audit Front Matter diterapkan (email Dapodik, Akreditasi A, Yayasan Methodist Titus, frasa TP 2026/2027), serta dibangun ulang **DAFTAR ISI** (hal v-vi), **DAFTAR TABEL** (hal vii), dan **DAFTAR GAMBAR** (hal viii) dengan tab dot-leader rapi; (2) `Bab I-V.docx`: Nomor halaman Arab (`1` s.d. `55`) di posisi bawah tengah dimulai dari BAB I di hal 1; (3) Sinkronisasi presisi 100%: seluruh nomor halaman pada Daftar Isi, Daftar Tabel, dan Daftar Gambar di Dokumen 1 telah dicocokkan langsung dengan letak halaman riil setiap bab, sub-bab, tabel, dan gambar pada `Bab I-V.docx`; (4) Dibuatkan 1 berkas khusus tersendiri: `SD KSP 26-27 - DAFTAR TABEL.docx` yang memuat 2 format (Format dot-leader standar kedinasan dan Format tabel rekapitulasi 4 kolom bergaris lengkap 24 tabel). Dokumen siap dibuka dan diperiksa langsung via Microsoft Word.

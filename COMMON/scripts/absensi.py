@@ -7,8 +7,18 @@ import difflib
 
 FILE_PATH = os.environ.get(
     "ABSENSI_FILE",
-    "C:/Users/yonat/OneDrive/Desktop/memory/PC-06/docs/Absensi T.P 2026-2027/Absensi 23 September 2026 Wednesday 10_15_00.xlsx",
+    "C:/Users/yonat/OneDrive/Desktop/memory/PC-06/docs/Absensi T.P 2026-2027/Absensi 25 September 2026 Friday 10_37_00.xlsx",
 )
+
+ALIAS_MAP = {
+    'lionel': 'leonil',
+    'stevano': 'stefano',
+    'geovan': 'giovan',
+    'keyvan': 'kayyvant',
+    'keyyvat': 'kayyvant',
+    'falisa': 'falisha',
+    'lukas': 'lucas',
+}
 
 KELAS_MAP = {
     'tka': 'TKa', 'tk a': 'TKa',
@@ -81,6 +91,9 @@ def build_tanggal_map(ws):
 
 
 def cari_murid(ws, nama):
+    for k, v in ALIAS_MAP.items():
+        if re.search(rf'\b{re.escape(k)}\b', nama, flags=re.IGNORECASE):
+            nama = re.sub(rf'\b{re.escape(k)}\b', v, nama, flags=re.IGNORECASE)
     nc = norm(nama)
     raw_low = nama.lower()
     q_words = [norm(w) for w in nama.split() if norm(w)]
