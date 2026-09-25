@@ -1,8 +1,9 @@
 $ErrorActionPreference = 'Stop'
 $nodePath = 'C:\Program Files\nodejs\node.exe'
-$siteDir  = 'C:\Users\WILIANTO\memory\COMMON\project-sd-methodist-11'
+$siteDir  = $PSScriptRoot
 $scriptFile = Join-Path $siteDir 'serve8090.js'
-$logDir  = 'C:\Users\WILIANTO\AppData\Local\Temp\opencode'
+$logDir  = Join-Path $env:TEMP 'opencode'
+if (-not (Test-Path $logDir)) { New-Item -ItemType Directory -Path $logDir -Force | Out-Null }
 $logFile = Join-Path $logDir 'serve8090-autostart.log'
 
 function Write-Log($msg) {
