@@ -30,20 +30,45 @@ const MIME = {
   '.ogg': 'video/ogg',
 };
 
+// Urutan = prioritas. Folder pertama yang punya video mp4 that'll dipakai.
+// Lets source diubah cukup dengan menaruh file baru di folder paling depan.
 const VIDEO_SOURCE_DIRS = [
+  '\\\\192.168.136.1\\Methodist-11 Document\\#YONATHAN\\Video Souce\\New folder',
+  'D:\\Methodist-11 Document\\#YONATHAN\\Video Souce\\New folder',
   'D:\\Methodist-11 Document\\#YONATHAN\\video soure 2',
   'D:\\Methodist-11 Document\\#YONATHAN\\Video Souce',
   '\\\\192.168.136.1\\Methodist-11 Document\\#YONATHAN\\Video Souce',
 ];
 
+// Video TERBARU (mtime paling baru) di dalam satu folder.
+// Dipakai supaya nama file bebas: Untitled.mp4, Untitled-2.mp4, dll.
+function newestVideoIn(dir) {
+  try {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    let best = null;
+    let bestTime = -1;
+    for (const entry of entries) {
+      if (!entry.isFile()) continue;
+      if (path.extname(entry.name).toLowerCase() !== '.mp4') continue;
+      const full = path.join(dir, entry.name);
+      const mtime = fs.statSync(full).mtimeMs;
+      if (mtime > bestTime) {
+        bestTime = mtime;
+        best = full;
+      }
+    }
+    return best;
+  } catch (err) {
+    return null;
+  }
+}
+
 function resolveVideoFile(fileName) {
   for (const dir of VIDEO_SOURCE_DIRS) {
     const target = path.join(dir, fileName);
     if (fs.existsSync(target)) return target;
-  }
-  for (const dir of VIDEO_SOURCE_DIRS) {
-    const fallback = path.join(dir, 'Untitled.mp4');
-    if (fs.existsSync(fallback)) return fallback;
+    const newest = newestVideoIn(dir);
+    if (newest) return newest;
   }
   return path.join(VIDEO_SOURCE_DIRS[0], fileName);
 }
