@@ -1,14 +1,15 @@
 # TODO-STATE.md — Persistent Todo Panel State
 
-Di-update: 25 September 2026
+Di-update: 26 September 2026
 
-## ≡≡≡ GAGAL / BERHENTI ≡≡≡
+## ≡≡≡ GAGAL / BERHENTI ≡≡═��
 - (kosong)
 
 ## ≡≡≡ LAGI DIKERJAIN ≡≡≡
 - (kosong)
 
 ## ≡≡≡ BERHASIL ≡≡≡
+- **Website live: video kegiatan Kebun Binatang streaming (26/9):** SELESAI — 4x `git pull` sinkron website dari yonat-PC (kunjungan Kebun Binatang 19 Sept 13 foto + cover, badge status kegiatan, video streaming, bundel PDF KSP 76 hal). Perbaikan: `serve8090.js` (v1 & v2) kini memakai daftar kandidat `VIDEO_SOURCE_DIRS` = `D:\Methodist-11 Document\#YONATHAN\Video Souce` (lokal, 50,6 MB `Untitled.mp4`) → fallback `\\192.168.136.1\...`; FAKTA PENTING: **192.168.136.1 = IP LAN PC Wilianto sendiri** (D:\Methodist-11 Document = shareMethodist-11), bukan PC server lain, jadi path lokal jauh lebih Andal daripada UNC. Restart node 8090 wajib admin (`Stop-Process` → Access denied, proses elevate) → `Start-Process powershell -Verb RunAs -File ...` (UAC, klik Yes; sempat 2x "canceled by user" sebelum berhasil). Verifikasi: `/video-source/Untitled.mp4` publik **206 `video/mp4`** (range streaming jalan), halaman kegiatan 200. Commit `2370288` sudah push.
 - **Rancangan Website Methodist-11 ke-2 (25/9):** SELESAI memisahkan hasil refaktor & pembaruan dari OpenCode ke folder tersendiri `COMMON/rancangan-website-v2/` (memuat fitur halaman pendaftaran baru, modularisasi `assets/js/site.js`, CSS responsif mobile, dan simulator tampilan HP `preview-hp.html`). Website lama di `COMMON/project-sd-methodist-11/` tetap utuh dan diproteksi dari penimpaan langsung agar website live `methodist-11.my.id` tidak berubah.
 - **Absensi 25 September 2026:** SELESAI rekap absensi harian (4 murid: Leonil S & Amelia I Absen PG, Generation I TKB1, Clarissa Jovanka S TKB2) di file versi baru `Absensi 25 September 2026 Friday 10_37_00.xlsx`. Validasi 4 mark tgl 25 lulus, `absensi.py` diperbarui dengan `ALIAS_MAP` ("lionel"→"leonil") dan default FILE_PATH 25 September.
 - **Penomoran & Keterangan Tabel KSP Bab I-V (23/9):** SELESAI memasang keterangan tabel standar resmi kedinasan pas di bawah setiap tabel (align center, Arial 11pt bold) di `FIX\Bab I-V.docx`. Mengikuti aturan resmi penomoran per-bab riil dokumen: BAB I (Tabel 1.1 s.d. 1.3), BAB III (Tabel 3.1 s.d. 3.19), BAB V (Tabel 5.1 s.d. 5.4). Halaman Daftar Tabel di `SD KSP 26-27 - DOKUMEN 1.docx` dan `SD KSP 26-27 - DAFTAR TABEL.docx` disinkronkan 100%.
