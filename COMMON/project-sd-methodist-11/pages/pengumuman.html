@@ -26,7 +26,7 @@
     } catch (e) { }
   })();
 </script>
-<link rel="stylesheet" href="../assets/css/style.css?v=28">
+<link rel="stylesheet" href="../assets/css/style.css?v=29">
 </head>
 <body>
 
@@ -73,7 +73,7 @@
   <div class="container">
     <a class="back" href="../index.html#pengumuman">← Kembali ke Pengumuman</a>
     <div class="list-row">
-      <a class="list-item" href="pengumuman/retreat.html">
+      <a class="list-item" data-event-start="2027-01-06" data-event-end="2027-01-08" href="pengumuman/retreat.html">
         <div>
           <div class="tgl">7 September 2026</div>
           <h3>Retreat Siswa-Siswi SD/SMP Methodist-11</h3>
@@ -81,7 +81,7 @@
         </div>
         <span class="arrow">→</span>
       </a>
-      <a class="list-item" href="pengumuman/study-tour.html">
+      <a class="list-item" data-event-end="2026-09-19" href="pengumuman/study-tour.html">
         <div>
           <div class="tgl">24 Agustus 2026</div>
           <h3>Study Tour ke Rahmat Zoo &amp; Park</h3>
@@ -89,7 +89,7 @@
         </div>
         <span class="arrow">→</span>
       </a>
-      <a class="list-item" href="pengumuman/imunisasi.html">
+      <a class="list-item" data-event-end="2026-09-18" href="pengumuman/imunisasi.html">
         <div>
           <div class="tgl">12 Agustus 2026</div>
           <h3>Imunisasi untuk Seluruh Siswa</h3>
@@ -133,7 +133,7 @@
 
 <footer>
   © 2026 Yayasan Pendidikan Kristen Methodist Titus<br>TK-SD-SMP Swasta Methodist-11
-  <div class="footer-meta">Versi 0.0012</div>
+  <div class="footer-meta">Versi 0.0013</div>
 </footer>
 
 <script>
@@ -157,6 +157,18 @@
   document.querySelectorAll('#menu a').forEach(function (a) {
     a.addEventListener('click', closeMenu);
   });
+
+  (function () {
+    var today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Jakarta', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+    document.querySelectorAll('[data-event-end]').forEach(function (card) {
+      var label = today > card.dataset.eventEnd ? 'Kegiatan selesai' : card.dataset.eventStart && today < card.dataset.eventStart ? 'Akan datang' : 'Agenda sekolah';
+      var badge = document.createElement('span');
+      badge.className = 'event-status';
+      badge.textContent = label;
+      var target = card.querySelector('.kartu-badan') || card.querySelector('div');
+      if (target) target.prepend(badge);
+    });
+  })();
 </script>
 </body>
 </html>

@@ -228,6 +228,8 @@ a.kartu:focus-visible { outline: 2px solid var(--biru); outline-offset: 2px; }
 .kartu h3 { font-size: 18px; }
 .kartu p { font-size: 14px; }
 .kartu .btn-sm { font-size: 14px; }
+.event-status { align-self: flex-start; display: inline-block; color: var(--biru-tua); background: var(--chip-bg); padding: 3px 8px; border-radius: 4px; font-size: 13px; font-weight: 650; margin-bottom: 8px; }
+.list-item .event-status { margin-bottom: 6px; }
 
 /* Pop-up Pengumuman Terbaru */
 .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(15,23,42,.72); backdrop-filter: blur(5px); z-index: 9999; align-items: center; justify-content: center; padding: 20px; }
@@ -296,3 +298,4 @@ a.kartu:focus-visible { outline: 2px solid var(--biru); outline-offset: 2px; }
 [data-theme="dark"] .popup-badge { background: #2a2416; color: #fde68a; }
 [data-theme="dark"] .popup-close:hover { background: #3b1d1d; color: #f87171; }
 [data-theme="dark"] .fasilitas-item:hover { border-color: var(--biru); }
+[data-theme="dark"] .event-status { color: #93c5fd; background: #1e3a8a; }
