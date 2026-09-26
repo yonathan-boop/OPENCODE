@@ -32,8 +32,18 @@ try {
     $logErr = Join-Path $logDir 'ttyd.err.log'
     $psPath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
     $argList = "-NoLogo", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$menuScript`""
-    $p = Start-Process -FilePath $ttydExe -ArgumentList @('-p','7681','-W','-b','/opencode','-t','scrollback=20000','-t','scrollWithPage=true',$psPath,($argList -join ' ')) -WorkingDirectory $env:USERPROFILE -WindowStyle Hidden -RedirectStandardOutput $logOut -RedirectStandardError $logErr -PassThru
-    Write-Log "SUKSES_LAUNCH: ttyd PID=$($p.Id) port 7681 path /opencode (menu pilih-terminal)"
+    $authFile = Join-Path $env:USERPROFILE '.config\opencode\secrets\ttyd-auth.txt'
+    $ttydCred = ''
+    if (Test-Path -LiteralPath $authFile) { $ttydCred = (Get-Content -LiteralPath $authFile -TotalCount 1).Trim() }
+    $ttydArgs = @('-p','7681','-W','-b','/opencode')
+    if ($ttydCred) { $ttydArgs += @('-c', $ttydCred) }
+    $ttydArgs += @('-t','scrollback=20000','-t','scrollWithPage=true',$psPath,($argList -join ' '))
+    $p = Start-Process -FilePath $ttydExe -ArgumentList $ttydArgs -WorkingDirectory $env:USERPROFILE -WindowStyle Hidden -RedirectStandardOutput $logOut -RedirectStandardError $logErr -PassThru
+    if ($ttydCred) {
+        Write-Log "SUKSES_LAUNCH: ttyd PID=$($p.Id) port 7681 path /opencode (menu pilih-terminal) basic-auth user='(kosong)' pass='**(disembunyikan)**' (file $authFile)"
+    } else {
+        Write-Log "PERINGATAN: ttyd PID=$($p.Id) TANPA basic-auth - file kredensial $authFile tidak ditemukan."
+    }
 } catch {
     Write-Log "ERROR_LAUNCH: $($_.Exception.Message)"
     exit 1

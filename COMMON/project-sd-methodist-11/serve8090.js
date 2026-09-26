@@ -31,6 +31,7 @@ const MIME = {
 };
 
 const VIDEO_SOURCE_DIRS = [
+  'D:\\Methodist-11 Document\\#YONATHAN\\video soure 2',
   'D:\\Methodist-11 Document\\#YONATHAN\\Video Souce',
   '\\\\192.168.136.1\\Methodist-11 Document\\#YONATHAN\\Video Souce',
 ];
@@ -47,7 +48,8 @@ function resolveVideoFile(fileName) {
   return path.join(VIDEO_SOURCE_DIRS[0], fileName);
 }
 
-function streamVideoFile(filePath, req, res) {
+function streamVideoFile(filePath, req, res, cacheControl) {
+  const cacheHeader = { 'Cache-Control': cacheControl || 'public, max-age=14400' };
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
       res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
@@ -77,6 +79,7 @@ function streamVideoFile(filePath, req, res) {
         'Accept-Ranges': 'bytes',
         'Content-Length': chunksize,
         'Content-Type': contentType,
+        ...cacheHeader,
       });
       fileStream.pipe(res);
     } else {
@@ -84,6 +87,7 @@ function streamVideoFile(filePath, req, res) {
         'Content-Length': fileSize,
         'Content-Type': contentType,
         'Accept-Ranges': 'bytes',
+        ...cacheHeader,
       });
       fs.createReadStream(filePath).pipe(res);
     }
@@ -147,7 +151,7 @@ const server = http.createServer((req, res) => {
   if (p.startsWith('/video-source/')) {
     const rawName = p.substring('/video-source/'.length);
     const fileName = path.basename(rawName);
-    streamVideoFile(resolveVideoFile(fileName), req, res);
+    streamVideoFile(resolveVideoFile(fileName), req, res, 'no-cache, max-age=0');
     return;
   }
   if (p === '/') p = '/index.html';
