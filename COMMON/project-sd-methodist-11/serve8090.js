@@ -151,7 +151,7 @@ const server = http.createServer((req, res) => {
   if (p.startsWith('/video-source/')) {
     const rawName = p.substring('/video-source/'.length);
     const fileName = path.basename(rawName);
-    streamVideoFile(resolveVideoFile(fileName), req, res, 'no-cache, max-age=0');
+    streamVideoFile(resolveVideoFile(fileName), req, res, 'no-store, no-cache, must-revalidate');
     return;
   }
   if (p === '/') p = '/index.html';
