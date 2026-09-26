@@ -30,7 +30,22 @@ const MIME = {
   '.ogg': 'video/ogg',
 };
 
-const VIDEO_SOURCE_DIR = '\\\\192.168.136.1\\Methodist-11 Document\\#YONATHAN\\Video Souce';
+const VIDEO_SOURCE_DIRS = [
+  'D:\\Methodist-11 Document\\#YONATHAN\\Video Souce',
+  '\\\\192.168.136.1\\Methodist-11 Document\\#YONATHAN\\Video Souce',
+];
+
+function resolveVideoFile(fileName) {
+  for (const dir of VIDEO_SOURCE_DIRS) {
+    const target = path.join(dir, fileName);
+    if (fs.existsSync(target)) return target;
+  }
+  for (const dir of VIDEO_SOURCE_DIRS) {
+    const fallback = path.join(dir, 'Untitled.mp4');
+    if (fs.existsSync(fallback)) return fallback;
+  }
+  return path.join(VIDEO_SOURCE_DIRS[0], fileName);
+}
 
 function streamVideoFile(filePath, req, res) {
   fs.stat(filePath, (err, stats) => {
@@ -132,12 +147,7 @@ const server = http.createServer((req, res) => {
   if (p.startsWith('/video-source/')) {
     const rawName = p.substring('/video-source/'.length);
     const fileName = path.basename(rawName);
-    let targetFile = path.join(VIDEO_SOURCE_DIR, fileName);
-    if (!fs.existsSync(targetFile)) {
-      const fallback = path.join(VIDEO_SOURCE_DIR, 'Untitled.mp4');
-      if (fs.existsSync(fallback)) targetFile = fallback;
-    }
-    streamVideoFile(targetFile, req, res);
+    streamVideoFile(resolveVideoFile(fileName), req, res);
     return;
   }
   if (p === '/') p = '/index.html';
