@@ -25,7 +25,55 @@ const MIME = {
   '.webp': 'image/webp',
   '.pdf': 'application/pdf',
   '.txt': 'text/plain; charset=utf-8',
+  '.mp4': 'video/mp4',
+  '.webm': 'video/webm',
+  '.ogg': 'video/ogg',
 };
+
+const VIDEO_SOURCE_DIR = '\\\\192.168.136.1\\Methodist-11 Document\\#YONATHAN\\Video Souce';
+
+function streamVideoFile(filePath, req, res) {
+  fs.stat(filePath, (err, stats) => {
+    if (err || !stats.isFile()) {
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+      res.end('404 Video Not Found');
+      return;
+    }
+    const ext = path.extname(filePath).toLowerCase();
+    const contentType = MIME[ext] || 'video/mp4';
+    const fileSize = stats.size;
+    const range = req.headers.range;
+
+    if (range) {
+      const parts = range.replace(/bytes=/, '').split('-');
+      const start = parseInt(parts[0], 10);
+      const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+
+      if (start >= fileSize || end >= fileSize || start > end) {
+        res.writeHead(416, { 'Content-Range': `bytes */${fileSize}` });
+        res.end();
+        return;
+      }
+
+      const chunksize = (end - start) + 1;
+      const fileStream = fs.createReadStream(filePath, { start, end });
+      res.writeHead(206, {
+        'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+        'Accept-Ranges': 'bytes',
+        'Content-Length': chunksize,
+        'Content-Type': contentType,
+      });
+      fileStream.pipe(res);
+    } else {
+      res.writeHead(200, {
+        'Content-Length': fileSize,
+        'Content-Type': contentType,
+        'Accept-Ranges': 'bytes',
+      });
+      fs.createReadStream(filePath).pipe(res);
+    }
+  });
+}
 
 function isTermPath(p) {
   return p === TTYD_PATH || p.startsWith(TTYD_PATH + '/');
@@ -81,13 +129,28 @@ const server = http.createServer((req, res) => {
     proxyHttp(req, res);
     return;
   }
+  if (p.startsWith('/video-source/')) {
+    const rawName = p.substring('/video-source/'.length);
+    const fileName = path.basename(rawName);
+    let targetFile = path.join(VIDEO_SOURCE_DIR, fileName);
+    if (!fs.existsSync(targetFile)) {
+      const fallback = path.join(VIDEO_SOURCE_DIR, 'Untitled.mp4');
+      if (fs.existsSync(fallback)) targetFile = fallback;
+    }
+    streamVideoFile(targetFile, req, res);
+    return;
+  }
   if (p === '/') p = '/index.html';
   let file = path.join(ROOT, p);
   fs.stat(file, (err, st) => {
     if (!err && st.isDirectory()) file = path.join(file, 'index.html');
+    const ext = path.extname(file).toLowerCase();
+    if (ext === '.mp4' || ext === '.webm' || ext === '.ogg') {
+      streamVideoFile(file, req, res);
+      return;
+    }
     fs.readFile(file, (e, data) => {
       if (e) { res.writeHead(404); res.end('404 Not Found'); return; }
-      const ext = path.extname(file).toLowerCase();
       res.writeHead(200, { 'Content-Type': MIME[ext] || 'application/octet-stream' });
       res.end(data);
     });
