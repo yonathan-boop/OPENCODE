@@ -143,3 +143,8 @@ Lihat file terpisah di COMMON/docs/:
 - Setup AGENTS.md/SOUL.md/USER.md untuk CLI (openclaw) di `.openclaw\workspace\` biar auto-load shared memory
 - Boundary rule: VS Code instance cuma edit `VS&OPENCODE/` â€” jangan sentuh folder lain di shared memory
 - Bantu buat Tugas1.java (Tugas 1 Sistem Data)
+
+### 26 September 2026 — Setup Windows-MCP
+- Berhasil mengkonfigurasi dan menguji Antigravity dengan Windows-MCP via uvx.
+- Pengujian Screenshot, Snapshot, Move, Click, dan Type sukses berjalan pada desktop interaktif.
+- Dokumentasi lengkap disimpan di WINDOWS-MCP-SETUP.md.
