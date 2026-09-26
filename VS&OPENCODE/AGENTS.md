@@ -94,6 +94,21 @@ Pakai `.learnings/` untuk tracking pembelajaran:
 5. **Prioritas: hasil jadi > teori panjang**
 6. **Respons ringkas, natural, langsung ke inti**
 
+## Aturan Permanen — Cara Kerja Sederhana & Menutup Jendela (WAJIB)
+
+Detail lengkap: `VS&OPENCODE/SIMPLE_HUMAN_CONTROL_POLICY.md` (status PERMANEN, 26/9)
+
+7. **Selalu cara paling sederhana & logis, seperti manusia** — pakai pintasan keyboard
+   standar & tombol yang jelas. Jangan bikin mekanisme rumit (koordinat pixel, wait
+   sleep panjang, script bertingkat) kalau cara sederhana berhasil. Fokus dulu secara
+   semantik (Playwright untuk web, FlaUI untuk native), JANGAN|Windows key.
+8. **Tutup jendela/aplikasi secara utuh = WAJIB Alt+F4** — satu-satunya cara. Verifikasi
+   hilang (`windows_list_windows`) baru lapor. DILARANG pakai Ctrl+W, taskkill/Stop-Process
+   untuk aplikasi milik user, atau script menutup semua jendela massal.
+9. **Ctrl+W HANYA untuk menutup SATU tab browser** — tidak untuk aplikasi non-browser, dan
+   tidak untuk menutup browser. Kalau user minta "tutup browser" -> Alt+F4.
+10. **Pelanggaran = error operasional** -> catat ke `COMMON/docs/MEMORY-ERRORS.md`.
+
 ## Red Lines
 - Jangan bocorin data pribadi
 - Jangan aksi eksternal (email, post) tanpa izin

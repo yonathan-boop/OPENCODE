@@ -4,6 +4,14 @@ Catatan koreksi, insight, dan pola yang terbukti membantu agar asisten berkemban
 
 ---
 
+## [LRN-20260926-004] cara_ter sederhana_manusia_alt_f4_tutup_jendela_ctrl_w_tutup_tab — priority: CRITICAL
+Tiga aturan permanen dari user (26/9) yang promoted ke `VS&OPENCODE/AGENTS.md` Aturan Main item 7-10 + file policy `VS&OPENCODE/SIMPLE_HUMAN_CONTROL_POLICY.md`. Berlaku lintas PC & lintas tool (Playwright/FlaUI/Windows-MCP).
+- **1) Selalu cara paling sederhana & logis, seperti manusia.** Utamakan pintasan keyboard standar & tombol yang jelas. Jangan bikin mekanisme rumit (koordinat pixel, wait/sleep panjang, script bertingkat) kalau cara sederhana berhasil. Fokus jendela target secara **semantik** dulu (Playwright untuk web, FlaUI untuk native) — tetap sesuai `TOOL_PRIORITY_POLICY.md` & tetap larangan total Windows key (`WINDOWS_SHELL_CONTROL_CORRECTION.md`).
+- **2) WAJIB Alt+F4 untuk menutup jendela/aplikasi SECARA UTUH** — satu-satunya cara yang disetujui. Verifikasi hilang (`windows_list_windows`) baru lapor. DILARANG: Ctrl+W untuk menutup aplikasi, `Stop-Process`/`taskkill` untuk aplikasi milik user yang sedang terbuka, klik-kanan-taskbar close sebagai default, atau script menutup semua jendela massal. Dialog "Save changes" harus ditangani (pilih Save/Don't Save sesuai konteks), jangan menggantung.
+- **3) Ctrl+W HANYA untuk menutup SATU TAB BROWSER** (Chrome/Edge/Firefox). Tidak untuk aplikasi non-browser (Notepad, Word, Explorer) dan tidak untuk menutup browser. Kalau user minta "tutup browser" -> Alt+F4, bukan Ctrl+W berulang. Dialog "Save page?" -> Don't Save kecuali diminta disimpan.
+- **Pola:** fokus (semantik) -> tutup (Alt+F4 utuh / Ctrl+W 1 tab) -> verifikasi -> lapor ringkas. Satu kebutuhan = satu aksi; verifikasi sekali, jangan cek berulang.
+- **Pelanggaran = error operasional** -> catat ke `MEMORY-ERRORS.md`. #alt-f4 #ctrl-w #tutup-jendela #tutup-tab #simple-human-way #fla-ui #playwright #windows-key #permanen
+
 ## [LRN-20260926-003] spmb_ganti_ppdb_permendikdasmen_3_2025_jalur_kuota_usia_sd_dan_implikasi_website_sekolah — priority: high
 **PPDB SUDAH TIDAK LAGI DIPAKAI — sekarang SPMB (Sistem Penerimaan Murid Baru)**, dasar hukum **Permendikdasmen No. 3 Tahun 2025** (mencabut Permendikbudristek 1/2021 lewat Pasal 66), ditegaskan tiap tahun dengan **SE Dirjen PAUD Dikdasmen No. 0301/C/HK.04.01/2026** untuk TA 2026/2027. Riset + verifikasi 26/9 (salinan resmi Permendikdasmen 3/2025, FAQ/SSD resmi Kemendikdasmen, portal SPMB Kota Medan,脸部 berita Disdikbud Medan). Relevan karena: (1) season PPDB SD Methodist-11 = **Des 2026 – Jan 2027**, yaitu 2-3 bulan dari sekarang; (2) Website v2 sudah punya **halaman pendaftaran baru** yang harus complies aturan ini; (3) istilah salah = dokumen resmi sekolah kentil credibility.
 - **Istilah WAJIB: SPMB, bukan PPDB.** Semua dokumen/pengumuman/label website resmi pakai "Penerimaan Murid Baru/SPMB". "PPDB" hanya boleh disebut sebagai penjelasan kenapa berubah.
