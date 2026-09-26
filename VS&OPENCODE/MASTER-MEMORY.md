@@ -148,3 +148,9 @@ Lihat file terpisah di COMMON/docs/:
 - Berhasil mengkonfigurasi dan menguji Antigravity dengan Windows-MCP via uvx.
 - Pengujian Screenshot, Snapshot, Move, Click, dan Type sukses berjalan pada desktop interaktif.
 - Dokumentasi lengkap disimpan di WINDOWS-MCP-SETUP.md.
+
+### MILESTONE 1 (26 Sept 2026)
+Berhasil mengubah arsitektur Antigravity menjadi PRIMARY AGENT dengan [PERFORMANCE_MODE] via windows-mcp, serta ChatGPT sebagai ADVISORY. Tersimpan di MILESTONE-1-PERUBAHAN-PERTAMA.md
+
+### UPDATE: FULL AUTONOMY MODE (26 Sept 2026)
+Mode diubah menjadi FULL_AUTONOMOUS_EXECUTOR. Izin penuh (Full Autonomy) telah diberikan untuk mengontrol mouse, keyboard, file, browser, dan terminal tanpa perlu konfirmasi manual (kecuali UAC Windows yang wajib di-klik user).
