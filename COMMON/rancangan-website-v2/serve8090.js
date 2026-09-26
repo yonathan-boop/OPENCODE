@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname);
-const PORT = 8090;
+const PORT = Number(process.env.PORT || 8090);
 const TTYD_HOST = '127.0.0.1';
 const TTYD_PORT = 7681;
 const TTYD_PATH = '/opencode';

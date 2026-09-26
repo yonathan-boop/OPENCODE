@@ -103,4 +103,10 @@
     <priority>0.5</priority>
   </url>
   <url><loc>https://methodist-11.my.id/pages/pendaftaran.html</loc><lastmod>2026-09-25</lastmod><priority>0.8</priority></url>
+  <url>
+    <loc>https://methodist-11.my.id/pages/kegiatan/kunjungan-kebun-binatang.html</loc>
+    <lastmod>2026-09-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
